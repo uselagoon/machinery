@@ -1,0 +1,13 @@
+mutation (
+  $project: String!
+  ) {
+  switchActiveStandby(
+    input: {
+      project:{
+        name: $project
+      }
+    }
+  ) {
+    id
+  }
+}

@@ -1,0 +1,16 @@
+query ($project: Int!, $environment: String!){
+    environmentByName(
+            project: $project
+            name: $environment
+    ){
+        deployments{
+            name
+            id
+            remoteId
+            status
+            created
+            started
+            completed
+        }
+    }
+}

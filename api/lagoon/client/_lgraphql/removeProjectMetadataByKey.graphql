@@ -1,0 +1,14 @@
+mutation (
+    $id: Int!
+    $key: String!){
+    removeProjectMetadataByKey(
+        input:{
+            id: $id
+            key: $key
+        }
+    ){
+        id
+        name
+        metadata
+    }
+}

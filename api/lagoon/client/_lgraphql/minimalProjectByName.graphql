@@ -1,0 +1,19 @@
+query (
+  $name: String!) {
+    projectByName(
+      name: $name) {
+        id
+        name
+        autoIdle
+        branches
+        pullrequests
+        productionEnvironment
+        openshiftProjectPattern
+        developmentEnvironmentsLimit
+        gitUrl
+        autoIdle
+        openshift{
+          id
+        }
+      }
+  }

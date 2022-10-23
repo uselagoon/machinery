@@ -1,0 +1,84 @@
+query (
+  $name: String!) {
+    projectByName(
+      name: $name) {
+        id
+        name
+        autoIdle
+        branches
+        pullrequests
+        privateKey
+        productionEnvironment
+        storageCalc
+        openshiftProjectPattern
+        developmentEnvironmentsLimit
+        gitUrl
+        autoIdle
+        groups{
+          ... on Group {
+            __typename
+            name
+            members{
+              user{
+                email
+                sshKeys{
+                  name
+                  keyType
+                  keyValue
+                }
+                firstName
+                lastName
+              }
+              role
+            }
+          }
+        }
+        notifications {
+          ... on NotificationSlack {
+            __typename
+            webhook
+            name
+            channel
+          }
+          ... on NotificationRocketChat {
+            __typename
+            webhook
+            name
+            channel
+          }
+          ... on NotificationEmail {
+            __typename
+            emailAddress
+            name
+          }
+          ... on NotificationMicrosoftTeams {
+            __typename
+            webhook
+            name
+          }
+        }
+        openshift{
+          id
+        }
+        envVariables {
+          name
+          scope
+          value
+        }
+        environments {
+          name
+          deployType
+          deployBaseRef
+          deployHeadRef
+          deployTitle
+          environmentType
+          openshiftProjectName
+          autoIdle
+          envVariables {
+            name
+            scope
+            value
+          }
+        }
+      }
+  }

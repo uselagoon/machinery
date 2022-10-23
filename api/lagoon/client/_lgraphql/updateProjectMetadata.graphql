@@ -1,0 +1,18 @@
+mutation (
+    $id: Int!
+    $key: String!
+    $value: String){
+    updateProjectMetadata(
+        input:{
+            id: $id
+            patch: {
+                key: $key
+                value: $value
+            }
+        }
+    ){
+        id
+        name
+        metadata
+    }
+}

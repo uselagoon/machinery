@@ -1,0 +1,20 @@
+mutation (
+  $project: String!, 
+  $sourceEnvironment: String!, 
+  $destinationEnvironment: String!,
+  $returnData: Boolean!) {
+    deployEnvironmentPromote(input:{
+      sourceEnvironment:{
+        name: $sourceEnvironment
+        project:{
+          name: $project
+        }
+      }
+      project:{
+        name: $project
+      }
+      destinationEnvironment: $destinationEnvironment
+      returnData: $returnData
+    }
+  )
+}

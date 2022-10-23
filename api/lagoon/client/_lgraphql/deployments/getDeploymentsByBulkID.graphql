@@ -1,0 +1,18 @@
+query ($bulkId: String!) {
+    deploymentsByBulkId(bulkId: $bulkId)
+    {
+        id
+        name
+        remoteId
+        status
+        buildLog
+        environment{
+            id
+            name
+            project{
+                id
+                name
+            }
+        }
+    }
+}
