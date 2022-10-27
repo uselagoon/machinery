@@ -28,7 +28,7 @@ func AddBackupRestore(ctx context.Context, backupID string, e Environments) (*sc
 }
 
 // UpdateStorage updates environment storage.
-func UpdateStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, m Environment) (*schema.UpdateEnvironmentStorage, error) {
+func UpdateStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, m Environments) (*schema.UpdateEnvironmentStorage, error) {
 	result := schema.UpdateEnvironmentStorage{}
 	return &result, m.UpdateEnvironmentStorage(ctx, storage, &result)
 }
