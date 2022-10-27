@@ -281,7 +281,7 @@ func (c *Client) AddRestore(
 	})
 }
 
-// UpdateEnvironmentStorage deploys a latest environment.
+// UpdateEnvironmentStorage updates an environments storage values.
 func (c *Client) UpdateEnvironmentStorage(ctx context.Context,
 	in *schema.UpdateEnvironmentStorageInput, out *schema.UpdateEnvironmentStorage) error {
 	req, err := c.newRequest("_lgraphql/addOrUpdateEnvironmentStorage.graphql", in)

@@ -12,6 +12,7 @@ import (
 type Environments interface {
 	BackupsForEnvironmentByName(context.Context, string, uint, *schema.Environment) error
 	AddRestore(context.Context, string, *schema.Restore) error
+	UpdateEnvironmentStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, result *schema.UpdateEnvironmentStorage) error
 }
 
 // GetBackupsForEnvironmentByName gets backup info in lagoon for specific environment.
@@ -24,4 +25,10 @@ func GetBackupsForEnvironmentByName(ctx context.Context, name string, project ui
 func AddBackupRestore(ctx context.Context, backupID string, e Environments) (*schema.Restore, error) {
 	restore := schema.Restore{}
 	return &restore, e.AddRestore(ctx, backupID, &restore)
+}
+
+// UpdateStorage updates environment storage.
+func UpdateStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, m Environment) (*schema.UpdateEnvironmentStorage, error) {
+	result := schema.UpdateEnvironmentStorage{}
+	return &result, m.UpdateEnvironmentStorage(ctx, storage, &result)
 }
