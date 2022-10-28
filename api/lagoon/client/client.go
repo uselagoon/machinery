@@ -1,4 +1,4 @@
-//go:generate go-bindata -pkg lgraphql -o lgraphql/lgraphql.go -nometadata _lgraphql/ _lgraphql/deployments/ _lgraphql/deploytargets/ _lgraphql/deploytargetconfigs/
+//go:generate go-bindata -pkg lgraphql -o lgraphql/lgraphql.go -nometadata _lgraphql/ _lgraphql/deployments/ _lgraphql/deploytargets/ _lgraphql/deploytargetconfigs/ _lgraphql/projects/ _lgraphql/environments/ _lgraphql/tasks/ _lgraphql/usergroups/
 
 // Package client implements the interfaces required by the parent lagoon
 // package.
@@ -7,8 +7,10 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/lagoon/client/lgraphql"
@@ -56,6 +58,29 @@ func (c *Client) newRequest(
 	}
 
 	return c.doRequest(string(q), varStruct)
+}
+
+func (c *Client) newTemplateRequest(
+	assetName string, varStruct interface{}, tFuncs template.FuncMap, data map[string]interface{}) (*graphql.Request, error) {
+
+	q, err := lgraphql.Asset(assetName)
+	if err != nil {
+		return nil, fmt.Errorf("couldn't get asset: %w", err)
+	}
+
+	t, err := template.New("query").
+		Funcs(tFuncs).
+		Parse(string(q))
+	if err != nil {
+		return nil, fmt.Errorf("couldn't parse template: %w", err)
+	}
+
+	queryBuilder := strings.Builder{}
+	if err = t.Execute(&queryBuilder, data); err != nil {
+		return nil, fmt.Errorf("couldn't execute template: %w", err)
+	}
+
+	return c.doRequest(queryBuilder.String(), varStruct)
 }
 
 func (c *Client) doRequest(query string, varStruct interface{}) (*graphql.Request, error) {

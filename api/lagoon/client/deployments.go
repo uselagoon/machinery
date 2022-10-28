@@ -2,6 +2,9 @@ package client
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
+	"html/template"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -79,4 +82,72 @@ func (c *Client) DeployEnvironmentBranch(ctx context.Context,
 		return err
 	}
 	return c.client.Run(ctx, req, &out)
+}
+
+func (c *Client) DeploymentByRemoteID(
+	ctx context.Context, remoteID string, deployment *schema.Deployment) error {
+	req, err := c.newRequest("_lgraphql/deployments/deploymentByRemoteID.graphql",
+		map[string]interface{}{
+			"remoteId": remoteID,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Deployment `json:"deploymentByRemoteID"`
+	}{
+		Response: deployment,
+	})
+}
+
+func (c *Client) DeploymentByBuildName(
+	ctx context.Context, namespace, deploymentName string, deployment *schema.Deployment) error {
+	// use template request
+	req, err := c.newTemplateRequest("_lgraphql/deployments/deploymentByName.graphql",
+		map[string]interface{}{
+			"namespace": namespace,
+		}, template.FuncMap{
+			"deploymentName": func() string { return deploymentName },
+		},
+		nil)
+	if err != nil {
+		return err
+	}
+	environment := &schema.Environment{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"deploymentByName"`
+	}{
+		Response: environment,
+	})
+	if err != nil {
+		return err
+	}
+	d := environment.Deployments[0]
+	if len(environment.Deployments) == 0 {
+		return fmt.Errorf("no deployment found for environment")
+	}
+	db, _ := json.Marshal(d)
+	json.Unmarshal(db, deployment)
+	return nil
+}
+
+// UpdateDeployment updates a deployment.
+func (c *Client) UpdateDeployment(
+	ctx context.Context, id int, patch schema.UpdateDeploymentPatchInput, deployment *schema.Deployment) error {
+
+	req, err := c.newRequest("_lgraphql/deployments/updateDeployment.graphql",
+		map[string]interface{}{
+			"id":    id,
+			"patch": patch,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Deployment `json:"updateDeployment"`
+	}{
+		Response: deployment,
+	})
 }

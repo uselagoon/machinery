@@ -12,6 +12,7 @@ import (
 type Tasks interface {
 	RunActiveStandbySwitch(ctx context.Context, project string, result *schema.Task) error
 	GetTaskByID(ctx context.Context, id int, result *schema.Task) error
+	UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, result *schema.Task) error
 }
 
 // ActiveStandbySwitch runs the activestandby switch.
@@ -24,4 +25,10 @@ func ActiveStandbySwitch(ctx context.Context, project string, t Tasks) (*schema.
 func TaskByID(ctx context.Context, id int, t Tasks) (*schema.Task, error) {
 	result := schema.Task{}
 	return &result, t.GetTaskByID(ctx, id, &result)
+}
+
+// UpdateTask updates a task.
+func UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, t Tasks) (*schema.Task, error) {
+	result := schema.Task{}
+	return &result, t.UpdateTask(ctx, id, patch, &result)
 }

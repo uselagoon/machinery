@@ -1,0 +1,22 @@
+query (
+  $namespace: String!
+){
+  environmentByNamespace:environmentByKubernetesNamespaceName(
+    kubernetesNamespaceName: $namespace
+  ){
+    id
+    name
+    route
+    routes
+    deployType
+    environmentType
+    openshiftProjectName
+    updated
+    created
+    deleted
+    services{
+        id
+        name
+    }
+  }
+}

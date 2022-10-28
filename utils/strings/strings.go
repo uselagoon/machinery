@@ -1,6 +1,11 @@
 package strings
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
+)
 
 // ContainsString check if a slice contains a string
 func ContainsString(slice []string, s string) bool {
@@ -32,4 +37,8 @@ func ReturnNonEmptyString(value string) string {
 		return "-"
 	}
 	return value
+}
+
+func SlicesEqual(a, b []string) bool {
+	return cmp.Diff(a, b, cmpopts.SortSlices(func(x, y string) bool { return x < y })) == ""
 }

@@ -1,0 +1,13 @@
+mutation (
+    $id: Int!
+    $services: [String]!){
+    setEnvironmentServices(
+        input: {
+            environment: $id
+            services: $services
+        }
+    ){
+        id
+        name
+    }
+}

@@ -1,0 +1,13 @@
+mutation (
+    $name: String!
+    $project: String!
+    $execute: Boolean
+){
+    deleteEnvironment(
+        input: {
+            name: $name
+            project: $project
+            execute: $execute
+        }
+    )
+}

@@ -19,5 +19,17 @@ mutation (
     }) {
       id
       name
+      route
+      routes
+      deployType
+      environmentType
+      openshiftProjectName
+      updated
+      created
+      deleted
+      services{
+          id
+          name
+      }
     }
   }

@@ -37,12 +37,13 @@ type AddEnvironmentInput struct {
 // Environment is the Lagoon API Environment object.
 type Environment struct {
 	AddEnvironmentInput
-	AutoIdle     uint          `json:"autoIdle"`
-	EnvVariables []EnvKeyValue `json:"envVariables,omitempty"`
-	Route        string        `json:"route,omitempty"`
-	Routes       string        `json:"routes,omitempty"`
-	Backups      []Backup      `json:"backups,omitempty"`
-	Deployments  []Deployment  `json:"deployments,omitempty"`
+	AutoIdle     uint                 `json:"autoIdle"`
+	EnvVariables []EnvKeyValue        `json:"envVariables,omitempty"`
+	Route        string               `json:"route,omitempty"`
+	Routes       string               `json:"routes,omitempty"`
+	Backups      []Backup             `json:"backups,omitempty"`
+	Deployments  []Deployment         `json:"deployments,omitempty"`
+	Services     []EnvironmentService `json:"services,omitempty"`
 	// TODO use a unixtime type
 	Updated string `json:"updated,omitempty"`
 	Created string `json:"created,omitempty"`
@@ -73,4 +74,33 @@ type UpdateEnvironmentStorageInput struct {
 // UpdateEnvironmentStorage is the response.
 type UpdateEnvironmentStorage struct {
 	ID int `json:"id"`
+}
+
+// DeleteEnvironment is the response.
+type DeleteEnvironment struct {
+	DeleteEnvironment string `json:"deleteEnvironment"`
+}
+
+type UpdateEnvironmentPatchInput struct {
+	ID                   uint       `json:"id,omitempty"`
+	Name                 string     `json:"name,omitempty"`
+	ProjectID            uint       `json:"project,omitempty"`
+	DeployType           DeployType `json:"deployType,omitempty"`
+	DeployBaseRef        string     `json:"deployBaseRef,omitempty"`
+	DeployHeadRef        string     `json:"deployHeadRef,omitempty"`
+	DeployTitle          string     `json:"deployTitle,omitempty"`
+	EnvironmentType      EnvType    `json:"environmentType,omitempty"`
+	OpenshiftProjectName string     `json:"openshiftProjectName,omitempty"`
+	Route                string     `json:"route,omitempty"`
+	Routes               string     `json:"routes,omitempty"`
+	MonitoringURLs       string     `json:"monitoringUrls,omitempty"`
+	AutoIdle             uint       `json:"autoIdle"`
+	Openshift            uint       `json:"openshift,omitempty"`
+	Created              string     `json:"created,omitempty"`
+}
+
+// EnvironmentService  is based on the Lagoon API type.
+type EnvironmentService struct {
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
