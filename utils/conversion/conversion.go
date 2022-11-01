@@ -4,26 +4,21 @@ import "strconv"
 
 // IntPtr .
 func IntPtr(i int32) *int32 {
-	var iPtr *int32
-	iPtr = new(int32)
-	*iPtr = i
-	return iPtr
+	return &i
 }
 
 // Int64Ptr .
 func Int64Ptr(i int64) *int64 {
-	var iPtr *int64
-	iPtr = new(int64)
-	*iPtr = i
-	return iPtr
+	return &i
 }
 
 // UintPtr .
 func UintPtr(i uint) *uint {
-	var iPtr *uint
-	iPtr = new(uint)
-	*iPtr = i
-	return iPtr
+	return &i
+}
+
+func StringPtr(s string) *string {
+	return &s
 }
 
 // StringToUintPtr get the environment id and turn it into a *uint to send back to lagoon for logging

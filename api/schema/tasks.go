@@ -47,7 +47,7 @@ type UpdateTaskPatchInput struct {
 	Created     string      `json:"created,omitempty"`
 	Started     string      `json:"started,omitempty"`
 	Completed   string      `json:"completed,omitempty"`
-	Environment uint        `json:"environment,omitempty"`
+	Environment *uint       `json:"environment,omitempty"`
 	Service     string      `json:"service,omitempty"`
 	Command     string      `json:"command,omitempty"`
 	RemoteID    string      `json:"remoteId,omitempty"`

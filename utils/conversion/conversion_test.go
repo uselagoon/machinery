@@ -1,6 +1,8 @@
 package conversion
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestStringToUint(t *testing.T) {
 	var testCases = map[string]struct {

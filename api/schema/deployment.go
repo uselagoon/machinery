@@ -81,14 +81,14 @@ type Deployment struct {
 }
 
 type UpdateDeploymentPatchInput struct {
-	Name        string      `json:"name,omitempty"`
-	Status      StatusTypes `json:"status,omitempty"`
-	Created     string      `json:"created,omitempty"`
-	Started     string      `json:"started,omitempty"`
-	Completed   string      `json:"completed,omitempty"`
-	Environment uint        `json:"environment,omitempty"`
-	RemoteID    string      `json:"remoteId,omitempty"`
-	Priority    uint        `json:"priority,omitempty"`
-	BulkId      string      `json:"bulkId,omitempty"`
-	BulkName    string      `json:"bulkName,omitempty"`
+	Name        *string      `json:"name,omitempty"`
+	Status      *StatusTypes `json:"status,omitempty"`
+	Created     *string      `json:"created,omitempty"`
+	Started     *string      `json:"started,omitempty"`
+	Completed   *string      `json:"completed,omitempty"`
+	Environment *uint        `json:"environment,omitempty"`
+	RemoteID    *string      `json:"remoteId,omitempty"`
+	Priority    *uint        `json:"priority,omitempty"`
+	BulkId      *string      `json:"bulkId,omitempty"`
+	BulkName    *string      `json:"bulkName,omitempty"`
 }

@@ -82,21 +82,21 @@ type DeleteEnvironment struct {
 }
 
 type UpdateEnvironmentPatchInput struct {
-	ID                   uint       `json:"id,omitempty"`
-	Name                 string     `json:"name,omitempty"`
-	ProjectID            uint       `json:"project,omitempty"`
-	DeployType           DeployType `json:"deployType,omitempty"`
-	DeployBaseRef        string     `json:"deployBaseRef,omitempty"`
-	DeployHeadRef        string     `json:"deployHeadRef,omitempty"`
-	DeployTitle          string     `json:"deployTitle,omitempty"`
-	EnvironmentType      EnvType    `json:"environmentType,omitempty"`
-	OpenshiftProjectName string     `json:"openshiftProjectName,omitempty"`
-	Route                string     `json:"route,omitempty"`
-	Routes               string     `json:"routes,omitempty"`
-	MonitoringURLs       string     `json:"monitoringUrls,omitempty"`
-	AutoIdle             uint       `json:"autoIdle"`
-	Openshift            uint       `json:"openshift,omitempty"`
-	Created              string     `json:"created,omitempty"`
+	ID                   *uint       `json:"id,omitempty"`
+	Name                 *string     `json:"name,omitempty"`
+	ProjectID            *uint       `json:"project,omitempty"`
+	DeployType           *DeployType `json:"deployType,omitempty"`
+	DeployBaseRef        *string     `json:"deployBaseRef,omitempty"`
+	DeployHeadRef        *string     `json:"deployHeadRef,omitempty"`
+	DeployTitle          *string     `json:"deployTitle,omitempty"`
+	EnvironmentType      *EnvType    `json:"environmentType,omitempty"`
+	OpenshiftProjectName *string     `json:"openshiftProjectName,omitempty"`
+	Route                *string     `json:"route,omitempty"`
+	Routes               *string     `json:"routes,omitempty"`
+	MonitoringURLs       *string     `json:"monitoringUrls,omitempty"`
+	AutoIdle             *uint       `json:"autoIdle,omitempty"`
+	Openshift            *uint       `json:"openshift,omitempty"`
+	Created              *string     `json:"created,omitempty"`
 }
 
 // EnvironmentService  is based on the Lagoon API type.
