@@ -16,6 +16,9 @@ type Deploy interface {
 	DeployEnvironmentBranch(ctx context.Context, deploy *schema.DeployEnvironmentBranchInput, result *schema.DeployEnvironmentBranch) error
 	DeploymentsByBulkID(ctx context.Context, bulkID string, deployments *[]schema.Deployment) error
 	DeploymentsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
+	DeploymentByRemoteID(ctx context.Context, remoteID string, deployments *schema.Deployment) error
+	DeploymentByBuildName(ctx context.Context, namespace, deploymentName string, deployments *schema.Deployment) error
+	UpdateDeployment(ctx context.Context, id int, patch schema.UpdateDeploymentPatchInput, result *schema.Deployment) error
 }
 
 // DeployLatest deploys the latest environment.
@@ -52,4 +55,22 @@ func GetDeploymentsByBulkID(ctx context.Context, bulkID string, d Deploy) (*[]sc
 func GetDeploymentsByEnvironment(ctx context.Context, projectID uint, environmentName string, d Deploy) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, d.DeploymentsByEnvironment(ctx, projectID, environmentName, &environment)
+}
+
+// GetDeploymentsByBulkID gets deployments for a given bulkID.
+func GetDeploymentByRemoteID(ctx context.Context, remoteID string, d Deploy) (*schema.Deployment, error) {
+	deployment := schema.Deployment{}
+	return &deployment, d.DeploymentByRemoteID(ctx, remoteID, &deployment)
+}
+
+// GetDeploymentsByBulkID gets deployments for a given bulkID.
+func GetDeploymentByName(ctx context.Context, namespace, deploymentName string, d Deploy) (*schema.Deployment, error) {
+	deployment := schema.Deployment{}
+	return &deployment, d.DeploymentByBuildName(ctx, namespace, deploymentName, &deployment)
+}
+
+// UpdateTask updates a task.
+func UpdateDeployment(ctx context.Context, id int, patch schema.UpdateDeploymentPatchInput, d Deploy) (*schema.Deployment, error) {
+	result := schema.Deployment{}
+	return &result, d.UpdateDeployment(ctx, id, patch, &result)
 }

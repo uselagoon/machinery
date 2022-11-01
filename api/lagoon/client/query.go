@@ -6,26 +6,6 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
-// ProjectByName queries the Lagoon API for a project by its name, and
-// unmarshals the response into project.
-func (c *Client) ProjectByName(
-	ctx context.Context, name string, project *schema.Project) error {
-
-	req, err := c.newRequest("_lgraphql/projectByName.graphql",
-		map[string]interface{}{
-			"name": name,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Project `json:"projectByName"`
-	}{
-		Response: project,
-	})
-}
-
 // Me queries the Lagoon API for me, and
 // unmarshals the response into project.
 func (c *Client) Me(
@@ -41,48 +21,6 @@ func (c *Client) Me(
 		Response *schema.User `json:"me"`
 	}{
 		Response: user,
-	})
-}
-
-// EnvironmentByName queries the Lagoon API for an environment by its name and
-// parent projectID, and unmarshals the response into environment.
-func (c *Client) EnvironmentByName(ctx context.Context, name string,
-	projectID uint, environment *schema.Environment) error {
-
-	req, err := c.newRequest("_lgraphql/environmentByName.graphql",
-		map[string]interface{}{
-			"name":    name,
-			"project": projectID,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Environment `json:"environmentByName"`
-	}{
-		Response: environment,
-	})
-}
-
-// BackupsForEnvironmentByName queries the Lagoon API for an environment by its name and
-// parent projectID, and unmarshals the response into environment.
-func (c *Client) BackupsForEnvironmentByName(ctx context.Context, name string,
-	projectID uint, environment *schema.Environment) error {
-
-	req, err := c.newRequest("_lgraphql/backupsForEnvironmentByName.graphql",
-		map[string]interface{}{
-			"name":    name,
-			"project": projectID,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Environment `json:"environmentByName"`
-	}{
-		Response: environment,
 	})
 }
 
@@ -135,67 +73,6 @@ func (c *Client) GetTaskByID(
 		Response *schema.Task `json:"taskById"`
 	}{
 		Response: task,
-	})
-}
-
-// MinimalProjectByName queries the Lagoon API for a project by its name, and
-// unmarshals the response into project.
-func (c *Client) MinimalProjectByName(
-	ctx context.Context, name string, project *schema.Project) error {
-
-	req, err := c.newRequest("_lgraphql/minimalProjectByName.graphql",
-		map[string]interface{}{
-			"name": name,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Project `json:"projectByName"`
-	}{
-		Response: project,
-	})
-}
-
-// ProjectByNameMetadata queries the Lagoon API for a project by its name, and
-// unmarshals the response into project.
-func (c *Client) ProjectByNameMetadata(
-	ctx context.Context, name string, project *schema.ProjectMetadata) error {
-
-	req, err := c.newRequest("_lgraphql/projectByNameMetadata.graphql",
-		map[string]interface{}{
-			"name": name,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.ProjectMetadata `json:"projectByName"`
-	}{
-		Response: project,
-	})
-}
-
-// ProjectsByMetadata queries the Lagoon API for a project by its name, and
-// unmarshals the response into project.
-func (c *Client) ProjectsByMetadata(
-	ctx context.Context, key string, value string, projects *[]schema.ProjectMetadata) error {
-
-	req, err := c.newRequest("_lgraphql/projectsByMetadata.graphql",
-		map[string]interface{}{
-			"key":   key,
-			"value": value,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *[]schema.ProjectMetadata `json:"projectsByMetadata"`
-	}{
-		Response: projects,
 	})
 }
 

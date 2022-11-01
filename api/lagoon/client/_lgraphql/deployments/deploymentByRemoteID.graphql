@@ -1,0 +1,15 @@
+query deploymentByRemoteId($remoteId: String!) {
+    deploymentByRemoteId(id: $remoteId) {
+        id
+        name
+        status
+        created
+        started
+        completed
+        remoteId
+        uiLink
+        environment {
+            name
+        }
+    }
+}

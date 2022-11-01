@@ -97,3 +97,30 @@ type ProjectMetadata struct {
 	Project
 	Metadata string `json:"metadata"`
 }
+
+type UpdateProjectPatchInput struct {
+	Name                         string              `json:"name,omitempty"`
+	GitURL                       string              `json:"gitUrl,omitempty"`
+	Availability                 ProjectAvailability `json:"availability,omitempty"`
+	PrivateKey                   string              `json:"privateKey,omitempty"`
+	Subfolder                    string              `json:"subfolder,omitempty"`
+	RouterPattern                string              `json:"routerPattern,omitempty"`
+	Branches                     string              `json:"branches,omitempty"`
+	ProductionEnvironment        string              `json:"productionEnvironment,omitempty"`
+	ProductionRoutes             string              `json:"productionRoutes,omitempty"`
+	ProductionAlias              string              `json:"productionAlias,omitempty"`
+	StandbyProductionEnvironment string              `json:"standbyProductionEnvironment,omitempty"`
+	StandbyRoutes                string              `json:"standbyRoutes,omitempty"`
+	StandbyAlias                 string              `json:"standbyAlias,omitempty"`
+	AutoIdle                     uint                `json:"autoIdle,omitempty"`
+	StorageCalc                  uint                `json:"storageCalc,omitempty"`
+	Pullrequests                 string              `json:"availability,omitempty"`
+	Kubernetes                   uint                `json:"kubernetes,omitempty"`
+	KubernetesNamespacePattern   string              `json:"kubernetesNamespacePattern,omitempty"`
+	DevelopmentEnvironmentsLimit uint                `json:"developmentEnvironmentsLimit,omitempty"`
+	ProblemsUI                   uint                `json:"problemsUi,omitempty"`
+	FactsUI                      uint                `json:"factsUi,omitempty"`
+	ProductionBuildPriority      uint                `json:"productionBuildPriority,omitempty"`
+	DevelopmentBuildPriority     uint                `json:"developmentBuildPriority,omitempty"`
+	DeploymentsDisabled          uint                `json:"deploymentsDisabled,omitempty"`
+}

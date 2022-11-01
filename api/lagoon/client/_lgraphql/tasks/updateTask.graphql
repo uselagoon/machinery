@@ -1,0 +1,18 @@
+mutation (
+    $id: Int!
+    $patch: UpdateTaskPatchInput!){
+    updateTask(
+        input: {
+            id: $id
+            patch: $patch
+        }
+    ){
+        id
+        name
+        status
+        created
+        started
+        completed
+        remoteId
+    }
+}

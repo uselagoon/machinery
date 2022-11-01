@@ -1,0 +1,19 @@
+query deploymentByName($namespace: String!) {
+    deploymentByName:environmentByOpenshiftProjectName(openshiftProjectName: $namespace) {
+        id
+        name
+        deployments(name: "{{deploymentName}}") {
+            id
+            name
+            status
+            created
+            started
+            completed
+            remoteId
+            uiLink
+            environment {
+                name
+            }
+        }
+    }
+}

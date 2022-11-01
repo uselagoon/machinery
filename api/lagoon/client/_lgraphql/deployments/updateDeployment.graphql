@@ -1,0 +1,24 @@
+mutation (
+    $id: Int!
+    $patch: UpdateDeploymentPatchInput!){
+    updateDeployment(
+        input: {
+            id: $id
+            patch: $patch
+        }
+    ){
+        id
+        name
+        status
+        created
+        started
+        completed
+        remoteId
+        uiLink
+        environment {
+            name
+        }
+        priority
+        bulkId
+    }
+}

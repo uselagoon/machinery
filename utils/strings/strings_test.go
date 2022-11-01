@@ -119,3 +119,39 @@ func TestReturnNonEmptyString(t *testing.T) {
 		})
 	}
 }
+
+func TestSlicesEqual(t *testing.T) {
+	type args struct {
+		a []string
+		b []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "test1",
+			args: args{
+				a: []string{"nginx", "solr", "redis"},
+				b: []string{"solr", "nginx", "redis"},
+			},
+			want: true,
+		},
+		{
+			name: "test2",
+			args: args{
+				a: []string{"nginx", "solr", "redis"},
+				b: []string{"solr", "nginx", "redis", "mariadb"},
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := SlicesEqual(tt.args.a, tt.args.b); got != tt.want {
+				t.Errorf("SlicesEqual() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

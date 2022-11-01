@@ -16,6 +16,7 @@ type Projects interface {
 	UpdateProjectMetadata(ctx context.Context, id int, key string, value string, project *schema.ProjectMetadata) error
 	RemoveProjectMetadataByKey(ctx context.Context, id int, key string, project *schema.ProjectMetadata) error
 	NotificationsForProjectByName(ctx context.Context, name string, result *schema.Project) error
+	UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchInput, project *schema.Project) error
 }
 
 // GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
@@ -52,4 +53,10 @@ func RemoveProjectMetadataByKey(ctx context.Context, id int, key string, p Proje
 func NotificationsForProject(ctx context.Context, name string, p Projects) (*schema.Project, error) {
 	result := schema.Project{}
 	return &result, p.NotificationsForProjectByName(ctx, name, &result)
+}
+
+// UpdateProject updates a project with provided patch data.
+func UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchInput, p Projects) (*schema.Project, error) {
+	project := schema.Project{}
+	return &project, p.UpdateProject(ctx, id, patch, &project)
 }

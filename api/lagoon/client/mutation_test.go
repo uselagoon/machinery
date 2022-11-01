@@ -69,64 +69,6 @@ func TestAddProjectRequest(t *testing.T) {
 	}
 }
 
-func TestAddOrUpdateEnvironmentResponse(t *testing.T) {
-	type testInput struct {
-		in       *schema.AddEnvironmentInput
-		response string
-	}
-	var testCases = map[string]struct {
-		input  *testInput
-		expect *schema.Environment
-	}{
-		"simple update": {
-			input: &testInput{
-				in: &schema.AddEnvironmentInput{
-					DeployBaseRef:        "develop",
-					DeployType:           "BRANCH",
-					EnvironmentType:      "DEVELOPMENT",
-					Name:                 "develop",
-					OpenshiftProjectName: "governors-develop",
-					ProjectID:            24,
-				},
-				response: "testdata/addOrUpdateEnvironmentResponse0.json",
-			},
-			expect: &schema.Environment{
-				AddEnvironmentInput: schema.AddEnvironmentInput{
-					ID:   14,
-					Name: "develop",
-				},
-			},
-		},
-	}
-	for name, tc := range testCases {
-		t.Run(name, func(tt *testing.T) {
-			ts := httptest.NewServer(http.HandlerFunc(
-				func(w http.ResponseWriter, _ *http.Request) {
-					file, err := os.Open(tc.input.response)
-					if err != nil {
-						tt.Fatalf("couldn't open file: %v", err)
-					}
-					_, err = io.Copy(w, file)
-					if err != nil {
-						tt.Fatalf("couldn't write file contents to HTTP: %v", err)
-					}
-				}))
-			defer ts.Close()
-			token := ""
-			c := client.New(ts.URL, "", &token, false)
-
-			out := schema.Environment{}
-			err := c.AddOrUpdateEnvironment(context.Background(), tc.input.in, &out)
-			if err != nil {
-				tt.Fatal(err)
-			}
-			if !reflect.DeepEqual(&out, tc.expect) {
-				tt.Fatalf("expected:\n%v\ngot:\n%v", tc.expect, out)
-			}
-		})
-	}
-}
-
 func TestAddUser(t *testing.T) {
 	type testInput struct {
 		in       *schema.AddUserInput
