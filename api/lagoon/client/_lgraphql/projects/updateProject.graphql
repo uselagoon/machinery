@@ -1,6 +1,6 @@
 mutation (
     $id: Int!
-    $patch: UpdateProjectInput!){
+    $patch: UpdateProjectPatchInput!){
     updateProject(
         input: {
             id: $id
