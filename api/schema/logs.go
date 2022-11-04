@@ -12,6 +12,7 @@ type LagoonLogMeta struct {
 	BranchName     string          `json:"branchName,omitempty"`
 	BuildName      string          `json:"buildName,omitempty"`
 	BuildStatus    string          `json:"buildStatus,omitempty"`
+	BuildPhase     string          `json:"buildPhase,omitempty"` // legacy but still used until `buildStatus` is more available
 	BuildStep      string          `json:"buildStep,omitempty"`
 	EndTime        string          `json:"endTime,omitempty"`
 	Environment    string          `json:"environment,omitempty"`
