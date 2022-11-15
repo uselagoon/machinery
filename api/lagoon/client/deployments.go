@@ -123,10 +123,10 @@ func (c *Client) DeploymentByBuildName(
 	if err != nil {
 		return err
 	}
-	d := environment.Deployments[0]
 	if len(environment.Deployments) == 0 {
 		return fmt.Errorf("no deployment found for environment")
 	}
+	d := environment.Deployments[0]
 	db, _ := json.Marshal(d)
 	json.Unmarshal(db, deployment)
 	return nil
