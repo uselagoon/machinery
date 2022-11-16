@@ -44,6 +44,7 @@ type Environment struct {
 	Backups      []Backup             `json:"backups,omitempty"`
 	Deployments  []Deployment         `json:"deployments,omitempty"`
 	Services     []EnvironmentService `json:"services,omitempty"`
+	DeployTarget DeployTarget         `json:"openshift,omitempty"`
 	// TODO use a unixtime type
 	Updated string `json:"updated,omitempty"`
 	Created string `json:"created,omitempty"`
