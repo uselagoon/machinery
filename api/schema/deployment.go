@@ -78,6 +78,10 @@ type Deployment struct {
 	RemoteID    string           `json:"remoteId,omitempty"`
 	Logs        string           `json:"logs,omitempty"`
 	Environment EnvironmentInput `json:"environment"`
+	Priority    uint             `json:"priority,omitempty"`
+	BulkId      string           `json:"bulkId,omitempty"`
+	BulkName    string           `json:"bulkName,omitempty"`
+	BuildStep   string           `json:"buildStep,omitempty"`
 }
 
 type UpdateDeploymentPatchInput struct {
@@ -91,4 +95,5 @@ type UpdateDeploymentPatchInput struct {
 	Priority    *uint        `json:"priority,omitempty"`
 	BulkId      *string      `json:"bulkId,omitempty"`
 	BulkName    *string      `json:"bulkName,omitempty"`
+	BuildStep   *string      `json:"buildStep,omitempty"`
 }

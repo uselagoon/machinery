@@ -20,5 +20,6 @@ mutation (
         }
         priority
         bulkId
+        buildStep
     }
 }

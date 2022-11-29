@@ -14,5 +14,8 @@ query ($bulkId: String!) {
                 name
             }
         }
+        bulkId
+        bulkName
+        buildStep
     }
 }

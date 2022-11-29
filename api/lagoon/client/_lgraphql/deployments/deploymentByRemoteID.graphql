@@ -11,5 +11,8 @@ query deploymentByRemoteId($remoteId: String!) {
         environment {
             name
         }
+        bulkId
+        bulkName
+        buildStep
     }
 }

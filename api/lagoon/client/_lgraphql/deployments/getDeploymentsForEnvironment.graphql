@@ -11,6 +11,9 @@ query ($project: Int!, $environment: String!){
             created
             started
             completed
+            bulkId
+            bulkName
+            buildStep
         }
     }
 }
