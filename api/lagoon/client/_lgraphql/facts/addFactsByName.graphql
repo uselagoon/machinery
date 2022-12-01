@@ -1,0 +1,15 @@
+mutation ($project: String, $environment: String, $facts: [AddFactInput!]) {
+  addFactsByName(
+    input: {
+      project: $project
+      environment: $environment,
+      facts: $facts
+    }
+  ) {
+    id
+		name
+		value
+		source
+		description
+  }
+}
