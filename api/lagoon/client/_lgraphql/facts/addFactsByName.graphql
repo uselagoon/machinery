@@ -7,9 +7,9 @@ mutation ($project: String, $environment: String, $facts: [AddFactInput!]) {
     }
   ) {
     id
-		name
-		value
-		source
-		description
+    name
+    value
+    source
+    description
   }
 }

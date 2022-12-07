@@ -1,7 +1,7 @@
 package schema
 
 type Fact struct {
-	Id          int      `json:"id,omitempty"`
+	ID          int      `json:"id,omitempty"`
 	Environment int      `json:"environment,omitempty"`
 	Name        string   `json:"name,omitempty"`
 	Value       string   `json:"value,omitempty"`
@@ -15,7 +15,7 @@ type Fact struct {
 type Facts []Fact
 
 type AddFactInput struct {
-	Id          int      `json:"id,omitempty"`
+	ID          int      `json:"id,omitempty"`
 	Environment int      `json:"environment,omitempty"`
 	Name        string   `json:"name,omitempty"`
 	Value       string   `json:"value,omitempty"`
