@@ -93,7 +93,6 @@ type UpdateEnvironmentPatchInput struct {
 	OpenshiftProjectName *string     `json:"openshiftProjectName,omitempty"`
 	Route                *string     `json:"route,omitempty"`
 	Routes               *string     `json:"routes,omitempty"`
-	MonitoringURLs       *string     `json:"monitoringUrls,omitempty"`
 	AutoIdle             *uint       `json:"autoIdle,omitempty"`
 	Openshift            *uint       `json:"openshift,omitempty"`
 	Created              *string     `json:"created,omitempty"`
