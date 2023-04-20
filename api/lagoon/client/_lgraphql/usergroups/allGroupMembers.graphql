@@ -1,0 +1,13 @@
+query {
+    allGroupMembers: allGroups {
+        id
+        name
+        members{
+            user{
+                email
+                gitlabId
+            }
+            role
+        }
+    }
+}
