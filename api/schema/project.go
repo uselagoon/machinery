@@ -84,14 +84,6 @@ type ProjectInput struct {
 	Name string `json:"name,omitempty"`
 }
 
-// AddNotificationToProjectInput is based on the input to
-// addNotificationToProject.
-type AddNotificationToProjectInput struct {
-	Project          string           `json:"project"`
-	NotificationType NotificationType `json:"notificationType"`
-	NotificationName string           `json:"notificationName"`
-}
-
 // ProjectMetadata .
 type ProjectMetadata struct {
 	Project
