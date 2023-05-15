@@ -46,6 +46,7 @@
 // _lgraphql/environments/updateEnvironment.graphql
 // _lgraphql/tasks/switchActiveStandby.graphql
 // _lgraphql/tasks/updateTask.graphql
+// _lgraphql/tasks/uploadFilesForTask.graphql
 // _lgraphql/usergroups/addGroup.graphql
 // _lgraphql/usergroups/addGroupsToProject.graphql
 // _lgraphql/usergroups/addSshKey.graphql
@@ -1051,6 +1052,26 @@ func _lgraphqlTasksUpdatetaskGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlTasksUploadfilesfortaskGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x24\x8c\x41\x0a\x83\x40\x0c\x45\xaf\xf2\x07\x5c\x28\x78\x82\x39\x80\xd0\x7d\xbb\x2a\x5d\x04\xb4\x30\xa8\x19\x69\x92\x55\xf0\xee\x65\x32\x64\x11\x92\xc7\x7b\xa7\x29\x69\xa9\x8c\x11\x83\x92\xec\x19\x0f\xd6\x34\x63\xf8\x96\x63\x93\x8c\xf7\xeb\x3a\x2a\xad\xe9\x93\x26\x38\x2c\x8e\xa5\xa1\xa5\xfe\x9e\x24\xfb\x58\xf8\x32\xcd\x1e\x6e\x14\x66\x74\xb5\x17\xee\x09\x5e\x56\x30\x9d\x1b\x44\x49\x4d\x3a\x86\xc7\x8e\xff\xdd\xe6\x1f\x00\x00\xff\xff\x4f\x59\x28\x5d\x89\x00\x00\x00")
+
+func _lgraphqlTasksUploadfilesfortaskGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlTasksUploadfilesfortaskGraphql,
+		"_lgraphql/tasks/uploadFilesForTask.graphql",
+	)
+}
+
+func _lgraphqlTasksUploadfilesfortaskGraphql() (*asset, error) {
+	bytes, err := _lgraphqlTasksUploadfilesfortaskGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/tasks/uploadFilesForTask.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlUsergroupsAddgroupGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x50\x50\x48\x4c\x49\x71\x2f\xca\x2f\x2d\xd0\xc8\xcc\x2b\x28\x2d\xb1\x82\x8a\x2a\x28\x40\x14\x83\xf5\x80\x45\x6a\x35\xe1\x52\x99\x29\x48\x6a\x20\x92\x5c\x20\x0c\x08\x00\x00\xff\xff\x33\xcc\xe8\xad\x6e\x00\x00\x00")
 
 func _lgraphqlUsergroupsAddgroupGraphqlBytes() ([]byte, error) {
@@ -1329,6 +1350,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/environments/updateEnvironment.graphql":                     _lgraphqlEnvironmentsUpdateenvironmentGraphql,
 	"_lgraphql/tasks/switchActiveStandby.graphql":                          _lgraphqlTasksSwitchactivestandbyGraphql,
 	"_lgraphql/tasks/updateTask.graphql":                                   _lgraphqlTasksUpdatetaskGraphql,
+	"_lgraphql/tasks/uploadFilesForTask.graphql":                           _lgraphqlTasksUploadfilesfortaskGraphql,
 	"_lgraphql/usergroups/addGroup.graphql":                                _lgraphqlUsergroupsAddgroupGraphql,
 	"_lgraphql/usergroups/addGroupsToProject.graphql":                      _lgraphqlUsergroupsAddgroupstoprojectGraphql,
 	"_lgraphql/usergroups/addSshKey.graphql":                               _lgraphqlUsergroupsAddsshkeyGraphql,
@@ -1439,6 +1461,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		"tasks": &bintree{nil, map[string]*bintree{
 			"switchActiveStandby.graphql": &bintree{_lgraphqlTasksSwitchactivestandbyGraphql, map[string]*bintree{}},
 			"updateTask.graphql":          &bintree{_lgraphqlTasksUpdatetaskGraphql, map[string]*bintree{}},
+			"uploadFilesForTask.graphql":  &bintree{_lgraphqlTasksUploadfilesfortaskGraphql, map[string]*bintree{}},
 		}},
 		"usergroups": &bintree{nil, map[string]*bintree{
 			"addGroup.graphql":                &bintree{_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},

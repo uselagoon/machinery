@@ -30,6 +30,11 @@ type Task struct {
 	RemoteID    string      `json:"remoteId,omitempty"`
 	Logs        string      `json:"logs,omitempty"`
 	Environment Environment `json:"environment,omitempty"`
+	Files       []Files     `json:"files,omitempty"`
+}
+
+type Files struct {
+	Filename string `json:"filename,omitempty"`
 }
 
 type ActiveStandbyResult struct {
