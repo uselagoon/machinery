@@ -52,9 +52,11 @@
 // _lgraphql/usergroups/addUser.graphql
 // _lgraphql/usergroups/addUserToGroup.graphql
 // _lgraphql/usergroups/allGroupMembers.graphql
+// _lgraphql/usergroups/allUsers.graphql
 // _lgraphql/usergroups/me.graphql
 // _lgraphql/usergroups/removeGroupsFromProject.graphql
 // _lgraphql/usergroups/removeUserFromGroup.graphql
+// _lgraphql/usergroups/userByEmail.graphql
 package lgraphql
 
 import (
@@ -1171,7 +1173,27 @@ func _lgraphqlUsergroupsAllgroupmembersGraphql() (*asset, error) {
 	return a, nil
 }
 
-var __lgraphqlUsergroupsMeGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\xc8\x4d\x85\x32\x40\x20\x33\x05\xce\x4c\xcd\x4d\xcc\xcc\x81\xf3\xd2\x32\x8b\x8a\x4b\xfc\x12\x73\x53\xe1\x22\x39\x89\x68\x02\xc5\xc5\x19\xde\xa9\x95\xc5\x48\xa6\xa1\x99\x08\x02\x79\xc8\x3a\x40\x20\x3b\xb5\x32\xa4\xb2\x00\x43\x2c\x2c\x31\xa7\x14\x43\xd0\x2d\x33\x2f\x3d\xb5\xa8\xa0\x28\x33\xaf\x04\x45\x2a\xb9\x28\x35\xb1\x24\x15\x61\x51\x2d\x17\x84\xac\x05\x04\x00\x00\xff\xff\x19\x81\x0c\x89\xe8\x00\x00\x00")
+var __lgraphqlUsergroupsAllusersGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\x49\xcd\x4d\xcc\xcc\xb1\x52\x08\x2e\x29\xca\xcc\x4b\xd7\x51\x50\xc9\x4c\xb1\x52\xf0\xcc\x2b\xd1\x51\x50\x49\xcf\x2c\xc9\x49\x4c\xf2\x84\xf0\x35\x15\xaa\xb9\x14\x14\x14\x14\x12\x73\x72\x42\x8b\x53\x8b\x8a\x35\xa0\xfa\x20\xfa\x75\x14\x40\xda\x54\x32\x53\x74\x14\x10\xba\xe0\x06\xc0\xf4\x82\x40\x66\x0a\x9c\x09\xd6\x09\xe7\xa5\x65\x16\x15\x97\xf8\x25\xe6\xa6\xc2\x45\x72\x12\xd1\x04\x92\xf3\x73\x73\x53\xf3\x4a\xc0\xfc\x5a\xae\x5a\x40\x00\x00\x00\xff\xff\x09\x21\x37\x61\xc2\x00\x00\x00")
+
+func _lgraphqlUsergroupsAllusersGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsAllusersGraphql,
+		"_lgraphql/usergroups/allUsers.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsAllusersGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsAllusersGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/allUsers.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsMeGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8e\xb1\xae\x82\x21\x14\x83\xf7\xff\x29\x78\x9a\xbb\xdc\xc4\xc1\x18\x77\xa2\xf5\x97\x78\x0e\xe0\x01\x06\x62\x78\x77\x83\x31\x47\x02\x9d\xda\x6f\x68\xfb\x2c\x90\x6a\x5e\x9b\x31\xc6\x30\xbe\xa6\xcb\x5d\xd5\x82\xad\x23\x4d\x37\x27\x29\x1f\x2c\x43\x09\xd9\x09\x5c\x02\x33\x7c\xd6\x9c\xd2\xfd\x1f\x35\x0d\xed\xd3\x42\x97\x1f\x1b\xba\x1e\xa8\xa7\x1a\x17\x76\xb6\x54\x16\xf8\xe7\xfc\x0e\x89\xe2\x86\xd5\xcf\x13\x81\xcd\xf8\x0d\x35\x75\xbb\x84\x12\x8f\x81\x30\xdf\x5a\x7e\x48\x20\x4c\x05\x6d\x6b\xef\x00\x00\x00\xff\xff\x80\x58\xa8\xdd\x39\x01\x00\x00")
 
 func _lgraphqlUsergroupsMeGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -1227,6 +1249,26 @@ func _lgraphqlUsergroupsRemoveuserfromgroupGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/usergroups/removeUserFromGroup.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsUserbyemailGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x4e\xbd\xce\xc2\x30\x10\xdb\xfb\x14\xf7\x49\xdf\x50\x5e\x81\x11\x09\x16\x24\x06\x40\xec\x11\x98\x72\x22\x3f\xe5\x92\x0c\x11\xea\xbb\xa3\x14\x08\x55\xea\xe9\xce\xb6\x6c\x3f\x22\x24\x51\xfb\x0f\xa3\x58\x2f\xe9\x10\x84\x6d\xf7\xb7\xa0\x67\x43\x44\x14\x3d\x64\x95\xd6\x59\x6b\x3f\x8e\xb7\xf3\x6b\xc8\xe0\x4b\x39\x47\xad\x7c\x57\x16\x1f\x76\xca\xa0\x30\x5a\x55\xc4\xd9\x19\x03\x1b\xca\xef\xfd\x6d\x8b\xe4\x27\xe9\x55\x43\x86\x9d\x26\x64\xdc\x91\x8e\xa9\x9f\x71\x27\xa5\xe3\x8c\xdc\xb0\xed\x20\xbd\xf0\xa4\x75\x5c\x22\x50\x01\xbf\xa2\xa1\x5c\x9d\xb8\xd8\xef\x9d\x46\x3d\x6b\xb6\x43\x9c\x46\x15\x30\x34\xc3\x2b\x00\x00\xff\xff\xa1\x66\xca\x90\x63\x01\x00\x00")
+
+func _lgraphqlUsergroupsUserbyemailGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsUserbyemailGraphql,
+		"_lgraphql/usergroups/userByEmail.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsUserbyemailGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsUserbyemailGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/userByEmail.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1335,9 +1377,11 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/usergroups/addUser.graphql":                                 _lgraphqlUsergroupsAdduserGraphql,
 	"_lgraphql/usergroups/addUserToGroup.graphql":                          _lgraphqlUsergroupsAddusertogroupGraphql,
 	"_lgraphql/usergroups/allGroupMembers.graphql":                         _lgraphqlUsergroupsAllgroupmembersGraphql,
+	"_lgraphql/usergroups/allUsers.graphql":                                _lgraphqlUsergroupsAllusersGraphql,
 	"_lgraphql/usergroups/me.graphql":                                      _lgraphqlUsergroupsMeGraphql,
 	"_lgraphql/usergroups/removeGroupsFromProject.graphql":                 _lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
 	"_lgraphql/usergroups/removeUserFromGroup.graphql":                     _lgraphqlUsergroupsRemoveuserfromgroupGraphql,
+	"_lgraphql/usergroups/userByEmail.graphql":                             _lgraphqlUsergroupsUserbyemailGraphql,
 }
 
 // AssetDir returns the file names below a certain
@@ -1447,9 +1491,11 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"addUser.graphql":                 &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
 			"addUserToGroup.graphql":          &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
 			"allGroupMembers.graphql":         &bintree{_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
+			"allUsers.graphql":                &bintree{_lgraphqlUsergroupsAllusersGraphql, map[string]*bintree{}},
 			"me.graphql":                      &bintree{_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
 			"removeGroupsFromProject.graphql": &bintree{_lgraphqlUsergroupsRemovegroupsfromprojectGraphql, map[string]*bintree{}},
 			"removeUserFromGroup.graphql":     &bintree{_lgraphqlUsergroupsRemoveuserfromgroupGraphql, map[string]*bintree{}},
+			"userByEmail.graphql":             &bintree{_lgraphqlUsergroupsUserbyemailGraphql, map[string]*bintree{}},
 		}},
 	}},
 }}

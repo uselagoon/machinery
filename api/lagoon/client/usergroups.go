@@ -11,7 +11,7 @@ import (
 func (c *Client) Me(
 	ctx context.Context, user *schema.User) error {
 
-	req, err := c.newRequest("_lgraphql/me.graphql",
+	req, err := c.newRequest("_lgraphql/usergroups/me.graphql",
 		nil)
 	if err != nil {
 		return err
@@ -136,5 +136,45 @@ func (c *Client) ListAllGroupMembers(
 		Response *[]schema.Group `json:"allGroupMembers"`
 	}{
 		Response: groups,
+	})
+}
+
+// AllUsers queries the Lagoon API for allUsers, and
+// unmarshals the response into project.
+func (c *Client) AllUsers(
+	ctx context.Context, id, gitlabID int, email string, user *[]schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/allUsers.graphql",
+		map[string]interface{}{
+			"id":       id,
+			"gitlabId": gitlabID,
+			"email":    email,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.User `json:"allUsers"`
+	}{
+		Response: user,
+	})
+}
+
+func (c *Client) GetUserByEmail(
+	ctx context.Context, email string, user *schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/userByEmail.graphql",
+		map[string]interface{}{
+			"email": email,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.User `json:"userByEmail"`
+	}{
+		Response: user,
 	})
 }

@@ -19,6 +19,8 @@ type UserGroups interface {
 	RemoveGroupsFromProject(ctx context.Context, in *schema.ProjectGroupsInput, project *schema.Project) error
 	AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, sshkey *schema.SSHKey) error
 	Me(ctx context.Context, user *schema.User) error
+	AllUsers(ctx context.Context, id, gitlabID int, email string, users *[]schema.User) error
+	GetUserByEmail(ctx context.Context, email string, user *schema.User) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -66,4 +68,15 @@ func AddGroupsToProject(ctx context.Context, in *schema.ProjectGroupsInput, ug U
 func RemoveGroupsFromProject(ctx context.Context, in *schema.ProjectGroupsInput, ug UserGroups) (*schema.Project, error) {
 	project := schema.Project{}
 	return &project, ug.RemoveGroupsFromProject(ctx, in, &project)
+}
+
+// AllUsers gets info on the current users of lagoon.
+func AllUsers(ctx context.Context, id, gitlabID int, email string, ug UserGroups) (*[]schema.User, error) {
+	users := []schema.User{}
+	return &users, ug.AllUsers(ctx, id, gitlabID, email, &users)
+}
+
+func GetUserByEmail(ctx context.Context, email string, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.GetUserByEmail(ctx, email, &user)
 }
