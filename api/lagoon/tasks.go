@@ -13,6 +13,7 @@ type Tasks interface {
 	RunActiveStandbySwitch(ctx context.Context, project string, result *schema.Task) error
 	GetTaskByID(ctx context.Context, id int, result *schema.Task) error
 	UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, result *schema.Task) error
+	UploadFilesForTask(ctx context.Context, id int, files []string, result *schema.Task) error
 }
 
 // ActiveStandbySwitch runs the activestandby switch.
@@ -31,4 +32,10 @@ func TaskByID(ctx context.Context, id int, t Tasks) (*schema.Task, error) {
 func UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, t Tasks) (*schema.Task, error) {
 	result := schema.Task{}
 	return &result, t.UpdateTask(ctx, id, patch, &result)
+}
+
+// UploadFilesForTask updates a task.
+func UploadFilesForTask(ctx context.Context, id int, files []string, t Tasks) (*schema.Task, error) {
+	result := schema.Task{}
+	return &result, t.UploadFilesForTask(ctx, id, files, &result)
 }
