@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -142,14 +143,11 @@ func (c *Client) ListAllGroupMembers(
 // AllUsers queries the Lagoon API for allUsers, and
 // unmarshals the response into project.
 func (c *Client) AllUsers(
-	ctx context.Context, id, gitlabID int, email string, user *[]schema.User) error {
-
-	req, err := c.newRequest("_lgraphql/usergroups/allUsers.graphql",
-		map[string]interface{}{
-			"id":       id,
-			"gitlabId": gitlabID,
-			"email":    email,
-		})
+	ctx context.Context, filter schema.AllUsersFilter, user *[]schema.User) error {
+	fB, _ := json.Marshal(filter)
+	var variables map[string]interface{}
+	json.Unmarshal(fB, &variables)
+	req, err := c.newRequest("_lgraphql/usergroups/allUsers.graphql", variables)
 	if err != nil {
 		return err
 	}

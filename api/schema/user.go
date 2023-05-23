@@ -23,3 +23,9 @@ type GroupRoles struct {
 	Name string `json:"name,omitempty"`
 	Role string `json:"role,omitempty"`
 }
+
+type AllUsersFilter struct {
+	ID       uint   `json:"id,omitempty"`
+	GitlabID uint   `json:"gitlabId,omitempty"`
+	Email    string `json:"email,omitempty"`
+}
