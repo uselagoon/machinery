@@ -6,6 +6,24 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
+// Me queries the Lagoon API for me, and
+// unmarshals the response into project.
+func (c *Client) Me(
+	ctx context.Context, user *schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/me.graphql",
+		nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.User `json:"me"`
+	}{
+		Response: user,
+	})
+}
+
 // AddGroupsToProject adds Groups to a Project.
 func (c *Client) AddGroupsToProject(ctx context.Context,
 	in *schema.ProjectGroupsInput, out *schema.Project) error {
@@ -15,6 +33,20 @@ func (c *Client) AddGroupsToProject(ctx context.Context,
 	}
 	return c.client.Run(ctx, req, &struct {
 		Response *schema.Project `json:"addGroupsToProject"`
+	}{
+		Response: out,
+	})
+}
+
+// RemoveGroupsFromProject adds Groups to a Project.
+func (c *Client) RemoveGroupsFromProject(ctx context.Context,
+	in *schema.ProjectGroupsInput, out *schema.Project) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeGroupsFromProject.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"removeGroupsFromProject"`
 	}{
 		Response: out,
 	})
@@ -73,5 +105,36 @@ func (c *Client) AddUserToGroup(
 		Response *schema.Group `json:"addUserToGroup"`
 	}{
 		Response: out,
+	})
+}
+
+// RemoveUserFromGroup removes a user from a group.
+func (c *Client) RemoveUserFromGroup(
+	ctx context.Context, in *schema.UserGroupInput, out *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeUserFromGroup.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"removeUserFromGroup"`
+	}{
+		Response: out,
+	})
+}
+
+// ListAllGroupMembers queries the Lagoon API for all groups and members, and
+// unmarshals the response into project.
+func (c *Client) ListAllGroupMembers(
+	ctx context.Context, groups *[]schema.Group) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembers.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroupMembers"`
+	}{
+		Response: groups,
 	})
 }

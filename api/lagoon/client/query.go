@@ -6,24 +6,6 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
-// Me queries the Lagoon API for me, and
-// unmarshals the response into project.
-func (c *Client) Me(
-	ctx context.Context, user *schema.User) error {
-
-	req, err := c.newRequest("_lgraphql/me.graphql",
-		nil)
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.User `json:"me"`
-	}{
-		Response: user,
-	})
-}
-
 // LagoonAPIVersion queries the Lagoon API for its version, and
 // unmarshals the response.
 func (c *Client) LagoonAPIVersion(
@@ -80,6 +62,26 @@ func (c *Client) GetTaskByID(
 func (c *Client) NotificationsForProjectByName(
 	ctx context.Context, name string, project *schema.Project) error {
 	req, err := c.newRequest("_lgraphql/projectNotifications.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
+
+// SSHEndpointsByProject queries the Lagoon API for a project by its name, and
+// unmarshals the response into project.
+func (c *Client) SSHEndpointsByProject(
+	ctx context.Context, name string, project *schema.Project) error {
+
+	req, err := c.newRequest("_lgraphql/sshEndpointsByProject.graphql",
 		map[string]interface{}{
 			"name": name,
 		})

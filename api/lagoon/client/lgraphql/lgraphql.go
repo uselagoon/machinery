@@ -8,6 +8,7 @@
 // _lgraphql/addNotificationToProject.graphql
 // _lgraphql/lagoonSchema.graphql
 // _lgraphql/lagoonVersion.graphql
+// _lgraphql/sshEndpointsByProject.graphql
 // _lgraphql/taskByID.graphql
 // _lgraphql/deployments/deployEnvironmentBranch.graphql
 // _lgraphql/deployments/deployEnvironmentLatest.graphql
@@ -45,12 +46,16 @@
 // _lgraphql/environments/updateEnvironment.graphql
 // _lgraphql/tasks/switchActiveStandby.graphql
 // _lgraphql/tasks/updateTask.graphql
+// _lgraphql/tasks/uploadFilesForTask.graphql
 // _lgraphql/usergroups/addGroup.graphql
 // _lgraphql/usergroups/addGroupsToProject.graphql
 // _lgraphql/usergroups/addSshKey.graphql
 // _lgraphql/usergroups/addUser.graphql
 // _lgraphql/usergroups/addUserToGroup.graphql
+// _lgraphql/usergroups/allGroupMembers.graphql
 // _lgraphql/usergroups/me.graphql
+// _lgraphql/usergroups/removeGroupsFromProject.graphql
+// _lgraphql/usergroups/removeUserFromGroup.graphql
 package lgraphql
 
 import (
@@ -283,6 +288,26 @@ func _lgraphqlLagoonversionGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/lagoonVersion.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlSshendpointsbyprojectGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x28\x28\xca\xcf\x4a\x4d\x2e\x71\xaa\xf4\x4b\xcc\x4d\xd5\x80\x28\x00\xab\x83\x48\x2b\x28\x64\xa6\x80\x29\x90\x10\x98\x91\x9a\x57\x96\x59\x94\x9f\x97\x9b\x9a\x57\x52\x0c\x55\x02\x57\x84\xa4\x4c\x41\x21\xbf\x20\x35\xaf\x38\x23\x33\xad\x24\x00\x62\x85\x1f\x16\x29\xb8\x01\x48\x46\x28\x28\x14\x17\x67\x78\xe4\x17\x97\x20\xf3\x03\xf2\x8b\x60\xfc\x5a\x2e\x18\x59\xcb\x55\xcb\x05\x08\x00\x00\xff\xff\x1f\x6e\x6a\x1a\xdb\x00\x00\x00")
+
+func _lgraphqlSshendpointsbyprojectGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlSshendpointsbyprojectGraphql,
+		"_lgraphql/sshEndpointsByProject.graphql",
+	)
+}
+
+func _lgraphqlSshendpointsbyprojectGraphql() (*asset, error) {
+	bytes, err := _lgraphqlSshendpointsbyprojectGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/sshEndpointsByProject.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1027,6 +1052,26 @@ func _lgraphqlTasksUpdatetaskGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlTasksUploadfilesfortaskGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x24\x8c\x41\x0a\x83\x40\x0c\x45\xaf\xf2\x07\x5c\x28\x78\x82\x39\x80\xd0\x7d\xbb\x2a\x5d\x04\xb4\x30\xa8\x19\x69\x92\x55\xf0\xee\x65\x32\x64\x11\x92\xc7\x7b\xa7\x29\x69\xa9\x8c\x11\x83\x92\xec\x19\x0f\xd6\x34\x63\xf8\x96\x63\x93\x8c\xf7\xeb\x3a\x2a\xad\xe9\x93\x26\x38\x2c\x8e\xa5\xa1\xa5\xfe\x9e\x24\xfb\x58\xf8\x32\xcd\x1e\x6e\x14\x66\x74\xb5\x17\xee\x09\x5e\x56\x30\x9d\x1b\x44\x49\x4d\x3a\x86\xc7\x8e\xff\xdd\xe6\x1f\x00\x00\xff\xff\x4f\x59\x28\x5d\x89\x00\x00\x00")
+
+func _lgraphqlTasksUploadfilesfortaskGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlTasksUploadfilesfortaskGraphql,
+		"_lgraphql/tasks/uploadFilesForTask.graphql",
+	)
+}
+
+func _lgraphqlTasksUploadfilesfortaskGraphql() (*asset, error) {
+	bytes, err := _lgraphqlTasksUploadfilesfortaskGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/tasks/uploadFilesForTask.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlUsergroupsAddgroupGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x50\x50\x48\x4c\x49\x71\x2f\xca\x2f\x2d\xd0\xc8\xcc\x2b\x28\x2d\xb1\x82\x8a\x2a\x28\x40\x14\x83\xf5\x80\x45\x6a\x35\xe1\x52\x99\x29\x48\x6a\x20\x92\x5c\x20\x0c\x08\x00\x00\xff\xff\x33\xcc\xe8\xad\x6e\x00\x00\x00")
 
 func _lgraphqlUsergroupsAddgroupGraphqlBytes() ([]byte, error) {
@@ -1127,6 +1172,26 @@ func _lgraphqlUsergroupsAddusertogroupGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlUsergroupsAllgroupmembersGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\x48\xcc\xc9\x71\x2f\xca\x2f\x2d\xf0\x4d\xcd\x4d\x4a\x2d\x2a\xb6\x82\x0b\x14\x43\x15\x80\x40\x66\x0a\x9c\x99\x97\x98\x9b\x0a\xe7\xe4\x42\x34\x21\x14\x82\x40\x69\x71\x6a\x11\xaa\x08\x08\xa4\xe6\x26\x66\xe6\x60\x88\xa6\x67\x96\xe4\x24\x26\x79\xa6\xa0\x48\xd4\xa2\xf0\x8a\xf2\x73\x10\x16\x42\xa4\x6a\xb9\x6a\xb9\x00\x01\x00\x00\xff\xff\x02\xdf\xd4\xb3\xc4\x00\x00\x00")
+
+func _lgraphqlUsergroupsAllgroupmembersGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsAllgroupmembersGraphql,
+		"_lgraphql/usergroups/allGroupMembers.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsAllgroupmembersGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsAllgroupmembersGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/allGroupMembers.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlUsergroupsMeGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\xc8\x4d\x85\x32\x40\x20\x33\x05\xce\x4c\xcd\x4d\xcc\xcc\x81\xf3\xd2\x32\x8b\x8a\x4b\xfc\x12\x73\x53\xe1\x22\x39\x89\x68\x02\xc5\xc5\x19\xde\xa9\x95\xc5\x48\xa6\xa1\x99\x08\x02\x79\xc8\x3a\x40\x20\x3b\xb5\x32\xa4\xb2\x00\x43\x2c\x2c\x31\xa7\x14\x43\xd0\x2d\x33\x2f\x3d\xb5\xa8\xa0\x28\x33\xaf\x04\x45\x2a\xb9\x28\x35\xb1\x24\x15\x61\x51\x2d\x17\x84\xac\x05\x04\x00\x00\xff\xff\x19\x81\x0c\x89\xe8\x00\x00\x00")
 
 func _lgraphqlUsergroupsMeGraphqlBytes() ([]byte, error) {
@@ -1143,6 +1208,46 @@ func _lgraphqlUsergroupsMeGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/usergroups/me.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsRemovegroupsfromprojectGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x29\x28\xca\xcf\x4a\x4d\x2e\xb1\x52\x08\x80\x30\x3c\xf3\x0a\x4a\x4b\x14\x75\x40\x52\xe9\x45\xf9\xa5\x05\xc5\x56\x0a\xd1\xee\x20\x06\x44\x22\x56\x51\x53\xa1\x9a\x4b\x41\x41\x41\xa1\x28\x35\x37\xbf\x2c\x15\x2c\x55\xec\x56\x94\x9f\x0b\xd5\xaf\x91\x09\x52\x67\x05\x55\xa4\xa0\x00\x37\x1f\x66\x13\x54\x1c\x66\x38\xd4\x16\xb0\x68\xad\x26\x5c\x5b\x66\x0a\x94\x91\x97\x98\x9b\x0a\x91\xe4\x02\x61\x40\x00\x00\x00\xff\xff\x38\x23\xd0\x35\xbd\x00\x00\x00")
+
+func _lgraphqlUsergroupsRemovegroupsfromprojectGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
+		"_lgraphql/usergroups/removeGroupsFromProject.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsRemovegroupsfromprojectGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsRemovegroupsfromprojectGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/removeGroupsFromProject.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsRemoveuserfromgroupGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x44\x8d\x31\x0a\xc3\x30\x0c\x45\x77\x9f\xe2\x17\x3a\x24\xd0\x13\x78\x6f\xbb\x75\x29\x3d\x80\xa1\x22\x08\x2a\x3b\x28\x76\x97\x90\xbb\x07\x25\x22\x19\x0c\xe6\xeb\xf1\x9e\xb4\x9a\x2a\x97\x8c\x2e\x00\xd7\x36\x91\xde\x25\xf1\x2f\xe2\x5d\x95\xf3\x70\xb9\xd9\x3c\x68\x69\xe3\x2b\x09\x1d\x73\x8f\x39\x00\x80\x92\x94\x3f\x7d\x26\xd2\x87\x16\x79\x1a\xd7\x71\x1e\x5b\x8d\x0e\x00\xe6\x8c\x98\x41\xbb\xf7\x6c\x60\x71\x62\xd3\x1b\x92\xb7\xc4\x99\x73\x62\xe9\x0f\x19\x7f\xfd\x63\xe8\x7e\x0c\xf6\xd6\x00\x00\x00\xff\xff\x8a\xee\x6f\x4c\xc7\x00\x00\x00")
+
+func _lgraphqlUsergroupsRemoveuserfromgroupGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsRemoveuserfromgroupGraphql,
+		"_lgraphql/usergroups/removeUserFromGroup.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsRemoveuserfromgroupGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsRemoveuserfromgroupGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/removeUserFromGroup.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1207,6 +1312,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/addNotificationToProject.graphql":                           _lgraphqlAddnotificationtoprojectGraphql,
 	"_lgraphql/lagoonSchema.graphql":                                       _lgraphqlLagoonschemaGraphql,
 	"_lgraphql/lagoonVersion.graphql":                                      _lgraphqlLagoonversionGraphql,
+	"_lgraphql/sshEndpointsByProject.graphql":                              _lgraphqlSshendpointsbyprojectGraphql,
 	"_lgraphql/taskByID.graphql":                                           _lgraphqlTaskbyidGraphql,
 	"_lgraphql/deployments/deployEnvironmentBranch.graphql":                _lgraphqlDeploymentsDeployenvironmentbranchGraphql,
 	"_lgraphql/deployments/deployEnvironmentLatest.graphql":                _lgraphqlDeploymentsDeployenvironmentlatestGraphql,
@@ -1244,12 +1350,16 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/environments/updateEnvironment.graphql":                     _lgraphqlEnvironmentsUpdateenvironmentGraphql,
 	"_lgraphql/tasks/switchActiveStandby.graphql":                          _lgraphqlTasksSwitchactivestandbyGraphql,
 	"_lgraphql/tasks/updateTask.graphql":                                   _lgraphqlTasksUpdatetaskGraphql,
+	"_lgraphql/tasks/uploadFilesForTask.graphql":                           _lgraphqlTasksUploadfilesfortaskGraphql,
 	"_lgraphql/usergroups/addGroup.graphql":                                _lgraphqlUsergroupsAddgroupGraphql,
 	"_lgraphql/usergroups/addGroupsToProject.graphql":                      _lgraphqlUsergroupsAddgroupstoprojectGraphql,
 	"_lgraphql/usergroups/addSshKey.graphql":                               _lgraphqlUsergroupsAddsshkeyGraphql,
 	"_lgraphql/usergroups/addUser.graphql":                                 _lgraphqlUsergroupsAdduserGraphql,
 	"_lgraphql/usergroups/addUserToGroup.graphql":                          _lgraphqlUsergroupsAddusertogroupGraphql,
+	"_lgraphql/usergroups/allGroupMembers.graphql":                         _lgraphqlUsergroupsAllgroupmembersGraphql,
 	"_lgraphql/usergroups/me.graphql":                                      _lgraphqlUsergroupsMeGraphql,
+	"_lgraphql/usergroups/removeGroupsFromProject.graphql":                 _lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
+	"_lgraphql/usergroups/removeUserFromGroup.graphql":                     _lgraphqlUsergroupsRemoveuserfromgroupGraphql,
 }
 
 // AssetDir returns the file names below a certain
@@ -1346,18 +1456,23 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"updateProject.graphql":              &bintree{_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
 			"updateProjectMetadata.graphql":      &bintree{_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
 		}},
-		"taskByID.graphql": &bintree{_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
+		"sshEndpointsByProject.graphql": &bintree{_lgraphqlSshendpointsbyprojectGraphql, map[string]*bintree{}},
+		"taskByID.graphql":              &bintree{_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
 		"tasks": &bintree{nil, map[string]*bintree{
 			"switchActiveStandby.graphql": &bintree{_lgraphqlTasksSwitchactivestandbyGraphql, map[string]*bintree{}},
 			"updateTask.graphql":          &bintree{_lgraphqlTasksUpdatetaskGraphql, map[string]*bintree{}},
+			"uploadFilesForTask.graphql":  &bintree{_lgraphqlTasksUploadfilesfortaskGraphql, map[string]*bintree{}},
 		}},
 		"usergroups": &bintree{nil, map[string]*bintree{
-			"addGroup.graphql":           &bintree{_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
-			"addGroupsToProject.graphql": &bintree{_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
-			"addSshKey.graphql":          &bintree{_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
-			"addUser.graphql":            &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
-			"addUserToGroup.graphql":     &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
-			"me.graphql":                 &bintree{_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"addGroup.graphql":                &bintree{_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
+			"addGroupsToProject.graphql":      &bintree{_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
+			"addSshKey.graphql":               &bintree{_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
+			"addUser.graphql":                 &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
+			"addUserToGroup.graphql":          &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
+			"allGroupMembers.graphql":         &bintree{_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
+			"me.graphql":                      &bintree{_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"removeGroupsFromProject.graphql": &bintree{_lgraphqlUsergroupsRemovegroupsfromprojectGraphql, map[string]*bintree{}},
+			"removeUserFromGroup.graphql":     &bintree{_lgraphqlUsergroupsRemoveuserfromgroupGraphql, map[string]*bintree{}},
 		}},
 	}},
 }}

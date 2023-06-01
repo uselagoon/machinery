@@ -1,0 +1,1 @@
+mutation ( $task: Int!, $files: [Upload!]!) { uploadFilesForTask(input:{task:$task, files:$files}) {id name status files { filename } } }

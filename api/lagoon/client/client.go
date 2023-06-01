@@ -20,6 +20,7 @@ import (
 type Client struct {
 	userAgent string
 	token     *string
+	endpoint  string
 	client    *graphql.Client
 }
 
@@ -29,6 +30,7 @@ func New(endpoint, userAgent string, token *string, debug bool) *Client {
 		return &Client{
 			userAgent: userAgent,
 			token:     token,
+			endpoint:  endpoint,
 			client: graphql.NewClient(endpoint,
 				// enable debug logging to stderr
 				func(c *graphql.Client) {
@@ -42,6 +44,7 @@ func New(endpoint, userAgent string, token *string, debug bool) *Client {
 	return &Client{
 		userAgent: userAgent,
 		token:     token,
+		endpoint:  endpoint,
 		client:    graphql.NewClient(endpoint),
 	}
 }

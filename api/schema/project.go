@@ -84,14 +84,6 @@ type ProjectInput struct {
 	Name string `json:"name,omitempty"`
 }
 
-// AddNotificationToProjectInput is based on the input to
-// addNotificationToProject.
-type AddNotificationToProjectInput struct {
-	Project          string           `json:"project"`
-	NotificationType NotificationType `json:"notificationType"`
-	NotificationName string           `json:"notificationName"`
-}
-
 // ProjectMetadata .
 type ProjectMetadata struct {
 	Project
@@ -114,7 +106,7 @@ type UpdateProjectPatchInput struct {
 	StandbyAlias                 *string              `json:"standbyAlias,omitempty"`
 	AutoIdle                     *uint                `json:"autoIdle,omitempty"`
 	StorageCalc                  *uint                `json:"storageCalc,omitempty"`
-	Pullrequests                 *string              `json:"availability,omitempty"`
+	Pullrequests                 *string              `json:"pullrequests,omitempty"`
 	Kubernetes                   *uint                `json:"kubernetes,omitempty"`
 	KubernetesNamespacePattern   *string              `json:"kubernetesNamespacePattern,omitempty"`
 	DevelopmentEnvironmentsLimit *uint                `json:"developmentEnvironmentsLimit,omitempty"`
