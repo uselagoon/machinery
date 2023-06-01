@@ -8,6 +8,10 @@ query deploymentByRemoteId($remoteId: String!) {
         completed
         remoteId
         uiLink
+        priority
+        bulkId
+        bulkName
+        buildStep
         environment {
             name
         }

@@ -11,6 +11,10 @@ query deploymentByName($namespace: String!) {
             completed
             remoteId
             uiLink
+            priority
+            bulkId
+            bulkName
+            buildStep
             environment {
                 name
             }
