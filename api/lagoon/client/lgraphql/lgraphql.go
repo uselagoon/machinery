@@ -43,6 +43,7 @@
 // _lgraphql/environments/environmentByName.graphql
 // _lgraphql/environments/environmentByNamespace.graphql
 // _lgraphql/environments/setEnvironmentServices.graphql
+// _lgraphql/environments/sshEndpointByEnvironment.graphql
 // _lgraphql/environments/updateEnvironment.graphql
 // _lgraphql/tasks/switchActiveStandby.graphql
 // _lgraphql/tasks/updateTask.graphql
@@ -997,6 +998,26 @@ func _lgraphqlEnvironmentsSetenvironmentservicesGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlEnvironmentsSshendpointbyenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\xe0\x52\x50\x50\x50\x50\xc9\x4b\xcc\x4d\x2d\x2e\x48\x4c\x4e\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xe4\xd2\xac\x06\x4b\xa5\xe6\x95\x65\x16\xe5\xe7\xe5\xa6\xe6\x95\x38\x55\xfa\xc1\x95\xa1\x08\x7b\x97\x26\xa5\x16\xe5\xa5\x96\xa4\x16\xc3\x15\x80\x18\x10\xb3\x41\x20\x1b\xbb\x02\x2b\x24\x8b\xc1\x6a\xa1\x76\x82\x40\x66\x0a\x9c\x09\x52\x03\xe7\xe4\x17\xa4\xe6\x15\x67\x64\xa6\x95\x04\x14\xe5\x67\xa5\x26\x97\xf8\x61\x95\x54\x40\x18\x84\x66\x18\x08\x14\x17\x67\x78\xe4\x17\x97\xa0\x8b\x05\xe4\x17\x21\xc4\x6a\xb9\x20\x64\x2d\x17\x20\x00\x00\xff\xff\x7c\x08\x82\x7b\x29\x01\x00\x00")
+
+func _lgraphqlEnvironmentsSshendpointbyenvironmentGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlEnvironmentsSshendpointbyenvironmentGraphql,
+		"_lgraphql/environments/sshEndpointByEnvironment.graphql",
+	)
+}
+
+func _lgraphqlEnvironmentsSshendpointbyenvironmentGraphql() (*asset, error) {
+	bytes, err := _lgraphqlEnvironmentsSshendpointbyenvironmentGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/environments/sshEndpointByEnvironment.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlEnvironmentsUpdateenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x5c\x8f\x41\x6e\x86\x20\x10\x85\xf7\x9e\x62\x4c\xba\xa8\x57\x60\xdf\x85\x9b\xc6\x45\x7b\x00\x02\xd3\x48\xa3\x03\x81\xc1\xc4\x18\xef\xfe\x07\xf9\x03\x22\x2b\xbe\xc7\x1b\xde\xbc\x35\xb2\x64\x63\x09\x3e\x3b\x00\x80\x0f\xa3\x05\x8c\xc4\x7d\x26\x27\x59\xcd\x02\x7e\x9d\x96\x8c\x5f\xb4\x19\x6f\x69\x45\xe2\x29\xe9\x23\xb9\xc8\xfd\x70\x5c\xd6\xf8\xb4\xe4\xff\xd2\x31\xc9\x27\xe0\x28\xc2\x25\x6a\x91\xc2\x1a\xed\x9d\x96\x53\xcb\xcb\x79\xdd\x86\x3a\x7e\x9b\x22\xb9\x62\x01\x6f\x23\x3f\x28\x14\xd4\xe8\x16\xbb\xff\xec\xae\x3a\xb0\x2e\xdb\xe8\xd6\x21\x85\xd9\xfc\xf1\xe4\xed\x3f\x2a\xfe\xbe\x87\xe4\x9e\x75\x03\xe5\xb1\x61\x8d\x0b\xde\x39\xa0\xdf\x8c\xc2\xf0\x6c\xdf\x60\x53\x23\xf7\x3d\xbb\xf3\x15\x00\x00\xff\xff\x5a\xa6\xf7\x47\x9b\x01\x00\x00")
 
 func _lgraphqlEnvironmentsUpdateenvironmentGraphqlBytes() ([]byte, error) {
@@ -1452,6 +1473,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/environments/environmentByName.graphql":                     _lgraphqlEnvironmentsEnvironmentbynameGraphql,
 	"_lgraphql/environments/environmentByNamespace.graphql":                _lgraphqlEnvironmentsEnvironmentbynamespaceGraphql,
 	"_lgraphql/environments/setEnvironmentServices.graphql":                _lgraphqlEnvironmentsSetenvironmentservicesGraphql,
+	"_lgraphql/environments/sshEndpointByEnvironment.graphql":              _lgraphqlEnvironmentsSshendpointbyenvironmentGraphql,
 	"_lgraphql/environments/updateEnvironment.graphql":                     _lgraphqlEnvironmentsUpdateenvironmentGraphql,
 	"_lgraphql/tasks/switchActiveStandby.graphql":                          _lgraphqlTasksSwitchactivestandbyGraphql,
 	"_lgraphql/tasks/updateTask.graphql":                                   _lgraphqlTasksUpdatetaskGraphql,
@@ -1552,6 +1574,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"environmentByName.graphql":             &bintree{_lgraphqlEnvironmentsEnvironmentbynameGraphql, map[string]*bintree{}},
 			"environmentByNamespace.graphql":        &bintree{_lgraphqlEnvironmentsEnvironmentbynamespaceGraphql, map[string]*bintree{}},
 			"setEnvironmentServices.graphql":        &bintree{_lgraphqlEnvironmentsSetenvironmentservicesGraphql, map[string]*bintree{}},
+			"sshEndpointByEnvironment.graphql":      &bintree{_lgraphqlEnvironmentsSshendpointbyenvironmentGraphql, map[string]*bintree{}},
 			"updateEnvironment.graphql":             &bintree{_lgraphqlEnvironmentsUpdateenvironmentGraphql, map[string]*bintree{}},
 		}},
 		"lagoonSchema.graphql":  &bintree{_lgraphqlLagoonschemaGraphql, map[string]*bintree{}},

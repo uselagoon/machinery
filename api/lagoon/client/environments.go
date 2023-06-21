@@ -166,3 +166,21 @@ func (c *Client) SetEnvironmentServices(
 		Response: result,
 	})
 }
+
+// SSHEndpointByNamespace queries the Lagoon API for an environment by its namespace
+// and unmarshals the response into environment.
+func (c *Client) SSHEndpointByNamespace(ctx context.Context, namespace string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/environments/sshEndpointByEnvironment.graphql",
+		map[string]interface{}{
+			"namespace": namespace,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByNamespace"`
+	}{
+		Response: environment,
+	})
+}
