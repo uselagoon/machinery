@@ -1,0 +1,9 @@
+query ($email: String, $id: Int, $gitlabId: Int) {
+    allUsers(email: $email, id: $id, gitlabId: $gitlabId) {
+        id
+        email
+        firstName
+        lastName
+        comment
+    }
+}

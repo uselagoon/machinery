@@ -14,6 +14,18 @@ type AddUserInput struct {
 // User provides for unmarshalling the users contained withing a Group.
 type User struct {
 	AddUserInput
-	ID      *uuid.UUID `json:"id,omitempty"`
-	SSHKeys []SSHKey   `json:"sshKeys,omitempty"`
+	ID         *uuid.UUID   `json:"id,omitempty"`
+	SSHKeys    []SSHKey     `json:"sshKeys,omitempty"`
+	GroupRoles []GroupRoles `json:"groupRoles,omitempy"`
+}
+
+type GroupRoles struct {
+	Name string `json:"name,omitempty"`
+	Role string `json:"role,omitempty"`
+}
+
+type AllUsersFilter struct {
+	ID       uint   `json:"id,omitempty"`
+	GitlabID uint   `json:"gitlabId,omitempty"`
+	Email    string `json:"email,omitempty"`
 }
