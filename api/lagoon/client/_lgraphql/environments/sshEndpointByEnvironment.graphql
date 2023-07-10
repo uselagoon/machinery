@@ -1,0 +1,16 @@
+query (
+    $namespace: String!
+){
+    environmentByNamespace:environmentByKubernetesNamespaceName(
+        kubernetesNamespaceName: $namespace
+    ){
+        id
+        name
+        openshiftProjectName
+        openshift {
+            id
+            sshHost
+            sshPort
+        }
+    }
+}

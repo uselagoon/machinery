@@ -4,6 +4,7 @@ package lagoon
 
 import (
 	"context"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -18,6 +19,7 @@ type Environments interface {
 	EnvironmentByName(ctx context.Context, name string, project uint, result *schema.Environment) error
 	EnvironmentByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	EnvironmentsByProject(ctx context.Context, project string, result *[]schema.Environment) error
+	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 }
 
 // GetBackupsForEnvironmentByName gets backup info in lagoon for specific environment.
@@ -72,4 +74,10 @@ func GetEnvironmentByNamespace(ctx context.Context, namespace string, e Environm
 func GetEnvironmentsByProjectName(ctx context.Context, project string, e Environments) (*[]schema.Environment, error) {
 	environment := []schema.Environment{}
 	return &environment, e.EnvironmentsByProject(ctx, project, &environment)
+}
+
+// SSHEndpointByNamespace gets info of projects in lagoon that have matching metadata.
+func SSHEndpointByNamespace(ctx context.Context, namespace string, e Environments) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, e.SSHEndpointByNamespace(ctx, namespace, &environment)
 }
