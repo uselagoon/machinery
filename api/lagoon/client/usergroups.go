@@ -176,3 +176,45 @@ func (c *Client) GetUserByEmail(
 		Response: user,
 	})
 }
+
+// UserCanSSHToEnvironment queries the Lagoon API as a user to check if the user has access to the environment, and
+// unmarshals the response.
+func (c *Client) UserCanSSHToEnvironment(
+	ctx context.Context, namespace string, environment *schema.Environment) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/userCanSSHToEnvironment.graphql",
+		map[string]string{"namespace": namespace})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &environment)
+}
+
+// UserBySSHKey queries the Lagoon API to find user by ssh key, and
+// unmarshals the response.
+func (c *Client) UserBySSHKey(
+	ctx context.Context, sshKey string, user *schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/userBySSHKey.graphql",
+		map[string]string{"sshKey": sshKey})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &user)
+}
+
+// UserBySSHFingerprint queries the Lagoon API to find user by ssh key fingerprint, and
+// unmarshals the response.
+func (c *Client) UserBySSHFingerprint(
+	ctx context.Context, fingerprint string, user *schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/userBySSHFingerprint.graphql",
+		map[string]string{"fingerprint": fingerprint})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &user)
+}

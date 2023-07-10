@@ -1,0 +1,21 @@
+query ($fingerprint: String!) {
+    userBySshFingerprint(fingerprint: $fingerprint) {
+        id
+        email
+        firstName
+        lastName
+        comment
+        sshKeys {
+            id
+            name
+            keyType
+            keyValue
+            keyFingerprint
+            created
+        }
+        groupRoles {
+            name
+            role
+        }
+    }
+}

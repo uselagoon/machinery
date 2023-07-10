@@ -1,0 +1,21 @@
+query ($sshKey: String!) {
+    userBySshKey(sshKey: $sshKey) {
+        id
+        email
+        firstName
+        lastName
+        comment
+        sshKeys {
+            id
+            name
+            keyType
+            keyValue
+            keyFingerprint
+            created
+        }
+        groupRoles {
+            name
+            role
+        }
+    }
+}
