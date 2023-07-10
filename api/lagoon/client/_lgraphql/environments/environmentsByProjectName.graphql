@@ -3,6 +3,7 @@ query (
     projectByName(
       name: $project) {
       environments {
+        id
         name
         deployType
         deployBaseRef
@@ -11,6 +12,7 @@ query (
         environmentType
         openshiftProjectName
         autoIdle
+        route
         openshift {
             id
             name

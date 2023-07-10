@@ -4,8 +4,6 @@ package lagoon
 
 import (
 	"context"
-	"fmt"
-
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -73,6 +71,5 @@ func GetEnvironmentByNamespace(ctx context.Context, namespace string, e Environm
 // GetEnvironmentsByProjectName lists info of all environments for a given project.
 func GetEnvironmentsByProjectName(ctx context.Context, project string, e Environments) (*[]schema.Environment, error) {
 	environment := []schema.Environment{}
-	fmt.Println(e.EnvironmentsByProject(ctx, project, &environment))
 	return &environment, e.EnvironmentsByProject(ctx, project, &environment)
 }
