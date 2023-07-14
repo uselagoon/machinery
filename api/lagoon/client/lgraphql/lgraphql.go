@@ -42,6 +42,7 @@
 // _lgraphql/environments/deleteEnvironment.graphql
 // _lgraphql/environments/environmentByName.graphql
 // _lgraphql/environments/environmentByNamespace.graphql
+// _lgraphql/environments/environmentsByProjectName.graphql
 // _lgraphql/environments/setEnvironmentServices.graphql
 // _lgraphql/environments/sshEndpointByEnvironment.graphql
 // _lgraphql/environments/updateEnvironment.graphql
@@ -978,6 +979,26 @@ func _lgraphqlEnvironmentsEnvironmentbynamespaceGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x8f\x41\x6e\xc3\x20\x10\x45\xf7\x9c\x62\x2a\x75\x91\x5e\x21\xcb\xac\x92\x8d\x65\xa5\xb9\x00\x35\x63\x87\x0a\x33\xee\x30\x44\x42\x95\xef\x5e\x25\x6d\x6d\xc0\x61\x03\x3c\xe6\x7f\xfe\xff\x8a\xc8\x09\x76\x0a\xe0\x75\x62\xfa\xc4\x4e\xf6\xf0\x2e\x6c\xfd\xf0\xf2\x06\xdf\x0a\x00\xe0\x8f\x1f\x52\xa3\x47\xdc\x3d\x10\x80\xd7\x23\xee\x17\xcd\xff\x28\x00\xfa\x9b\x65\xf2\x23\x7a\x09\x0b\x04\xb0\x66\x39\xde\x95\xcb\xc5\xe0\xe4\x28\x5d\xd2\x54\xa3\x83\x0e\x78\xc6\xbe\xa2\x47\xd4\x66\x4b\x2f\x56\xdc\xaa\xcf\x12\x14\xbe\x34\xa1\x0f\x57\xdb\x4b\xfb\x9b\xb9\xc9\x73\xe8\x28\x74\x32\x99\x0b\x53\x94\x27\xda\xac\x52\x55\x6b\x53\xed\xbe\x3a\x46\x2d\x58\x0e\x75\x8e\xa2\x39\xe3\x60\xc9\x6f\x79\xcb\x74\xb3\x06\xb9\x78\xe9\xd9\xa2\x37\x2e\x35\xb5\x7d\x08\xd7\x23\x05\xa9\x59\x4b\x5c\xb2\x47\x19\x6e\xb5\x08\x72\xf9\xe9\x47\xb4\xce\x9c\x46\x3d\xac\xc6\xb3\xca\xf7\x59\xcd\xea\x27\x00\x00\xff\xff\xa3\x30\xe3\xff\x24\x02\x00\x00")
+
+func _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql,
+		"_lgraphql/environments/environmentsByProjectName.graphql",
+	)
+}
+
+func _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql() (*asset, error) {
+	bytes, err := _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/environments/environmentsByProjectName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlEnvironmentsSetenvironmentservicesGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x50\x50\xc9\x4c\xb1\x52\xf0\xcc\x2b\x51\x84\xf0\x8a\x53\x8b\xca\x32\x93\x53\x8b\xad\x14\xa2\x83\x4b\x8a\x32\xf3\xd2\x63\x15\x35\xab\xc1\x52\xc5\xa9\x25\xae\x79\x65\x99\x45\xf9\x79\xb9\xa9\x79\x25\xc1\x50\x75\x10\x43\x40\x20\x33\xaf\xa0\xb4\xc4\x4a\xa1\x1a\x2e\x00\x02\xa9\x08\x1d\x56\x20\xab\x50\x24\x11\x76\xc1\xad\x85\xcb\xd7\x82\x59\x9a\x08\xd3\x90\xf4\xe6\x25\xe6\xa6\x72\x41\x14\xd5\x02\x02\x00\x00\xff\xff\xfc\x33\x0b\xcb\xce\x00\x00\x00")
 
 func _lgraphqlEnvironmentsSetenvironmentservicesGraphqlBytes() ([]byte, error) {
@@ -1472,6 +1493,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/environments/deleteEnvironment.graphql":                     _lgraphqlEnvironmentsDeleteenvironmentGraphql,
 	"_lgraphql/environments/environmentByName.graphql":                     _lgraphqlEnvironmentsEnvironmentbynameGraphql,
 	"_lgraphql/environments/environmentByNamespace.graphql":                _lgraphqlEnvironmentsEnvironmentbynamespaceGraphql,
+	"_lgraphql/environments/environmentsByProjectName.graphql":             _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql,
 	"_lgraphql/environments/setEnvironmentServices.graphql":                _lgraphqlEnvironmentsSetenvironmentservicesGraphql,
 	"_lgraphql/environments/sshEndpointByEnvironment.graphql":              _lgraphqlEnvironmentsSshendpointbyenvironmentGraphql,
 	"_lgraphql/environments/updateEnvironment.graphql":                     _lgraphqlEnvironmentsUpdateenvironmentGraphql,
@@ -1573,6 +1595,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"deleteEnvironment.graphql":             &bintree{_lgraphqlEnvironmentsDeleteenvironmentGraphql, map[string]*bintree{}},
 			"environmentByName.graphql":             &bintree{_lgraphqlEnvironmentsEnvironmentbynameGraphql, map[string]*bintree{}},
 			"environmentByNamespace.graphql":        &bintree{_lgraphqlEnvironmentsEnvironmentbynamespaceGraphql, map[string]*bintree{}},
+			"environmentsByProjectName.graphql":     &bintree{_lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql, map[string]*bintree{}},
 			"setEnvironmentServices.graphql":        &bintree{_lgraphqlEnvironmentsSetenvironmentservicesGraphql, map[string]*bintree{}},
 			"sshEndpointByEnvironment.graphql":      &bintree{_lgraphqlEnvironmentsSshendpointbyenvironmentGraphql, map[string]*bintree{}},
 			"updateEnvironment.graphql":             &bintree{_lgraphqlEnvironmentsUpdateenvironmentGraphql, map[string]*bintree{}},
