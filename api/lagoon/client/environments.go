@@ -77,9 +77,9 @@ func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, e
 	})
 }
 
-// EnvironmentsByProject queries the Lagoon API for environments by the project name
+// EnvironmentsByProjectName queries the Lagoon API for environments by the given project name
 // and unmarshals the response into environment.
-func (c *Client) EnvironmentsByProject(ctx context.Context, project string, environments *[]schema.Environment) error {
+func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, environments *[]schema.Environment) error {
 
 	req, err := c.newRequest("_lgraphql/environments/environmentsByProjectName.graphql",
 		map[string]interface{}{

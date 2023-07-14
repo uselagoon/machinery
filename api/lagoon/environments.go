@@ -18,7 +18,7 @@ type Environments interface {
 	SetEnvironmentServices(ctx context.Context, id uint, services []string, result *[]schema.EnvironmentService) error
 	EnvironmentByName(ctx context.Context, name string, project uint, result *schema.Environment) error
 	EnvironmentByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
-	EnvironmentsByProject(ctx context.Context, project string, result *[]schema.Environment) error
+	EnvironmentsByProjectName(ctx context.Context, project string, result *[]schema.Environment) error
 	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 }
 
@@ -73,7 +73,7 @@ func GetEnvironmentByNamespace(ctx context.Context, namespace string, e Environm
 // GetEnvironmentsByProjectName lists info of all environments for a given project.
 func GetEnvironmentsByProjectName(ctx context.Context, project string, e Environments) (*[]schema.Environment, error) {
 	environment := []schema.Environment{}
-	return &environment, e.EnvironmentsByProject(ctx, project, &environment)
+	return &environment, e.EnvironmentsByProjectName(ctx, project, &environment)
 }
 
 // SSHEndpointByNamespace gets info of projects in lagoon that have matching metadata.
