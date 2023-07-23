@@ -1,7 +1,28 @@
 package schema
 
+import (
+	"fmt"
+	"strings"
+)
+
 // DeployType .
 type DeployType string
+
+func (d DeployType) validateType() error {
+	deployTypes := map[DeployType]struct{}{
+		Branch:      {},
+		Promote:     {},
+		PullRequest: {},
+	}
+
+	depT := strings.ToUpper(string(d))
+	depType := DeployType(depT)
+	_, ok := deployTypes[depType]
+	if !ok {
+		return fmt.Errorf(`cannot parse:[%s] as DeployType`, d)
+	}
+	return nil
+}
 
 // . .
 const (

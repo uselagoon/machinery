@@ -1,7 +1,27 @@
 package schema
 
+import (
+	"fmt"
+	"strings"
+)
+
 // EnvType .
 type EnvType string
+
+func (e EnvType) validateType() error {
+	envTypes := map[EnvType]struct{}{
+		ProductionEnv:  {},
+		DevelopmentEnv: {},
+	}
+
+	envT := strings.ToUpper(string(e))
+	envType := EnvType(envT)
+	_, ok := envTypes[envType]
+	if !ok {
+		return fmt.Errorf(`cannot parse:[%s] as EnvType`, e)
+	}
+	return nil
+}
 
 // . .
 const (

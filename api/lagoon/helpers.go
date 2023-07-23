@@ -1,6 +1,8 @@
 package lagoon
 
-import "errors"
+import (
+	"errors"
+)
 
 // ErrExist indicates that an attempt was made to create an object that already
 // exists.
