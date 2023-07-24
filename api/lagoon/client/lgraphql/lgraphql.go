@@ -51,6 +51,7 @@
 // _lgraphql/usergroups/addUser.graphql (254B)
 // _lgraphql/usergroups/addUserToGroup.graphql (243B)
 // _lgraphql/usergroups/me.graphql (232B)
+// _lgraphql/facts/addFactsByName.graphql (256B)
 
 package lgraphql
 
@@ -1138,6 +1139,26 @@ func _lgraphqlUsergroupsMeGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlFactsAddfactsbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x54\x8f\xbf\xca\xc2\x30\x14\xc5\xf7\x3c\xc5\xf9\xa0\x43\x0b\x7d\x82\x6e\x9f\x83\xe0\xe2\xe2\x28\x0e\x21\x89\x12\x31\x37\x25\xb9\x29\x88\xf4\xdd\x25\x7f\x94\x9a\x25\x87\x5f\x4e\xee\x8f\xeb\x12\x4b\xb6\x9e\xd0\x77\x73\xf0\x77\xa3\x78\xc2\x89\x83\xa5\xdb\x88\xce\xd0\x62\x83\x27\x67\x68\x4b\xaf\x52\x71\x9c\x70\xfe\xd7\x7a\x2f\x15\x1f\x68\x4e\xfc\x77\x19\xf0\x12\x80\xac\x2c\xee\x9e\x47\xe9\x4c\x2f\x00\xc0\xe6\xc2\x54\x9e\xf3\xf9\x6a\x3e\xc2\xc6\x7f\x64\x5b\xf5\xd8\x0a\xcd\x5b\xfd\x85\xad\x02\x18\xda\x60\xab\xcb\x45\xd2\x99\x12\x16\xf9\x48\x35\x45\x9f\x82\xaa\x51\x9b\xa8\x82\x9d\xf3\xc2\x22\x7f\x5f\xc5\x3b\x00\x00\xff\xff\x7b\xd2\xea\x49\x00\x01\x00\x00")
+
+func _lgraphqlFactsAddfactsbynameGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlFactsAddfactsbynameGraphql,
+		"_lgraphql/facts/addFactsByName.graphql",
+	)
+}
+
+func _lgraphqlFactsAddfactsbynameGraphql() (*asset, error) {
+	bytes, err := _lgraphqlFactsAddfactsbynameGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/facts/addFactsByName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x90, 0xa7, 0xa1, 0xec, 0x51, 0xff, 0xec, 0xc7, 0xe8, 0xa8, 0x7c, 0x8d, 0x98, 0x52, 0x31, 0xd8, 0xa1, 0xaa, 0x7f, 0x39, 0xb8, 0x6d, 0xc6, 0x1c, 0x5d, 0x46, 0xa1, 0x39, 0x9f, 0x5c, 0x1a, 0x39}}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -1280,6 +1301,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/usergroups/addUser.graphql":                                 _lgraphqlUsergroupsAdduserGraphql,
 	"_lgraphql/usergroups/addUserToGroup.graphql":                          _lgraphqlUsergroupsAddusertogroupGraphql,
 	"_lgraphql/usergroups/me.graphql":                                      _lgraphqlUsergroupsMeGraphql,
+	"_lgraphql/facts/addFactsByName.graphql":                               _lgraphqlFactsAddfactsbynameGraphql,
 }
 
 // AssetDebug is true if the assets were built with the debug flag enabled.
@@ -1329,70 +1351,73 @@ type bintree struct {
 
 var _bintree = &bintree{nil, map[string]*bintree{
 	"_lgraphql": {nil, map[string]*bintree{
-		"addEnvVariable.graphql": {_lgraphqlAddenvvariableGraphql, map[string]*bintree{}},
-		"addNotificationEmail.graphql": {_lgraphqlAddnotificationemailGraphql, map[string]*bintree{}},
+		"addEnvVariable.graphql":                {_lgraphqlAddenvvariableGraphql, map[string]*bintree{}},
+		"addNotificationEmail.graphql":          {_lgraphqlAddnotificationemailGraphql, map[string]*bintree{}},
 		"addNotificationMicrosoftTeams.graphql": {_lgraphqlAddnotificationmicrosoftteamsGraphql, map[string]*bintree{}},
-		"addNotificationRocketChat.graphql": {_lgraphqlAddnotificationrocketchatGraphql, map[string]*bintree{}},
-		"addNotificationSlack.graphql": {_lgraphqlAddnotificationslackGraphql, map[string]*bintree{}},
-		"addNotificationToProject.graphql": {_lgraphqlAddnotificationtoprojectGraphql, map[string]*bintree{}},
+		"addNotificationRocketChat.graphql":     {_lgraphqlAddnotificationrocketchatGraphql, map[string]*bintree{}},
+		"addNotificationSlack.graphql":          {_lgraphqlAddnotificationslackGraphql, map[string]*bintree{}},
+		"addNotificationToProject.graphql":      {_lgraphqlAddnotificationtoprojectGraphql, map[string]*bintree{}},
 		"deployments": {nil, map[string]*bintree{
-			"deployEnvironmentBranch.graphql": {_lgraphqlDeploymentsDeployenvironmentbranchGraphql, map[string]*bintree{}},
-			"deployEnvironmentLatest.graphql": {_lgraphqlDeploymentsDeployenvironmentlatestGraphql, map[string]*bintree{}},
-			"deployEnvironmentPromote.graphql": {_lgraphqlDeploymentsDeployenvironmentpromoteGraphql, map[string]*bintree{}},
+			"deployEnvironmentBranch.graphql":      {_lgraphqlDeploymentsDeployenvironmentbranchGraphql, map[string]*bintree{}},
+			"deployEnvironmentLatest.graphql":      {_lgraphqlDeploymentsDeployenvironmentlatestGraphql, map[string]*bintree{}},
+			"deployEnvironmentPromote.graphql":     {_lgraphqlDeploymentsDeployenvironmentpromoteGraphql, map[string]*bintree{}},
 			"deployEnvironmentPullrequest.graphql": {_lgraphqlDeploymentsDeployenvironmentpullrequestGraphql, map[string]*bintree{}},
-			"deploymentByName.graphql": {_lgraphqlDeploymentsDeploymentbynameGraphql, map[string]*bintree{}},
-			"deploymentByRemoteID.graphql": {_lgraphqlDeploymentsDeploymentbyremoteidGraphql, map[string]*bintree{}},
-			"getDeploymentsByBulkID.graphql": {_lgraphqlDeploymentsGetdeploymentsbybulkidGraphql, map[string]*bintree{}},
+			"deploymentByName.graphql":             {_lgraphqlDeploymentsDeploymentbynameGraphql, map[string]*bintree{}},
+			"deploymentByRemoteID.graphql":         {_lgraphqlDeploymentsDeploymentbyremoteidGraphql, map[string]*bintree{}},
+			"getDeploymentsByBulkID.graphql":       {_lgraphqlDeploymentsGetdeploymentsbybulkidGraphql, map[string]*bintree{}},
 			"getDeploymentsForEnvironment.graphql": {_lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql, map[string]*bintree{}},
-			"updateDeployment.graphql": {_lgraphqlDeploymentsUpdatedeploymentGraphql, map[string]*bintree{}},
+			"updateDeployment.graphql":             {_lgraphqlDeploymentsUpdatedeploymentGraphql, map[string]*bintree{}},
 		}},
 		"deploytargetconfigs": {nil, map[string]*bintree{
-			"addDeployTargetConfig.graphql": {_lgraphqlDeploytargetconfigsAdddeploytargetconfigGraphql, map[string]*bintree{}},
-			"deleteDeployTargetConfig.graphql": {_lgraphqlDeploytargetconfigsDeletedeploytargetconfigGraphql, map[string]*bintree{}},
+			"addDeployTargetConfig.graphql":          {_lgraphqlDeploytargetconfigsAdddeploytargetconfigGraphql, map[string]*bintree{}},
+			"deleteDeployTargetConfig.graphql":       {_lgraphqlDeploytargetconfigsDeletedeploytargetconfigGraphql, map[string]*bintree{}},
 			"deployTargetConfigsByProjectId.graphql": {_lgraphqlDeploytargetconfigsDeploytargetconfigsbyprojectidGraphql, map[string]*bintree{}},
-			"updateDeployTargetConfig.graphql": {_lgraphqlDeploytargetconfigsUpdatedeploytargetconfigGraphql, map[string]*bintree{}},
+			"updateDeployTargetConfig.graphql":       {_lgraphqlDeploytargetconfigsUpdatedeploytargetconfigGraphql, map[string]*bintree{}},
 		}},
 		"deploytargets": {nil, map[string]*bintree{
-			"addDeployTarget.graphql": {_lgraphqlDeploytargetsAdddeploytargetGraphql, map[string]*bintree{}},
+			"addDeployTarget.graphql":    {_lgraphqlDeploytargetsAdddeploytargetGraphql, map[string]*bintree{}},
 			"deleteDeployTarget.graphql": {_lgraphqlDeploytargetsDeletedeploytargetGraphql, map[string]*bintree{}},
-			"listDeployTargets.graphql": {_lgraphqlDeploytargetsListdeploytargetsGraphql, map[string]*bintree{}},
+			"listDeployTargets.graphql":  {_lgraphqlDeploytargetsListdeploytargetsGraphql, map[string]*bintree{}},
 			"updateDeployTarget.graphql": {_lgraphqlDeploytargetsUpdatedeploytargetGraphql, map[string]*bintree{}},
 		}},
 		"environments": {nil, map[string]*bintree{
-			"addOrUpdateEnvironment.graphql": {_lgraphqlEnvironmentsAddorupdateenvironmentGraphql, map[string]*bintree{}},
+			"addOrUpdateEnvironment.graphql":        {_lgraphqlEnvironmentsAddorupdateenvironmentGraphql, map[string]*bintree{}},
 			"addOrUpdateEnvironmentStorage.graphql": {_lgraphqlEnvironmentsAddorupdateenvironmentstorageGraphql, map[string]*bintree{}},
-			"addRestore.graphql": {_lgraphqlEnvironmentsAddrestoreGraphql, map[string]*bintree{}},
-			"backupsForEnvironmentByName.graphql": {_lgraphqlEnvironmentsBackupsforenvironmentbynameGraphql, map[string]*bintree{}},
-			"deleteEnvironment.graphql": {_lgraphqlEnvironmentsDeleteenvironmentGraphql, map[string]*bintree{}},
-			"environmentByName.graphql": {_lgraphqlEnvironmentsEnvironmentbynameGraphql, map[string]*bintree{}},
-			"environmentByNamespace.graphql": {_lgraphqlEnvironmentsEnvironmentbynamespaceGraphql, map[string]*bintree{}},
-			"setEnvironmentServices.graphql": {_lgraphqlEnvironmentsSetenvironmentservicesGraphql, map[string]*bintree{}},
-			"updateEnvironment.graphql": {_lgraphqlEnvironmentsUpdateenvironmentGraphql, map[string]*bintree{}},
+			"addRestore.graphql":                    {_lgraphqlEnvironmentsAddrestoreGraphql, map[string]*bintree{}},
+			"backupsForEnvironmentByName.graphql":   {_lgraphqlEnvironmentsBackupsforenvironmentbynameGraphql, map[string]*bintree{}},
+			"deleteEnvironment.graphql":             {_lgraphqlEnvironmentsDeleteenvironmentGraphql, map[string]*bintree{}},
+			"environmentByName.graphql":             {_lgraphqlEnvironmentsEnvironmentbynameGraphql, map[string]*bintree{}},
+			"environmentByNamespace.graphql":        {_lgraphqlEnvironmentsEnvironmentbynamespaceGraphql, map[string]*bintree{}},
+			"setEnvironmentServices.graphql":        {_lgraphqlEnvironmentsSetenvironmentservicesGraphql, map[string]*bintree{}},
+			"updateEnvironment.graphql":             {_lgraphqlEnvironmentsUpdateenvironmentGraphql, map[string]*bintree{}},
 		}},
-		"lagoonSchema.graphql": {_lgraphqlLagoonschemaGraphql, map[string]*bintree{}},
+		"facts": {nil, map[string]*bintree{
+			"addFactsByName.graphql": {_lgraphqlFactsAddfactsbynameGraphql, map[string]*bintree{}},
+		}},
+		"lagoonSchema.graphql":  {_lgraphqlLagoonschemaGraphql, map[string]*bintree{}},
 		"lagoonVersion.graphql": {_lgraphqlLagoonversionGraphql, map[string]*bintree{}},
 		"projects": {nil, map[string]*bintree{
-			"addProject.graphql": {_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
-			"minimalProjectByName.graphql": {_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},
-			"projectByName.graphql": {_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
-			"projectByNameMetadata.graphql": {_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
-			"projectsByMetadata.graphql": {_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
+			"addProject.graphql":                 {_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
+			"minimalProjectByName.graphql":       {_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},
+			"projectByName.graphql":              {_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
+			"projectByNameMetadata.graphql":      {_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
+			"projectsByMetadata.graphql":         {_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
 			"removeProjectMetadataByKey.graphql": {_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},
-			"updateProject.graphql": {_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
-			"updateProjectMetadata.graphql": {_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
+			"updateProject.graphql":              {_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
+			"updateProjectMetadata.graphql":      {_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
 		}},
 		"taskByID.graphql": {_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
 		"tasks": {nil, map[string]*bintree{
 			"switchActiveStandby.graphql": {_lgraphqlTasksSwitchactivestandbyGraphql, map[string]*bintree{}},
-			"updateTask.graphql": {_lgraphqlTasksUpdatetaskGraphql, map[string]*bintree{}},
+			"updateTask.graphql":          {_lgraphqlTasksUpdatetaskGraphql, map[string]*bintree{}},
 		}},
 		"usergroups": {nil, map[string]*bintree{
-			"addGroup.graphql": {_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
+			"addGroup.graphql":           {_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
 			"addGroupsToProject.graphql": {_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
-			"addSshKey.graphql": {_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
-			"addUser.graphql": {_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
-			"addUserToGroup.graphql": {_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
-			"me.graphql": {_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"addSshKey.graphql":          {_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
+			"addUser.graphql":            {_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
+			"addUserToGroup.graphql":     {_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
+			"me.graphql":                 {_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
 		}},
 	}},
 }}
