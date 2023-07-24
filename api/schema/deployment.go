@@ -1,7 +1,28 @@
 package schema
 
+import (
+	"fmt"
+	"strings"
+)
+
 // DeployType .
 type DeployType string
+
+func (d DeployType) validateType() error {
+	deployTypes := map[DeployType]struct{}{
+		Branch:      {},
+		Promote:     {},
+		PullRequest: {},
+	}
+
+	depT := strings.ToUpper(string(d))
+	depType := DeployType(depT)
+	_, ok := deployTypes[depType]
+	if !ok {
+		return fmt.Errorf(`cannot parse:[%s] as DeployType`, d)
+	}
+	return nil
+}
 
 // . .
 const (
@@ -76,7 +97,12 @@ type Deployment struct {
 	Started     string           `json:"started,omitempty"`
 	Completed   string           `json:"completed,omitempty"`
 	RemoteID    string           `json:"remoteId,omitempty"`
-	Logs        string           `json:"logs,omitempty"`
+	BuildLog    string           `json:"buildLog,omitempty"`
+	UILink      string           `json:"uiLink,omitempty"`
+	Priority    uint             `json:"priority,omitempty"`
+	BulkID      string           `json:"bulkId,omitempty"`
+	BulkName    string           `json:"bulkName,omitempty"`
+	BuildStep   string           `json:"buildStep,omitempty"`
 	Environment EnvironmentInput `json:"environment"`
 }
 
@@ -91,4 +117,5 @@ type UpdateDeploymentPatchInput struct {
 	Priority    *uint        `json:"priority,omitempty"`
 	BulkId      *string      `json:"bulkId,omitempty"`
 	BulkName    *string      `json:"bulkName,omitempty"`
+	BuildStep   *string      `json:"buildStep,omitempty"`
 }

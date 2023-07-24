@@ -1,0 +1,21 @@
+query ($email: String!) {
+    userByEmail(email: $email) {
+        id
+        email
+        firstName
+        lastName
+        comment
+        sshKeys {
+            id
+            name
+            keyType
+            keyValue
+            keyFingerprint
+            created
+        }
+        groupRoles {
+            name
+            role
+        }
+    }
+}

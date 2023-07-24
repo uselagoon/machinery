@@ -1,7 +1,27 @@
 package schema
 
+import (
+	"fmt"
+	"strings"
+)
+
 // EnvType .
 type EnvType string
+
+func (e EnvType) validateType() error {
+	envTypes := map[EnvType]struct{}{
+		ProductionEnv:  {},
+		DevelopmentEnv: {},
+	}
+
+	envT := strings.ToUpper(string(e))
+	envType := EnvType(envT)
+	_, ok := envTypes[envType]
+	if !ok {
+		return fmt.Errorf(`cannot parse:[%s] as EnvType`, e)
+	}
+	return nil
+}
 
 // . .
 const (
@@ -44,6 +64,7 @@ type Environment struct {
 	Backups      []Backup             `json:"backups,omitempty"`
 	Deployments  []Deployment         `json:"deployments,omitempty"`
 	Services     []EnvironmentService `json:"services,omitempty"`
+	DeployTarget DeployTarget         `json:"openshift,omitempty"`
 	// TODO use a unixtime type
 	Updated string `json:"updated,omitempty"`
 	Created string `json:"created,omitempty"`
@@ -93,7 +114,6 @@ type UpdateEnvironmentPatchInput struct {
 	OpenshiftProjectName *string     `json:"openshiftProjectName,omitempty"`
 	Route                *string     `json:"route,omitempty"`
 	Routes               *string     `json:"routes,omitempty"`
-	MonitoringURLs       *string     `json:"monitoringUrls,omitempty"`
 	AutoIdle             *uint       `json:"autoIdle,omitempty"`
 	Openshift            *uint       `json:"openshift,omitempty"`
 	Created              *string     `json:"created,omitempty"`

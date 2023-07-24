@@ -2,6 +2,8 @@ package client
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -73,6 +75,38 @@ func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, e
 	}{
 		Response: environment,
 	})
+}
+
+// EnvironmentsByProjectName queries the Lagoon API for environments by the given project name
+// and unmarshals the response into environment.
+func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, environments *[]schema.Environment) error {
+
+	req, err := c.newRequest("_lgraphql/environments/environmentsByProjectName.graphql",
+		map[string]interface{}{
+			"project": project,
+		})
+	if err != nil {
+		return err
+	}
+
+	p := &schema.Project{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: p,
+	})
+	if err != nil {
+		return err
+	}
+	if len(p.Environments) == 0 {
+		return fmt.Errorf("no environments found for project")
+	}
+	db, err := json.Marshal(p.Environments)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(db, environments)
+	return nil
 }
 
 // BackupsForEnvironmentByName queries the Lagoon API for an environment by its name and
@@ -164,5 +198,23 @@ func (c *Client) SetEnvironmentServices(
 		Response *[]schema.EnvironmentService `json:"setEnvironmentServices"`
 	}{
 		Response: result,
+	})
+}
+
+// SSHEndpointByNamespace queries the Lagoon API for an environment by its namespace
+// and unmarshals the response into environment.
+func (c *Client) SSHEndpointByNamespace(ctx context.Context, namespace string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/environments/sshEndpointByEnvironment.graphql",
+		map[string]interface{}{
+			"namespace": namespace,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByNamespace"`
+	}{
+		Response: environment,
 	})
 }

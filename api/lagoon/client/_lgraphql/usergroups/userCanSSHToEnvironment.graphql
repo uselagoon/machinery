@@ -1,0 +1,5 @@
+query ($namespace: String!) {
+    userCanSshToEnvironment(kubernetesNamespaceName: $namespace) {
+        kubernetesNamespaceName
+    }
+}

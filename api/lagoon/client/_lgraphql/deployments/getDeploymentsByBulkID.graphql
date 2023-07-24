@@ -3,9 +3,16 @@ query ($bulkId: String!) {
     {
         id
         name
-        remoteId
         status
-        buildLog
+        created
+        started
+        completed
+        remoteId
+        uiLink
+        priority
+        bulkId
+        bulkName
+        buildStep
         environment{
             id
             name

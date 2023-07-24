@@ -4,6 +4,7 @@ query {
         email
         firstName
         lastName
+        comment
         sshKeys {
             id
             name
@@ -11,6 +12,10 @@ query {
             keyValue
             keyFingerprint
             created
+        }
+        groupRoles {
+            name
+            role
         }
     }
 }

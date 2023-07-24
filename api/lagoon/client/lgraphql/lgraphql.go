@@ -8,15 +8,16 @@
 // _lgraphql/addNotificationToProject.graphql (289B)
 // _lgraphql/lagoonSchema.graphql (126B)
 // _lgraphql/lagoonVersion.graphql (25B)
+// _lgraphql/sshEndpointsByProject.graphql (219B)
 // _lgraphql/taskByID.graphql (162B)
 // _lgraphql/deployments/deployEnvironmentBranch.graphql (282B)
 // _lgraphql/deployments/deployEnvironmentLatest.graphql (361B)
 // _lgraphql/deployments/deployEnvironmentPromote.graphql (427B)
 // _lgraphql/deployments/deployEnvironmentPullrequest.graphql (509B)
-// _lgraphql/deployments/deploymentByName.graphql (442B)
-// _lgraphql/deployments/deploymentByRemoteID.graphql (268B)
-// _lgraphql/deployments/getDeploymentsByBulkID.graphql (292B)
-// _lgraphql/deployments/getDeploymentsForEnvironment.graphql (310B)
+// _lgraphql/deployments/deploymentByName.graphql (525B)
+// _lgraphql/deployments/deploymentByRemoteID.graphql (335B)
+// _lgraphql/deployments/getDeploymentsByBulkID.graphql (407B)
+// _lgraphql/deployments/getDeploymentsForEnvironment.graphql (412B)
 // _lgraphql/deployments/updateDeployment.graphql (378B)
 // _lgraphql/deploytargets/addDeployTarget.graphql (869B)
 // _lgraphql/deploytargets/deleteDeployTarget.graphql (102B)
@@ -41,16 +42,27 @@
 // _lgraphql/environments/deleteEnvironment.graphql (218B)
 // _lgraphql/environments/environmentByName.graphql (294B)
 // _lgraphql/environments/environmentByNamespace.graphql (324B)
+// _lgraphql/environments/environmentsByProjectName.graphql (548B)
 // _lgraphql/environments/setEnvironmentServices.graphql (206B)
+// _lgraphql/environments/sshEndpointByEnvironment.graphql (297B)
 // _lgraphql/environments/updateEnvironment.graphql (411B)
 // _lgraphql/tasks/switchActiveStandby.graphql (144B)
 // _lgraphql/tasks/updateTask.graphql (270B)
+// _lgraphql/tasks/uploadFilesForTask.graphql (137B)
 // _lgraphql/usergroups/addGroup.graphql (110B)
 // _lgraphql/usergroups/addGroupsToProject.graphql (184B)
 // _lgraphql/usergroups/addSshKey.graphql (279B)
 // _lgraphql/usergroups/addUser.graphql (254B)
 // _lgraphql/usergroups/addUserToGroup.graphql (243B)
-// _lgraphql/usergroups/me.graphql (232B)
+// _lgraphql/usergroups/allGroupMembers.graphql (196B)
+// _lgraphql/usergroups/allUsers.graphql (194B)
+// _lgraphql/usergroups/me.graphql (313B)
+// _lgraphql/usergroups/removeGroupsFromProject.graphql (189B)
+// _lgraphql/usergroups/removeUserFromGroup.graphql (199B)
+// _lgraphql/usergroups/userByEmail.graphql (355B)
+// _lgraphql/usergroups/userBySSHFingerprint.graphql (382B)
+// _lgraphql/usergroups/userBySSHKey.graphql (359B)
+// _lgraphql/usergroups/userCanSSHToEnvironment.graphql (136B)
 // _lgraphql/facts/addFactsByName.graphql (256B)
 
 package lgraphql
@@ -279,6 +291,26 @@ func _lgraphqlLagoonversionGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlSshendpointsbyprojectGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x28\x28\xca\xcf\x4a\x4d\x2e\x71\xaa\xf4\x4b\xcc\x4d\xd5\x80\x28\x00\xab\x83\x48\x2b\x28\x64\xa6\x80\x29\x90\x10\x98\x91\x9a\x57\x96\x59\x94\x9f\x97\x9b\x9a\x57\x52\x0c\x55\x02\x57\x84\xa4\x4c\x41\x21\xbf\x20\x35\xaf\x38\x23\x33\xad\x24\x00\x62\x85\x1f\x16\x29\xb8\x01\x48\x46\x28\x28\x14\x17\x67\x78\xe4\x17\x97\x20\xf3\x03\xf2\x8b\x60\xfc\x5a\x2e\x18\x59\xcb\x55\xcb\x05\x08\x00\x00\xff\xff\x1f\x6e\x6a\x1a\xdb\x00\x00\x00")
+
+func _lgraphqlSshendpointsbyprojectGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlSshendpointsbyprojectGraphql,
+		"_lgraphql/sshEndpointsByProject.graphql",
+	)
+}
+
+func _lgraphqlSshendpointsbyprojectGraphql() (*asset, error) {
+	bytes, err := _lgraphqlSshendpointsbyprojectGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/sshEndpointsByProject.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x5, 0x4b, 0x1a, 0x44, 0xbe, 0x55, 0x4b, 0x58, 0x2d, 0x4d, 0x6f, 0x63, 0xfe, 0x9d, 0x8e, 0xb4, 0xb3, 0x6f, 0xcc, 0x60, 0x43, 0x6e, 0xda, 0x8d, 0x70, 0xac, 0xf9, 0x78, 0x33, 0x81, 0x6a, 0x2a}}
+	return a, nil
+}
+
 var __lgraphqlTaskbyidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x3c\x8c\x41\x0e\xc2\x30\x0c\x04\xef\x79\xc5\x22\xf5\x50\xbe\xc0\x91\x5b\x9e\x61\xd5\x16\x8a\xa8\x13\x70\x5c\xa4\x0a\xf5\xef\xa8\x29\xe9\xc9\xe3\xdd\xd5\xbc\x17\xb1\x15\x63\x00\x86\xc4\x37\xc4\xec\x97\x00\x5c\xbf\x01\x70\xaa\xcf\xfb\x1a\x79\xdc\x8b\x21\x71\x0b\x81\xc4\xed\x64\x52\x69\x30\x15\x55\xca\x47\x58\x9d\x7c\xa9\x1d\xcd\x85\xfb\xe4\x35\xcb\xf9\x99\x50\xe7\xb9\x3c\x8e\xb9\x89\x16\x97\xf8\xd7\x88\x7d\xd2\xb4\xeb\xb7\xb0\xfd\x02\x00\x00\xff\xff\x74\xe4\xc2\x1e\xa2\x00\x00\x00")
 
 func _lgraphqlTaskbyidGraphqlBytes() ([]byte, error) {
@@ -379,7 +411,7 @@ func _lgraphqlDeploymentsDeployenvironmentpullrequestGraphql() (*asset, error) {
 	return a, nil
 }
 
-var __lgraphqlDeploymentsDeploymentbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x90\x41\xae\xc2\x20\x10\x86\xf7\x3d\x05\xaf\x79\x8b\xbe\x2b\x74\xf9\x76\x26\x46\x4d\x3c\x01\xa1\xa3\xa2\x65\xc0\x61\x6a\xd2\x34\xdc\xdd\x50\x63\x5b\x68\x67\x35\x7c\x0c\xdf\xfc\xe1\xd9\x01\xf5\xa2\x01\xd7\xda\xde\x00\xf2\x7f\x7f\x90\x06\xaa\x5f\x94\x06\xbc\x93\x0a\x6a\x71\x66\xd2\x78\xfd\xf9\x13\x43\x21\x84\x58\xcd\xd6\x80\x2f\x4d\x16\x3f\xe4\xe8\x00\xfd\x4d\x5f\xf8\x44\xf6\x0e\x8a\x47\x9b\xdd\x80\xb5\x98\x77\x7c\xd5\xb1\x74\x33\xb5\xf1\x7e\x3a\xcc\x6b\x7d\x85\xe3\xfb\x72\x18\x66\x18\x95\x21\x94\x4b\x53\x66\x5b\x19\x63\x79\x96\xdc\xf9\x04\x29\x02\xc9\xd0\xe4\x63\x94\x33\x65\x8d\x6b\x21\xa7\x04\xc6\x32\xec\x52\xd8\xe9\xbd\xc6\x47\x82\x16\x9f\x96\x45\xde\xcc\x19\x8a\xb4\x0b\x45\x78\x07\x00\x00\xff\xff\x45\xbf\xf5\x0a\xba\x01\x00\x00")
+var __lgraphqlDeploymentsDeploymentbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x91\xdd\x4e\x43\x21\x0c\x80\xef\xcf\x53\xe0\xe2\xc5\x7c\x85\x73\xe9\x9d\x89\x99\x26\x7b\x02\x06\x55\xeb\xa0\x60\x29\x26\xe4\x84\x77\x37\xcc\x6c\x67\xb0\xf5\xaa\x7c\xb4\x5f\xf9\xf9\xc9\xc0\x45\x59\x88\x2e\x14\x0f\x24\xcf\x65\xa7\x3d\x6c\x1f\x49\x7b\x48\x51\x1b\x98\xd5\x5e\x18\xe9\xf3\xe1\x49\x2d\x93\x52\xea\xa6\x76\x06\xfa\x45\x0e\xf4\x4f\xde\x22\x50\xfa\xc2\x0f\x79\xe7\xf0\x0d\x46\x4e\xb6\x70\x07\xce\x6a\x9d\x71\x56\xb7\x40\x7b\x49\xdb\xfe\x65\xb1\x8e\x4d\x5b\x3a\xf5\x6f\x96\x65\x85\x4d\x59\xeb\xe6\xda\x34\xd8\x6e\x8c\x2d\x92\x68\xc9\xa9\x43\x86\x41\x0b\xd8\xb1\x8c\x47\x66\x82\x8f\x0e\x46\xca\xe0\x83\xc0\x4b\x0f\x33\xbe\x22\x1d\x3b\x14\x19\x03\xa3\x94\x0e\x1e\xb2\x3b\x0e\xad\x0d\xed\xc6\x53\x1f\x32\x3a\xbb\x17\x88\x1d\xbd\xfa\x87\xe1\x15\xee\x5e\xbd\x4e\x7d\x56\xa7\xfa\x17\x00\x00\xff\xff\x45\x40\x87\x84\x0d\x02\x00\x00")
 
 func _lgraphqlDeploymentsDeploymentbynameGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -395,11 +427,11 @@ func _lgraphqlDeploymentsDeploymentbynameGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deployments/deploymentByName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x7b, 0xf, 0x3e, 0xa4, 0xa9, 0x55, 0x5d, 0xfd, 0xd3, 0xac, 0x59, 0x1, 0xfb, 0x53, 0xb8, 0x8a, 0xf5, 0xc1, 0x43, 0x27, 0x66, 0x36, 0x16, 0x9e, 0x5b, 0x12, 0x64, 0x47, 0x68, 0x11, 0xc8, 0x96}}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xbf, 0xf0, 0x2b, 0xa9, 0x6b, 0x33, 0x41, 0x42, 0xc1, 0x9f, 0xfb, 0xa2, 0x2d, 0x74, 0x48, 0xa8, 0x9e, 0xac, 0xc2, 0x9d, 0xae, 0x55, 0x41, 0xb0, 0x19, 0xa6, 0xab, 0xa7, 0x11, 0x92, 0x7, 0x4b}}
 	return a, nil
 }
 
-var __lgraphqlDeploymentsDeploymentbyremoteidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\x48\x49\x2d\xc8\xc9\xaf\xcc\x4d\xcd\x2b\x71\xaa\x0c\x4a\xcd\xcd\x2f\x49\xf5\x4c\xd1\x50\x29\x82\xb2\xac\x14\x82\x4b\x8a\x32\xf3\xd2\x15\x35\x15\xaa\xb9\x14\x14\x14\xb0\x2b\xcf\x4c\xb1\x52\x80\x6b\x81\xa9\x04\x81\xcc\x14\x38\x33\x2f\x31\x37\x15\xce\x29\x2e\x49\x2c\x29\x2d\x86\x73\x93\x8b\x52\x13\x4b\x52\x53\x90\xa5\x8b\x90\xf9\xc9\xf9\xb9\x05\x39\xa9\xc8\x22\x30\xcb\xe0\x02\xa5\x99\x3e\x99\x79\xd9\x70\x6e\x6a\x5e\x59\x66\x51\x7e\x1e\xc8\x9d\x48\xce\xc1\x70\x47\x2d\x17\x84\xac\x05\x04\x00\x00\xff\xff\x9f\x95\x0e\x67\x0c\x01\x00\x00")
+var __lgraphqlDeploymentsDeploymentbyremoteidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x8f\x4d\x0a\xc2\x30\x10\x85\xf7\x3d\xc5\x08\x2e\xf4\x0a\x5d\xba\x13\xc4\x85\x3d\x41\xdb\x0c\x32\x34\x7f\x4e\x27\x42\x90\xde\x5d\x8a\x76\x18\xd0\x2c\xc2\x7c\x5f\x5e\x48\xde\xa3\x20\x57\x70\x98\x7d\xaa\x01\xa3\x9c\xea\x0d\x43\x12\x3c\xbb\xc3\x9e\xbf\x53\x0b\x9d\x30\xc5\xfb\xee\x08\xaf\x06\x00\xfe\xc7\xc9\xb5\xa0\x57\xb6\xe4\xba\xc8\xe9\x18\xfb\x80\x0a\xb3\xf4\x52\x66\xc5\x91\xb1\x17\x74\xf6\x98\x2d\x8f\x29\x64\x8f\xd6\x6c\x8f\xa9\x28\x74\xa1\x38\x29\x66\xa6\xc4\x24\x55\xc5\x50\xfc\x64\xe2\x2b\x5e\xed\x8f\x86\x42\xde\x75\x82\x59\x0d\xc6\x27\x71\x8a\x6b\x55\xd3\xe8\xa7\xca\xd2\x7c\xf6\xe5\x1d\x00\x00\xff\xff\xfe\x8f\x07\x79\x4f\x01\x00\x00")
 
 func _lgraphqlDeploymentsDeploymentbyremoteidGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -415,11 +447,11 @@ func _lgraphqlDeploymentsDeploymentbyremoteidGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deployments/deploymentByRemoteID.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xff, 0xd9, 0xce, 0xf4, 0x6, 0x40, 0xd0, 0x2b, 0x64, 0xa, 0x87, 0xde, 0xfa, 0x56, 0xd4, 0x12, 0x98, 0x37, 0x35, 0x1, 0x12, 0xce, 0xc7, 0xc9, 0x5e, 0xb9, 0x93, 0xc1, 0xf, 0xa1, 0xc, 0xe}}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x5d, 0x69, 0xe6, 0x37, 0xda, 0x26, 0xab, 0xbb, 0x4d, 0xad, 0x59, 0x9, 0x3a, 0xbd, 0x20, 0x25, 0x2e, 0x9f, 0xf1, 0x53, 0x20, 0xa6, 0x2b, 0xed, 0x5f, 0x67, 0x5f, 0x15, 0x39, 0x92, 0x81, 0x2d}}
 	return a, nil
 }
 
-var __lgraphqlDeploymentsGetdeploymentsbybulkidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\x49\x2a\xcd\xc9\xf6\x4c\xb1\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x50\x50\x48\x49\x2d\xc8\xc9\xaf\xcc\x4d\xcd\x2b\x29\x76\xaa\x74\x02\xab\xd1\x80\x29\x85\xea\xd1\x04\x2b\x84\x28\x07\x81\xcc\x14\x38\x33\x2f\x31\x37\x15\xce\x29\x4a\xcd\xcd\x2f\x49\xf5\x44\xc8\x16\x97\x24\x96\x94\x16\xc3\xb9\x49\xa5\x99\x39\x29\x3e\xf9\xe9\x70\x81\xd4\xbc\xb2\xcc\xa2\xfc\x3c\x90\xe5\x08\xd3\xd1\x6c\xc0\xb0\x05\x04\x0a\x8a\xf2\xb3\x52\x93\xd1\x34\x61\xd1\x88\x55\x73\x2d\x17\x2a\xab\x96\xab\x16\x10\x00\x00\xff\xff\x26\x1b\x9b\xfe\x24\x01\x00\x00")
+var __lgraphqlDeploymentsGetdeploymentsbybulkidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x8f\x4d\x0e\x82\x30\x10\x85\xf7\x9c\xa2\x26\x2e\xe0\x0a\x2e\xd9\x91\x18\x37\x9c\x00\xe8\xc4\x8c\xf4\xcf\x61\x6a\xd2\x18\xee\x6e\x00\x2d\x05\xe9\x6a\xbe\xd7\xf7\x32\xf3\x9e\x1e\x28\x88\xfc\xdc\x7a\xd5\x57\xf2\x22\x6a\x26\x34\xf7\x53\x21\xde\x99\x10\x42\x48\x70\xca\x06\x0d\x86\x87\x32\x94\xb3\x27\xff\x59\xbf\x99\x62\x36\x2e\xf6\xe9\xa1\x8c\xa3\x69\x34\x44\x18\xb8\x61\x3f\x44\xec\x08\x1a\x06\x99\x7e\x53\xca\x9d\xd5\x4e\x41\xaa\x10\x68\xcb\x50\xad\x82\xc7\x2b\x9a\x3e\xa2\x23\xb4\x84\x1c\xa2\xb0\xdc\xb7\xc1\x5b\x7a\x51\xeb\x51\xc9\x9a\xc1\x45\x05\xcc\x0b\xc9\x9a\xa9\xef\x5a\x68\x57\xea\xaf\xd8\xb2\xdb\x3e\xa0\xdb\x85\x0e\x82\x87\xe1\x31\xdb\x4e\x63\x36\x7e\x02\x00\x00\xff\xff\xfd\xd7\x46\x98\x97\x01\x00\x00")
 
 func _lgraphqlDeploymentsGetdeploymentsbybulkidGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -435,11 +467,11 @@ func _lgraphqlDeploymentsGetdeploymentsbybulkidGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deployments/getDeploymentsByBulkID.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x7a, 0x2f, 0x76, 0x21, 0x2d, 0x42, 0x89, 0x2a, 0x1f, 0x2f, 0x71, 0x9, 0x43, 0x21, 0xe5, 0xf0, 0xd0, 0x11, 0x12, 0x1b, 0x77, 0xae, 0xa1, 0xfa, 0xd5, 0xa, 0x14, 0x51, 0xea, 0xcb, 0xf5, 0x6f}}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x12, 0x1f, 0x24, 0xec, 0xe8, 0x2e, 0xce, 0xf3, 0x9f, 0x27, 0x1, 0x44, 0x9d, 0x77, 0xe, 0x3f, 0xa8, 0xdc, 0x26, 0xde, 0x28, 0xa2, 0x88, 0x50, 0xe9, 0xbe, 0x0, 0xda, 0xa2, 0xd3, 0x6f, 0x9e}}
 	return a, nil
 }
 
-var __lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8c\x41\x0a\x83\x30\x10\x45\xf7\x9e\x62\x04\x17\x16\x7a\x02\x97\xdd\xb9\xe9\xa6\x27\x08\xfa\x29\x16\x33\xb1\x93\xb1\x10\xc4\xbb\x17\x6d\x2d\x4e\xfd\x8b\x40\xde\x4b\xde\x73\x84\x24\x2a\x8b\x41\xc2\x03\x8d\x56\x54\xb3\xe6\x67\x2a\xc0\xaf\x4e\x02\x7b\xb0\x56\x74\x53\xe9\xf8\x9e\x9f\xa6\x8c\x88\x68\xa7\x2e\xe9\xea\x3c\xca\x15\x6f\xfb\x95\xb6\xa6\xb1\xec\x3c\x2a\x93\x5f\xf5\x37\xbd\xac\xc5\xd0\x87\xb4\x98\x38\x1d\xbe\x1a\xd0\xb5\xe6\x2a\xf0\x41\x51\x5b\x18\xd5\xe9\x18\x0d\x6a\x04\x4e\x71\x78\x26\xff\xac\x09\x7e\xe8\xb1\xa7\x73\xf6\x39\xe7\x77\x00\x00\x00\xff\xff\x88\xb9\x03\x28\x36\x01\x00\x00")
+var __lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\xcf\x4f\x6a\x85\x30\x10\x06\xf0\xbd\xa7\x18\xc1\x85\x85\x9e\xc0\x65\x77\x42\x71\xe3\x09\xa2\x19\xca\xd4\xfc\xeb\x38\x29\x04\xf1\xee\x45\xfb\x94\x97\xbc\x59\x64\xf1\xfb\x32\x1f\xc9\x4f\x44\x4e\xd0\x36\x81\xfd\x37\xce\xd2\x41\xef\xa4\x7e\x87\x06\xdd\x2f\xb1\x77\x16\x9d\x74\x30\x0a\x93\xfb\xaa\xdf\xb6\x0a\x00\xe0\x29\xfa\x48\x83\xb2\xd8\x9e\x7c\xcd\xdd\x74\x75\x66\xa9\x53\x16\xbb\xac\xfe\x8c\x1f\xd5\xc7\x68\x0c\xc6\xa7\x23\x59\xb7\x6c\x95\xf4\x4b\x53\x06\xab\x28\x89\x6b\x46\x33\xa3\x12\xd4\xe5\x35\x2e\x6d\xf6\x36\x18\x2c\x95\xd1\x7a\xc1\x3e\xc7\x48\x9f\xe4\x96\xe2\xc7\xe4\x99\x24\x65\x38\x45\xb3\x14\xab\x07\x0d\xe5\xab\xa7\x48\x46\x8f\x82\xe1\xd6\xbd\xfa\x3f\xf7\xbf\x00\x00\x00\xff\xff\x94\xe5\x53\xa7\x9c\x01\x00\x00")
 
 func _lgraphqlDeploymentsGetdeploymentsforenvironmentGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -455,7 +487,7 @@ func _lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deployments/getDeploymentsForEnvironment.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xe9, 0xd8, 0x34, 0x0, 0x93, 0x6d, 0x6f, 0xa7, 0x4c, 0xbe, 0xe5, 0x36, 0xf2, 0x6a, 0x10, 0xf8, 0xa3, 0xf2, 0xa1, 0xf2, 0xd, 0x1e, 0x6, 0x7d, 0x4c, 0x48, 0x5b, 0xbe, 0x93, 0x57, 0x18, 0x6a}}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x77, 0xfe, 0x18, 0xb9, 0xb9, 0x3e, 0xc4, 0xe, 0x64, 0xe1, 0x42, 0x96, 0xad, 0xfc, 0x8d, 0xc, 0x23, 0x8c, 0x6e, 0x45, 0xe0, 0x74, 0x30, 0x52, 0xa4, 0x59, 0x65, 0xe0, 0x73, 0xc3, 0xe0, 0x20}}
 	return a, nil
 }
 
@@ -939,6 +971,26 @@ func _lgraphqlEnvironmentsEnvironmentbynamespaceGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x8f\x41\x6e\xc3\x20\x10\x45\xf7\x9c\x62\x2a\x75\x91\x5e\x21\xcb\xac\x92\x8d\x65\xa5\xb9\x00\x35\x63\x87\x0a\x33\xee\x30\x44\x42\x95\xef\x5e\x25\x6d\x6d\xc0\x61\x03\x3c\xe6\x7f\xfe\xff\x8a\xc8\x09\x76\x0a\xe0\x75\x62\xfa\xc4\x4e\xf6\xf0\x2e\x6c\xfd\xf0\xf2\x06\xdf\x0a\x00\xe0\x8f\x1f\x52\xa3\x47\xdc\x3d\x10\x80\xd7\x23\xee\x17\xcd\xff\x28\x00\xfa\x9b\x65\xf2\x23\x7a\x09\x0b\x04\xb0\x66\x39\xde\x95\xcb\xc5\xe0\xe4\x28\x5d\xd2\x54\xa3\x83\x0e\x78\xc6\xbe\xa2\x47\xd4\x66\x4b\x2f\x56\xdc\xaa\xcf\x12\x14\xbe\x34\xa1\x0f\x57\xdb\x4b\xfb\x9b\xb9\xc9\x73\xe8\x28\x74\x32\x99\x0b\x53\x94\x27\xda\xac\x52\x55\x6b\x53\xed\xbe\x3a\x46\x2d\x58\x0e\x75\x8e\xa2\x39\xe3\x60\xc9\x6f\x79\xcb\x74\xb3\x06\xb9\x78\xe9\xd9\xa2\x37\x2e\x35\xb5\x7d\x08\xd7\x23\x05\xa9\x59\x4b\x5c\xb2\x47\x19\x6e\xb5\x08\x72\xf9\xe9\x47\xb4\xce\x9c\x46\x3d\xac\xc6\xb3\xca\xf7\x59\xcd\xea\x27\x00\x00\xff\xff\xa3\x30\xe3\xff\x24\x02\x00\x00")
+
+func _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql,
+		"_lgraphql/environments/environmentsByProjectName.graphql",
+	)
+}
+
+func _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql() (*asset, error) {
+	bytes, err := _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/environments/environmentsByProjectName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x96, 0xc2, 0xbd, 0x28, 0x8c, 0x92, 0x21, 0xeb, 0xa6, 0x5b, 0xd1, 0x87, 0x9c, 0xc2, 0x1b, 0xfe, 0xcc, 0x84, 0xb0, 0x8e, 0xb4, 0x2e, 0xd9, 0x37, 0xe3, 0xdb, 0x40, 0x28, 0xb4, 0x59, 0x7b, 0x3d}}
+	return a, nil
+}
+
 var __lgraphqlEnvironmentsSetenvironmentservicesGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x50\x50\xc9\x4c\xb1\x52\xf0\xcc\x2b\x51\x84\xf0\x8a\x53\x8b\xca\x32\x93\x53\x8b\xad\x14\xa2\x83\x4b\x8a\x32\xf3\xd2\x63\x15\x35\xab\xc1\x52\xc5\xa9\x25\xae\x79\x65\x99\x45\xf9\x79\xb9\xa9\x79\x25\xc1\x50\x75\x10\x43\x40\x20\x33\xaf\xa0\xb4\xc4\x4a\xa1\x1a\x2e\x00\x02\xa9\x08\x1d\x56\x20\xab\x50\x24\x11\x76\xc1\xad\x85\xcb\xd7\x82\x59\x9a\x08\xd3\x90\xf4\xe6\x25\xe6\xa6\x72\x41\x14\xd5\x02\x02\x00\x00\xff\xff\xfc\x33\x0b\xcb\xce\x00\x00\x00")
 
 func _lgraphqlEnvironmentsSetenvironmentservicesGraphqlBytes() ([]byte, error) {
@@ -956,6 +1008,26 @@ func _lgraphqlEnvironmentsSetenvironmentservicesGraphql() (*asset, error) {
 
 	info := bindataFileInfo{name: "_lgraphql/environments/setEnvironmentServices.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x96, 0x47, 0x71, 0xf9, 0xf0, 0x4b, 0x64, 0x7b, 0xd4, 0x23, 0xb2, 0xb9, 0x4c, 0xa1, 0x99, 0x26, 0xa8, 0x47, 0x8b, 0x4c, 0x62, 0x79, 0xab, 0x20, 0x84, 0x95, 0xb2, 0x4a, 0xd4, 0x77, 0x99, 0xc6}}
+	return a, nil
+}
+
+var __lgraphqlEnvironmentsSshendpointbyenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\xe0\x52\x50\x50\x50\x50\xc9\x4b\xcc\x4d\x2d\x2e\x48\x4c\x4e\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xe4\xd2\xac\x06\x4b\xa5\xe6\x95\x65\x16\xe5\xe7\xe5\xa6\xe6\x95\x38\x55\xfa\xc1\x95\xa1\x08\x7b\x97\x26\xa5\x16\xe5\xa5\x96\xa4\x16\xc3\x15\x80\x18\x10\xb3\x41\x20\x1b\xbb\x02\x2b\x24\x8b\xc1\x6a\xa1\x76\x82\x40\x66\x0a\x9c\x09\x52\x03\xe7\xe4\x17\xa4\xe6\x15\x67\x64\xa6\x95\x04\x14\xe5\x67\xa5\x26\x97\xf8\x61\x95\x54\x40\x18\x84\x66\x18\x08\x14\x17\x67\x78\xe4\x17\x97\xa0\x8b\x05\xe4\x17\x21\xc4\x6a\xb9\x20\x64\x2d\x17\x20\x00\x00\xff\xff\x7c\x08\x82\x7b\x29\x01\x00\x00")
+
+func _lgraphqlEnvironmentsSshendpointbyenvironmentGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlEnvironmentsSshendpointbyenvironmentGraphql,
+		"_lgraphql/environments/sshEndpointByEnvironment.graphql",
+	)
+}
+
+func _lgraphqlEnvironmentsSshendpointbyenvironmentGraphql() (*asset, error) {
+	bytes, err := _lgraphqlEnvironmentsSshendpointbyenvironmentGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/environments/sshEndpointByEnvironment.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x8, 0xec, 0x4e, 0x10, 0x25, 0xd5, 0x8c, 0x1a, 0xb4, 0x86, 0x80, 0x67, 0x73, 0x33, 0xf, 0xdd, 0xa, 0x70, 0x9b, 0xae, 0xeb, 0x82, 0x22, 0x42, 0x1a, 0x97, 0x7d, 0xae, 0xf6, 0xae, 0x52, 0x53}}
 	return a, nil
 }
 
@@ -1016,6 +1088,26 @@ func _lgraphqlTasksUpdatetaskGraphql() (*asset, error) {
 
 	info := bindataFileInfo{name: "_lgraphql/tasks/updateTask.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x93, 0x2e, 0xa2, 0x22, 0x17, 0x21, 0xd0, 0x94, 0xe, 0xd6, 0x1d, 0x85, 0xde, 0xf8, 0x36, 0xa6, 0xd2, 0xe3, 0x57, 0xf5, 0x80, 0x15, 0x26, 0x7, 0xd2, 0x39, 0xf9, 0xe9, 0x80, 0x11, 0xd3, 0xbd}}
+	return a, nil
+}
+
+var __lgraphqlTasksUploadfilesfortaskGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x24\x8c\x41\x0a\x83\x40\x0c\x45\xaf\xf2\x07\x5c\x28\x78\x82\x39\x80\xd0\x7d\xbb\x2a\x5d\x04\xb4\x30\xa8\x19\x69\x92\x55\xf0\xee\x65\x32\x64\x11\x92\xc7\x7b\xa7\x29\x69\xa9\x8c\x11\x83\x92\xec\x19\x0f\xd6\x34\x63\xf8\x96\x63\x93\x8c\xf7\xeb\x3a\x2a\xad\xe9\x93\x26\x38\x2c\x8e\xa5\xa1\xa5\xfe\x9e\x24\xfb\x58\xf8\x32\xcd\x1e\x6e\x14\x66\x74\xb5\x17\xee\x09\x5e\x56\x30\x9d\x1b\x44\x49\x4d\x3a\x86\xc7\x8e\xff\xdd\xe6\x1f\x00\x00\xff\xff\x4f\x59\x28\x5d\x89\x00\x00\x00")
+
+func _lgraphqlTasksUploadfilesfortaskGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlTasksUploadfilesfortaskGraphql,
+		"_lgraphql/tasks/uploadFilesForTask.graphql",
+	)
+}
+
+func _lgraphqlTasksUploadfilesfortaskGraphql() (*asset, error) {
+	bytes, err := _lgraphqlTasksUploadfilesfortaskGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/tasks/uploadFilesForTask.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xea, 0xc1, 0x4e, 0xf7, 0xe9, 0xde, 0xa2, 0x34, 0x19, 0x26, 0x53, 0x53, 0xeb, 0xd2, 0xb0, 0x5c, 0xc5, 0x85, 0x40, 0x74, 0xe2, 0x6e, 0x48, 0x91, 0xac, 0xbc, 0x8d, 0xb, 0xfb, 0xd5, 0x8e, 0xc2}}
 	return a, nil
 }
 
@@ -1119,7 +1211,47 @@ func _lgraphqlUsergroupsAddusertogroupGraphql() (*asset, error) {
 	return a, nil
 }
 
-var __lgraphqlUsergroupsMeGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\xc8\x4d\x85\x32\x40\x20\x33\x05\xce\x4c\xcd\x4d\xcc\xcc\x81\xf3\xd2\x32\x8b\x8a\x4b\xfc\x12\x73\x53\xe1\x22\x39\x89\x68\x02\xc5\xc5\x19\xde\xa9\x95\xc5\x48\xa6\xa1\x99\x08\x02\x79\xc8\x3a\x40\x20\x3b\xb5\x32\xa4\xb2\x00\x43\x2c\x2c\x31\xa7\x14\x43\xd0\x2d\x33\x2f\x3d\xb5\xa8\xa0\x28\x33\xaf\x04\x45\x2a\xb9\x28\x35\xb1\x24\x15\x61\x51\x2d\x17\x84\xac\x05\x04\x00\x00\xff\xff\x19\x81\x0c\x89\xe8\x00\x00\x00")
+var __lgraphqlUsergroupsAllgroupmembersGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\x48\xcc\xc9\x71\x2f\xca\x2f\x2d\xf0\x4d\xcd\x4d\x4a\x2d\x2a\xb6\x82\x0b\x14\x43\x15\x80\x40\x66\x0a\x9c\x99\x97\x98\x9b\x0a\xe7\xe4\x42\x34\x21\x14\x82\x40\x69\x71\x6a\x11\xaa\x08\x08\xa4\xe6\x26\x66\xe6\x60\x88\xa6\x67\x96\xe4\x24\x26\x79\xa6\xa0\x48\xd4\xa2\xf0\x8a\xf2\x73\x10\x16\x42\xa4\x6a\xb9\x6a\xb9\x00\x01\x00\x00\xff\xff\x02\xdf\xd4\xb3\xc4\x00\x00\x00")
+
+func _lgraphqlUsergroupsAllgroupmembersGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsAllgroupmembersGraphql,
+		"_lgraphql/usergroups/allGroupMembers.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsAllgroupmembersGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsAllgroupmembersGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/allGroupMembers.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x1f, 0xba, 0x30, 0x5a, 0x4, 0xc4, 0xf9, 0xec, 0x18, 0x35, 0xb6, 0xe4, 0xd4, 0x1f, 0x56, 0x47, 0x2b, 0x1b, 0xac, 0x91, 0x1, 0xda, 0x4c, 0xb0, 0xbc, 0x20, 0xb5, 0x1d, 0x14, 0x23, 0x70, 0xaf}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsAllusersGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\x49\xcd\x4d\xcc\xcc\xb1\x52\x08\x2e\x29\xca\xcc\x4b\xd7\x51\x50\xc9\x4c\xb1\x52\xf0\xcc\x2b\xd1\x51\x50\x49\xcf\x2c\xc9\x49\x4c\xf2\x84\xf0\x35\x15\xaa\xb9\x14\x14\x14\x14\x12\x73\x72\x42\x8b\x53\x8b\x8a\x35\xa0\xfa\x20\xfa\x75\x14\x40\xda\x54\x32\x53\x74\x14\x10\xba\xe0\x06\xc0\xf4\x82\x40\x66\x0a\x9c\x09\xd6\x09\xe7\xa5\x65\x16\x15\x97\xf8\x25\xe6\xa6\xc2\x45\x72\x12\xd1\x04\x92\xf3\x73\x73\x53\xf3\x4a\xc0\xfc\x5a\xae\x5a\x40\x00\x00\x00\xff\xff\x09\x21\x37\x61\xc2\x00\x00\x00")
+
+func _lgraphqlUsergroupsAllusersGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsAllusersGraphql,
+		"_lgraphql/usergroups/allUsers.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsAllusersGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsAllusersGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/allUsers.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x6d, 0xcc, 0x63, 0xff, 0x51, 0x48, 0x5d, 0x2, 0x96, 0x16, 0x42, 0x50, 0xaa, 0x4a, 0x91, 0xca, 0x8f, 0x0, 0xe5, 0xcb, 0x3, 0x72, 0xd6, 0xa9, 0x11, 0x48, 0x6d, 0x9, 0xa9, 0x54, 0xa1, 0x2b}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsMeGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8e\xb1\xae\x82\x21\x14\x83\xf7\xff\x29\x78\x9a\xbb\xdc\xc4\xc1\x18\x77\xa2\xf5\x97\x78\x0e\xe0\x01\x06\x62\x78\x77\x83\x31\x47\x02\x9d\xda\x6f\x68\xfb\x2c\x90\x6a\x5e\x9b\x31\xc6\x30\xbe\xa6\xcb\x5d\xd5\x82\xad\x23\x4d\x37\x27\x29\x1f\x2c\x43\x09\xd9\x09\x5c\x02\x33\x7c\xd6\x9c\xd2\xfd\x1f\x35\x0d\xed\xd3\x42\x97\x1f\x1b\xba\x1e\xa8\xa7\x1a\x17\x76\xb6\x54\x16\xf8\xe7\xfc\x0e\x89\xe2\x86\xd5\xcf\x13\x81\xcd\xf8\x0d\x35\x75\xbb\x84\x12\x8f\x81\x30\xdf\x5a\x7e\x48\x20\x4c\x05\x6d\x6b\xef\x00\x00\x00\xff\xff\x80\x58\xa8\xdd\x39\x01\x00\x00")
 
 func _lgraphqlUsergroupsMeGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -1135,7 +1267,127 @@ func _lgraphqlUsergroupsMeGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/usergroups/me.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x41, 0x6a, 0x4a, 0x7d, 0x6e, 0xb1, 0xa2, 0xea, 0x22, 0xdd, 0xff, 0x81, 0x6e, 0x8d, 0x2a, 0x8a, 0x33, 0x61, 0x21, 0xdc, 0xfe, 0xcf, 0xab, 0x1, 0x5e, 0x31, 0xc8, 0x83, 0xb2, 0x8a, 0xbe, 0x9a}}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xbc, 0x35, 0x18, 0x68, 0xb2, 0x22, 0x86, 0x22, 0xb1, 0x86, 0x25, 0x88, 0x2a, 0xa0, 0x1e, 0xa8, 0x23, 0xd, 0xed, 0xf, 0x41, 0x5a, 0xdc, 0x52, 0xda, 0x28, 0xaf, 0x7f, 0x3f, 0xc4, 0x5e, 0x85}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsRemovegroupsfromprojectGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x29\x28\xca\xcf\x4a\x4d\x2e\xb1\x52\x08\x80\x30\x3c\xf3\x0a\x4a\x4b\x14\x75\x40\x52\xe9\x45\xf9\xa5\x05\xc5\x56\x0a\xd1\xee\x20\x06\x44\x22\x56\x51\x53\xa1\x9a\x4b\x41\x41\x41\xa1\x28\x35\x37\xbf\x2c\x15\x2c\x55\xec\x56\x94\x9f\x0b\xd5\xaf\x91\x09\x52\x67\x05\x55\xa4\xa0\x00\x37\x1f\x66\x13\x54\x1c\x66\x38\xd4\x16\xb0\x68\xad\x26\x5c\x5b\x66\x0a\x94\x91\x97\x98\x9b\x0a\x91\xe4\x02\x61\x40\x00\x00\x00\xff\xff\x38\x23\xd0\x35\xbd\x00\x00\x00")
+
+func _lgraphqlUsergroupsRemovegroupsfromprojectGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
+		"_lgraphql/usergroups/removeGroupsFromProject.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsRemovegroupsfromprojectGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsRemovegroupsfromprojectGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/removeGroupsFromProject.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x10, 0x56, 0xae, 0x6a, 0x13, 0x6c, 0x43, 0x7e, 0x8b, 0xa6, 0xe0, 0x32, 0x89, 0xa, 0x38, 0xed, 0x71, 0xa, 0xd5, 0x7f, 0x1a, 0x2, 0x7b, 0xa1, 0x19, 0xa2, 0xd7, 0x55, 0x2b, 0x24, 0x8c, 0xe5}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsRemoveuserfromgroupGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x44\x8d\x31\x0a\xc3\x30\x0c\x45\x77\x9f\xe2\x17\x3a\x24\xd0\x13\x78\x6f\xbb\x75\x29\x3d\x80\xa1\x22\x08\x2a\x3b\x28\x76\x97\x90\xbb\x07\x25\x22\x19\x0c\xe6\xeb\xf1\x9e\xb4\x9a\x2a\x97\x8c\x2e\x00\xd7\x36\x91\xde\x25\xf1\x2f\xe2\x5d\x95\xf3\x70\xb9\xd9\x3c\x68\x69\xe3\x2b\x09\x1d\x73\x8f\x39\x00\x80\x92\x94\x3f\x7d\x26\xd2\x87\x16\x79\x1a\xd7\x71\x1e\x5b\x8d\x0e\x00\xe6\x8c\x98\x41\xbb\xf7\x6c\x60\x71\x62\xd3\x1b\x92\xb7\xc4\x99\x73\x62\xe9\x0f\x19\x7f\xfd\x63\xe8\x7e\x0c\xf6\xd6\x00\x00\x00\xff\xff\x8a\xee\x6f\x4c\xc7\x00\x00\x00")
+
+func _lgraphqlUsergroupsRemoveuserfromgroupGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsRemoveuserfromgroupGraphql,
+		"_lgraphql/usergroups/removeUserFromGroup.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsRemoveuserfromgroupGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsRemoveuserfromgroupGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/removeUserFromGroup.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x2f, 0x3d, 0xca, 0xb6, 0xe8, 0xd9, 0xe3, 0xec, 0xf8, 0xc4, 0xf2, 0xb4, 0xab, 0xd, 0x12, 0x78, 0x8f, 0x80, 0x69, 0x5b, 0x19, 0x5a, 0xf1, 0x40, 0xcb, 0xa5, 0x37, 0xc, 0x74, 0x97, 0xef, 0x66}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsUserbyemailGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x4e\xbd\xce\xc2\x30\x10\xdb\xfb\x14\xf7\x49\xdf\x50\x5e\x81\x11\x09\x16\x24\x06\x40\xec\x11\x98\x72\x22\x3f\xe5\x92\x0c\x11\xea\xbb\xa3\x14\x08\x55\xea\xe9\xce\xb6\x6c\x3f\x22\x24\x51\xfb\x0f\xa3\x58\x2f\xe9\x10\x84\x6d\xf7\xb7\xa0\x67\x43\x44\x14\x3d\x64\x95\xd6\x59\x6b\x3f\x8e\xb7\xf3\x6b\xc8\xe0\x4b\x39\x47\xad\x7c\x57\x16\x1f\x76\xca\xa0\x30\x5a\x55\xc4\xd9\x19\x03\x1b\xca\xef\xfd\x6d\x8b\xe4\x27\xe9\x55\x43\x86\x9d\x26\x64\xdc\x91\x8e\xa9\x9f\x71\x27\xa5\xe3\x8c\xdc\xb0\xed\x20\xbd\xf0\xa4\x75\x5c\x22\x50\x01\xbf\xa2\xa1\x5c\x9d\xb8\xd8\xef\x9d\x46\x3d\x6b\xb6\x43\x9c\x46\x15\x30\x34\xc3\x2b\x00\x00\xff\xff\xa1\x66\xca\x90\x63\x01\x00\x00")
+
+func _lgraphqlUsergroupsUserbyemailGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsUserbyemailGraphql,
+		"_lgraphql/usergroups/userByEmail.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsUserbyemailGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsUserbyemailGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/userByEmail.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x23, 0x9f, 0xc8, 0x32, 0xf4, 0x21, 0x3d, 0xda, 0x17, 0xf4, 0xbb, 0xf7, 0x80, 0xc5, 0x4c, 0x73, 0x20, 0x8f, 0x41, 0xbf, 0xac, 0x71, 0x63, 0xad, 0x44, 0xe9, 0x50, 0x89, 0x9d, 0xc, 0xa5, 0x4a}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsUserbysshfingerprintGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8f\xbf\xce\xc2\x30\x0c\xc4\xf7\x3e\x85\x3f\xe9\x1b\xca\x2b\x30\x32\xb0\x20\x31\x50\xc4\x1e\x95\x6b\x1b\x91\x3f\xc5\x49\x86\x08\xf5\xdd\x51\x07\xd2\x34\xb9\xc9\xfe\x25\x77\xb6\xdf\x01\x1c\xa9\xfd\x1f\xa4\x19\xc1\x33\x4b\xe3\x8f\xd4\x79\x96\x66\xfc\x3b\xd0\xa7\x21\x22\x0a\x0e\x7c\x8a\x9d\x9b\xce\xdb\xa7\x76\x67\xc8\xed\x3f\xd7\x2a\xf9\x4c\x25\xb4\x90\x2a\x75\x83\x64\xe7\xaf\x42\x23\x11\x25\x0a\xd0\x5b\xad\x61\x7c\xea\x9d\x9b\x2e\x88\x2e\x4b\x2f\x26\xac\x32\x79\xc2\xaa\x17\xe2\x3d\xce\x15\x7b\x08\x15\x2a\x98\x9d\xb7\x7b\xea\x19\xc2\x63\x1b\xb4\xa4\x6a\x64\x1b\xe6\x9b\x55\x28\xd7\xaa\xf6\x60\xab\x50\x04\x2c\xcd\xf2\x0d\x00\x00\xff\xff\x5e\x93\x94\x37\x7e\x01\x00\x00")
+
+func _lgraphqlUsergroupsUserbysshfingerprintGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsUserbysshfingerprintGraphql,
+		"_lgraphql/usergroups/userBySSHFingerprint.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsUserbysshfingerprintGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsUserbysshfingerprintGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/userBySSHFingerprint.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xbd, 0x1b, 0xb5, 0xd6, 0x3d, 0x6, 0xd2, 0x8b, 0xfe, 0x87, 0xbd, 0x81, 0x4d, 0x80, 0xa4, 0x79, 0x51, 0x29, 0xff, 0x35, 0xb4, 0x7b, 0x49, 0x29, 0x54, 0x99, 0xf4, 0x35, 0xfb, 0x66, 0x77, 0x7e}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsUserbysshkeyGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x4e\xbb\x0e\xc2\x30\x10\xdb\xfb\x15\x87\xc4\x50\x7e\x81\x91\x81\x05\x89\x81\x22\xf6\x08\x4c\x39\x91\x47\xb9\x24\x43\x84\xfa\xef\xa8\x85\x86\x2a\xf5\x74\xf6\x59\xb6\x5f\x11\x92\xa8\x5e\x7b\xff\x38\x20\x6d\xa9\x09\xc2\xb6\x5d\x6d\xe8\x5d\x11\x11\x45\x0f\xd9\xa5\x66\x7c\xd6\x93\xe7\x67\x9e\x3c\x03\xf8\x96\x4f\x18\xc5\x3a\xb3\x3b\x8b\x0f\x47\x65\x90\x15\xad\x0a\xe1\xea\x8c\x81\x0d\x99\x7f\xd3\xfd\x2c\xbd\x68\x18\x60\xe7\x09\x03\x9e\x48\xe7\xd4\x2d\xb4\x8b\xd2\x71\x21\xee\xd9\xb6\x90\x4e\x78\xd6\x3a\x2e\x11\xa8\x80\x7f\x51\x9f\xaf\x56\x5c\xec\x4e\x4e\xa3\x9c\xb5\xd8\x21\x4e\xa3\x08\xe8\xab\xfe\x13\x00\x00\xff\xff\xd2\x6c\xcd\xa1\x67\x01\x00\x00")
+
+func _lgraphqlUsergroupsUserbysshkeyGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsUserbysshkeyGraphql,
+		"_lgraphql/usergroups/userBySSHKey.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsUserbysshkeyGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsUserbysshkeyGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/userBySSHKey.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0x5a, 0xf, 0x6b, 0x87, 0x2c, 0x50, 0x26, 0x13, 0x41, 0xd5, 0xf, 0xf0, 0x4f, 0x6e, 0xab, 0x18, 0xe7, 0x94, 0xe3, 0x3, 0x46, 0x88, 0x96, 0x2e, 0xfc, 0x3e, 0xcc, 0xcb, 0x82, 0xa, 0xac, 0x2c}}
+	return a, nil
+}
+
+var __lgraphqlUsergroupsUsercansshtoenvironmentGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\x50\xc9\x4b\xcc\x4d\x2d\x2e\x48\x4c\x4e\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x50\x50\x28\x2d\x4e\x2d\x72\x4e\xcc\x0b\x2e\xce\x08\xc9\x77\xcd\x2b\xcb\x2c\xca\xcf\xcb\x4d\xcd\x2b\xd1\xc8\x2e\x4d\x4a\x2d\xca\x4b\x2d\x49\x2d\xf6\x83\xe9\x05\x31\xac\x14\x10\x66\xc1\x8c\x00\x01\x1c\xca\xc1\xf2\xb5\x5c\xb5\x80\x00\x00\x00\xff\xff\xb9\x87\xd6\x3a\x88\x00\x00\x00")
+
+func _lgraphqlUsergroupsUsercansshtoenvironmentGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsUsercansshtoenvironmentGraphql,
+		"_lgraphql/usergroups/userCanSSHToEnvironment.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsUsercansshtoenvironmentGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsUsercansshtoenvironmentGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/userCanSSHToEnvironment.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info, digest: [32]uint8{0xd5, 0x33, 0xc4, 0xf4, 0x3a, 0xc1, 0x4a, 0xaa, 0x9e, 0x95, 0x11, 0x55, 0x24, 0x22, 0xd2, 0x78, 0xc5, 0x35, 0x22, 0xa6, 0xe6, 0x4a, 0x1d, 0xa3, 0xe9, 0xa9, 0x6b, 0xeb, 0xf8, 0x82, 0x60, 0x58}}
 	return a, nil
 }
 
@@ -1258,6 +1510,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/addNotificationToProject.graphql":                           _lgraphqlAddnotificationtoprojectGraphql,
 	"_lgraphql/lagoonSchema.graphql":                                       _lgraphqlLagoonschemaGraphql,
 	"_lgraphql/lagoonVersion.graphql":                                      _lgraphqlLagoonversionGraphql,
+	"_lgraphql/sshEndpointsByProject.graphql":                              _lgraphqlSshendpointsbyprojectGraphql,
 	"_lgraphql/taskByID.graphql":                                           _lgraphqlTaskbyidGraphql,
 	"_lgraphql/deployments/deployEnvironmentBranch.graphql":                _lgraphqlDeploymentsDeployenvironmentbranchGraphql,
 	"_lgraphql/deployments/deployEnvironmentLatest.graphql":                _lgraphqlDeploymentsDeployenvironmentlatestGraphql,
@@ -1291,16 +1544,27 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/environments/deleteEnvironment.graphql":                     _lgraphqlEnvironmentsDeleteenvironmentGraphql,
 	"_lgraphql/environments/environmentByName.graphql":                     _lgraphqlEnvironmentsEnvironmentbynameGraphql,
 	"_lgraphql/environments/environmentByNamespace.graphql":                _lgraphqlEnvironmentsEnvironmentbynamespaceGraphql,
+	"_lgraphql/environments/environmentsByProjectName.graphql":             _lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql,
 	"_lgraphql/environments/setEnvironmentServices.graphql":                _lgraphqlEnvironmentsSetenvironmentservicesGraphql,
+	"_lgraphql/environments/sshEndpointByEnvironment.graphql":              _lgraphqlEnvironmentsSshendpointbyenvironmentGraphql,
 	"_lgraphql/environments/updateEnvironment.graphql":                     _lgraphqlEnvironmentsUpdateenvironmentGraphql,
 	"_lgraphql/tasks/switchActiveStandby.graphql":                          _lgraphqlTasksSwitchactivestandbyGraphql,
 	"_lgraphql/tasks/updateTask.graphql":                                   _lgraphqlTasksUpdatetaskGraphql,
+	"_lgraphql/tasks/uploadFilesForTask.graphql":                           _lgraphqlTasksUploadfilesfortaskGraphql,
 	"_lgraphql/usergroups/addGroup.graphql":                                _lgraphqlUsergroupsAddgroupGraphql,
 	"_lgraphql/usergroups/addGroupsToProject.graphql":                      _lgraphqlUsergroupsAddgroupstoprojectGraphql,
 	"_lgraphql/usergroups/addSshKey.graphql":                               _lgraphqlUsergroupsAddsshkeyGraphql,
 	"_lgraphql/usergroups/addUser.graphql":                                 _lgraphqlUsergroupsAdduserGraphql,
 	"_lgraphql/usergroups/addUserToGroup.graphql":                          _lgraphqlUsergroupsAddusertogroupGraphql,
+	"_lgraphql/usergroups/allGroupMembers.graphql":                         _lgraphqlUsergroupsAllgroupmembersGraphql,
+	"_lgraphql/usergroups/allUsers.graphql":                                _lgraphqlUsergroupsAllusersGraphql,
 	"_lgraphql/usergroups/me.graphql":                                      _lgraphqlUsergroupsMeGraphql,
+	"_lgraphql/usergroups/removeGroupsFromProject.graphql":                 _lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
+	"_lgraphql/usergroups/removeUserFromGroup.graphql":                     _lgraphqlUsergroupsRemoveuserfromgroupGraphql,
+	"_lgraphql/usergroups/userByEmail.graphql":                             _lgraphqlUsergroupsUserbyemailGraphql,
+	"_lgraphql/usergroups/userBySSHFingerprint.graphql":                    _lgraphqlUsergroupsUserbysshfingerprintGraphql,
+	"_lgraphql/usergroups/userBySSHKey.graphql":                            _lgraphqlUsergroupsUserbysshkeyGraphql,
+	"_lgraphql/usergroups/userCanSSHToEnvironment.graphql":                 _lgraphqlUsergroupsUsercansshtoenvironmentGraphql,
 	"_lgraphql/facts/addFactsByName.graphql":                               _lgraphqlFactsAddfactsbynameGraphql,
 }
 
@@ -1388,7 +1652,9 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"deleteEnvironment.graphql":             {_lgraphqlEnvironmentsDeleteenvironmentGraphql, map[string]*bintree{}},
 			"environmentByName.graphql":             {_lgraphqlEnvironmentsEnvironmentbynameGraphql, map[string]*bintree{}},
 			"environmentByNamespace.graphql":        {_lgraphqlEnvironmentsEnvironmentbynamespaceGraphql, map[string]*bintree{}},
+			"environmentsByProjectName.graphql":     {_lgraphqlEnvironmentsEnvironmentsbyprojectnameGraphql, map[string]*bintree{}},
 			"setEnvironmentServices.graphql":        {_lgraphqlEnvironmentsSetenvironmentservicesGraphql, map[string]*bintree{}},
+			"sshEndpointByEnvironment.graphql":      {_lgraphqlEnvironmentsSshendpointbyenvironmentGraphql, map[string]*bintree{}},
 			"updateEnvironment.graphql":             {_lgraphqlEnvironmentsUpdateenvironmentGraphql, map[string]*bintree{}},
 		}},
 		"facts": {nil, map[string]*bintree{
@@ -1406,18 +1672,28 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"updateProject.graphql":              {_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
 			"updateProjectMetadata.graphql":      {_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
 		}},
-		"taskByID.graphql": {_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
+		"sshEndpointsByProject.graphql": {_lgraphqlSshendpointsbyprojectGraphql, map[string]*bintree{}},
+		"taskByID.graphql":              {_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
 		"tasks": {nil, map[string]*bintree{
 			"switchActiveStandby.graphql": {_lgraphqlTasksSwitchactivestandbyGraphql, map[string]*bintree{}},
 			"updateTask.graphql":          {_lgraphqlTasksUpdatetaskGraphql, map[string]*bintree{}},
+			"uploadFilesForTask.graphql":  {_lgraphqlTasksUploadfilesfortaskGraphql, map[string]*bintree{}},
 		}},
 		"usergroups": {nil, map[string]*bintree{
-			"addGroup.graphql":           {_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
-			"addGroupsToProject.graphql": {_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
-			"addSshKey.graphql":          {_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
-			"addUser.graphql":            {_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
-			"addUserToGroup.graphql":     {_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
-			"me.graphql":                 {_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"addGroup.graphql":                {_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
+			"addGroupsToProject.graphql":      {_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
+			"addSshKey.graphql":               {_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
+			"addUser.graphql":                 {_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
+			"addUserToGroup.graphql":          {_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
+			"allGroupMembers.graphql":         {_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
+			"allUsers.graphql":                {_lgraphqlUsergroupsAllusersGraphql, map[string]*bintree{}},
+			"me.graphql":                      {_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"removeGroupsFromProject.graphql": {_lgraphqlUsergroupsRemovegroupsfromprojectGraphql, map[string]*bintree{}},
+			"removeUserFromGroup.graphql":     {_lgraphqlUsergroupsRemoveuserfromgroupGraphql, map[string]*bintree{}},
+			"userByEmail.graphql":             {_lgraphqlUsergroupsUserbyemailGraphql, map[string]*bintree{}},
+			"userBySSHFingerprint.graphql":    {_lgraphqlUsergroupsUserbysshfingerprintGraphql, map[string]*bintree{}},
+			"userBySSHKey.graphql":            {_lgraphqlUsergroupsUserbysshkeyGraphql, map[string]*bintree{}},
+			"userCanSSHToEnvironment.graphql": {_lgraphqlUsergroupsUsercansshtoenvironmentGraphql, map[string]*bintree{}},
 		}},
 	}},
 }}

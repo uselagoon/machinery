@@ -1,5 +1,7 @@
 package schema
 
+import "github.com/guregu/null"
+
 // ProjectAvailability determines the number of pods used to run a project.
 type ProjectAvailability string
 
@@ -29,6 +31,7 @@ type AddProjectInput struct {
 	StorageCalc                  uint   `json:"storageCalc"`
 	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
+	BuildImage                   string `json:"buildImage,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
@@ -84,14 +87,6 @@ type ProjectInput struct {
 	Name string `json:"name,omitempty"`
 }
 
-// AddNotificationToProjectInput is based on the input to
-// addNotificationToProject.
-type AddNotificationToProjectInput struct {
-	Project          string           `json:"project"`
-	NotificationType NotificationType `json:"notificationType"`
-	NotificationName string           `json:"notificationName"`
-}
-
 // ProjectMetadata .
 type ProjectMetadata struct {
 	Project
@@ -114,7 +109,7 @@ type UpdateProjectPatchInput struct {
 	StandbyAlias                 *string              `json:"standbyAlias,omitempty"`
 	AutoIdle                     *uint                `json:"autoIdle,omitempty"`
 	StorageCalc                  *uint                `json:"storageCalc,omitempty"`
-	Pullrequests                 *string              `json:"availability,omitempty"`
+	Pullrequests                 *string              `json:"pullrequests,omitempty"`
 	Kubernetes                   *uint                `json:"kubernetes,omitempty"`
 	KubernetesNamespacePattern   *string              `json:"kubernetesNamespacePattern,omitempty"`
 	DevelopmentEnvironmentsLimit *uint                `json:"developmentEnvironmentsLimit,omitempty"`
@@ -123,4 +118,6 @@ type UpdateProjectPatchInput struct {
 	ProductionBuildPriority      *uint                `json:"productionBuildPriority,omitempty"`
 	DevelopmentBuildPriority     *uint                `json:"developmentBuildPriority,omitempty"`
 	DeploymentsDisabled          *uint                `json:"deploymentsDisabled,omitempty"`
+	// `null` is valid graphql, use a pointer to allow `nil` to be empty
+	BuildImage *null.String `json:"buildImage,omitempty"`
 }

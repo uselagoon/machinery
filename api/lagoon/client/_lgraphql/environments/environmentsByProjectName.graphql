@@ -1,0 +1,30 @@
+query (
+  $project: String!) {
+    projectByName(
+      name: $project) {
+      environments {
+        id
+        name
+        deployType
+        deployBaseRef
+        deployHeadRef
+        deployTitle
+        environmentType
+        openshiftProjectName
+        autoIdle
+        route
+        openshift {
+            id
+            name
+            created
+            cloudRegion
+            cloudProvider
+            friendlyName
+            sshHost
+            sshPort
+            routerPattern
+            buildImage
+        }
+      }
+    }
+}

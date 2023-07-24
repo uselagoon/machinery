@@ -1,0 +1,11 @@
+mutation (
+  $userEmail: String!,
+  $groupName: String!) {
+    removeUserFromGroup(input: {
+      user: { email: $userEmail }
+      group: { name: $groupName }
+    }) {
+      id
+      name
+    }
+  }

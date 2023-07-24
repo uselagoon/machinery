@@ -4,13 +4,18 @@ query ($project: Int!, $environment: String!){
             name: $environment
     ){
         deployments{
-            name
             id
-            remoteId
+            name
             status
             created
             started
             completed
+            remoteId
+            uiLink
+            priority
+            bulkId
+            bulkName
+            buildStep
         }
     }
 }

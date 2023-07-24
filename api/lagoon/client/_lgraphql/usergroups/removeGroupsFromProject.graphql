@@ -1,0 +1,11 @@
+mutation (
+  $project: ProjectInput!,
+  $groups: [GroupInput!]!) {
+    removeGroupsFromProject(input: {
+      project: $project
+      groups: $groups
+    }) {
+      id
+      name
+    }
+  }
