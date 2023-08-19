@@ -90,7 +90,7 @@ type ProjectInput struct {
 // ProjectMetadata .
 type ProjectMetadata struct {
 	Project
-	Metadata string `json:"metadata"`
+	Metadata map[string]string `json:"metadata"`
 }
 
 type UpdateProjectPatchInput struct {
