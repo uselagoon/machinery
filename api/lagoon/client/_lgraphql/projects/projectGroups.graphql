@@ -1,0 +1,27 @@
+query (
+  $name: String!) {
+    projectByName(
+      name: $name) {
+      id
+      name
+      groups{
+        ... on Group {
+          __typename
+          name
+          members{
+            user{
+              email
+              sshKeys{
+                name
+                keyType
+                keyValue
+              }
+              firstName
+              lastName
+            }
+            role
+          }
+        }
+      }
+    }
+  }
