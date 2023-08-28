@@ -2,26 +2,12 @@ query (
   $name: String!) {
     projectByName(
       name: $name) {
-      id
-      name
-      groups{
-        ... on Group {
-          __typename
+        id
+        name
+        groups {
+          id
           name
-          members{
-            user{
-              email
-              sshKeys{
-                name
-                keyType
-                keyValue
-              }
-              firstName
-              lastName
-            }
-            role
-          }
+          organization
         }
       }
-    }
   }
