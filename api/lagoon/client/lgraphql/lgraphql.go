@@ -63,6 +63,7 @@
 // _lgraphql/usergroups/userBySSHFingerprint.graphql
 // _lgraphql/usergroups/userBySSHKey.graphql
 // _lgraphql/usergroups/userCanSSHToEnvironment.graphql
+// _lgraphql/organizations/organizationById.graphql
 package lgraphql
 
 import (
@@ -1399,6 +1400,26 @@ func _lgraphqlUsergroupsUsercansshtoenvironmentGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlOrganizationsOrganizationbyidGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xbc\x91\x41\x6e\xf2\x40\x0c\x85\xf7\x9c\xc2\xbf\xf4\x2f\xe8\x86\x03\xb0\x6b\xab\xaa\x62\x51\x84\x28\x7b\xe4\xce\x38\xc1\x25\x8c\x83\x67\x52\x94\x56\xb9\x7b\x95\x34\x90\x49\x54\xa0\x52\xa5\x6e\xa2\xc9\x93\xfd\x3e\xfb\x79\x5f\x90\x96\x30\x1e\x01\xfc\x67\x3b\x85\x99\x0b\xff\x6e\xe0\x63\x04\x00\x20\x9a\xa2\xe3\x77\x0c\x2c\xee\xae\x9c\xd9\x71\xa3\xf6\xf5\x69\xdd\x76\x6c\x00\x60\xdb\x3e\x1c\xee\xa8\x7d\x5a\xf2\x46\x39\xaf\xab\x5b\x65\x5f\x48\xc0\x85\xca\x2b\x99\xd0\x4a\x89\x32\x39\x9b\x95\xf3\xae\xaf\xa9\x7a\x54\x29\xf2\x58\x98\x4b\xe0\x84\x0d\x46\x76\x96\xf2\x4c\xca\x15\x6a\x4a\xc1\x9f\x46\x89\x86\xe9\x8d\xf3\x2d\x0b\xc0\x64\x52\xd8\x85\xca\x1b\x5b\xd2\xbe\xba\xa4\xb4\x83\x55\xc7\x10\x0e\x8e\xf4\x0c\x2d\x61\xf5\xa1\xe7\x9e\xe1\x40\xa0\x1d\x72\x76\xfa\x6b\xcc\x06\x80\xfc\x2b\x9f\xeb\x0b\x1d\x1b\xd2\x3a\xaa\x9f\xec\x1f\xca\x7c\xd8\xeb\xa2\x54\x63\x8b\xc9\x64\x02\xe2\x20\x0e\xfd\x39\x43\xb3\x8d\x4a\x00\xd6\xeb\xda\xb1\x87\x00\x38\xd0\xcb\x46\x64\x1b\x29\x83\x02\xb3\x41\xe7\xa8\xcb\xa0\xba\x04\x5d\x8a\xd9\x52\xb8\xdf\x60\xf8\x6b\xf2\x43\x7d\xa8\xeb\xd0\xe6\x9e\xb7\xd6\x2a\x79\x7f\x8e\x7c\x91\xf3\xc4\x46\xc5\x4b\x12\x56\x84\x3b\xff\xeb\x2d\xab\xde\x81\xeb\x6f\x35\xfa\x0c\x00\x00\xff\xff\x6f\xd3\x0f\x5b\xeb\x03\x00\x00")
+
+func _lgraphqlOrganizationsOrganizationbyidGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlOrganizationsOrganizationbyidGraphql,
+		"_lgraphql/organizations/organizationById.graphql",
+	)
+}
+
+func _lgraphqlOrganizationsOrganizationbyidGraphql() (*asset, error) {
+	bytes, err := _lgraphqlOrganizationsOrganizationbyidGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/organizations/organizationById.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -1514,6 +1535,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/usergroups/userBySSHFingerprint.graphql":                    _lgraphqlUsergroupsUserbysshfingerprintGraphql,
 	"_lgraphql/usergroups/userBySSHKey.graphql":                            _lgraphqlUsergroupsUserbysshkeyGraphql,
 	"_lgraphql/usergroups/userCanSSHToEnvironment.graphql":                 _lgraphqlUsergroupsUsercansshtoenvironmentGraphql,
+	"_lgraphql/organizations/organizationById.graphql":                     _lgraphqlOrganizationsOrganizationbyidGraphql,
 }
 
 // AssetDir returns the file names below a certain
@@ -1602,6 +1624,9 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		}},
 		"lagoonSchema.graphql":  &bintree{_lgraphqlLagoonschemaGraphql, map[string]*bintree{}},
 		"lagoonVersion.graphql": &bintree{_lgraphqlLagoonversionGraphql, map[string]*bintree{}},
+		"organizations": &bintree{nil, map[string]*bintree{
+			"organizationById.graphql": &bintree{_lgraphqlOrganizationsOrganizationbyidGraphql, map[string]*bintree{}},
+		}},
 		"projects": &bintree{nil, map[string]*bintree{
 			"addProject.graphql":                 &bintree{_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
 			"minimalProjectByName.graphql":       &bintree{_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},

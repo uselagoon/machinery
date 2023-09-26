@@ -1,0 +1,60 @@
+query (
+  $id: Int!) {
+    organizationById(
+      organization: $id) {
+      id
+      name
+      description
+      quotaProject
+      friendlyName
+      quotaGroup
+      quotaNotification
+      deployTargets {
+        id
+        name
+        friendlyName
+        cloudProvider
+        cloudRegion
+      }
+      owners {
+        id
+        firstName
+        lastName
+        email
+        owner
+      }
+      projects {
+        id
+        name
+      }
+      groups {
+        id
+        name
+        type
+      }
+      notifications {
+        ... on NotificationSlack {
+          __typename
+          webhook
+          name
+          channel
+        }
+        ... on NotificationRocketChat {
+          __typename
+          webhook
+          name
+          channel
+        }
+        ... on NotificationEmail {
+          __typename
+          emailAddress
+          name
+        }
+        ... on NotificationMicrosoftTeams {
+          __typename
+          webhook
+          name
+        }
+      }
+    }
+  }
