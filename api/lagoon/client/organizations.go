@@ -22,3 +22,18 @@ func (c *Client) OrganizationByID(ctx context.Context, id int, organization *sch
 		Response: organization,
 	})
 }
+
+// AddOrganization adds an organization.
+func (c *Client) AddOrganization(
+	ctx context.Context, in *schema.AddOrganizationInput, org *schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/organizations/addOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+
+	return wrapErr(c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"addOrganization"`
+	}{
+		Response: org,
+	}))
+}

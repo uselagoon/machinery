@@ -1,0 +1,9 @@
+mutation (
+  $name: String!,) {
+  addOrganization(input: {
+    name: $name,
+  }) {
+    id
+    name
+  }
+}
