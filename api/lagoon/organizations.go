@@ -10,18 +10,32 @@ import (
 
 // Organizations interface contains methods for getting info on projects.
 type Organizations interface {
-	OrganizationByID(ctx context.Context, id int, organization *schema.Organization) error
-	DeleteOrg(ctx context.Context, id int, organization *schema.DeleteOrganizationInput) error
+	OrganizationByID(ctx context.Context, id uint, organization *schema.Organization) error
+	OrganizationByName(ctx context.Context, name string, organization *schema.Organization) error
+	DeleteOrg(ctx context.Context, id uint, organization *schema.DeleteOrganizationInput) error
+	UpdateOrganization(ctx context.Context, id uint, patch schema.UpdateOrganizationPatchInput, result *schema.Organization) error
 }
 
 // GetOrganizationByID gets info of an organization in lagoon that matches the provided ID.
-func GetOrganizationByID(ctx context.Context, id int, o Organizations) (*schema.Organization, error) {
+func GetOrganizationByID(ctx context.Context, id uint, o Organizations) (*schema.Organization, error) {
 	organization := schema.Organization{}
 	return &organization, o.OrganizationByID(ctx, id, &organization)
 }
 
-// DeleteOrganization updates environment storage.
-func DeleteOrganization(ctx context.Context, id int, o Organizations) (*schema.DeleteOrganizationInput, error) {
+// **Pending Merge** GetOrganizationByName gets info of an organization in lagoon that matches the provided name.
+func GetOrganizationByName(ctx context.Context, name string, o Organizations) (*schema.Organization, error) {
+	organization := schema.Organization{}
+	return &organization, o.OrganizationByName(ctx, name, &organization)
+}
+
+// DeleteOrganization deletes an organization.
+func DeleteOrganization(ctx context.Context, id uint, o Organizations) (*schema.DeleteOrganizationInput, error) {
 	result := schema.DeleteOrganizationInput{}
 	return &result, o.DeleteOrg(ctx, id, &result)
+}
+
+// UpdateOrganization updates an organization.
+func UpdateOrganization(ctx context.Context, id uint, patch schema.UpdateOrganizationPatchInput, o Organizations) (*schema.Organization, error) {
+	result := schema.Organization{}
+	return &result, o.UpdateOrganization(ctx, id, patch, &result)
 }

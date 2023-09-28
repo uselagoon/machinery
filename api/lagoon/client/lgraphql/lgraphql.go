@@ -66,6 +66,8 @@
 // _lgraphql/organizations/addOrganization.graphql
 // _lgraphql/organizations/deleteOrganization.graphql
 // _lgraphql/organizations/organizationById.graphql
+// _lgraphql/organizations/organizationByName.graphql
+// _lgraphql/organizations/updateOrganization.graphql
 package lgraphql
 
 import (
@@ -1462,6 +1464,46 @@ func _lgraphqlOrganizationsOrganizationbyidGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlOrganizationsOrganizationbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xbc\x91\x31\x6e\xf3\x30\x0c\x85\x77\x9f\x82\x3f\xf0\x0f\xed\x92\x03\x64\x6b\x8b\xa2\x53\x83\x20\xc9\x1e\xb0\x12\xed\xb0\xb1\x45\x87\x92\x1b\xb8\x85\xef\x5e\x58\x4e\x1c\x05\x48\x3d\x74\xe8\x64\x91\x7e\xfc\x9e\x1e\x75\x68\x48\x5b\xb8\xcb\x00\xfe\x3b\xac\x68\x0e\xeb\xa0\xec\x8a\x7f\xf7\xf0\x95\x01\x88\x16\xe8\xf8\x13\x03\x8b\x7b\x6c\x17\x58\x51\xaf\xbc\xee\xcf\x87\xc9\x61\x00\x80\x6d\xfc\xf4\xad\x78\xb0\xe4\x8d\x72\xdd\x2b\x63\x7d\x68\x24\xe0\x52\xe5\x9d\x4c\x88\x8d\x5c\x99\x9c\x2d\x23\xfd\xa2\x78\x51\x69\xea\x4b\xb9\x90\xc0\x39\x1b\x1c\x31\x96\xea\x52\xda\x0d\x6a\x41\xc1\x9f\xac\x47\xf3\xc4\xfe\x06\x1f\xc0\x94\xd2\xd8\xa5\xca\x07\x5b\xd2\xb4\xb7\xa2\xe2\x6c\xd0\x0d\x41\x8f\x8e\xf4\x06\x3f\x67\xf5\x21\x21\x96\x78\x55\x52\x85\x5c\x9e\xce\x11\x91\x20\xeb\x21\xfb\xd4\xa5\x07\x61\xd1\xaf\x60\x3a\x5b\x68\xeb\x74\xc2\x25\x5b\xba\x0c\xce\x66\x33\x10\x07\xe9\x0a\xd7\x25\x9a\xfd\x28\x00\xd8\x6e\x7b\x52\x02\x06\x38\xd2\xdb\x4e\x64\x3f\xd6\x57\x3f\xcd\x0e\x9d\xa3\x73\xc2\xee\x67\xa3\x95\x98\x3d\x85\xa7\x1d\x86\xbf\x70\x7b\xee\xd7\x3e\x6d\x14\x5f\xe6\xc1\x5a\x25\xef\x6f\xb9\x4d\xd0\x5f\xd9\xa8\x78\xc9\xc3\x86\xb0\xf2\xbf\xce\xd3\x8d\x0f\xd6\x65\x5d\xf6\x1d\x00\x00\xff\xff\x62\x6a\xd4\x99\x80\x03\x00\x00")
+
+func _lgraphqlOrganizationsOrganizationbynameGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlOrganizationsOrganizationbynameGraphql,
+		"_lgraphql/organizations/organizationByName.graphql",
+	)
+}
+
+func _lgraphqlOrganizationsOrganizationbynameGraphql() (*asset, error) {
+	bytes, err := _lgraphqlOrganizationsOrganizationbynameGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/organizations/organizationByName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlOrganizationsUpdateorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8d\x31\x0e\x02\x31\x0c\x04\x7b\xbf\x62\x4f\xba\x82\xfb\x42\x7e\x70\x15\x34\x3c\xc0\x22\x11\xb8\x88\x89\x90\xd3\x10\xe5\xef\xc8\x49\x3a\x3a\xaf\x77\x34\x9b\xab\xb1\xc9\x5b\x71\x21\x60\x97\x18\x70\xaa\x6d\x7e\x17\xb6\xc7\x2b\xe0\x5e\x22\x5b\xba\x7e\x9e\xac\xf2\x1d\xe8\xcd\x8b\x53\x4b\xb5\xed\x68\x04\xd4\x3f\xc2\x5d\x80\x38\x12\xd0\x46\x00\xdc\xbd\x4b\x5c\x69\xd9\xe7\xca\xf8\x75\x02\x8e\x09\x2f\x4a\x39\x27\xf2\xa2\xd3\x2f\x00\x00\xff\xff\x70\xcd\x28\x48\xa7\x00\x00\x00")
+
+func _lgraphqlOrganizationsUpdateorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlOrganizationsUpdateorganizationGraphql,
+		"_lgraphql/organizations/updateOrganization.graphql",
+	)
+}
+
+func _lgraphqlOrganizationsUpdateorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlOrganizationsUpdateorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/organizations/updateOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -1580,6 +1622,8 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/organizations/addOrganization.graphql":                      _lgraphqlOrganizationsAddorganizationGraphql,
 	"_lgraphql/organizations/deleteOrganization.graphql":                   _lgraphqlOrganizationsDeleteorganizationGraphql,
 	"_lgraphql/organizations/organizationById.graphql":                     _lgraphqlOrganizationsOrganizationbyidGraphql,
+	"_lgraphql/organizations/organizationByName.graphql":                   _lgraphqlOrganizationsOrganizationbynameGraphql,
+	"_lgraphql/organizations/updateOrganization.graphql":                   _lgraphqlOrganizationsUpdateorganizationGraphql,
 }
 
 // AssetDir returns the file names below a certain
@@ -1672,6 +1716,8 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"addOrganization.graphql":    &bintree{_lgraphqlOrganizationsAddorganizationGraphql, map[string]*bintree{}},
 			"deleteOrganization.graphql": &bintree{_lgraphqlOrganizationsDeleteorganizationGraphql, map[string]*bintree{}},
 			"organizationById.graphql":   &bintree{_lgraphqlOrganizationsOrganizationbyidGraphql, map[string]*bintree{}},
+			"organizationByName.graphql": &bintree{_lgraphqlOrganizationsOrganizationbynameGraphql, map[string]*bintree{}},
+			"updateOrganization.graphql": &bintree{_lgraphqlOrganizationsUpdateorganizationGraphql, map[string]*bintree{}},
 		}},
 		"projects": &bintree{nil, map[string]*bintree{
 			"addProject.graphql":                 &bintree{_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
