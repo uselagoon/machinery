@@ -37,3 +37,16 @@ func (c *Client) AddOrganization(
 		Response: org,
 	}))
 }
+
+// DeleteOrganization deletes an organization.
+func (c *Client) DeleteOrg(ctx context.Context,
+	id int, out *schema.DeleteOrganizationInput) error {
+	req, err := c.newRequest("_lgraphql/organizations/deleteOrganization.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
