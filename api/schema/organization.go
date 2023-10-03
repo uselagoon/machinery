@@ -72,14 +72,14 @@ type DeleteOrganizationInput struct {
 }
 
 type UpdateOrganizationPatchInput struct {
-	Name              string `json:"name,omitempty"`
-	FriendlyName      string `json:"friendlyName,omitempty"`
-	Description       string `json:"description,omitempty"`
-	QuotaProject      uint   `json:"quotaProject,omitempty"`
-	QuotaGroup        uint   `json:"quotaGroup,omitempty"`
-	QuotaNotification uint   `json:"quotaNotification,omitempty"`
-	QuotaEnvironment  uint   `json:"quotaEnvironment,omitempty"`
-	QuotaRoute        uint   `json:"quotaRoute,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	FriendlyName      *string `json:"friendlyName,omitempty"`
+	Description       *string `json:"description,omitempty"`
+	QuotaProject      *uint   `json:"quotaProject,omitempty"`
+	QuotaGroup        *uint   `json:"quotaGroup,omitempty"`
+	QuotaNotification *uint   `json:"quotaNotification,omitempty"`
+	QuotaEnvironment  *uint   `json:"quotaEnvironment,omitempty"`
+	QuotaRoute        *uint   `json:"quotaRoute,omitempty"`
 }
 
 type UpdateOrganizationInput struct {

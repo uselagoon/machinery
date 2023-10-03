@@ -1,7 +1,21 @@
 mutation (
-  $name: String!,) {
+  $name: String!,
+  $friendlyName: String,
+  $description: String,
+  $quotaProject: Int,
+  $quotaGroup: Int,
+  $quotaNotification: Int,
+  $quotaEnvironment: Int,
+  $quotaRoute: Int,) {
   addOrganization(input: {
     name: $name,
+    friendlyName: $friendlyName,
+    description: $description,
+    quotaProject: $quotaProject,
+    quotaGroup: $quotaGroup,
+    quotaNotification: $quotaNotification,
+    quotaEnvironment: $quotaEnvironment,
+    quotaRoute: $quotaRoute,
   }) {
     id
     name
