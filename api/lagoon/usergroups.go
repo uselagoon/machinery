@@ -24,6 +24,7 @@ type UserGroups interface {
 	UserCanSSHToEnvironment(context.Context, string, *schema.Environment) error
 	UserBySSHKey(ctx context.Context, sshKey string, user *schema.User) error
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
+	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.Group) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -97,4 +98,10 @@ func UserBySSHKey(ctx context.Context, sshKey string, ug UserGroups) (*schema.Us
 func UserBySSHFingerprint(ctx context.Context, fingerprint string, ug UserGroups) (*schema.User, error) {
 	user := schema.User{}
 	return &user, ug.UserBySSHFingerprint(ctx, fingerprint, &user)
+}
+
+// GetGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.
+func GetGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.Group, error) {
+	group := []schema.Group{}
+	return &group, ug.GroupsByOrganizationID(ctx, id, &group)
 }

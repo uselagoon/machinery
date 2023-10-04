@@ -3,6 +3,7 @@ package client
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -217,4 +218,36 @@ func (c *Client) UserBySSHFingerprint(
 	}
 
 	return c.client.Run(ctx, req, &user)
+}
+
+// GroupsByOrganizationID queries the Lagoon API for groups by the given organization id
+// and unmarshals the response into environment.
+func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]schema.Group) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/groupsByOrganizationId.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationById"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	if len(o.Groups) == 0 {
+		return fmt.Errorf("no associated groups found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.Groups)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, groups)
+	return nil
 }

@@ -2,6 +2,8 @@ package client
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -160,4 +162,36 @@ func (c *Client) UpdateProject(
 	}{
 		Response: projects,
 	})
+}
+
+// ProjectsByOrganizationID queries the Lagoon API for projects by the given organization id
+// and unmarshals the response into environment.
+func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects *[]schema.OrgProject) error {
+
+	req, err := c.newRequest("_lgraphql/projects/projectsByOrganizationId.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationById"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	if len(o.Projects) == 0 {
+		return fmt.Errorf("no associated projects found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.Projects)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, projects)
+	return nil
 }

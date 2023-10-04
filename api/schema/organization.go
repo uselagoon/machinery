@@ -6,7 +6,7 @@ type Organization struct {
 	DeployTarget  []DeployTarget   `json:"openshift,omitempty"`
 	Projects      []OrgProject     `json:"projects,omitempty"`
 	Environments  []OrgEnvironment `json:"environments,omitempty"`
-	Groups        []*Groups        `json:"groups,omitempty"`
+	Groups        []Group          `json:"groups,omitempty"`
 	Owners        []OrgUser        `json:"owners,omitempty"`
 	Notifications *Notifications   `json:"notifications,omitempty"`
 }
@@ -25,8 +25,9 @@ type AddOrganizationInput struct {
 
 type OrgProject struct {
 	ID            uint                       `json:"id,omitempty"`
-	Name          string                     `json:"nameOrgProject,omitempty"`
+	Name          string                     `json:"name,omitempty"`
 	Organization  uint                       `json:"organization,omitempty"`
+	GroupCount    uint                       `json:"groupCount,omitempty"`
 	Groups        *Groups                    `json:"groups,omitempty"`
 	Notifications []OrganizationNotification `json:"notifications,omitempty"`
 }
