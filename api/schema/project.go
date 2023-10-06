@@ -32,6 +32,8 @@ type AddProjectInput struct {
 	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
 	BuildImage                   string `json:"buildImage,omitempty"`
+	Organization                 uint   `json:"organization"`
+	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
@@ -120,4 +122,10 @@ type UpdateProjectPatchInput struct {
 	DeploymentsDisabled          *uint                `json:"deploymentsDisabled,omitempty"`
 	// `null` is valid graphql, use a pointer to allow `nil` to be empty
 	BuildImage *null.String `json:"buildImage,omitempty"`
+}
+
+// AddProjectToOrganizationInput
+type AddProjectToOrganizationInput struct {
+	Project      uint `json:"project"`
+	Organization uint `json:"organization"`
 }
