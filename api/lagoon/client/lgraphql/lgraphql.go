@@ -15,6 +15,7 @@
 // _lgraphql/deployments/deployEnvironmentPromote.graphql
 // _lgraphql/deployments/deployEnvironmentPullrequest.graphql
 // _lgraphql/deployments/deploymentByName.graphql
+// _lgraphql/deployments/deploymentByNameWithLog.graphql
 // _lgraphql/deployments/deploymentByRemoteID.graphql
 // _lgraphql/deployments/getDeploymentsByBulkID.graphql
 // _lgraphql/deployments/getDeploymentsForEnvironment.graphql
@@ -419,7 +420,7 @@ func _lgraphqlDeploymentsDeployenvironmentpullrequestGraphql() (*asset, error) {
 	return a, nil
 }
 
-var __lgraphqlDeploymentsDeploymentbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x6c\x91\xdd\x4e\x43\x21\x0c\x80\xef\xcf\x53\xe0\xe2\xc5\x7c\x85\x73\xe9\x9d\x89\x99\x26\x7b\x02\x06\x55\xeb\xa0\x60\x29\x26\xe4\x84\x77\x37\xcc\x6c\x67\xb0\xf5\xaa\x7c\xb4\x5f\xf9\xf9\xc9\xc0\x45\x59\x88\x2e\x14\x0f\x24\xcf\x65\xa7\x3d\x6c\x1f\x49\x7b\x48\x51\x1b\x98\xd5\x5e\x18\xe9\xf3\xe1\x49\x2d\x93\x52\xea\xa6\x76\x06\xfa\x45\x0e\xf4\x4f\xde\x22\x50\xfa\xc2\x0f\x79\xe7\xf0\x0d\x46\x4e\xb6\x70\x07\xce\x6a\x9d\x71\x56\xb7\x40\x7b\x49\xdb\xfe\x65\xb1\x8e\x4d\x5b\x3a\xf5\x6f\x96\x65\x85\x4d\x59\xeb\xe6\xda\x34\xd8\x6e\x8c\x2d\x92\x68\xc9\xa9\x43\x86\x41\x0b\xd8\xb1\x8c\x47\x66\x82\x8f\x0e\x46\xca\xe0\x83\xc0\x4b\x0f\x33\xbe\x22\x1d\x3b\x14\x19\x03\xa3\x94\x0e\x1e\xb2\x3b\x0e\xad\x0d\xed\xc6\x53\x1f\x32\x3a\xbb\x17\x88\x1d\xbd\xfa\x87\xe1\x15\xee\x5e\xbd\x4e\x7d\x56\xa7\xfa\x17\x00\x00\xff\xff\x45\x40\x87\x84\x0d\x02\x00\x00")
+var __lgraphqlDeploymentsDeploymentbynameGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8e\x4d\x4e\x80\x30\x10\x85\xf7\x9c\x62\x4c\x58\x68\xc2\x09\xba\x74\x67\x62\xd8\x70\x02\xa0\x13\x33\xd2\x3f\x87\xa9\x49\x43\xb8\xbb\x29\x6a\x9d\x08\x2b\xbe\xf7\x26\xef\xeb\x47\x46\x2e\x60\x31\xb9\x58\x3c\x06\x79\x2e\xe3\xec\xf1\xb1\x4f\x1c\xdf\x71\x95\x0a\x06\x26\x61\x0a\x6f\x0f\x03\xf4\x18\x3e\x89\x63\xa8\x97\xff\xab\xa0\xf9\x09\x8e\x0e\x00\xee\xc3\x14\x52\x16\x73\xc0\xcf\xbe\x01\x6d\x1a\x40\xed\x9b\x9b\x6d\x80\x6f\xc7\xa5\x3a\x7f\x15\xf5\x23\xdb\x7e\x6b\xd7\x60\x97\x59\xf2\xde\x70\x65\x9c\x05\xad\xae\x59\xf3\x1a\x7d\x72\xa8\x13\x46\x1f\x05\x5f\xfe\x82\x4c\xaf\x14\xb6\x86\x89\x29\x32\x49\x69\xc1\x92\xdd\xa6\xce\x2b\x8e\xfa\x45\x4b\x26\x67\x27\xc1\x74\x25\x67\x77\x7e\x05\x00\x00\xff\xff\xdc\xfc\xa7\xda\x81\x01\x00\x00")
 
 func _lgraphqlDeploymentsDeploymentbynameGraphqlBytes() ([]byte, error) {
 	return bindataRead(
@@ -435,6 +436,26 @@ func _lgraphqlDeploymentsDeploymentbynameGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deployments/deploymentByName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlDeploymentsDeploymentbynamewithlogGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x8e\x4d\x6a\xc4\x30\x0c\x85\xf7\x73\x0a\x15\x66\xd1\x42\x4e\xe0\x65\x77\x85\x61\x36\x39\x41\x12\x8b\xa0\xc6\x7f\x55\xe4\x82\x09\xb9\x7b\x71\xda\xba\xea\x24\xab\x7c\xef\x89\xf7\xf9\x23\x23\x17\xb0\x98\x5c\x2c\x1e\x83\xbc\x96\xfb\xe0\xf1\xf9\x9a\x38\xbe\xe3\x24\x15\x0c\xf4\xc2\x14\xe6\xa7\x0e\xae\x18\x3e\x89\x63\xa8\x97\x8f\x55\xd0\xfc\x02\xdb\x05\x00\xce\xc3\x14\x52\x16\xb3\xc1\xcf\xbe\x01\x6d\xea\x40\xed\x9b\x93\xad\x83\x6f\xc7\xa1\xda\x7f\x15\xf5\x23\xdb\x7e\x6b\xd7\x60\x95\x41\xf2\xda\x70\x62\x1c\x04\xad\xae\x59\xf3\x14\x7d\x72\xa8\x13\x46\x1f\x05\xdf\xfe\x82\x4c\x37\x0a\x4b\xc3\xc4\x14\x99\xa4\xb4\x60\xcc\x6e\x51\xe7\x15\xef\xfa\x45\x63\x26\x67\x7b\xc1\xf4\x3f\xb9\xc5\xf9\x08\xf6\xcb\xfe\x15\x00\x00\xff\xff\x74\xa3\x41\xb0\x92\x01\x00\x00")
+
+func _lgraphqlDeploymentsDeploymentbynamewithlogGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlDeploymentsDeploymentbynamewithlogGraphql,
+		"_lgraphql/deployments/deploymentByNameWithLog.graphql",
+	)
+}
+
+func _lgraphqlDeploymentsDeploymentbynamewithlogGraphql() (*asset, error) {
+	bytes, err := _lgraphqlDeploymentsDeploymentbynamewithlogGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/deployments/deploymentByNameWithLog.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1466,6 +1487,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/deployments/deployEnvironmentPromote.graphql":               _lgraphqlDeploymentsDeployenvironmentpromoteGraphql,
 	"_lgraphql/deployments/deployEnvironmentPullrequest.graphql":           _lgraphqlDeploymentsDeployenvironmentpullrequestGraphql,
 	"_lgraphql/deployments/deploymentByName.graphql":                       _lgraphqlDeploymentsDeploymentbynameGraphql,
+	"_lgraphql/deployments/deploymentByNameWithLog.graphql":                _lgraphqlDeploymentsDeploymentbynamewithlogGraphql,
 	"_lgraphql/deployments/deploymentByRemoteID.graphql":                   _lgraphqlDeploymentsDeploymentbyremoteidGraphql,
 	"_lgraphql/deployments/getDeploymentsByBulkID.graphql":                 _lgraphqlDeploymentsGetdeploymentsbybulkidGraphql,
 	"_lgraphql/deployments/getDeploymentsForEnvironment.graphql":           _lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql,
@@ -1520,11 +1542,13 @@ var _bindata = map[string]func() (*asset, error){
 // directory embedded in the file by go-bindata.
 // For example if you run go-bindata on data/... and data contains the
 // following hierarchy:
-//     data/
-//       foo.txt
-//       img/
-//         a.png
-//         b.png
+//
+//	data/
+//	  foo.txt
+//	  img/
+//	    a.png
+//	    b.png
+//
 // then AssetDir("data") would return []string{"foo.txt", "img"}
 // AssetDir("data/img") would return []string{"a.png", "b.png"}
 // AssetDir("foo.txt") and AssetDir("notexist") would return an error
@@ -1570,6 +1594,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"deployEnvironmentPromote.graphql":     &bintree{_lgraphqlDeploymentsDeployenvironmentpromoteGraphql, map[string]*bintree{}},
 			"deployEnvironmentPullrequest.graphql": &bintree{_lgraphqlDeploymentsDeployenvironmentpullrequestGraphql, map[string]*bintree{}},
 			"deploymentByName.graphql":             &bintree{_lgraphqlDeploymentsDeploymentbynameGraphql, map[string]*bintree{}},
+			"deploymentByNameWithLog.graphql":      &bintree{_lgraphqlDeploymentsDeploymentbynamewithlogGraphql, map[string]*bintree{}},
 			"deploymentByRemoteID.graphql":         &bintree{_lgraphqlDeploymentsDeploymentbyremoteidGraphql, map[string]*bintree{}},
 			"getDeploymentsByBulkID.graphql":       &bintree{_lgraphqlDeploymentsGetdeploymentsbybulkidGraphql, map[string]*bintree{}},
 			"getDeploymentsForEnvironment.graphql": &bintree{_lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql, map[string]*bintree{}},
