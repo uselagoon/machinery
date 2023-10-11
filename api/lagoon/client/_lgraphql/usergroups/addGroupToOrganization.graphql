@@ -1,6 +1,6 @@
 mutation (
   $name: String!,
-  $organization: Int,){
+  $organization: Int!,){
   addGroupToOrganization(input: {
     name: $name,
     organization: $organization,

@@ -1,12 +1,14 @@
 package schema
 
+import "github.com/google/uuid"
+
 // Organization is based on the Lagoon API type.
 type Organization struct {
 	AddOrganizationInput
 	DeployTarget  []DeployTarget   `json:"openshift,omitempty"`
 	Projects      []OrgProject     `json:"projects,omitempty"`
 	Environments  []OrgEnvironment `json:"environments,omitempty"`
-	Groups        []Group          `json:"groups,omitempty"`
+	Groups        []OrgGroup       `json:"groups,omitempty"`
 	Owners        []OrgUser        `json:"owners,omitempty"`
 	Notifications *Notifications   `json:"notifications,omitempty"`
 }
@@ -28,7 +30,7 @@ type OrgProject struct {
 	Name          string                     `json:"name,omitempty"`
 	Organization  uint                       `json:"organization,omitempty"`
 	GroupCount    uint                       `json:"groupCount,omitempty"`
-	Groups        *Groups                    `json:"groups,omitempty"`
+	Groups        *OrgGroups                 `json:"groups,omitempty"`
 	Notifications []OrganizationNotification `json:"notifications,omitempty"`
 }
 
@@ -51,6 +53,31 @@ type OrgEnvironment struct {
 	Services                   []EnvironmentService `json:"services,omitempty"`
 	DeployTarget               DeployTarget         `json:"openshift,omitempty"`
 	Kubernetes                 *uint                `json:"kubernetes,omitempty"`
+}
+
+// AddGroupToOrganizationInput is based on the input to AddGroupToOrganization.
+type AddGroupToOrganizationInput struct {
+	Name         string      `json:"name"`
+	Organization uint        `json:"organization"`
+	ParentGroup  *GroupInput `json:"parentGroup,omitempty"`
+	AddOrgOwner  bool        `json:"addOrgOwner,omitempty"`
+}
+
+// OrgGroup provides for unmarshalling the groups contained with an Organization.
+type OrgGroup struct {
+	AddGroupToOrganizationInput
+	ID      *uuid.UUID `json:"id,omitempty"`
+	Type    string     `json:"type,omitempty"`
+	Members []struct {
+		User User      `json:"user"`
+		Role GroupRole `json:"role"`
+	} `json:"members,omitempty"`
+	MemberCount int          `json:"memberCount,omitempty"`
+	Projects    []OrgProject `json:"projects,omitempty"`
+}
+
+type OrgGroups struct {
+	OrgGroups []OrgGroup
 }
 
 type OrganizationNotification struct {

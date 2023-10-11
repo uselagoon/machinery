@@ -1,12 +1,13 @@
 query (
   $id: Int!) {
   organizationById(
-    organization: $id) {
+    id: $id) {
     groups {
       id
       name
       type
       memberCount
+      organization
     }
   }
 }

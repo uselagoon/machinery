@@ -222,7 +222,7 @@ func (c *Client) UserBySSHFingerprint(
 
 // GroupsByOrganizationID queries the Lagoon API for groups by the given organization id
 // and unmarshals the response into environment.
-func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]schema.Group) error {
+func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]schema.OrgGroup) error {
 
 	req, err := c.newRequest("_lgraphql/usergroups/groupsByOrganizationId.graphql",
 		map[string]interface{}{
@@ -250,4 +250,17 @@ func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]
 	}
 	json.Unmarshal(data, groups)
 	return nil
+}
+
+// AddGroupToOrganization adds a Group to an Organization.
+func (c *Client) AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addGroupToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.OrgGroup `json:"addGroupToOrganization"`
+	}{
+		Response: out,
+	})
 }
