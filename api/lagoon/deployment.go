@@ -17,7 +17,7 @@ type Deploy interface {
 	DeploymentsByBulkID(ctx context.Context, bulkID string, deployments *[]schema.Deployment) error
 	DeploymentsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 	DeploymentByRemoteID(ctx context.Context, remoteID string, deployments *schema.Deployment) error
-	DeploymentByBuildName(ctx context.Context, namespace, deploymentName string, deployments *schema.Deployment) error
+	DeploymentByName(ctx context.Context, projectName, environmentName, deploymentName string, logs bool, deployments *schema.Deployment) error
 	UpdateDeployment(ctx context.Context, id int, patch schema.UpdateDeploymentPatchInput, result *schema.Deployment) error
 }
 
@@ -63,10 +63,10 @@ func GetDeploymentByRemoteID(ctx context.Context, remoteID string, d Deploy) (*s
 	return &deployment, d.DeploymentByRemoteID(ctx, remoteID, &deployment)
 }
 
-// GetDeploymentsByBulkID gets deployments for a given bulkID.
-func GetDeploymentByName(ctx context.Context, namespace, deploymentName string, d Deploy) (*schema.Deployment, error) {
+// GetDeploymentByName gets deployment for a given build name.
+func GetDeploymentByName(ctx context.Context, projectName, environmentName, deploymentName string, logs bool, d Deploy) (*schema.Deployment, error) {
 	deployment := schema.Deployment{}
-	return &deployment, d.DeploymentByBuildName(ctx, namespace, deploymentName, &deployment)
+	return &deployment, d.DeploymentByName(ctx, projectName, environmentName, deploymentName, logs, &deployment)
 }
 
 // UpdateTask updates a task.

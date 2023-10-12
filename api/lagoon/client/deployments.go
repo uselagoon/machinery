@@ -2,9 +2,6 @@ package client
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
-	"html/template"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -101,35 +98,28 @@ func (c *Client) DeploymentByRemoteID(
 	})
 }
 
-func (c *Client) DeploymentByBuildName(
-	ctx context.Context, namespace, deploymentName string, deployment *schema.Deployment) error {
+func (c *Client) DeploymentByName(
+	ctx context.Context, projectName, environmentName, deploymentName string, logs bool, deployment *schema.Deployment) error {
 	// use template request
-	req, err := c.newTemplateRequest("_lgraphql/deployments/deploymentByName.graphql",
+	tmpl := "_lgraphql/deployments/deploymentByName.graphql"
+	if logs {
+		tmpl = "_lgraphql/deployments/deploymentByNameWithLog.graphql"
+	}
+	req, err := c.newRequest(tmpl,
 		map[string]interface{}{
-			"namespace": namespace,
-		}, template.FuncMap{
-			"deploymentName": func() string { return deploymentName },
-		},
-		nil)
+			"projectName":     projectName,
+			"environmentName": environmentName,
+			"name":            deploymentName,
+		})
 	if err != nil {
 		return err
 	}
-	environment := &schema.Environment{}
-	err = c.client.Run(ctx, req, &struct {
-		Response *schema.Environment `json:"deploymentByName"`
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Deployment `json:"deploymentByName"`
 	}{
-		Response: environment,
+		Response: deployment,
 	})
-	if err != nil {
-		return err
-	}
-	if len(environment.Deployments) == 0 {
-		return fmt.Errorf("no deployment found for environment")
-	}
-	d := environment.Deployments[0]
-	db, _ := json.Marshal(d)
-	json.Unmarshal(db, deployment)
-	return nil
 }
 
 // UpdateDeployment updates a deployment.
