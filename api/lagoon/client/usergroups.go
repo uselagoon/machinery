@@ -221,7 +221,7 @@ func (c *Client) UserBySSHFingerprint(
 }
 
 // GroupsByOrganizationID queries the Lagoon API for groups by the given organization id
-// and unmarshals the response into environment.
+// and unmarshals the response into organization.
 func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]schema.OrgGroup) error {
 
 	req, err := c.newRequest("_lgraphql/usergroups/groupsByOrganizationId.graphql",
@@ -263,4 +263,57 @@ func (c *Client) AddGroupToOrganization(ctx context.Context, in *schema.AddGroup
 	}{
 		Response: out,
 	})
+}
+
+// UsersByOrganization queries the Lagoon API for users by the given organization id
+// and unmarshals the response into organization.
+func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganization.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.OrgUser `json:"usersByOrganization"`
+	}{
+		Response: users,
+	})
+}
+
+// UsersByOrganizationName queries the Lagoon API for users by the given organization name
+// and unmarshals the response into organization.
+func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganizationName.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationByName"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	dd, err := json.Marshal(o)
+	fmt.Println(string(dd))
+	if len(o.Owners) == 0 {
+		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.Owners)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, users)
+	return nil
 }

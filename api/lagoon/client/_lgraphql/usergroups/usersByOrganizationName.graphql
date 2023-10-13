@@ -1,0 +1,14 @@
+query (
+  $name: String!) {
+  organizationByName(
+    name: $name) {
+    owners {
+      id
+      email
+      firstName
+      lastName
+      owner
+      comment
+    }
+  }
+}

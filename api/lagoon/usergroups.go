@@ -26,6 +26,8 @@ type UserGroups interface {
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
 	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
+	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
+	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -101,8 +103,8 @@ func UserBySSHFingerprint(ctx context.Context, fingerprint string, ug UserGroups
 	return &user, ug.UserBySSHFingerprint(ctx, fingerprint, &user)
 }
 
-// GetGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.
-func GetGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgGroup, error) {
+// ListGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.
+func ListGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgGroup, error) {
 	group := []schema.OrgGroup{}
 	return &group, ug.GroupsByOrganizationID(ctx, id, &group)
 }
@@ -110,4 +112,14 @@ func GetGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]
 func AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, ug UserGroups) (*schema.OrgGroup, error) {
 	group := schema.OrgGroup{}
 	return &group, ug.AddGroupToOrganization(ctx, in, &group)
+}
+
+func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganization(ctx, id, &user)
+}
+
+func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganizationName(ctx, name, &user)
 }

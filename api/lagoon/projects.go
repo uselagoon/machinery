@@ -69,8 +69,8 @@ func GetSSHEndpointsByProject(ctx context.Context, name string, p Projects) (*sc
 	return &project, p.SSHEndpointsByProject(ctx, name, &project)
 }
 
-// GetProjectsByOrganizationID gets projects associated with an organization in lagoon via provided ID.
-func GetProjectsByOrganizationID(ctx context.Context, id uint, o Projects) (*[]schema.OrgProject, error) {
+// ListProjectsByOrganizationID gets projects associated with an organization in lagoon via provided ID.
+func ListProjectsByOrganizationID(ctx context.Context, id uint, p Projects) (*[]schema.OrgProject, error) {
 	project := []schema.OrgProject{}
-	return &project, o.ProjectsByOrganizationID(ctx, id, &project)
+	return &project, p.ProjectsByOrganizationID(ctx, id, &project)
 }

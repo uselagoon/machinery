@@ -5,7 +5,7 @@ import "github.com/google/uuid"
 // Organization is based on the Lagoon API type.
 type Organization struct {
 	AddOrganizationInput
-	DeployTarget  []DeployTarget   `json:"openshift,omitempty"`
+	DeployTargets []DeployTarget   `json:"deployTargets,omitempty"`
 	Projects      []OrgProject     `json:"projects,omitempty"`
 	Environments  []OrgEnvironment `json:"environments,omitempty"`
 	Groups        []OrgGroup       `json:"groups,omitempty"`

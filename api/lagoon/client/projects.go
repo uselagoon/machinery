@@ -165,7 +165,7 @@ func (c *Client) UpdateProject(
 }
 
 // ProjectsByOrganizationID queries the Lagoon API for projects by the given organization id
-// and unmarshals the response into environment.
+// and unmarshals the response into organization.
 func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects *[]schema.OrgProject) error {
 
 	req, err := c.newRequest("_lgraphql/projects/projectsByOrganizationId.graphql",

@@ -1,0 +1,21 @@
+query (
+  $id: Int!) {
+    organizationById(
+    id: $id) {
+    deployTargets {
+      id
+      name
+      created
+      consoleUrl
+      cloudRegion
+      cloudProvider
+      friendlyName
+      token
+      sshHost
+      sshPort
+      routerPattern
+      buildImage
+      monitoringConfig
+    }
+  }
+  }
