@@ -195,17 +195,3 @@ func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects
 	json.Unmarshal(data, projects)
 	return nil
 }
-
-// TODO - AddExistingProjectToOrganization adds an existing project to an organization.
-//func (c *Client) AddExistingProjectToOrganization(
-//	ctx context.Context, in *schema.AddProjectToOrganizationInput, out *schema.Project) error {
-//	req, err := c.newRequest("_lgraphql/projects/addExistingProjectToOrganization.graphql", in)
-//	if err != nil {
-//		return err
-//	}
-//	return wrapErr(c.client.Run(ctx, req, &struct {
-//		Response *schema.Project `json:"addProjectToOrganization"`
-//	}{
-//		Response: out,
-//	}))
-//}

@@ -266,7 +266,6 @@ func (c *Client) AddGroupToOrganization(ctx context.Context, in *schema.AddGroup
 }
 
 // UsersByOrganization queries the Lagoon API for users by the given organization id
-// and unmarshals the response into organization.
 func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
 
 	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganization.graphql",
@@ -304,11 +303,6 @@ func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users
 	})
 	if err != nil {
 		return err
-	}
-	dd, err := json.Marshal(o)
-	fmt.Println(string(dd))
-	if len(o.Owners) == 0 {
-		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
 	}
 	data, err := json.Marshal(o.Owners)
 	if err != nil {

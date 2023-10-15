@@ -22,7 +22,7 @@ func GetOrganizationByID(ctx context.Context, id uint, o Organizations) (*schema
 	return &organization, o.OrganizationByID(ctx, id, &organization)
 }
 
-// **Pending Merge** GetOrganizationByName gets info of an organization in lagoon that matches the provided name.
+// GetOrganizationByName gets info of an organization in lagoon that matches the provided name.
 func GetOrganizationByName(ctx context.Context, name string, o Organizations) (*schema.Organization, error) {
 	organization := schema.Organization{}
 	return &organization, o.OrganizationByName(ctx, name, &organization)
