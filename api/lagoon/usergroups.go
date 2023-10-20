@@ -109,16 +109,19 @@ func ListGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[
 	return &group, ug.GroupsByOrganizationID(ctx, id, &group)
 }
 
+// AddGroupToOrganization adds a group to an organization.
 func AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, ug UserGroups) (*schema.OrgGroup, error) {
 	group := schema.OrgGroup{}
 	return &group, ug.AddGroupToOrganization(ctx, in, &group)
 }
 
+// UsersByOrganization lists users associated within an organization in lagoon via provided ID.
 func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
 	return &user, ug.UsersByOrganization(ctx, id, &user)
 }
 
+// UsersByOrganizationName lists users associated within an organization in lagoon via provided Name.
 func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
 	return &user, ug.UsersByOrganizationName(ctx, name, &user)

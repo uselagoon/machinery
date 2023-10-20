@@ -1,0 +1,11 @@
+mutation (
+  $deployTarget: Int!,
+  $organization: Int!,){
+  addDeployTargetToOrganization(input: {
+    deployTarget: $deployTarget,
+    organization: $organization,
+  }) {
+    id
+    name
+  }
+}

@@ -13,6 +13,8 @@ type DeployTargets interface {
 	ListDeployTargets(ctx context.Context, out *[]schema.DeployTarget) error
 	DeployTargetsByOrganizationId(ctx context.Context, id uint, out *[]schema.DeployTarget) error
 	DeployTargetsByOrganizationName(ctx context.Context, name string, out *[]schema.DeployTarget) error
+	AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out *schema.AddDeployTargetResponse) error
+	RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out *schema.DeleteDeployTargetResponse) error
 }
 
 func AddDeployTarget(ctx context.Context, in *schema.AddDeployTargetInput, out DeployTargets) (*schema.AddDeployTargetResponse, error) {
@@ -46,4 +48,16 @@ func ListDeployTargetsByOrganizationId(ctx context.Context, id uint, d DeployTar
 func ListDeployTargetsByOrganizationName(ctx context.Context, name string, d DeployTargets) (*[]schema.DeployTarget, error) {
 	deploytargets := []schema.DeployTarget{}
 	return &deploytargets, d.DeployTargetsByOrganizationName(ctx, name, &deploytargets)
+}
+
+// AddDeployTargetToOrganization adds a deploy target to an organization.
+func AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out DeployTargets) (*schema.AddDeployTargetResponse, error) {
+	response := schema.AddDeployTargetResponse{}
+	return &response, out.AddDeployTargetToOrganization(ctx, in, &response)
+}
+
+// RemoveDeployTargetFromOrganization removes a deploy target from an organization.
+func RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out DeployTargets) (*schema.DeleteDeployTargetResponse, error) {
+	response := schema.DeleteDeployTargetResponse{}
+	return &response, out.RemoveDeployTargetFromOrganization(ctx, in, &response)
 }

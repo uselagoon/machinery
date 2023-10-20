@@ -20,10 +20,12 @@
 // _lgraphql/deployments/getDeploymentsForEnvironment.graphql
 // _lgraphql/deployments/updateDeployment.graphql
 // _lgraphql/deploytargets/addDeployTarget.graphql
+// _lgraphql/deploytargets/addDeployTargetToOrganization.graphql
 // _lgraphql/deploytargets/deleteDeployTarget.graphql
 // _lgraphql/deploytargets/deployTargetsByOrganizationId.graphql
 // _lgraphql/deploytargets/deployTargetsByOrganizationName.graphql
 // _lgraphql/deploytargets/listDeployTargets.graphql
+// _lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql
 // _lgraphql/deploytargets/updateDeployTarget.graphql
 // _lgraphql/deploytargetconfigs/addDeployTargetConfig.graphql
 // _lgraphql/deploytargetconfigs/deleteDeployTargetConfig.graphql
@@ -36,6 +38,7 @@
 // _lgraphql/projects/projectByNameMetadata.graphql
 // _lgraphql/projects/projectsByMetadata.graphql
 // _lgraphql/projects/projectsByOrganizationId.graphql
+// _lgraphql/projects/removeProjectFromOrganization.graphql
 // _lgraphql/projects/removeProjectMetadataByKey.graphql
 // _lgraphql/projects/updateProject.graphql
 // _lgraphql/projects/updateProjectMetadata.graphql
@@ -59,6 +62,7 @@
 // _lgraphql/usergroups/addSshKey.graphql
 // _lgraphql/usergroups/addUser.graphql
 // _lgraphql/usergroups/addUserToGroup.graphql
+// _lgraphql/usergroups/addUserToOrganization.graphql
 // _lgraphql/usergroups/allGroupMembers.graphql
 // _lgraphql/usergroups/allUsers.graphql
 // _lgraphql/usergroups/groupsByOrganizationId.graphql
@@ -552,6 +556,26 @@ func _lgraphqlDeploytargetsAdddeploytargetGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlDeploytargetsAdddeploytargettoorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x49\x49\x2d\xc8\xc9\xaf\x0c\x49\x2c\x4a\x4f\x2d\xb1\x52\xf0\xcc\x2b\x51\xd4\x01\x09\xe7\x17\xa5\x27\xe6\x65\x56\x81\x15\x42\x85\x35\xab\xb9\x14\x14\x12\x53\x52\x5c\x90\x74\x84\xe4\xfb\x23\x29\xd4\xc8\xcc\x2b\x28\x2d\xb1\x52\x00\x29\x54\x50\x40\x35\x19\xc5\x22\x1d\xb0\x02\x54\x3b\x50\xac\x04\x29\xa8\xd5\x84\x1a\x94\x99\x02\xa6\xf2\x12\x73\x53\x41\xc2\x5c\xb5\x5c\x80\x00\x00\x00\xff\xff\xec\x80\xbb\x8c\xc3\x00\x00\x00")
+
+func _lgraphqlDeploytargetsAdddeploytargettoorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlDeploytargetsAdddeploytargettoorganizationGraphql,
+		"_lgraphql/deploytargets/addDeployTargetToOrganization.graphql",
+	)
+}
+
+func _lgraphqlDeploytargetsAdddeploytargettoorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlDeploytargetsAdddeploytargettoorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/deploytargets/addDeployTargetToOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlDeploytargetsDeletedeploytargetGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xe4\xd2\x54\xa8\xe6\x52\x50\x48\x49\xcd\x49\x2d\x49\x75\x49\x2d\xc8\xc9\xaf\x0c\x49\x2c\x4a\x4f\x2d\xb1\x82\x8a\xf9\x17\xa4\xe6\x15\x67\x64\xa6\x95\x68\x64\xe6\x15\x94\x96\x58\x81\x95\x2b\x28\x40\x0c\x01\x9b\xc5\xa5\xa0\x50\xab\xc9\x55\xcb\x05\x08\x00\x00\xff\xff\x8e\x88\xf8\xcc\x66\x00\x00\x00")
 
 func _lgraphqlDeploytargetsDeletedeploytargetGraphqlBytes() ([]byte, error) {
@@ -628,6 +652,26 @@ func _lgraphqlDeploytargetsListdeploytargetsGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deploytargets/listDeployTargets.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x49\x49\x2d\xc8\xc9\xaf\x0c\x49\x2c\x4a\x4f\x2d\xb1\x52\xf0\xcc\x2b\x51\xd4\x01\x09\xe7\x17\xa5\x27\xe6\x65\x56\x81\x15\x42\x85\x35\xab\xb9\x14\x14\x8a\x52\x73\xf3\xcb\x52\x5d\x90\x34\xb9\x15\xe5\xe7\xfa\x23\xa9\xd6\xc8\xcc\x2b\x28\x2d\xb1\x52\x00\xa9\x56\x50\x40\x35\x1e\xc5\x36\x1d\xb0\x02\x54\x8b\x50\xec\x05\x29\xa8\xd5\x84\x1a\x94\x99\x02\xa6\xf2\x12\x73\x53\x41\xc2\x5c\xb5\x5c\x80\x00\x00\x00\xff\xff\x56\xb2\x5d\x48\xc8\x00\x00\x00")
+
+func _lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphql,
+		"_lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql",
+	)
+}
+
+func _lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -868,6 +912,26 @@ func _lgraphqlProjectsProjectsbyorganizationidGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/projects/projectsByOrganizationId.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlProjectsRemoveprojectfromorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x29\x28\xca\xcf\x4a\x4d\x2e\xb1\x52\xf0\xcc\x2b\x51\xd4\x01\x89\xe4\x17\xa5\x27\xe6\x65\x56\x81\xd5\x40\x85\x35\xab\xb9\x14\x14\x8a\x52\x73\xf3\xcb\x52\x03\x20\xea\xdd\x8a\xf2\x73\xfd\x91\x14\x6a\x64\xe6\x15\x94\x96\x58\x29\x80\x14\x2a\x28\xc0\x0d\x85\x19\xaf\x03\x16\x46\x35\x19\xc5\x22\x90\x82\x5a\x4d\xa8\xf6\xcc\x14\x30\x95\x97\x98\x9b\x0a\x12\xe6\xaa\xe5\x02\x04\x00\x00\xff\xff\x0f\x9a\x0e\x27\xb4\x00\x00\x00")
+
+func _lgraphqlProjectsRemoveprojectfromorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlProjectsRemoveprojectfromorganizationGraphql,
+		"_lgraphql/projects/removeProjectFromOrganization.graphql",
+	)
+}
+
+func _lgraphqlProjectsRemoveprojectfromorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlProjectsRemoveprojectfromorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/projects/removeProjectFromOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1332,6 +1396,26 @@ func _lgraphqlUsergroupsAddusertogroupGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlUsergroupsAddusertoorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x29\x2d\x4e\x2d\xb2\x52\x08\x2d\x4e\x2d\xf2\xcc\x2b\x28\x2d\x51\xd4\x01\x09\xe6\x17\xa5\x27\xe6\x65\x56\x81\x95\x59\x29\x78\xe6\xc1\x84\xcb\xf3\x40\x8a\x9d\xf2\xf3\x73\x52\x13\xf3\x34\x15\xaa\xb9\x14\x14\x14\x14\x12\x53\x52\x40\xda\x43\xf2\xfd\x91\x74\x69\x64\x82\x4c\xb3\x82\x2a\x51\x50\x80\x58\x03\xb6\x0d\x2a\x82\x6a\x07\x8a\x95\x30\x15\x10\xeb\x20\xd6\x82\xc5\x6a\x35\xe1\x06\x66\xa6\x40\x19\x79\x89\xb9\xa9\x10\x49\x2e\x10\x06\x04\x00\x00\xff\xff\x31\x25\xe0\x75\xde\x00\x00\x00")
+
+func _lgraphqlUsergroupsAddusertoorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsAddusertoorganizationGraphql,
+		"_lgraphql/usergroups/addUserToOrganization.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsAddusertoorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsAddusertoorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/addUserToOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlUsergroupsAllgroupmembersGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xa8\xe6\x52\x50\x50\x50\x48\xcc\xc9\x71\x2f\xca\x2f\x2d\xf0\x4d\xcd\x4d\x4a\x2d\x2a\xb6\x82\x0b\x14\x43\x15\x80\x40\x66\x0a\x9c\x99\x97\x98\x9b\x0a\xe7\xe4\x42\x34\x21\x14\x82\x40\x69\x71\x6a\x11\xaa\x08\x08\xa4\xe6\x26\x66\xe6\x60\x88\xa6\x67\x96\xe4\x24\x26\x79\xa6\xa0\x48\xd4\xa2\xf0\x8a\xf2\x73\x10\x16\x42\xa4\x6a\xb9\x6a\xb9\x00\x01\x00\x00\xff\xff\x02\xdf\xd4\xb3\xc4\x00\x00\x00")
 
 func _lgraphqlUsergroupsAllgroupmembersGraphqlBytes() ([]byte, error) {
@@ -1744,10 +1828,12 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/deployments/getDeploymentsForEnvironment.graphql":           _lgraphqlDeploymentsGetdeploymentsforenvironmentGraphql,
 	"_lgraphql/deployments/updateDeployment.graphql":                       _lgraphqlDeploymentsUpdatedeploymentGraphql,
 	"_lgraphql/deploytargets/addDeployTarget.graphql":                      _lgraphqlDeploytargetsAdddeploytargetGraphql,
+	"_lgraphql/deploytargets/addDeployTargetToOrganization.graphql":        _lgraphqlDeploytargetsAdddeploytargettoorganizationGraphql,
 	"_lgraphql/deploytargets/deleteDeployTarget.graphql":                   _lgraphqlDeploytargetsDeletedeploytargetGraphql,
 	"_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql":        _lgraphqlDeploytargetsDeploytargetsbyorganizationidGraphql,
 	"_lgraphql/deploytargets/deployTargetsByOrganizationName.graphql":      _lgraphqlDeploytargetsDeploytargetsbyorganizationnameGraphql,
 	"_lgraphql/deploytargets/listDeployTargets.graphql":                    _lgraphqlDeploytargetsListdeploytargetsGraphql,
+	"_lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql":   _lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphql,
 	"_lgraphql/deploytargets/updateDeployTarget.graphql":                   _lgraphqlDeploytargetsUpdatedeploytargetGraphql,
 	"_lgraphql/deploytargetconfigs/addDeployTargetConfig.graphql":          _lgraphqlDeploytargetconfigsAdddeploytargetconfigGraphql,
 	"_lgraphql/deploytargetconfigs/deleteDeployTargetConfig.graphql":       _lgraphqlDeploytargetconfigsDeletedeploytargetconfigGraphql,
@@ -1760,6 +1846,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/projects/projectByNameMetadata.graphql":                     _lgraphqlProjectsProjectbynamemetadataGraphql,
 	"_lgraphql/projects/projectsByMetadata.graphql":                        _lgraphqlProjectsProjectsbymetadataGraphql,
 	"_lgraphql/projects/projectsByOrganizationId.graphql":                  _lgraphqlProjectsProjectsbyorganizationidGraphql,
+	"_lgraphql/projects/removeProjectFromOrganization.graphql":             _lgraphqlProjectsRemoveprojectfromorganizationGraphql,
 	"_lgraphql/projects/removeProjectMetadataByKey.graphql":                _lgraphqlProjectsRemoveprojectmetadatabykeyGraphql,
 	"_lgraphql/projects/updateProject.graphql":                             _lgraphqlProjectsUpdateprojectGraphql,
 	"_lgraphql/projects/updateProjectMetadata.graphql":                     _lgraphqlProjectsUpdateprojectmetadataGraphql,
@@ -1783,6 +1870,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/usergroups/addSshKey.graphql":                               _lgraphqlUsergroupsAddsshkeyGraphql,
 	"_lgraphql/usergroups/addUser.graphql":                                 _lgraphqlUsergroupsAdduserGraphql,
 	"_lgraphql/usergroups/addUserToGroup.graphql":                          _lgraphqlUsergroupsAddusertogroupGraphql,
+	"_lgraphql/usergroups/addUserToOrganization.graphql":                   _lgraphqlUsergroupsAddusertoorganizationGraphql,
 	"_lgraphql/usergroups/allGroupMembers.graphql":                         _lgraphqlUsergroupsAllgroupmembersGraphql,
 	"_lgraphql/usergroups/allUsers.graphql":                                _lgraphqlUsergroupsAllusersGraphql,
 	"_lgraphql/usergroups/groupsByOrganizationId.graphql":                  _lgraphqlUsergroupsGroupsbyorganizationidGraphql,
@@ -1868,12 +1956,14 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"updateDeployTargetConfig.graphql":       &bintree{_lgraphqlDeploytargetconfigsUpdatedeploytargetconfigGraphql, map[string]*bintree{}},
 		}},
 		"deploytargets": &bintree{nil, map[string]*bintree{
-			"addDeployTarget.graphql":                 &bintree{_lgraphqlDeploytargetsAdddeploytargetGraphql, map[string]*bintree{}},
-			"deleteDeployTarget.graphql":              &bintree{_lgraphqlDeploytargetsDeletedeploytargetGraphql, map[string]*bintree{}},
-			"deployTargetsByOrganizationId.graphql":   &bintree{_lgraphqlDeploytargetsDeploytargetsbyorganizationidGraphql, map[string]*bintree{}},
-			"deployTargetsByOrganizationName.graphql": &bintree{_lgraphqlDeploytargetsDeploytargetsbyorganizationnameGraphql, map[string]*bintree{}},
-			"listDeployTargets.graphql":               &bintree{_lgraphqlDeploytargetsListdeploytargetsGraphql, map[string]*bintree{}},
-			"updateDeployTarget.graphql":              &bintree{_lgraphqlDeploytargetsUpdatedeploytargetGraphql, map[string]*bintree{}},
+			"addDeployTarget.graphql":                    &bintree{_lgraphqlDeploytargetsAdddeploytargetGraphql, map[string]*bintree{}},
+			"addDeployTargetToOrganization.graphql":      &bintree{_lgraphqlDeploytargetsAdddeploytargettoorganizationGraphql, map[string]*bintree{}},
+			"deleteDeployTarget.graphql":                 &bintree{_lgraphqlDeploytargetsDeletedeploytargetGraphql, map[string]*bintree{}},
+			"deployTargetsByOrganizationId.graphql":      &bintree{_lgraphqlDeploytargetsDeploytargetsbyorganizationidGraphql, map[string]*bintree{}},
+			"deployTargetsByOrganizationName.graphql":    &bintree{_lgraphqlDeploytargetsDeploytargetsbyorganizationnameGraphql, map[string]*bintree{}},
+			"listDeployTargets.graphql":                  &bintree{_lgraphqlDeploytargetsListdeploytargetsGraphql, map[string]*bintree{}},
+			"removeDeployTargetFromOrganization.graphql": &bintree{_lgraphqlDeploytargetsRemovedeploytargetfromorganizationGraphql, map[string]*bintree{}},
+			"updateDeployTarget.graphql":                 &bintree{_lgraphqlDeploytargetsUpdatedeploytargetGraphql, map[string]*bintree{}},
 		}},
 		"environments": &bintree{nil, map[string]*bintree{
 			"addOrUpdateEnvironment.graphql":        &bintree{_lgraphqlEnvironmentsAddorupdateenvironmentGraphql, map[string]*bintree{}},
@@ -1905,6 +1995,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"projectByNameMetadata.graphql":            &bintree{_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
 			"projectsByMetadata.graphql":               &bintree{_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
 			"projectsByOrganizationId.graphql":         &bintree{_lgraphqlProjectsProjectsbyorganizationidGraphql, map[string]*bintree{}},
+			"removeProjectFromOrganization.graphql":    &bintree{_lgraphqlProjectsRemoveprojectfromorganizationGraphql, map[string]*bintree{}},
 			"removeProjectMetadataByKey.graphql":       &bintree{_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},
 			"updateProject.graphql":                    &bintree{_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
 			"updateProjectMetadata.graphql":            &bintree{_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
@@ -1923,6 +2014,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"addSshKey.graphql":               &bintree{_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
 			"addUser.graphql":                 &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
 			"addUserToGroup.graphql":          &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
+			"addUserToOrganization.graphql":   &bintree{_lgraphqlUsergroupsAddusertoorganizationGraphql, map[string]*bintree{}},
 			"allGroupMembers.graphql":         &bintree{_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
 			"allUsers.graphql":                &bintree{_lgraphqlUsergroupsAllusersGraphql, map[string]*bintree{}},
 			"groupsByOrganizationId.graphql":  &bintree{_lgraphqlUsergroupsGroupsbyorganizationidGraphql, map[string]*bintree{}},

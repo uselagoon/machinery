@@ -265,6 +265,19 @@ func (c *Client) AddGroupToOrganization(ctx context.Context, in *schema.AddGroup
 	})
 }
 
+// AddUserToOrganization adds a User to an Organization.
+func (c *Client) AddUserToOrganization(ctx context.Context, in *schema.AddUserToOrganizationInput, out *schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addUserToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"addUserToOrganization"`
+	}{
+		Response: out,
+	})
+}
+
 // UsersByOrganization queries the Lagoon API for users by the given organization id
 func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
 

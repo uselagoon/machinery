@@ -122,3 +122,29 @@ func (c *Client) DeployTargetsByOrganizationName(ctx context.Context, name strin
 	json.Unmarshal(data, out)
 	return nil
 }
+
+// AddDeployTargetToOrganization adds an existing deploytarget to an organization.
+func (c *Client) AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out *schema.AddDeployTargetResponse) error {
+	req, err := c.newRequest("_lgraphql/deploytargets/addDeployTargetToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.AddDeployTargetResponse `json:"addDeployTargetToOrganization"`
+	}{
+		Response: out,
+	})
+}
+
+// RemoveDeployTargetFromOrganization removes a deploytarget from an organization.
+func (c *Client) RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out *schema.DeleteDeployTargetResponse) error {
+	req, err := c.newRequest("_lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.DeleteDeployTargetResponse `json:"removeDeployTargetFromOrganization"`
+	}{
+		Response: out,
+	})
+}

@@ -48,3 +48,13 @@ type DeleteDeployTargetInput struct {
 type DeleteDeployTargetResponse struct {
 	DeleteDeployTarget string `json:"deleteDeployTarget,omitempty"`
 }
+
+type AddDeployTargetToOrganizationInput struct {
+	DeployTarget uint `json:"deployTarget"`
+	Organization uint `json:"organization"`
+}
+
+type RemoveDeployTargetFromOrganizationInput struct {
+	DeployTarget uint `json:"deployTarget"`
+	Organization uint `json:"organization"`
+}

@@ -124,8 +124,8 @@ type UpdateProjectPatchInput struct {
 	BuildImage *null.String `json:"buildImage,omitempty"`
 }
 
-// AddProjectToOrganizationInput
-type AddProjectToOrganizationInput struct {
+// RemoveProjectFromOrganizationInput is based on the Lagoon API type.
+type RemoveProjectFromOrganizationInput struct {
 	Project      uint `json:"project"`
 	Organization uint `json:"organization"`
 }

@@ -195,3 +195,16 @@ func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects
 	json.Unmarshal(data, projects)
 	return nil
 }
+
+// RemoveProjectFromOrganization removes a project from an organization.
+func (c *Client) RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error {
+	req, err := c.newRequest("_lgraphql/projects/removeProjectFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"removeProjectFromOrganization"`
+	}{
+		Response: out,
+	})
+}
