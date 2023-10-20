@@ -69,6 +69,7 @@
 // _lgraphql/usergroups/me.graphql
 // _lgraphql/usergroups/removeGroupsFromProject.graphql
 // _lgraphql/usergroups/removeUserFromGroup.graphql
+// _lgraphql/usergroups/removeUserFromOrganization.graphql
 // _lgraphql/usergroups/userByEmail.graphql
 // _lgraphql/usergroups/userBySSHFingerprint.graphql
 // _lgraphql/usergroups/userBySSHKey.graphql
@@ -1536,6 +1537,26 @@ func _lgraphqlUsergroupsRemoveuserfromgroupGraphql() (*asset, error) {
 	return a, nil
 }
 
+var __lgraphqlUsergroupsRemoveuserfromorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x54\x8d\x31\x0a\x02\x31\x10\x45\xfb\x9c\xe2\x0b\x16\xbb\xe0\x09\x52\x5a\x08\x5b\x59\x79\x80\x80\x83\x04\xcc\x8c\xcc\x26\x0a\xca\xde\x5d\x66\xa2\xb0\x5b\x85\xfc\x79\xff\xbf\xd2\x6a\xaa\x59\x18\x43\x00\xf6\x6d\x26\x8d\xb8\xcc\xa4\x13\x3f\x5a\xdd\x1d\x2c\x14\xbd\x25\xce\x6f\xc7\x22\x26\xfe\xc7\x2f\x36\xf8\x28\x72\xa7\xc4\x23\x3e\x01\x50\x2a\xf2\x24\xeb\x9f\x54\xca\x79\x55\x1c\xb2\x0d\x46\xa7\x80\xee\x71\x9d\xff\xb7\x8a\x8d\xb1\xdf\xbb\xab\x3b\x03\xb0\x8c\xbf\xa1\x7c\xf5\x87\x53\x21\x8b\xc3\x12\xbe\x01\x00\x00\xff\xff\x7e\xd2\x27\x2a\xd1\x00\x00\x00")
+
+func _lgraphqlUsergroupsRemoveuserfromorganizationGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlUsergroupsRemoveuserfromorganizationGraphql,
+		"_lgraphql/usergroups/removeUserFromOrganization.graphql",
+	)
+}
+
+func _lgraphqlUsergroupsRemoveuserfromorganizationGraphql() (*asset, error) {
+	bytes, err := _lgraphqlUsergroupsRemoveuserfromorganizationGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/usergroups/removeUserFromOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var __lgraphqlUsergroupsUserbyemailGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x4e\xbd\xce\xc2\x30\x10\xdb\xfb\x14\xf7\x49\xdf\x50\x5e\x81\x11\x09\x16\x24\x06\x40\xec\x11\x98\x72\x22\x3f\xe5\x92\x0c\x11\xea\xbb\xa3\x14\x08\x55\xea\xe9\xce\xb6\x6c\x3f\x22\x24\x51\xfb\x0f\xa3\x58\x2f\xe9\x10\x84\x6d\xf7\xb7\xa0\x67\x43\x44\x14\x3d\x64\x95\xd6\x59\x6b\x3f\x8e\xb7\xf3\x6b\xc8\xe0\x4b\x39\x47\xad\x7c\x57\x16\x1f\x76\xca\xa0\x30\x5a\x55\xc4\xd9\x19\x03\x1b\xca\xef\xfd\x6d\x8b\xe4\x27\xe9\x55\x43\x86\x9d\x26\x64\xdc\x91\x8e\xa9\x9f\x71\x27\xa5\xe3\x8c\xdc\xb0\xed\x20\xbd\xf0\xa4\x75\x5c\x22\x50\x01\xbf\xa2\xa1\x5c\x9d\xb8\xd8\xef\x9d\x46\x3d\x6b\xb6\x43\x9c\x46\x15\x30\x34\xc3\x2b\x00\x00\xff\xff\xa1\x66\xca\x90\x63\x01\x00\x00")
 
 func _lgraphqlUsergroupsUserbyemailGraphqlBytes() ([]byte, error) {
@@ -1877,6 +1898,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/usergroups/me.graphql":                                      _lgraphqlUsergroupsMeGraphql,
 	"_lgraphql/usergroups/removeGroupsFromProject.graphql":                 _lgraphqlUsergroupsRemovegroupsfromprojectGraphql,
 	"_lgraphql/usergroups/removeUserFromGroup.graphql":                     _lgraphqlUsergroupsRemoveuserfromgroupGraphql,
+	"_lgraphql/usergroups/removeUserFromOrganization.graphql":              _lgraphqlUsergroupsRemoveuserfromorganizationGraphql,
 	"_lgraphql/usergroups/userByEmail.graphql":                             _lgraphqlUsergroupsUserbyemailGraphql,
 	"_lgraphql/usergroups/userBySSHFingerprint.graphql":                    _lgraphqlUsergroupsUserbysshfingerprintGraphql,
 	"_lgraphql/usergroups/userBySSHKey.graphql":                            _lgraphqlUsergroupsUserbysshkeyGraphql,
@@ -2008,25 +2030,26 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"uploadFilesForTask.graphql":  &bintree{_lgraphqlTasksUploadfilesfortaskGraphql, map[string]*bintree{}},
 		}},
 		"usergroups": &bintree{nil, map[string]*bintree{
-			"addGroup.graphql":                &bintree{_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
-			"addGroupToOrganization.graphql":  &bintree{_lgraphqlUsergroupsAddgrouptoorganizationGraphql, map[string]*bintree{}},
-			"addGroupsToProject.graphql":      &bintree{_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
-			"addSshKey.graphql":               &bintree{_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
-			"addUser.graphql":                 &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
-			"addUserToGroup.graphql":          &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
-			"addUserToOrganization.graphql":   &bintree{_lgraphqlUsergroupsAddusertoorganizationGraphql, map[string]*bintree{}},
-			"allGroupMembers.graphql":         &bintree{_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
-			"allUsers.graphql":                &bintree{_lgraphqlUsergroupsAllusersGraphql, map[string]*bintree{}},
-			"groupsByOrganizationId.graphql":  &bintree{_lgraphqlUsergroupsGroupsbyorganizationidGraphql, map[string]*bintree{}},
-			"me.graphql":                      &bintree{_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
-			"removeGroupsFromProject.graphql": &bintree{_lgraphqlUsergroupsRemovegroupsfromprojectGraphql, map[string]*bintree{}},
-			"removeUserFromGroup.graphql":     &bintree{_lgraphqlUsergroupsRemoveuserfromgroupGraphql, map[string]*bintree{}},
-			"userByEmail.graphql":             &bintree{_lgraphqlUsergroupsUserbyemailGraphql, map[string]*bintree{}},
-			"userBySSHFingerprint.graphql":    &bintree{_lgraphqlUsergroupsUserbysshfingerprintGraphql, map[string]*bintree{}},
-			"userBySSHKey.graphql":            &bintree{_lgraphqlUsergroupsUserbysshkeyGraphql, map[string]*bintree{}},
-			"userCanSSHToEnvironment.graphql": &bintree{_lgraphqlUsergroupsUsercansshtoenvironmentGraphql, map[string]*bintree{}},
-			"usersByOrganization.graphql":     &bintree{_lgraphqlUsergroupsUsersbyorganizationGraphql, map[string]*bintree{}},
-			"usersByOrganizationName.graphql": &bintree{_lgraphqlUsergroupsUsersbyorganizationnameGraphql, map[string]*bintree{}},
+			"addGroup.graphql":                   &bintree{_lgraphqlUsergroupsAddgroupGraphql, map[string]*bintree{}},
+			"addGroupToOrganization.graphql":     &bintree{_lgraphqlUsergroupsAddgrouptoorganizationGraphql, map[string]*bintree{}},
+			"addGroupsToProject.graphql":         &bintree{_lgraphqlUsergroupsAddgroupstoprojectGraphql, map[string]*bintree{}},
+			"addSshKey.graphql":                  &bintree{_lgraphqlUsergroupsAddsshkeyGraphql, map[string]*bintree{}},
+			"addUser.graphql":                    &bintree{_lgraphqlUsergroupsAdduserGraphql, map[string]*bintree{}},
+			"addUserToGroup.graphql":             &bintree{_lgraphqlUsergroupsAddusertogroupGraphql, map[string]*bintree{}},
+			"addUserToOrganization.graphql":      &bintree{_lgraphqlUsergroupsAddusertoorganizationGraphql, map[string]*bintree{}},
+			"allGroupMembers.graphql":            &bintree{_lgraphqlUsergroupsAllgroupmembersGraphql, map[string]*bintree{}},
+			"allUsers.graphql":                   &bintree{_lgraphqlUsergroupsAllusersGraphql, map[string]*bintree{}},
+			"groupsByOrganizationId.graphql":     &bintree{_lgraphqlUsergroupsGroupsbyorganizationidGraphql, map[string]*bintree{}},
+			"me.graphql":                         &bintree{_lgraphqlUsergroupsMeGraphql, map[string]*bintree{}},
+			"removeGroupsFromProject.graphql":    &bintree{_lgraphqlUsergroupsRemovegroupsfromprojectGraphql, map[string]*bintree{}},
+			"removeUserFromGroup.graphql":        &bintree{_lgraphqlUsergroupsRemoveuserfromgroupGraphql, map[string]*bintree{}},
+			"removeUserFromOrganization.graphql": &bintree{_lgraphqlUsergroupsRemoveuserfromorganizationGraphql, map[string]*bintree{}},
+			"userByEmail.graphql":                &bintree{_lgraphqlUsergroupsUserbyemailGraphql, map[string]*bintree{}},
+			"userBySSHFingerprint.graphql":       &bintree{_lgraphqlUsergroupsUserbysshfingerprintGraphql, map[string]*bintree{}},
+			"userBySSHKey.graphql":               &bintree{_lgraphqlUsergroupsUserbysshkeyGraphql, map[string]*bintree{}},
+			"userCanSSHToEnvironment.graphql":    &bintree{_lgraphqlUsergroupsUsercansshtoenvironmentGraphql, map[string]*bintree{}},
+			"usersByOrganization.graphql":        &bintree{_lgraphqlUsergroupsUsersbyorganizationGraphql, map[string]*bintree{}},
+			"usersByOrganizationName.graphql":    &bintree{_lgraphqlUsergroupsUsersbyorganizationnameGraphql, map[string]*bintree{}},
 		}},
 	}},
 }}

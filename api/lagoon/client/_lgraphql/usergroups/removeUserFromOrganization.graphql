@@ -1,0 +1,13 @@
+mutation (
+  $user: UserInput!,
+  $organization: Int!,
+  $owner: Boolean) {
+  removeUserFromOrganization(input: {
+    user: $user
+    organization: $organization
+    owner: $owner
+  }) {
+    id
+    name
+  }
+}

@@ -278,6 +278,19 @@ func (c *Client) AddUserToOrganization(ctx context.Context, in *schema.AddUserTo
 	})
 }
 
+// RemoveUserFromOrganization removes a User from an Organization. TODO - Create new input type for this
+func (c *Client) RemoveUserFromOrganization(ctx context.Context, in *schema.AddUserToOrganizationInput, out *schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeUserFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"removeUserFromOrganization"`
+	}{
+		Response: out,
+	})
+}
+
 // UsersByOrganization queries the Lagoon API for users by the given organization id
 func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
 
