@@ -18,11 +18,11 @@ type AddOrganizationInput struct {
 	Name              string `json:"name"`
 	FriendlyName      string `json:"friendlyName"`
 	Description       string `json:"description,omitempty"`
-	QuotaProject      uint   `json:"quotaProject"`
-	QuotaGroup        uint   `json:"quotaGroup,omitempty"`
-	QuotaNotification uint   `json:"quotaNotification,omitempty"`
-	QuotaEnvironment  uint   `json:"quotaEnvironment,omitempty"`
-	QuotaRoute        uint   `json:"quotaRoute"`
+	QuotaProject      int    `json:"quotaProject"`
+	QuotaGroup        int    `json:"quotaGroup,omitempty"`
+	QuotaNotification int    `json:"quotaNotification,omitempty"`
+	QuotaEnvironment  int    `json:"quotaEnvironment,omitempty"`
+	QuotaRoute        int    `json:"quotaRoute"`
 }
 
 type OrgProject struct {
@@ -103,11 +103,11 @@ type UpdateOrganizationPatchInput struct {
 	Name              *string `json:"name,omitempty"`
 	FriendlyName      *string `json:"friendlyName,omitempty"`
 	Description       *string `json:"description,omitempty"`
-	QuotaProject      *uint   `json:"quotaProject,omitempty"`
-	QuotaGroup        *uint   `json:"quotaGroup,omitempty"`
-	QuotaNotification *uint   `json:"quotaNotification,omitempty"`
-	QuotaEnvironment  *uint   `json:"quotaEnvironment,omitempty"`
-	QuotaRoute        *uint   `json:"quotaRoute,omitempty"`
+	QuotaProject      *int    `json:"quotaProject,omitempty"`
+	QuotaGroup        *int    `json:"quotaGroup,omitempty"`
+	QuotaNotification *int    `json:"quotaNotification,omitempty"`
+	QuotaEnvironment  *int    `json:"quotaEnvironment,omitempty"`
+	QuotaRoute        *int    `json:"quotaRoute,omitempty"`
 }
 
 type UpdateOrganizationInput struct {
