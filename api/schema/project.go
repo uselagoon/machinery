@@ -34,6 +34,12 @@ type AddProjectInput struct {
 	BuildImage                   string `json:"buildImage,omitempty"`
 	Organization                 uint   `json:"organization,omitempty"`
 	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`
+	RouterPattern                string `json:"routerPattern,omitempty"`
+	ProblemsUI                   uint   `json:"problemsUi,omitempty"`
+	FactsUI                      uint   `json:"factsUi,omitempty"`
+	ProductionBuildPriority      uint   `json:"productionBuildPriority,omitempty"`
+	DevelopmentBuildPriority     uint   `json:"developmentBuildPriority,omitempty"`
+	DeploymentsDisabled          uint   `json:"deploymentsDisabled,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
