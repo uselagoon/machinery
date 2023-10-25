@@ -18,11 +18,11 @@ type AddOrganizationInput struct {
 	Name              string `json:"name"`
 	FriendlyName      string `json:"friendlyName"`
 	Description       string `json:"description,omitempty"`
-	QuotaProject      int    `json:"quotaProject"`
+	QuotaProject      int    `json:"quotaProject,omitempty"`
 	QuotaGroup        int    `json:"quotaGroup,omitempty"`
 	QuotaNotification int    `json:"quotaNotification,omitempty"`
 	QuotaEnvironment  int    `json:"quotaEnvironment,omitempty"`
-	QuotaRoute        int    `json:"quotaRoute"`
+	QuotaRoute        int    `json:"quotaRoute,omitempty"`
 }
 
 type OrgProject struct {
