@@ -31,6 +31,7 @@
 // _lgraphql/projects/addProject.graphql
 // _lgraphql/projects/minimalProjectByName.graphql
 // _lgraphql/projects/projectByName.graphql
+// _lgraphql/projects/projectByNameExtended.graphql
 // _lgraphql/projects/projectByNameMetadata.graphql
 // _lgraphql/projects/projectsByMetadata.graphql
 // _lgraphql/projects/removeProjectMetadataByKey.graphql
@@ -756,6 +757,26 @@ func _lgraphqlProjectsProjectbynameGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/projects/projectByName.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlProjectsProjectbynameextendedGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x64\x50\xcd\x4e\xc3\x30\x0c\xbe\xf7\x29\x8c\xc4\x01\x5e\x81\x23\x83\x03\x12\x9a\x26\xb1\x3d\x40\xda\xba\x5d\x20\xb5\x33\xdb\x99\x54\xa1\xbd\x3b\x6a\xda\xad\x99\xc8\x21\xf2\xf7\x23\xff\x7c\xa7\x84\x32\xc2\x53\x05\xf0\x48\x6e\xc0\x17\xf8\x32\xf1\xd4\x3f\x3c\xc3\x6f\x05\x10\x85\xbf\xb1\xb1\xd7\x71\xeb\x06\x9c\x4c\x00\xb3\x2b\x9b\x67\x0f\x80\x6f\x6f\x4a\x2e\x7a\x6f\x07\x09\xb9\xd4\x54\x77\x1c\x5a\x94\x8c\x84\x93\xa1\xec\x9c\x19\x0a\x65\xa6\x16\x47\xcd\x11\x35\x83\x98\x42\x10\x3c\x25\x54\x5b\x08\xe1\x3a\xe0\xa0\x07\x9f\x61\xe7\x1a\xbb\xd6\x51\xb8\x4d\x8d\x79\xa6\x77\x3a\x7b\x61\x1a\x90\x2c\x2b\x2d\xc6\xc0\xe3\x04\xf5\xcd\xab\xab\x03\xb6\x05\xbf\x77\xd2\xa3\x6d\x98\x3a\xdf\xeb\xbc\xfe\xed\x80\x7b\xcf\x55\x2c\xe4\xe2\xc6\xe9\x19\xff\x20\x2d\xe8\x52\xad\x3f\xae\x1b\x29\xfc\x9b\x51\xb4\xe0\x88\xa4\x47\xdf\xd9\x6e\xce\x79\xbb\x4a\x45\x8f\xfd\x18\xf1\x7e\xbf\x95\xc8\x89\x16\xa3\x5d\x32\xfe\x68\xc3\x4c\xa9\xb1\xb8\x1e\x37\x2e\x34\x4b\x02\x67\x0c\x1c\xa7\x9e\x45\x68\xfa\xe9\x07\x3f\x45\x77\xa9\x2e\xd5\x5f\x00\x00\x00\xff\xff\xd1\x9d\x62\x80\x0f\x02\x00\x00")
+
+func _lgraphqlProjectsProjectbynameextendedGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlProjectsProjectbynameextendedGraphql,
+		"_lgraphql/projects/projectByNameExtended.graphql",
+	)
+}
+
+func _lgraphqlProjectsProjectbynameextendedGraphql() (*asset, error) {
+	bytes, err := _lgraphqlProjectsProjectbynameextendedGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/projects/projectByNameExtended.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1503,6 +1524,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/projects/addProject.graphql":                                _lgraphqlProjectsAddprojectGraphql,
 	"_lgraphql/projects/minimalProjectByName.graphql":                      _lgraphqlProjectsMinimalprojectbynameGraphql,
 	"_lgraphql/projects/projectByName.graphql":                             _lgraphqlProjectsProjectbynameGraphql,
+	"_lgraphql/projects/projectByNameExtended.graphql":                     _lgraphqlProjectsProjectbynameextendedGraphql,
 	"_lgraphql/projects/projectByNameMetadata.graphql":                     _lgraphqlProjectsProjectbynamemetadataGraphql,
 	"_lgraphql/projects/projectsByMetadata.graphql":                        _lgraphqlProjectsProjectsbymetadataGraphql,
 	"_lgraphql/projects/removeProjectMetadataByKey.graphql":                _lgraphqlProjectsRemoveprojectmetadatabykeyGraphql,
@@ -1542,13 +1564,11 @@ var _bindata = map[string]func() (*asset, error){
 // directory embedded in the file by go-bindata.
 // For example if you run go-bindata on data/... and data contains the
 // following hierarchy:
-//
-//	data/
-//	  foo.txt
-//	  img/
-//	    a.png
-//	    b.png
-//
+//     data/
+//       foo.txt
+//       img/
+//         a.png
+//         b.png
 // then AssetDir("data") would return []string{"foo.txt", "img"}
 // AssetDir("data/img") would return []string{"a.png", "b.png"}
 // AssetDir("foo.txt") and AssetDir("notexist") would return an error
@@ -1631,6 +1651,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"addProject.graphql":                 &bintree{_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
 			"minimalProjectByName.graphql":       &bintree{_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},
 			"projectByName.graphql":              &bintree{_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
+			"projectByNameExtended.graphql":      &bintree{_lgraphqlProjectsProjectbynameextendedGraphql, map[string]*bintree{}},
 			"projectByNameMetadata.graphql":      &bintree{_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
 			"projectsByMetadata.graphql":         &bintree{_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
 			"removeProjectMetadataByKey.graphql": &bintree{_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},

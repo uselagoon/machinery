@@ -1,0 +1,36 @@
+query (
+  $name: String!) {
+  projectByName(
+    name: $name) {
+    id
+    name
+    gitUrl
+    subfolder
+    routerPattern
+    branches
+    pullrequests
+    problemsUi
+    factsUi
+    productionEnvironment
+    deploymentsDisabled
+    deployTargetConfigs{
+      id
+      deployTarget{
+        id
+        name
+        token
+      }
+    }
+    environments {
+      id
+      name
+      openshiftProjectName
+      environmentType
+      deployType
+      route
+    }
+    autoIdle
+    storageCalc
+    developmentEnvironmentsLimit
+  }
+}

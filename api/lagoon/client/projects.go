@@ -26,6 +26,26 @@ func (c *Client) ProjectByName(
 	})
 }
 
+// ProjectByNameExtended queries the Lagoon API for a project by its name, and
+// unmarshals the response into project. Built for use with the Lagoon CLI - get project command
+func (c *Client) ProjectByNameExtended(
+	ctx context.Context, name string, project *schema.Project) error {
+
+	req, err := c.newRequest("_lgraphql/projects/projectByNameExtended.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
+
 // MinimalProjectByName queries the Lagoon API for a project by its name, and
 // unmarshals the response into project.
 func (c *Client) MinimalProjectByName(
