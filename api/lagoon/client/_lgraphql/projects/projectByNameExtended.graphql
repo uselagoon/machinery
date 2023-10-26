@@ -5,7 +5,6 @@ query (
     id
     name
     gitUrl
-    subfolder
     routerPattern
     branches
     pullrequests
@@ -13,24 +12,12 @@ query (
     factsUi
     productionEnvironment
     deploymentsDisabled
-    deployTargetConfigs{
-      id
-      deployTarget{
-        id
-        name
-        token
-      }
-    }
     environments {
       id
       name
-      openshiftProjectName
       environmentType
-      deployType
-      route
     }
     autoIdle
-    storageCalc
     developmentEnvironmentsLimit
   }
 }
