@@ -1,0 +1,6 @@
+mutation (
+  $id: Int!,) {
+  deleteSshKeyById(input: {
+    id: $id
+  })
+}

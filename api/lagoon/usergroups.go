@@ -24,6 +24,8 @@ type UserGroups interface {
 	UserCanSSHToEnvironment(context.Context, string, *schema.Environment) error
 	UserBySSHKey(ctx context.Context, sshKey string, user *schema.User) error
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
+	GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error
+	RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSshKeyByIdInput) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -97,4 +99,14 @@ func UserBySSHKey(ctx context.Context, sshKey string, ug UserGroups) (*schema.Us
 func UserBySSHFingerprint(ctx context.Context, fingerprint string, ug UserGroups) (*schema.User, error) {
 	user := schema.User{}
 	return &user, ug.UserBySSHFingerprint(ctx, fingerprint, &user)
+}
+
+func GetUserSSHKeysByEmail(ctx context.Context, email string, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.GetUserSSHKeysByEmail(ctx, email, &user)
+}
+
+func RemoveSSHKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteSshKeyByIdInput, error) {
+	result := schema.DeleteSshKeyByIdInput{}
+	return &result, ug.RemoveSSHKey(ctx, id, &result)
 }

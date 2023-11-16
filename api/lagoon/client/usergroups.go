@@ -218,3 +218,33 @@ func (c *Client) UserBySSHFingerprint(
 
 	return c.client.Run(ctx, req, &user)
 }
+
+// GetUserSSHKeysByEmail queries the Lagoon API to find user by email and return their associated ssh keys
+func (c *Client) GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/userByEmailSSHKeys.graphql",
+		map[string]interface{}{
+			"email": email,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.User `json:"userByEmail"`
+	}{
+		Response: user,
+	})
+}
+
+// RemoveSSHKey removes an SSH key.
+func (c *Client) RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSshKeyByIdInput) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeSSHKeyById.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}

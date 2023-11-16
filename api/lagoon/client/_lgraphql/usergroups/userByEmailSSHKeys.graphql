@@ -1,0 +1,11 @@
+query ($email: String!) {
+  userByEmail(email: $email) {
+    email
+    sshKeys {
+      id
+      name
+      keyType
+      keyValue
+    }
+  }
+}
