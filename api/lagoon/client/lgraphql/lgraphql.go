@@ -31,7 +31,6 @@
 // _lgraphql/deploytargetconfigs/deleteDeployTargetConfig.graphql
 // _lgraphql/deploytargetconfigs/deployTargetConfigsByProjectId.graphql
 // _lgraphql/deploytargetconfigs/updateDeployTargetConfig.graphql
-// _lgraphql/projects/addExistingProjectToOrganization.graphql
 // _lgraphql/projects/addProject.graphql
 // _lgraphql/projects/minimalProjectByName.graphql
 // _lgraphql/projects/projectByName.graphql
@@ -773,26 +772,6 @@ func _lgraphqlDeploytargetconfigsUpdatedeploytargetconfigGraphql() (*asset, erro
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/deploytargetconfigs/updateDeployTargetConfig.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
-	a := &asset{bytes: bytes, info: info}
-	return a, nil
-}
-
-var __lgraphqlProjectsAddexistingprojecttoorganizationGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\xca\x2d\x2d\x49\x2c\xc9\xcc\xcf\x53\xd0\xe0\x52\x50\x50\x29\x28\xca\xcf\x4a\x4d\x2e\xb1\x52\xf0\xcc\x2b\x51\xd4\x01\x89\xe4\x17\xa5\x27\xe6\x65\x56\x81\xd5\x40\x85\x35\xab\xb9\x14\x14\x12\x53\x52\x02\x20\x8a\x43\xf2\xfd\x91\xd4\x68\x64\xe6\x15\x94\x96\x58\x29\x80\xd4\x28\x28\xc0\xcd\x83\x99\xac\x03\x16\x46\x35\x14\xc5\x0e\x90\x82\x5a\x4d\xa8\xf6\xcc\x14\x30\x95\x97\x98\x9b\x0a\x12\xe6\xaa\xe5\x02\x04\x00\x00\xff\xff\x86\x33\xbc\xab\xaf\x00\x00\x00")
-
-func _lgraphqlProjectsAddexistingprojecttoorganizationGraphqlBytes() ([]byte, error) {
-	return bindataRead(
-		__lgraphqlProjectsAddexistingprojecttoorganizationGraphql,
-		"_lgraphql/projects/addExistingProjectToOrganization.graphql",
-	)
-}
-
-func _lgraphqlProjectsAddexistingprojecttoorganizationGraphql() (*asset, error) {
-	bytes, err := _lgraphqlProjectsAddexistingprojecttoorganizationGraphqlBytes()
-	if err != nil {
-		return nil, err
-	}
-
-	info := bindataFileInfo{name: "_lgraphql/projects/addExistingProjectToOrganization.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1860,7 +1839,6 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/deploytargetconfigs/deleteDeployTargetConfig.graphql":       _lgraphqlDeploytargetconfigsDeletedeploytargetconfigGraphql,
 	"_lgraphql/deploytargetconfigs/deployTargetConfigsByProjectId.graphql": _lgraphqlDeploytargetconfigsDeploytargetconfigsbyprojectidGraphql,
 	"_lgraphql/deploytargetconfigs/updateDeployTargetConfig.graphql":       _lgraphqlDeploytargetconfigsUpdatedeploytargetconfigGraphql,
-	"_lgraphql/projects/addExistingProjectToOrganization.graphql":          _lgraphqlProjectsAddexistingprojecttoorganizationGraphql,
 	"_lgraphql/projects/addProject.graphql":                                _lgraphqlProjectsAddprojectGraphql,
 	"_lgraphql/projects/minimalProjectByName.graphql":                      _lgraphqlProjectsMinimalprojectbynameGraphql,
 	"_lgraphql/projects/projectByName.graphql":                             _lgraphqlProjectsProjectbynameGraphql,
@@ -2010,17 +1988,16 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"updateOrganization.graphql": &bintree{_lgraphqlOrganizationsUpdateorganizationGraphql, map[string]*bintree{}},
 		}},
 		"projects": &bintree{nil, map[string]*bintree{
-			"addExistingProjectToOrganization.graphql": &bintree{_lgraphqlProjectsAddexistingprojecttoorganizationGraphql, map[string]*bintree{}},
-			"addProject.graphql":                       &bintree{_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
-			"minimalProjectByName.graphql":             &bintree{_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},
-			"projectByName.graphql":                    &bintree{_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
-			"projectByNameMetadata.graphql":            &bintree{_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
-			"projectsByMetadata.graphql":               &bintree{_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
-			"projectsByOrganizationId.graphql":         &bintree{_lgraphqlProjectsProjectsbyorganizationidGraphql, map[string]*bintree{}},
-			"removeProjectFromOrganization.graphql":    &bintree{_lgraphqlProjectsRemoveprojectfromorganizationGraphql, map[string]*bintree{}},
-			"removeProjectMetadataByKey.graphql":       &bintree{_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},
-			"updateProject.graphql":                    &bintree{_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
-			"updateProjectMetadata.graphql":            &bintree{_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
+			"addProject.graphql":                    &bintree{_lgraphqlProjectsAddprojectGraphql, map[string]*bintree{}},
+			"minimalProjectByName.graphql":          &bintree{_lgraphqlProjectsMinimalprojectbynameGraphql, map[string]*bintree{}},
+			"projectByName.graphql":                 &bintree{_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
+			"projectByNameMetadata.graphql":         &bintree{_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
+			"projectsByMetadata.graphql":            &bintree{_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
+			"projectsByOrganizationId.graphql":      &bintree{_lgraphqlProjectsProjectsbyorganizationidGraphql, map[string]*bintree{}},
+			"removeProjectFromOrganization.graphql": &bintree{_lgraphqlProjectsRemoveprojectfromorganizationGraphql, map[string]*bintree{}},
+			"removeProjectMetadataByKey.graphql":    &bintree{_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},
+			"updateProject.graphql":                 &bintree{_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},
+			"updateProjectMetadata.graphql":         &bintree{_lgraphqlProjectsUpdateprojectmetadataGraphql, map[string]*bintree{}},
 		}},
 		"sshEndpointsByProject.graphql": &bintree{_lgraphqlSshendpointsbyprojectGraphql, map[string]*bintree{}},
 		"taskByID.graphql":              &bintree{_lgraphqlTaskbyidGraphql, map[string]*bintree{}},
