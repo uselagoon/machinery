@@ -3,7 +3,7 @@ package jwt
 import (
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 )
 
 // LagoonClaims is a set of JWT claims used by Lagoon.

@@ -1,0 +1,23 @@
+query (
+  $name: String!) {
+  projectByName(
+    name: $name) {
+    id
+    name
+    gitUrl
+    routerPattern
+    branches
+    pullrequests
+    problemsUi
+    factsUi
+    productionEnvironment
+    deploymentsDisabled
+    environments {
+      id
+      name
+      environmentType
+    }
+    autoIdle
+    developmentEnvironmentsLimit
+  }
+}

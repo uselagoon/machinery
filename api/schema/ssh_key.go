@@ -15,6 +15,7 @@ const (
 // SSHKey is the basic SSH key information, used by both config and API data.
 // @TODO: once Lagoon API returns proper TZ, fix up `Created` to time.Time.
 type SSHKey struct {
+	ID             uint       `json:"id"`
 	Name           string     `json:"name"`
 	KeyValue       string     `json:"keyValue"`
 	Created        string     `json:"created"`
@@ -26,4 +27,8 @@ type SSHKey struct {
 type AddSSHKeyInput struct {
 	SSHKey
 	UserEmail string `json:"userEmail"`
+}
+
+type DeleteSSHKeyByIDInput struct {
+	ID uint `json:"id"`
 }
