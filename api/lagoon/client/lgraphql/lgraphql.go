@@ -33,6 +33,7 @@
 // _lgraphql/projects/projectByName.graphql
 // _lgraphql/projects/projectByNameExtended.graphql
 // _lgraphql/projects/projectByNameMetadata.graphql
+// _lgraphql/projects/projectGroups.graphql
 // _lgraphql/projects/projectsByMetadata.graphql
 // _lgraphql/projects/removeProjectMetadataByKey.graphql
 // _lgraphql/projects/updateProject.graphql
@@ -800,6 +801,26 @@ func _lgraphqlProjectsProjectbynamemetadataGraphql() (*asset, error) {
 	}
 
 	info := bindataFileInfo{name: "_lgraphql/projects/projectByNameMetadata.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var __lgraphqlProjectsProjectgroupsGraphql = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x2a\x2c\x4d\x2d\xaa\x54\xd0\xe0\x52\x50\x50\xc9\x4b\xcc\x4d\xb5\x52\x08\x2e\x29\xca\xcc\x4b\x57\xd4\x54\xa8\xe6\x52\x50\x50\x50\x28\x28\xca\xcf\x4a\x4d\x2e\x71\xaa\xf4\x4b\xcc\x4d\xd5\x00\x0b\x29\x28\x40\x54\x82\x35\xc0\xd4\x81\x40\x66\x0a\x9c\x09\x92\x82\x73\xd2\x8b\xf2\x4b\x0b\x8a\x91\x14\xa2\x28\x45\x53\xac\xa0\x90\x5f\x94\x9e\x98\x97\x59\x95\x58\x92\x99\x9f\x07\x17\xae\xe5\x42\xd0\xb5\x5c\x80\x00\x00\x00\xff\xff\x07\xf1\x9a\x54\xb6\x00\x00\x00")
+
+func _lgraphqlProjectsProjectgroupsGraphqlBytes() ([]byte, error) {
+	return bindataRead(
+		__lgraphqlProjectsProjectgroupsGraphql,
+		"_lgraphql/projects/projectGroups.graphql",
+	)
+}
+
+func _lgraphqlProjectsProjectgroupsGraphql() (*asset, error) {
+	bytes, err := _lgraphqlProjectsProjectgroupsGraphqlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "_lgraphql/projects/projectGroups.graphql", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -1589,6 +1610,7 @@ var _bindata = map[string]func() (*asset, error){
 	"_lgraphql/projects/projectByName.graphql":                             _lgraphqlProjectsProjectbynameGraphql,
 	"_lgraphql/projects/projectByNameExtended.graphql":                     _lgraphqlProjectsProjectbynameextendedGraphql,
 	"_lgraphql/projects/projectByNameMetadata.graphql":                     _lgraphqlProjectsProjectbynamemetadataGraphql,
+	"_lgraphql/projects/projectGroups.graphql":                             _lgraphqlProjectsProjectgroupsGraphql,
 	"_lgraphql/projects/projectsByMetadata.graphql":                        _lgraphqlProjectsProjectsbymetadataGraphql,
 	"_lgraphql/projects/removeProjectMetadataByKey.graphql":                _lgraphqlProjectsRemoveprojectmetadatabykeyGraphql,
 	"_lgraphql/projects/updateProject.graphql":                             _lgraphqlProjectsUpdateprojectGraphql,
@@ -1719,6 +1741,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"projectByName.graphql":              &bintree{_lgraphqlProjectsProjectbynameGraphql, map[string]*bintree{}},
 			"projectByNameExtended.graphql":      &bintree{_lgraphqlProjectsProjectbynameextendedGraphql, map[string]*bintree{}},
 			"projectByNameMetadata.graphql":      &bintree{_lgraphqlProjectsProjectbynamemetadataGraphql, map[string]*bintree{}},
+			"projectGroups.graphql":              &bintree{_lgraphqlProjectsProjectgroupsGraphql, map[string]*bintree{}},
 			"projectsByMetadata.graphql":         &bintree{_lgraphqlProjectsProjectsbymetadataGraphql, map[string]*bintree{}},
 			"removeProjectMetadataByKey.graphql": &bintree{_lgraphqlProjectsRemoveprojectmetadatabykeyGraphql, map[string]*bintree{}},
 			"updateProject.graphql":              &bintree{_lgraphqlProjectsUpdateprojectGraphql, map[string]*bintree{}},

@@ -181,3 +181,22 @@ func (c *Client) UpdateProject(
 		Response: projects,
 	})
 }
+
+// ProjectGroups queries the Lagoon API for a project by its name, returning all groups within the project.
+func (c *Client) ProjectGroups(
+	ctx context.Context, name string, project *schema.Project) error {
+
+	req, err := c.newRequest("_lgraphql/projects/projectGroups.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
