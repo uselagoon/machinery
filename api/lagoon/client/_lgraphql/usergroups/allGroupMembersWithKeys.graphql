@@ -1,0 +1,21 @@
+query allGroups ($name: String) {
+  allGroups (name: $name) {
+    name
+    id
+    members{
+      user{
+        id
+        email
+        firstName
+        lastName
+        sshKeys{
+          id
+          name
+          keyType
+          keyValue
+        }
+      }
+      role
+    }
+  }
+}

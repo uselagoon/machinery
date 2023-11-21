@@ -29,6 +29,6 @@ type AddSSHKeyInput struct {
 	UserEmail string `json:"userEmail"`
 }
 
-type DeleteSshKeyByIdInput struct {
+type DeleteSSHKeyByIDInput struct {
 	ID uint `json:"id"`
 }
