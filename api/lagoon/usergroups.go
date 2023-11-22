@@ -24,6 +24,9 @@ type UserGroups interface {
 	UserCanSSHToEnvironment(context.Context, string, *schema.Environment) error
 	UserBySSHKey(ctx context.Context, sshKey string, user *schema.User) error
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
+	GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error
+	RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error
+	ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error
 	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
 	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
@@ -101,6 +104,22 @@ func UserBySSHKey(ctx context.Context, sshKey string, ug UserGroups) (*schema.Us
 func UserBySSHFingerprint(ctx context.Context, fingerprint string, ug UserGroups) (*schema.User, error) {
 	user := schema.User{}
 	return &user, ug.UserBySSHFingerprint(ctx, fingerprint, &user)
+}
+
+func GetUserSSHKeysByEmail(ctx context.Context, email string, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.GetUserSSHKeysByEmail(ctx, email, &user)
+}
+
+func RemoveSSHKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteSSHKeyByIDInput, error) {
+	result := schema.DeleteSSHKeyByIDInput{}
+	return &result, ug.RemoveSSHKey(ctx, id, &result)
+}
+
+// ListAllGroupMembersWithKeys gets info on the current groups of lagoon.
+func ListAllGroupMembersWithKeys(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
+	groups := []schema.Group{}
+	return &groups, ug.ListAllGroupMembersWithKeys(ctx, name, &groups)
 }
 
 // ListGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.

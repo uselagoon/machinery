@@ -18,6 +18,8 @@ type Projects interface {
 	NotificationsForProjectByName(ctx context.Context, name string, result *schema.Project) error
 	UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchInput, project *schema.Project) error
 	SSHEndpointsByProject(ctx context.Context, name string, project *schema.Project) error
+	ProjectGroups(ctx context.Context, name string, project *schema.Project) error
+	ProjectByNameExtended(ctx context.Context, name string, project *schema.Project) error
 	ProjectsByOrganizationID(ctx context.Context, name uint, project *[]schema.OrgProject) error
 	RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error
 }
@@ -68,6 +70,18 @@ func UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchI
 func GetSSHEndpointsByProject(ctx context.Context, name string, p Projects) (*schema.Project, error) {
 	project := schema.Project{}
 	return &project, p.SSHEndpointsByProject(ctx, name, &project)
+}
+
+// GetProjectGroups gets groups in a specified project.
+func GetProjectGroups(ctx context.Context, name string, p Projects) (*schema.Project, error) {
+	project := schema.Project{}
+	return &project, p.ProjectGroups(ctx, name, &project)
+}
+
+// GetProjectByName gets info of projects in lagoon that have matching metadata.
+func GetProjectByName(ctx context.Context, name string, p Projects) (*schema.Project, error) {
+	project := schema.Project{}
+	return &project, p.ProjectByNameExtended(ctx, name, &project)
 }
 
 // ListProjectsByOrganizationID gets projects associated with an organization in lagoon via provided ID.
