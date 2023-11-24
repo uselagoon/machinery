@@ -5,6 +5,7 @@
 package client
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -91,7 +92,6 @@ func (c *Client) doRequest(query string, varStruct interface{}) (*graphql.Reques
 	if err != nil {
 		return nil, fmt.Errorf("couldn't convert struct to map: %w", err)
 	}
-
 	req := graphql.NewRequest(query)
 	for key, value := range vars {
 		req.Var(key, value)
@@ -118,4 +118,18 @@ func structToVarMap(
 		return vars, err
 	}
 	return vars, json.Unmarshal(data, &vars)
+}
+
+// ProcessRaw runs a custom query/mutation and returns the response from the API.
+func (c *Client) ProcessRaw(ctx context.Context, query string, variables map[string]interface{}) (interface{}, error) {
+	req, err := c.doRequest(query, variables)
+	if err != nil {
+		return nil, err
+	}
+
+	var response interface{}
+	if runErr := c.client.Run(ctx, req, &response); runErr != nil {
+		return nil, runErr
+	}
+	return response, nil
 }
