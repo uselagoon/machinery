@@ -11,8 +11,7 @@ type DeployTargets interface {
 	UpdateDeployTarget(ctx context.Context, in *schema.UpdateDeployTargetInput, out *schema.UpdateDeployTargetResponse) error
 	DeleteDeployTarget(ctx context.Context, in *schema.DeleteDeployTargetInput, out *schema.DeleteDeployTargetResponse) error
 	ListDeployTargets(ctx context.Context, out *[]schema.DeployTarget) error
-	DeployTargetsByOrganizationId(ctx context.Context, id uint, out *[]schema.DeployTarget) error
-	DeployTargetsByOrganizationName(ctx context.Context, name string, out *[]schema.DeployTarget) error
+	DeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, out *[]schema.DeployTarget) error
 	AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out *schema.AddDeployTargetResponse) error
 	RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out *schema.DeleteDeployTargetResponse) error
 }
@@ -38,16 +37,10 @@ func ListDeployTargets(ctx context.Context, out DeployTargets) (*[]schema.Deploy
 	return &deploytargets, out.ListDeployTargets(ctx, &deploytargets)
 }
 
-// ListDeployTargetsByOrganizationId gets deploy targets associated with an organization in lagoon via provided ID.
-func ListDeployTargetsByOrganizationId(ctx context.Context, id uint, d DeployTargets) (*[]schema.DeployTarget, error) {
+// ListDeployTargetsByOrganizationNameOrID gets deploy targets associated with an organization in lagoon via provided Name & ID.
+func ListDeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, d DeployTargets) (*[]schema.DeployTarget, error) {
 	deploytargets := []schema.DeployTarget{}
-	return &deploytargets, d.DeployTargetsByOrganizationId(ctx, id, &deploytargets)
-}
-
-// ListDeployTargetsByOrganizationName gets deploy targets associated with an organization in lagoon via provided Name.
-func ListDeployTargetsByOrganizationName(ctx context.Context, name string, d DeployTargets) (*[]schema.DeployTarget, error) {
-	deploytargets := []schema.DeployTarget{}
-	return &deploytargets, d.DeployTargetsByOrganizationName(ctx, name, &deploytargets)
+	return &deploytargets, d.DeployTargetsByOrganizationNameOrID(ctx, name, id, &deploytargets)
 }
 
 // AddDeployTargetToOrganization adds a deploy target to an organization.

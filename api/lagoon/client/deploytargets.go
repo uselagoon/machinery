@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-
+	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -59,59 +59,44 @@ func (c *Client) DeleteDeployTarget(ctx context.Context, in *schema.DeleteDeploy
 	return c.client.Run(ctx, req, &out)
 }
 
-// DeployTargetsByOrganizationId queries the Lagoon API for deploy targets by the given organization id
+// DeployTargetsByOrganizationNameOrID queries the Lagoon API for deploy targets by the given organization name
 // and unmarshals the response into organization.
-func (c *Client) DeployTargetsByOrganizationId(ctx context.Context, id uint, out *[]schema.DeployTarget) error {
-
-	req, err := c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
-		map[string]interface{}{
-			"id": id,
-		})
-	if err != nil {
-		return err
-	}
-
+// Need to rework the argument types here
+func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, out *[]schema.DeployTarget) error {
+	var req *graphql.Request
+	var err error
 	o := &schema.Organization{}
-	err = c.client.Run(ctx, req, &struct {
-		Response *schema.Organization `json:"organizationById"`
-	}{
-		Response: o,
-	})
-	if err != nil {
-		return err
-	}
-	if len(o.DeployTargets) == 0 {
-		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
-	}
-	data, err := json.Marshal(o.DeployTargets)
-	if err != nil {
-		return err
-	}
-	json.Unmarshal(data, out)
-	return nil
-}
 
-// DeployTargetsByOrganizationName queries the Lagoon API for deploy targets by the given organization name
-// and unmarshals the response into organization.
-func (c *Client) DeployTargetsByOrganizationName(ctx context.Context, name string, out *[]schema.DeployTarget) error {
-
-	req, err := c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationName.graphql",
-		map[string]interface{}{
-			"name": name,
+	if *name != "" {
+		req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationName.graphql",
+			map[string]interface{}{
+				"name": name,
+			})
+		err = c.client.Run(ctx, req, &struct {
+			Response *schema.Organization `json:"organizationByName"`
+		}{
+			Response: o,
 		})
-	if err != nil {
-		return err
+		if err != nil {
+			return err
+		}
+	} else {
+		if *id > 0 {
+			req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
+				map[string]interface{}{
+					"id": id,
+				})
+			err = c.client.Run(ctx, req, &struct {
+				Response *schema.Organization `json:"organizationByID"`
+			}{
+				Response: o,
+			})
+			if err != nil {
+				return err
+			}
+		}
 	}
 
-	o := &schema.Organization{}
-	err = c.client.Run(ctx, req, &struct {
-		Response *schema.Organization `json:"organizationByName"`
-	}{
-		Response: o,
-	})
-	if err != nil {
-		return err
-	}
 	if len(o.DeployTargets) == 0 {
 		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
 	}
