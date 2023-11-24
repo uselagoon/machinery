@@ -1,21 +1,17 @@
 query (
   $name: String!) {
-    organizationByName(
-      name: $name) {
+    organizationByName(name: $name) {
       deployTargets {
         id
         name
         created
-        consoleUrl
         cloudRegion
         cloudProvider
         friendlyName
-        token
         sshHost
         sshPort
         routerPattern
         buildImage
-        monitoringConfig
       }
     }
 }

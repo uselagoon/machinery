@@ -5,9 +5,11 @@ query (
       id
       name
       description
-      quotaProject
       friendlyName
+      quotaProject
       quotaGroup
       quotaNotification
+      quotaEnvironment
+      quotaRoute
     }
 }
