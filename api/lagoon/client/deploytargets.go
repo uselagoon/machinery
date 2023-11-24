@@ -67,7 +67,7 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 	var err error
 	o := &schema.Organization{}
 
-	if *name != "" {
+	if name != nil {
 		req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationName.graphql",
 			map[string]interface{}{
 				"name": name,
@@ -81,7 +81,7 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 			return err
 		}
 	} else {
-		if *id > 0 {
+		if id != nil {
 			req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
 				map[string]interface{}{
 					"id": id,
