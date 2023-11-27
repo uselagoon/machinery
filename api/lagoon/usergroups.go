@@ -27,6 +27,10 @@ type UserGroups interface {
 	GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error
 	RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error
 	ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error
+	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
+	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
+	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
+	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -116,4 +120,28 @@ func RemoveSSHKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteSS
 func ListAllGroupMembersWithKeys(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
 	groups := []schema.Group{}
 	return &groups, ug.ListAllGroupMembersWithKeys(ctx, name, &groups)
+}
+
+// ListGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.
+func ListGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgGroup, error) {
+	group := []schema.OrgGroup{}
+	return &group, ug.GroupsByOrganizationID(ctx, id, &group)
+}
+
+// AddGroupToOrganization adds a group to an organization.
+func AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, ug UserGroups) (*schema.OrgGroup, error) {
+	group := schema.OrgGroup{}
+	return &group, ug.AddGroupToOrganization(ctx, in, &group)
+}
+
+// UsersByOrganization lists users associated within an organization in lagoon via provided ID.
+func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganization(ctx, id, &user)
+}
+
+// UsersByOrganizationName lists users associated within an organization in lagoon via provided Name.
+func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganizationName(ctx, name, &user)
 }

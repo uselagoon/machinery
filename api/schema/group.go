@@ -26,7 +26,9 @@ type AddGroupInput struct {
 type Group struct {
 	AddGroupInput
 	ID           *uuid.UUID `json:"id,omitempty"`
+	Type         string     `json:"type,omitempty"`
 	Organization int        `json:"organization,omitempty"`
+	MemberCount  int        `json:"memberCount,omitempty"`
 	Members      []struct {
 		User User      `json:"user"`
 		Role GroupRole `json:"role"`

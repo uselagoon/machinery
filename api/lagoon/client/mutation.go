@@ -9,7 +9,7 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
-var duplicate = regexp.MustCompile("^graphql: Duplicate entry ")
+var duplicate = regexp.MustCompile("(?s).*graphql.*Duplicate entry.* ")
 
 // wrapErr wraps a response error with a lagoon.ErrExist type if the response
 // is due to an object already existing

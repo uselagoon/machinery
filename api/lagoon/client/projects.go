@@ -2,6 +2,8 @@ package client
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -198,5 +200,50 @@ func (c *Client) ProjectGroups(
 		Response *schema.Project `json:"projectByName"`
 	}{
 		Response: project,
+	})
+}
+
+// ProjectsByOrganizationID queries the Lagoon API for projects by the given organization id
+// and unmarshals the response into organization.
+func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects *[]schema.OrgProject) error {
+
+	req, err := c.newRequest("_lgraphql/projects/projectsByOrganizationId.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationById"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	if len(o.Projects) == 0 {
+		return fmt.Errorf("no associated projects found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.Projects)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, projects)
+	return nil
+}
+
+// RemoveProjectFromOrganization removes a project from an organization.
+func (c *Client) RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error {
+	req, err := c.newRequest("_lgraphql/projects/removeProjectFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"removeProjectFromOrganization"`
+	}{
+		Response: out,
 	})
 }

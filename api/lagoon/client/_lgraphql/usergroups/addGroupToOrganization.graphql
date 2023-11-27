@@ -1,0 +1,11 @@
+mutation (
+  $name: String!,
+  $organization: Int!,){
+  addGroupToOrganization(input: {
+    name: $name,
+    organization: $organization,
+  }) {
+    id
+    name
+  }
+}

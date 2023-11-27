@@ -129,3 +129,9 @@ type UpdateProjectPatchInput struct {
 	// `null` is valid graphql, use a pointer to allow `nil` to be empty
 	BuildImage *null.String `json:"buildImage,omitempty"`
 }
+
+// RemoveProjectFromOrganizationInput is based on the Lagoon API type.
+type RemoveProjectFromOrganizationInput struct {
+	Project      uint `json:"project"`
+	Organization uint `json:"organization"`
+}

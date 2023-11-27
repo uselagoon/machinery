@@ -2,7 +2,9 @@ package client
 
 import (
 	"context"
-
+	"encoding/json"
+	"fmt"
+	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -55,4 +57,79 @@ func (c *Client) DeleteDeployTarget(ctx context.Context, in *schema.DeleteDeploy
 	}
 
 	return c.client.Run(ctx, req, &out)
+}
+
+// DeployTargetsByOrganizationNameOrID queries the Lagoon API for deploy targets by the given organization name
+// and unmarshals the response into organization.
+// Need to rework the argument types here
+func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, out *[]schema.DeployTarget) error {
+	var req *graphql.Request
+	var err error
+	o := &schema.Organization{}
+
+	if name != nil {
+		req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationName.graphql",
+			map[string]interface{}{
+				"name": name,
+			})
+		err = c.client.Run(ctx, req, &struct {
+			Response *schema.Organization `json:"organizationByName"`
+		}{
+			Response: o,
+		})
+		if err != nil {
+			return err
+		}
+	} else {
+		if id != nil {
+			req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
+				map[string]interface{}{
+					"id": id,
+				})
+			err = c.client.Run(ctx, req, &struct {
+				Response *schema.Organization `json:"organizationByID"`
+			}{
+				Response: o,
+			})
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	if len(o.DeployTargets) == 0 {
+		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.DeployTargets)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, out)
+	return nil
+}
+
+// AddDeployTargetToOrganization adds an existing deploytarget to an organization.
+func (c *Client) AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out *schema.AddDeployTargetResponse) error {
+	req, err := c.newRequest("_lgraphql/deploytargets/addDeployTargetToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.AddDeployTargetResponse `json:"addDeployTargetToOrganization"`
+	}{
+		Response: out,
+	})
+}
+
+// RemoveDeployTargetFromOrganization removes a deploytarget from an organization.
+func (c *Client) RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out *schema.DeleteDeployTargetResponse) error {
+	req, err := c.newRequest("_lgraphql/deploytargets/removeDeployTargetFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.DeleteDeployTargetResponse `json:"removeDeployTargetFromOrganization"`
+	}{
+		Response: out,
+	})
 }

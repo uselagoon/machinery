@@ -1,0 +1,11 @@
+mutation (
+  $deployTarget: Int!,
+  $organization: Int!,){
+  removeDeployTargetFromOrganization(input: {
+    deployTarget: $deployTarget,
+    organization: $organization,
+  }) {
+    id
+    name
+  }
+}

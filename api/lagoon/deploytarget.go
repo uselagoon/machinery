@@ -11,6 +11,9 @@ type DeployTargets interface {
 	UpdateDeployTarget(ctx context.Context, in *schema.UpdateDeployTargetInput, out *schema.UpdateDeployTargetResponse) error
 	DeleteDeployTarget(ctx context.Context, in *schema.DeleteDeployTargetInput, out *schema.DeleteDeployTargetResponse) error
 	ListDeployTargets(ctx context.Context, out *[]schema.DeployTarget) error
+	DeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, out *[]schema.DeployTarget) error
+	AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out *schema.AddDeployTargetResponse) error
+	RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out *schema.DeleteDeployTargetResponse) error
 }
 
 func AddDeployTarget(ctx context.Context, in *schema.AddDeployTargetInput, out DeployTargets) (*schema.AddDeployTargetResponse, error) {
@@ -32,4 +35,22 @@ func DeleteDeployTarget(ctx context.Context, in *schema.DeleteDeployTargetInput,
 func ListDeployTargets(ctx context.Context, out DeployTargets) (*[]schema.DeployTarget, error) {
 	deploytargets := []schema.DeployTarget{}
 	return &deploytargets, out.ListDeployTargets(ctx, &deploytargets)
+}
+
+// ListDeployTargetsByOrganizationNameOrID gets deploy targets associated with an organization in lagoon via provided Name & ID.
+func ListDeployTargetsByOrganizationNameOrID(ctx context.Context, name *string, id *uint, d DeployTargets) (*[]schema.DeployTarget, error) {
+	deploytargets := []schema.DeployTarget{}
+	return &deploytargets, d.DeployTargetsByOrganizationNameOrID(ctx, name, id, &deploytargets)
+}
+
+// AddDeployTargetToOrganization adds a deploy target to an organization.
+func AddDeployTargetToOrganization(ctx context.Context, in *schema.AddDeployTargetToOrganizationInput, out DeployTargets) (*schema.AddDeployTargetResponse, error) {
+	response := schema.AddDeployTargetResponse{}
+	return &response, out.AddDeployTargetToOrganization(ctx, in, &response)
+}
+
+// RemoveDeployTargetFromOrganization removes a deploy target from an organization.
+func RemoveDeployTargetFromOrganization(ctx context.Context, in *schema.RemoveDeployTargetFromOrganizationInput, out DeployTargets) (*schema.DeleteDeployTargetResponse, error) {
+	response := schema.DeleteDeployTargetResponse{}
+	return &response, out.RemoveDeployTargetFromOrganization(ctx, in, &response)
 }

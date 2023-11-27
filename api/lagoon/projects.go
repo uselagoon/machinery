@@ -20,6 +20,8 @@ type Projects interface {
 	SSHEndpointsByProject(ctx context.Context, name string, project *schema.Project) error
 	ProjectGroups(ctx context.Context, name string, project *schema.Project) error
 	ProjectByNameExtended(ctx context.Context, name string, project *schema.Project) error
+	ProjectsByOrganizationID(ctx context.Context, name uint, project *[]schema.OrgProject) error
+	RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error
 }
 
 // GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
@@ -80,4 +82,16 @@ func GetProjectGroups(ctx context.Context, name string, p Projects) (*schema.Pro
 func GetProjectByName(ctx context.Context, name string, p Projects) (*schema.Project, error) {
 	project := schema.Project{}
 	return &project, p.ProjectByNameExtended(ctx, name, &project)
+}
+
+// ListProjectsByOrganizationID gets projects associated with an organization in lagoon via provided ID.
+func ListProjectsByOrganizationID(ctx context.Context, id uint, p Projects) (*[]schema.OrgProject, error) {
+	project := []schema.OrgProject{}
+	return &project, p.ProjectsByOrganizationID(ctx, id, &project)
+}
+
+// RemoveProjectFromOrganization removes a project from an organization.
+func RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out Projects) (*schema.Project, error) {
+	response := schema.Project{}
+	return &response, out.RemoveProjectFromOrganization(ctx, in, &response)
 }

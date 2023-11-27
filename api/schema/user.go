@@ -19,6 +19,11 @@ type User struct {
 	GroupRoles []GroupRoles `json:"groupRoles,omitempy"`
 }
 
+type UserInput struct {
+	ID    string `json:"id,omitempty"`
+	Email string `json:"email,omitempty"`
+}
+
 type GroupRoles struct {
 	Name string `json:"name,omitempty"`
 	Role string `json:"role,omitempty"`
@@ -28,4 +33,10 @@ type AllUsersFilter struct {
 	ID       uint   `json:"id,omitempty"`
 	GitlabID uint   `json:"gitlabId,omitempty"`
 	Email    string `json:"email,omitempty"`
+}
+
+type AddUserToOrganizationInput struct {
+	User         UserInput `json:"user"`
+	Organization uint      `json:"organization"`
+	Owner        bool      `json:"owner,omitempty"`
 }

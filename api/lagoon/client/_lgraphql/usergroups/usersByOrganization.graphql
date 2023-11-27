@@ -1,0 +1,12 @@
+query (
+  $id: Int!) {
+  usersByOrganization(
+    organization: $id) {
+    id
+    email
+    firstName
+    lastName
+    owner
+    comment
+  }
+}
