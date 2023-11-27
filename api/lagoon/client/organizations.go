@@ -88,3 +88,17 @@ func (c *Client) UpdateOrganization(
 		Response: organization,
 	})
 }
+
+// AllOrganizations queries the Lagoon API for all organizations.
+func (c *Client) AllOrganizations(ctx context.Context, organizations *[]schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/organizations/allOrganizations.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Organization `json:"allOrganizations"`
+	}{
+		Response: organizations,
+	})
+}
