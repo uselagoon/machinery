@@ -1,5 +1,5 @@
-query allGroups ($name: String) {
-    allGroupMembers: allGroups (name: $name) {
+query groupByName ($name: String!) {
+    groupByName (name: $name) {
         id
         name
         members{

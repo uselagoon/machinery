@@ -8,6 +8,7 @@ query allGroups ($name: String) {
         email
         firstName
         lastName
+        gitlabId
         sshKeys{
           id
           name

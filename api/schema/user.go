@@ -30,7 +30,7 @@ type GroupRoles struct {
 }
 
 type AllUsersFilter struct {
-	ID       uint   `json:"id,omitempty"`
+	ID       string `json:"id,omitempty"`
 	GitlabID uint   `json:"gitlabId,omitempty"`
 	Email    string `json:"email,omitempty"`
 }

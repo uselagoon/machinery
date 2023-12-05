@@ -10,7 +10,8 @@ import (
 
 // UserGroups interface contains methods for getting info on groups of lagoon.
 type UserGroups interface {
-	ListAllGroupMembers(ctx context.Context, groups *[]schema.Group) error
+	ListAllGroupMembers(ctx context.Context, name string, groups *[]schema.Group) error
+	ListGroupMembers(ctx context.Context, name string, groups *schema.Group) error
 	AddGroup(ctx context.Context, in *schema.AddGroupInput, group *schema.Group) error
 	AddUser(ctx context.Context, in *schema.AddUserInput, user *schema.User) error
 	AddUserToGroup(ctx context.Context, in *schema.UserGroupRoleInput, group *schema.Group) error
@@ -40,9 +41,15 @@ func Me(ctx context.Context, ug UserGroups) (*schema.User, error) {
 }
 
 // ListAllGroupMembers gets info on the current groups of lagoon.
-func ListAllGroupMembers(ctx context.Context, ug UserGroups) (*[]schema.Group, error) {
+func ListAllGroupMembers(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
 	groups := []schema.Group{}
-	return &groups, ug.ListAllGroupMembers(ctx, &groups)
+	return &groups, ug.ListAllGroupMembers(ctx, name, &groups)
+}
+
+// ListGroupMembers gets info on the current groups of lagoon.
+func ListGroupMembers(ctx context.Context, name string, ug UserGroups) (*schema.Group, error) {
+	groups := schema.Group{}
+	return &groups, ug.ListGroupMembers(ctx, name, &groups)
 }
 
 func AddGroup(ctx context.Context, in *schema.AddGroupInput, ug UserGroups) (*schema.Group, error) {

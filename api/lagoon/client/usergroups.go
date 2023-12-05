@@ -127,15 +127,36 @@ func (c *Client) RemoveUserFromGroup(
 // ListAllGroupMembers queries the Lagoon API for all groups and members, and
 // unmarshals the response into project.
 func (c *Client) ListAllGroupMembers(
-	ctx context.Context, groups *[]schema.Group) error {
-
-	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembers.graphql", nil)
+	ctx context.Context, name string, groups *[]schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembers.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
 	if err != nil {
 		return err
 	}
 
 	return c.client.Run(ctx, req, &struct {
 		Response *[]schema.Group `json:"allGroupMembers"`
+	}{
+		Response: groups,
+	})
+}
+
+// ListAllGroupMembers queries the Lagoon API for all groups and members, and
+// unmarshals the response into project.
+func (c *Client) ListGroupMembers(
+	ctx context.Context, name string, groups *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/getGroupMembers.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"groupByName"`
 	}{
 		Response: groups,
 	})
