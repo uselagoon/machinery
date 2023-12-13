@@ -7,9 +7,10 @@ import (
 
 // AddNotificationRocketChatInput is based on the Lagoon API type.
 type AddNotificationRocketChatInput struct {
-	Name    string `json:"name,omitempty"`
-	Webhook string `json:"webhook,omitempty"`
-	Channel string `json:"channel,omitempty"`
+	Name         string `json:"name"`
+	Webhook      string `json:"webhook"`
+	Channel      string `json:"channel"`
+	Organization *uint  `json:"organization,omitempty"`
 }
 
 // UpdateNotificationRocketChatPatchInput is based on the Lagoon API type.
@@ -26,9 +27,10 @@ type NotificationRocketChat struct {
 
 // AddNotificationSlackInput is based on the Lagoon API type.
 type AddNotificationSlackInput struct {
-	Name    string `json:"name,omitempty"`
-	Webhook string `json:"webhook,omitempty"`
-	Channel string `json:"channel,omitempty"`
+	Name         string `json:"name"`
+	Webhook      string `json:"webhook"`
+	Channel      string `json:"channel"`
+	Organization *uint  `json:"organization,omitempty"`
 }
 
 // UpdateNotificationSlackPatchInput is based on the Lagoon API type.
@@ -45,8 +47,9 @@ type NotificationSlack struct {
 
 // AddNotificationEmailInput is based on the Lagoon API type.
 type AddNotificationEmailInput struct {
-	Name         string `json:"name,omitempty"`
-	EmailAddress string `json:"emailAddress,omitempty"`
+	Name         string `json:"name"`
+	EmailAddress string `json:"emailAddress"`
+	Organization *uint  `json:"organization,omitempty"`
 }
 
 // UpdateNotificationEmailPatchInput is based on the Lagoon API type.
@@ -63,8 +66,9 @@ type NotificationEmail struct {
 
 // AddNotificationMicrosoftTeamsInput is based on the Lagoon API type.
 type AddNotificationMicrosoftTeamsInput struct {
-	Name    string `json:"name,omitempty"`
-	Webhook string `json:"webhook,omitempty"`
+	Name         string `json:"name"`
+	Webhook      string `json:"webhook"`
+	Organization *uint  `json:"organization,omitempty"`
 }
 
 // UpdateNotificationMicrosoftTeamsPatchInput is based on the Lagoon API type.
@@ -81,8 +85,9 @@ type NotificationMicrosoftTeams struct {
 
 // AddNotificationWebhookInput is based on the Lagoon API type.
 type AddNotificationWebhookInput struct {
-	Name    string `json:"name,omitempty"`
-	Webhook string `json:"webhook,omitempty"`
+	Name         string `json:"name"`
+	Webhook      string `json:"webhook"`
+	Organization *uint  `json:"organization,omitempty"`
 }
 
 // UpdateNotificationWebhookPatchInput is based on the Lagoon API type.
