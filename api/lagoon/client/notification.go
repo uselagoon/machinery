@@ -2,15 +2,34 @@ package client
 
 import (
 	"context"
+	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
 
 // AddNotificationSlack defines a Slack notification.
 func (c *Client) AddNotificationSlack(ctx context.Context, in *schema.AddNotificationSlackInput, out *schema.NotificationSlack) error {
-	req, err := c.newRequest("_lgraphql/notifications/addNotificationSlack.graphql", in)
-	if err != nil {
-		return err
+	var req *graphql.Request
+	var err error
+	if *in.Organization == 0 {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationSlack.graphql",
+			map[string]interface{}{
+				"name":    in.Name,
+				"webhook": in.Webhook,
+				"channel": in.Channel,
+			})
+	} else {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationSlack.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"webhook":      in.Webhook,
+				"channel":      in.Channel,
+				"organization": in.Organization,
+			})
+		if err != nil {
+			return err
+		}
 	}
+
 	return wrapErr(c.client.Run(ctx, req, &struct {
 		Response *schema.NotificationSlack `json:"addNotificationSlack"`
 	}{
@@ -20,10 +39,28 @@ func (c *Client) AddNotificationSlack(ctx context.Context, in *schema.AddNotific
 
 // AddNotificationRocketChat defines a RocketChat notification.
 func (c *Client) AddNotificationRocketChat(ctx context.Context, in *schema.AddNotificationRocketChatInput, out *schema.NotificationRocketChat) error {
-	req, err := c.newRequest("_lgraphql/notifications/addNotificationRocketChat.graphql", in)
-	if err != nil {
-		return err
+	var req *graphql.Request
+	var err error
+	if *in.Organization == 0 {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationRocketChat.graphql",
+			map[string]interface{}{
+				"name":    in.Name,
+				"webhook": in.Webhook,
+				"channel": in.Channel,
+			})
+	} else {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationRocketChat.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"webhook":      in.Webhook,
+				"channel":      in.Channel,
+				"organization": in.Organization,
+			})
+		if err != nil {
+			return err
+		}
 	}
+
 	return wrapErr(c.client.Run(ctx, req, &struct {
 		Response *schema.NotificationRocketChat `json:"addNotificationRocketChat"`
 	}{
@@ -33,9 +70,24 @@ func (c *Client) AddNotificationRocketChat(ctx context.Context, in *schema.AddNo
 
 // AddNotificationEmail defines an Email notification.
 func (c *Client) AddNotificationEmail(ctx context.Context, in *schema.AddNotificationEmailInput, out *schema.NotificationEmail) error {
-	req, err := c.newRequest("_lgraphql/notifications/addNotificationEmail.graphql", in)
-	if err != nil {
-		return err
+	var req *graphql.Request
+	var err error
+	if *in.Organization == 0 {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationEmail.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"emailAddress": in.EmailAddress,
+			})
+	} else {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationEmail.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"emailAddress": in.EmailAddress,
+				"organization": in.Organization,
+			})
+		if err != nil {
+			return err
+		}
 	}
 
 	return wrapErr(c.client.Run(ctx, req, &struct {
@@ -47,9 +99,24 @@ func (c *Client) AddNotificationEmail(ctx context.Context, in *schema.AddNotific
 
 // AddNotificationMicrosoftTeams defines a MicrosoftTeams notification.
 func (c *Client) AddNotificationMicrosoftTeams(ctx context.Context, in *schema.AddNotificationMicrosoftTeamsInput, out *schema.NotificationMicrosoftTeams) error {
-	req, err := c.newRequest("_lgraphql/notifications/addNotificationMicrosoftTeams.graphql", in)
-	if err != nil {
-		return err
+	var req *graphql.Request
+	var err error
+	if *in.Organization == 0 {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationMicrosoftTeams.graphql",
+			map[string]interface{}{
+				"name":    in.Name,
+				"webhook": in.Webhook,
+			})
+	} else {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationMicrosoftTeams.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"webhook":      in.Webhook,
+				"organization": in.Organization,
+			})
+		if err != nil {
+			return err
+		}
 	}
 
 	return wrapErr(c.client.Run(ctx, req, &struct {
@@ -61,9 +128,24 @@ func (c *Client) AddNotificationMicrosoftTeams(ctx context.Context, in *schema.A
 
 // AddNotificationWebhook defines a Webhook notification.
 func (c *Client) AddNotificationWebhook(ctx context.Context, in *schema.AddNotificationWebhookInput, out *schema.NotificationWebhook) error {
-	req, err := c.newRequest("_lgraphql/notifications/addNotificationWebhook.graphql", in)
-	if err != nil {
-		return err
+	var req *graphql.Request
+	var err error
+	if *in.Organization == 0 {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationWebhook.graphql",
+			map[string]interface{}{
+				"name":    in.Name,
+				"webhook": in.Webhook,
+			})
+	} else {
+		req, err = c.newRequest("_lgraphql/notifications/addNotificationWebhook.graphql",
+			map[string]interface{}{
+				"name":         in.Name,
+				"webhook":      in.Webhook,
+				"organization": in.Organization,
+			})
+		if err != nil {
+			return err
+		}
 	}
 
 	return wrapErr(c.client.Run(ctx, req, &struct {
