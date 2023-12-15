@@ -1,12 +1,15 @@
 mutation (
   $name: String!,
-  $emailAddress: String!) {
+  $emailAddress: String!
+  $organization: Int) {
     addNotificationEmail(input: {
       name: $name,
-      emailAddress: $emailAddress
+      emailAddress: $emailAddress,
+      organization: $organization
     }) {
       id
       name
       emailAddress
+      organization
     }
   }

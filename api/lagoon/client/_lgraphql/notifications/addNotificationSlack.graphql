@@ -1,15 +1,18 @@
 mutation (
   $name: String!,
   $channel: String!,
-  $webhook: String!) {
+  $webhook: String!,
+  $organization: Int) {
     addNotificationSlack(input: {
       name: $name,
       channel: $channel,
-      webhook: $webhook
+      webhook: $webhook,
+      organization: $organization
     }) {
       id
       name
       channel
       webhook
+      organization
     }
   }
