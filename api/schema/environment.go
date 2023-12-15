@@ -69,6 +69,7 @@ type Environment struct {
 	Updated string `json:"updated,omitempty"`
 	Created string `json:"created,omitempty"`
 	Deleted string `json:"deleted,omitempty"`
+	Idled   bool   `json:"idled,omitempty"`
 }
 
 // EnvironmentConfig contains Environment configuration.
@@ -117,6 +118,7 @@ type UpdateEnvironmentPatchInput struct {
 	AutoIdle             *uint       `json:"autoIdle,omitempty"`
 	Openshift            *uint       `json:"openshift,omitempty"`
 	Created              *string     `json:"created,omitempty"`
+	Idled                *bool       `json:"idled,omitempty"`
 }
 
 // EnvironmentService  is based on the Lagoon API type.
