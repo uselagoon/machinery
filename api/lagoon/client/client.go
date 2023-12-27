@@ -1,10 +1,9 @@
-//go:generate go-bindata -pkg lgraphql -o lgraphql/lgraphql.go -nometadata _lgraphql/ _lgraphql/deployments/ _lgraphql/deploytargets/ _lgraphql/deploytargetconfigs/ _lgraphql/projects/ _lgraphql/environments/ _lgraphql/tasks/ _lgraphql/usergroups/ _lgraphql/organizations/ _lgraphql/notifications/
-
 // Package client implements the interfaces required by the parent lagoon
 // package.
 package client
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -13,8 +12,10 @@ import (
 	"strings"
 
 	"github.com/machinebox/graphql"
-	"github.com/uselagoon/machinery/api/lagoon/client/lgraphql"
 )
+
+//go:embed _lgraphql/*
+var lgraphql embed.FS
 
 // Client implements the lagoon package interfaces for the Lagoon GraphQL API.
 type Client struct {
@@ -55,7 +56,7 @@ func New(endpoint, userAgent string, token *string, debug bool) *Client {
 func (c *Client) newRequest(
 	assetName string, varStruct interface{}) (*graphql.Request, error) {
 
-	q, err := lgraphql.Asset(assetName)
+	q, err := lgraphql.ReadFile(assetName)
 	if err != nil {
 		return nil, fmt.Errorf("couldn't get asset: %w", err)
 	}
@@ -66,7 +67,7 @@ func (c *Client) newRequest(
 func (c *Client) newTemplateRequest(
 	assetName string, varStruct interface{}, tFuncs template.FuncMap, data map[string]interface{}) (*graphql.Request, error) {
 
-	q, err := lgraphql.Asset(assetName)
+	q, err := lgraphql.ReadFile(assetName)
 	if err != nil {
 		return nil, fmt.Errorf("couldn't get asset: %w", err)
 	}
