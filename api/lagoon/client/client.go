@@ -4,6 +4,7 @@ package client
 
 import (
 	"embed"
+	"context"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -119,4 +120,18 @@ func structToVarMap(
 		return vars, err
 	}
 	return vars, json.Unmarshal(data, &vars)
+}
+
+// ProcessRaw runs a custom query/mutation and returns the response from the API.
+func (c *Client) ProcessRaw(ctx context.Context, query string, variables map[string]interface{}) (interface{}, error) {
+	req, err := c.doRequest(query, variables)
+	if err != nil {
+		return nil, err
+	}
+
+	var response interface{}
+	if runErr := c.client.Run(ctx, req, &response); runErr != nil {
+		return nil, runErr
+	}
+	return response, nil
 }
