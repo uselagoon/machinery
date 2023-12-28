@@ -1,0 +1,15 @@
+query (
+  $name: String!) {
+    organizationByName(
+      name: $name) {
+      id
+      name
+      description
+      friendlyName
+      quotaProject
+      quotaGroup
+      quotaNotification
+      quotaEnvironment
+      quotaRoute
+    }
+}

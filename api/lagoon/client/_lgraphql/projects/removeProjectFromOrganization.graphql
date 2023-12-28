@@ -1,0 +1,11 @@
+mutation (
+  $project: Int!,
+  $organization: Int!,){
+  removeProjectFromOrganization(input: {
+    project: $project,
+    organization: $organization,
+  }) {
+    id
+    name
+  }
+}

@@ -1,5 +1,6 @@
 mutation (
   $name: String!,
+  $organization: Int,
   $gitUrl: String!,
   $subfolder: String,
   $openshift: Int!,
@@ -10,9 +11,11 @@ mutation (
   $autoIdle: Int,
   $storageCalc: Int,
   $developmentEnvironmentsLimit: Int,
+  $addOrgOwner: Boolean,
   $privateKey: String) {
     addProject(input: {
       name: $name,
+      organization: $organization,
       gitUrl: $gitUrl,
       subfolder: $subfolder,
       openshift: $openshift,
@@ -23,6 +26,7 @@ mutation (
       autoIdle: $autoIdle,
       storageCalc: $storageCalc,
       developmentEnvironmentsLimit: $developmentEnvironmentsLimit,
+      addOrgOwner: $addOrgOwner,
       privateKey: $privateKey
     }) {
       id

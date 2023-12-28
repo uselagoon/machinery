@@ -32,6 +32,14 @@ type AddProjectInput struct {
 	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
 	BuildImage                   string `json:"buildImage,omitempty"`
+	Organization                 uint   `json:"organization,omitempty"`
+	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`
+	RouterPattern                string `json:"routerPattern,omitempty"`
+	ProblemsUI                   uint   `json:"problemsUi,omitempty"`
+	FactsUI                      uint   `json:"factsUi,omitempty"`
+	ProductionBuildPriority      uint   `json:"productionBuildPriority,omitempty"`
+	DevelopmentBuildPriority     uint   `json:"developmentBuildPriority,omitempty"`
+	DeploymentsDisabled          uint   `json:"deploymentsDisabled,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
@@ -44,7 +52,7 @@ type Project struct {
 	// Openshift is unmarshalled during export.
 	OpenshiftID *OpenshiftID `json:"openshift,omitempty"`
 	// Groups are unmarshalled during export.
-	Groups *Groups `json:"groups,omitempty"`
+	Groups []Group `json:"groups,omitempty"`
 }
 
 // ProjectConfig contains project configuration.
@@ -120,4 +128,10 @@ type UpdateProjectPatchInput struct {
 	DeploymentsDisabled          *uint                `json:"deploymentsDisabled,omitempty"`
 	// `null` is valid graphql, use a pointer to allow `nil` to be empty
 	BuildImage *null.String `json:"buildImage,omitempty"`
+}
+
+// RemoveProjectFromOrganizationInput is based on the Lagoon API type.
+type RemoveProjectFromOrganizationInput struct {
+	Project      uint `json:"project"`
+	Organization uint `json:"organization"`
 }

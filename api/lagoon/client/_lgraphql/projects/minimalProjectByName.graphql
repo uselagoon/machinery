@@ -12,6 +12,7 @@ query (
         developmentEnvironmentsLimit
         gitUrl
         autoIdle
+        organization
         openshift{
           id
         }

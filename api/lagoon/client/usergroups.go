@@ -3,6 +3,7 @@ package client
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -126,15 +127,36 @@ func (c *Client) RemoveUserFromGroup(
 // ListAllGroupMembers queries the Lagoon API for all groups and members, and
 // unmarshals the response into project.
 func (c *Client) ListAllGroupMembers(
-	ctx context.Context, groups *[]schema.Group) error {
-
-	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembers.graphql", nil)
+	ctx context.Context, name string, groups *[]schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembers.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
 	if err != nil {
 		return err
 	}
 
 	return c.client.Run(ctx, req, &struct {
 		Response *[]schema.Group `json:"allGroupMembers"`
+	}{
+		Response: groups,
+	})
+}
+
+// ListAllGroupMembers queries the Lagoon API for all groups and members, and
+// unmarshals the response into project.
+func (c *Client) ListGroupMembers(
+	ctx context.Context, name string, groups *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/getGroupMembers.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"groupByName"`
 	}{
 		Response: groups,
 	})
@@ -217,4 +239,169 @@ func (c *Client) UserBySSHFingerprint(
 	}
 
 	return c.client.Run(ctx, req, &user)
+}
+
+// GetUserSSHKeysByEmail queries the Lagoon API to find user by email and return their associated ssh keys
+func (c *Client) GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error {
+	req, err := c.newRequest("_lgraphql/usergroups/userByEmailSSHKeys.graphql",
+		map[string]interface{}{
+			"email": email,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.User `json:"userByEmail"`
+	}{
+		Response: user,
+	})
+}
+
+// RemoveSSHKey removes an SSH key.
+func (c *Client) RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeSSHKeyById.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
+
+// ListAllGroupMembersWithKeys queries the Lagoon API for all groups and members, and
+// unmarshals the response into project.
+func (c *Client) ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/allGroupMembersWithKeys.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroups"`
+	}{
+		Response: groups,
+	})
+}
+
+// GroupsByOrganizationID queries the Lagoon API for groups by the given organization id
+// and unmarshals the response into organization.
+func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]schema.OrgGroup) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/groupsByOrganizationId.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationById"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	if len(o.Groups) == 0 {
+		return fmt.Errorf("no associated groups found for organization %s", o.Name)
+	}
+	data, err := json.Marshal(o.Groups)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, groups)
+	return nil
+}
+
+// AddGroupToOrganization adds a Group to an Organization.
+func (c *Client) AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addGroupToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.OrgGroup `json:"addGroupToOrganization"`
+	}{
+		Response: out,
+	})
+}
+
+// AddUserToOrganization adds a User to an Organization.
+func (c *Client) AddUserToOrganization(ctx context.Context, in *schema.AddUserToOrganizationInput, out *schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addUserToOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"addUserToOrganization"`
+	}{
+		Response: out,
+	})
+}
+
+// RemoveUserFromOrganization removes a User from an Organization. TODO - Create new input type for this
+func (c *Client) RemoveUserFromOrganization(ctx context.Context, in *schema.AddUserToOrganizationInput, out *schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/usergroups/removeUserFromOrganization.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"removeUserFromOrganization"`
+	}{
+		Response: out,
+	})
+}
+
+// UsersByOrganization queries the Lagoon API for users by the given organization id
+func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganization.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.OrgUser `json:"usersByOrganization"`
+	}{
+		Response: users,
+	})
+}
+
+// UsersByOrganizationName queries the Lagoon API for users by the given organization name
+// and unmarshals the response into organization.
+func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganizationName.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationByName"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	data, err := json.Marshal(o.Owners)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, users)
+	return nil
 }

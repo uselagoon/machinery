@@ -1,5 +1,13 @@
-query ($email: String, $id: Int, $gitlabId: Int) {
-    allUsers(email: $email, id: $id, gitlabId: $gitlabId) {
+query allUsers(
+    $email: String
+    $id: String
+    $gitlabId: Int
+) {
+    allUsers(
+        email: $email
+        id: $id
+        gitlabId: $gitlabId
+    ) {
         id
         email
         firstName

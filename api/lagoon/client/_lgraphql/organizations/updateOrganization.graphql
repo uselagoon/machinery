@@ -1,0 +1,13 @@
+mutation (
+  $id: Int!
+  $patch: UpdateOrganizationPatchInput!){
+  updateOrganization(
+    input: {
+      id: $id
+      patch: $patch
+    }
+  ){
+    id
+    name
+  }
+}

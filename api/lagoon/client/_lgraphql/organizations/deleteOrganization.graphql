@@ -1,0 +1,9 @@
+mutation (
+  $id: Int!
+){
+  deleteOrganization(
+    input: {
+      id: $id
+    }
+  )
+}

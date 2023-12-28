@@ -25,8 +25,11 @@ type AddGroupInput struct {
 // Group provides for unmarshalling the groups contained with a Project.
 type Group struct {
 	AddGroupInput
-	ID      *uuid.UUID `json:"id,omitempty"`
-	Members []struct {
+	ID           *uuid.UUID `json:"id,omitempty"`
+	Type         string     `json:"type,omitempty"`
+	Organization int        `json:"organization,omitempty"`
+	MemberCount  int        `json:"memberCount,omitempty"`
+	Members      []struct {
 		User User      `json:"user"`
 		Role GroupRole `json:"role"`
 	} `json:"members,omitempty"`

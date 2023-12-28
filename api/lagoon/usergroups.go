@@ -10,7 +10,8 @@ import (
 
 // UserGroups interface contains methods for getting info on groups of lagoon.
 type UserGroups interface {
-	ListAllGroupMembers(ctx context.Context, groups *[]schema.Group) error
+	ListAllGroupMembers(ctx context.Context, name string, groups *[]schema.Group) error
+	ListGroupMembers(ctx context.Context, name string, groups *schema.Group) error
 	AddGroup(ctx context.Context, in *schema.AddGroupInput, group *schema.Group) error
 	AddUser(ctx context.Context, in *schema.AddUserInput, user *schema.User) error
 	AddUserToGroup(ctx context.Context, in *schema.UserGroupRoleInput, group *schema.Group) error
@@ -24,6 +25,13 @@ type UserGroups interface {
 	UserCanSSHToEnvironment(context.Context, string, *schema.Environment) error
 	UserBySSHKey(ctx context.Context, sshKey string, user *schema.User) error
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
+	GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error
+	RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error
+	ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error
+	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
+	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
+	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
+	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -33,9 +41,15 @@ func Me(ctx context.Context, ug UserGroups) (*schema.User, error) {
 }
 
 // ListAllGroupMembers gets info on the current groups of lagoon.
-func ListAllGroupMembers(ctx context.Context, ug UserGroups) (*[]schema.Group, error) {
+func ListAllGroupMembers(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
 	groups := []schema.Group{}
-	return &groups, ug.ListAllGroupMembers(ctx, &groups)
+	return &groups, ug.ListAllGroupMembers(ctx, name, &groups)
+}
+
+// ListGroupMembers gets info on the current groups of lagoon.
+func ListGroupMembers(ctx context.Context, name string, ug UserGroups) (*schema.Group, error) {
+	groups := schema.Group{}
+	return &groups, ug.ListGroupMembers(ctx, name, &groups)
 }
 
 func AddGroup(ctx context.Context, in *schema.AddGroupInput, ug UserGroups) (*schema.Group, error) {
@@ -97,4 +111,44 @@ func UserBySSHKey(ctx context.Context, sshKey string, ug UserGroups) (*schema.Us
 func UserBySSHFingerprint(ctx context.Context, fingerprint string, ug UserGroups) (*schema.User, error) {
 	user := schema.User{}
 	return &user, ug.UserBySSHFingerprint(ctx, fingerprint, &user)
+}
+
+func GetUserSSHKeysByEmail(ctx context.Context, email string, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.GetUserSSHKeysByEmail(ctx, email, &user)
+}
+
+func RemoveSSHKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteSSHKeyByIDInput, error) {
+	result := schema.DeleteSSHKeyByIDInput{}
+	return &result, ug.RemoveSSHKey(ctx, id, &result)
+}
+
+// ListAllGroupMembersWithKeys gets info on the current groups of lagoon.
+func ListAllGroupMembersWithKeys(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
+	groups := []schema.Group{}
+	return &groups, ug.ListAllGroupMembersWithKeys(ctx, name, &groups)
+}
+
+// ListGroupsByOrganizationID gets groups associated with an organization in lagoon via provided ID.
+func ListGroupsByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgGroup, error) {
+	group := []schema.OrgGroup{}
+	return &group, ug.GroupsByOrganizationID(ctx, id, &group)
+}
+
+// AddGroupToOrganization adds a group to an organization.
+func AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, ug UserGroups) (*schema.OrgGroup, error) {
+	group := schema.OrgGroup{}
+	return &group, ug.AddGroupToOrganization(ctx, in, &group)
+}
+
+// UsersByOrganization lists users associated within an organization in lagoon via provided ID.
+func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganization(ctx, id, &user)
+}
+
+// UsersByOrganizationName lists users associated within an organization in lagoon via provided Name.
+func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.UsersByOrganizationName(ctx, name, &user)
 }

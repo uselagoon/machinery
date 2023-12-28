@@ -1,0 +1,17 @@
+query (
+  $name: String!) {
+    organizationByName(name: $name) {
+      deployTargets {
+        id
+        name
+        created
+        cloudRegion
+        cloudProvider
+        friendlyName
+        sshHost
+        sshPort
+        routerPattern
+        buildImage
+      }
+    }
+}

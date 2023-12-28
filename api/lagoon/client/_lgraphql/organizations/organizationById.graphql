@@ -1,0 +1,15 @@
+query (
+  $id: Int!) {
+    organizationById(
+      id: $id) {
+      id
+      name
+      description
+      friendlyName
+      quotaProject
+      quotaGroup
+      quotaNotification
+      quotaEnvironment
+      quotaRoute
+    }
+  }
