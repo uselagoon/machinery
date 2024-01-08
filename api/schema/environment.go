@@ -121,6 +121,42 @@ type UpdateEnvironmentPatchInput struct {
 
 // EnvironmentService  is based on the Lagoon API type.
 type EnvironmentService struct {
-	ID   int    `json:"id,omitempty"`
+	ID         int                `json:"id,omitempty"`
+	Name       string             `json:"name,omitempty"`
+	Type       string             `json:"type,omitempty"`
+	Updated    string             `json:"updated,omitempty"`
+	Containers []ServiceContainer `json:"containers,omitempty"`
+	Created    string             `json:"created,omitempty"`
+}
+
+// ServiceContainer  is based on the Lagoon API type.
+type ServiceContainer struct {
 	Name string `json:"name,omitempty"`
+}
+
+// AddEnvironmentServiceInput is based on the input to
+// addOrUpdateEnvironmentService.
+type AddEnvironmentServiceInput struct {
+	ID            uint                    `json:"id,omitempty"`
+	Name          string                  `json:"name"`
+	Type          string                  `json:"type"`
+	Containers    []ServiceContainerInput `json:"containers,omitempty"`
+	EnvironmentID uint                    `json:"environment"`
+}
+
+// ServiceContainerInput  is based on the Lagoon API type.
+type ServiceContainerInput struct {
+	Name string `json:"name"`
+}
+
+// DeleteEnvironmentServiceInput is based on the input to
+// deleteEnvironmentService.
+type DeleteEnvironmentServiceInput struct {
+	Name          string `json:"name"`
+	EnvironmentID uint   `json:"environment"`
+}
+
+// DeleteEnvironmentService is the response.
+type DeleteEnvironmentService struct {
+	DeleteEnvironmentService string `json:"deleteEnvironmentService"`
 }

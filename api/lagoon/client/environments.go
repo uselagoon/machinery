@@ -58,6 +58,24 @@ func (c *Client) EnvironmentByName(ctx context.Context, name string,
 	})
 }
 
+// EnvironmentByID queries the Lagoon API for an environment by its ID and unmarshals the response into environment.
+func (c *Client) EnvironmentByID(ctx context.Context, environmentID uint, environment *schema.Environment) error {
+
+	req, err := c.newRequest("_lgraphql/environments/environmentById.graphql",
+		map[string]interface{}{
+			"id": environmentID,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
+
 // EnvironmentByName queries the Lagoon API for an environment by its namespace
 // and unmarshals the response into environment.
 func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, environment *schema.Environment) error {
@@ -216,5 +234,44 @@ func (c *Client) SSHEndpointByNamespace(ctx context.Context, namespace string, e
 		Response *schema.Environment `json:"environmentByNamespace"`
 	}{
 		Response: environment,
+	})
+}
+
+// AddOrUpdateEnvironmentService updates an environment service.
+func (c *Client) AddOrUpdateEnvironmentService(
+	ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error {
+
+	req, err := c.newRequest("_lgraphql/environments/addOrUpdateEnvironmentService.graphql",
+		map[string]interface{}{
+			"service": service,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.EnvironmentService `json:"addOrUpdateEnvironmentService"`
+	}{
+		Response: result,
+	})
+}
+
+// DeleteEnvironmentService deletes an environment service.
+func (c *Client) DeleteEnvironmentService(
+	ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error {
+
+	req, err := c.newRequest("_lgraphql/environments/deleteEnvironmentService.graphql",
+		map[string]interface{}{
+			"environment": service.EnvironmentID,
+			"name":        service.Name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.DeleteEnvironmentService `json:"deleteEnvironmentService"`
+	}{
+		Response: result,
 	})
 }
