@@ -21,7 +21,12 @@ Contexts contain the following information
 * api hostname - this is the hostname for the api, without the `/graphql` or any other paths, as clients should set this as required. (eg: https://api.lagoon.sh)
 * token hostname - this is the hostname for the ssh based token endpoint. (eg: token.lagoon.sh)
 * token port - this is the port for the ssh based token endpoint. (eg: 22)
-* authentication hostname - this is the hostname for the Lagoon authentication endpoint. (eg: https://keycloak.lagoon.sh)
+* authentication endpoint - this is the endpoint for the Lagoon authentication endpoint. (eg: https://keycloak.lagoon.sh)
+
+Some optional configuration items are the following, tools could use these if they are present (or handle informing the user if they are not present but required)
+* ui hotname - the Lagoon UI hostname (eg. https://ui.lagoon.sh) this could be used by some tools to provide links to the UI
+* webhook endpoint - the Lagoon webhook endpoint (eg. https://webhook.lagoon.sh)
+* version - the Lagoon version of the context (eg v2.17.0) this could be used by tools for verifying compatability
 
 ## Users
 

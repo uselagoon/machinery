@@ -40,6 +40,9 @@ type ContextConfig struct {
 	AuthenticationEndpoint string          `yaml:"authenticationendpoint"`
 	TokenHost              string          `yaml:"tokenhost"`
 	TokenPort              int             `yaml:"tokenport"`
+	UIHostname             string          `yaml:"uihostname,omitempty"`
+	WebhookEndpoint        string          `yaml:"webhookendpoint,omitempty"`
+	Version                string          `yaml:"version,omitempty"`
 	Features               map[string]bool `yaml:"features,omitempty"`
 }
 
