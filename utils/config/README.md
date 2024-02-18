@@ -25,7 +25,7 @@ Contexts contain the following information
 
 ## Users
 
-Users are where you can define one or more users. Users are assigned to a context, and contan information related to how clients will authenticate with a context.
+Users are where you can define one or more users. Users are assigned to a context, and contain information related to how clients will authenticate with a context.
 Users are linked to a context, and they can be changed between contexts too. This way its possible to have multiple accounts to use without needing to define multiple contexts. You just update the context with a different user as needed.
 
 Users contain the following information

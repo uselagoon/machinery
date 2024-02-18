@@ -37,20 +37,8 @@ func (c *Config) SetDefaultContext(context string) error {
 
 // NewContext will add a context to the config if it doesn't exist
 func (c *Config) NewContext(context ContextConfig, user string) error {
-	if context.Name == "" {
-		return fmt.Errorf("context name not provided")
-	}
-	if context.APIHostname == "" {
-		return fmt.Errorf("context api hostname not provided")
-	}
-	if context.TokenHost == "" {
-		return fmt.Errorf("context token hostname not provided")
-	}
-	if context.TokenPort == 0 {
-		return fmt.Errorf("context token port not provided")
-	}
-	if context.AuthenticationEndpoint == "" {
-		return fmt.Errorf("context authentication hostname not provided")
+	if err := validateContext(context); err != nil {
+		return err
 	}
 	if user == "" {
 		return fmt.Errorf("user name not provided")
@@ -75,6 +63,9 @@ func (c *Config) NewContext(context ContextConfig, user string) error {
 func (c *Config) UpdateContext(context ContextConfig, user string) error {
 	if _, ok := c.checkUserExists(user); ok {
 		if i, ok := c.checkContextExists(context.Name); ok {
+			if err := validateContext(context); err != nil {
+				return err
+			}
 			c.Contexts[i] = Context{
 				Name:          context.Name,
 				ContextConfig: context,
@@ -91,10 +82,32 @@ func (c *Config) UpdateContext(context ContextConfig, user string) error {
 
 // DeleteContext will remove a context from the config
 func (c *Config) DeleteContext(context string) error {
+	if context == "" {
+		return fmt.Errorf("context name not provided")
+	}
 	if i, ok := c.checkContextExists(context); ok {
 		c.Contexts[i] = c.Contexts[len(c.Contexts)-1]
 		c.Contexts = append(c.Contexts[:i], c.Contexts[i+1:]...)
 		return nil
 	}
 	return fmt.Errorf("context %s doesn't exist", context)
+}
+
+func validateContext(context ContextConfig) error {
+	if context.Name == "" {
+		return fmt.Errorf("context name not provided")
+	}
+	if context.APIHostname == "" {
+		return fmt.Errorf("context api hostname not provided")
+	}
+	if context.TokenHost == "" {
+		return fmt.Errorf("context token hostname not provided")
+	}
+	if context.TokenPort == 0 {
+		return fmt.Errorf("context token port not provided")
+	}
+	if context.AuthenticationEndpoint == "" {
+		return fmt.Errorf("context authentication hostname not provided")
+	}
+	return nil
 }

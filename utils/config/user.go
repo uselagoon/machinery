@@ -35,6 +35,9 @@ func (c *Config) NewUser(user UserConfig) error {
 
 // UpdateUser updates a user within the config
 func (c *Config) UpdateUser(user UserConfig) error {
+	if user.Name == "" {
+		return fmt.Errorf("user name not provided")
+	}
 	if i, ok := c.checkUserExists(user.Name); ok {
 		c.Users[i] = User{
 			Name:       user.Name,
@@ -48,6 +51,9 @@ func (c *Config) UpdateUser(user UserConfig) error {
 
 // DeleteUser removes a user from the config
 func (c *Config) DeleteUser(user string) error {
+	if user == "" {
+		return fmt.Errorf("user name not provided")
+	}
 	if i, ok := c.checkUserExists(user); ok {
 		for _, con := range c.Contexts {
 			if con.User == user {
