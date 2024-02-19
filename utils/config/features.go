@@ -13,7 +13,7 @@ func (c *Config) SetGlobalFeature(prefix, feature string, state bool) error {
 	if prefix == "" || feature == "" {
 		return fmt.Errorf("prefix and feature must not be empty")
 	}
-	if _, ok := c.Features[featurePrefix(prefix, feature)]; !ok {
+	if c.Features == nil {
 		c.Features = map[string]bool{}
 	}
 	c.Features[featurePrefix(prefix, feature)] = state
@@ -26,7 +26,7 @@ func (c *Config) SetContextFeature(context, prefix, feature string, state bool) 
 		return fmt.Errorf("prefix and feature must not be empty")
 	}
 	if i, ok := c.checkContextExists(context); ok {
-		if _, ok := c.Contexts[i].ContextConfig.Features[featurePrefix(prefix, feature)]; !ok {
+		if c.Contexts[i].ContextConfig.Features == nil {
 			c.Contexts[i].ContextConfig.Features = map[string]bool{}
 		}
 		c.Contexts[i].ContextConfig.Features[featurePrefix(prefix, feature)] = state
