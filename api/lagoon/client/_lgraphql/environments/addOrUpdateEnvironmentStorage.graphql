@@ -2,11 +2,13 @@ mutation (
   $environment: Int!
   $persistentStorageClaim: String!
   $bytesUsed: Int!
+  $kiloBytesUsed: Float
   ) {
     addOrUpdateEnvironmentStorage(input: {
       environment: $environment
       persistentStorageClaim: $persistentStorageClaim
       bytesUsed: $bytesUsed
+      kiloBytesUsed: $kiloBytesUsed
     }
   ){
     id

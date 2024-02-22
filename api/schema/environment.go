@@ -89,7 +89,8 @@ type EnvironmentInput struct {
 type UpdateEnvironmentStorageInput struct {
 	Environment          int    `json:"environment"`
 	PersisteStorageClaim string `json:"persistentStorageClaim"`
-	BytesUsed            int    `json:"bytesUsed"`
+	BytesUsed            uint64 `json:"bytesUsed"` //@DEPRECATED `KiloBytesUsed` is the new one, but `BytesUsed` is still a required field in the API for now
+	KiloBytesUsed        uint64 `json:"kiloBytesUsed"`
 }
 
 // UpdateEnvironmentStorage is the response.
