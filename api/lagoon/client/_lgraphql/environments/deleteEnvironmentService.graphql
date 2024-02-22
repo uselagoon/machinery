@@ -1,0 +1,8 @@
+mutation (
+  $name: String!,
+  $environment: Int!) {
+    deleteEnvironmentService(input: {
+        name: $name,
+        environment: $environment
+    })
+}
