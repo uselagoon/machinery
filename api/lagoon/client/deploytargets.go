@@ -3,7 +3,6 @@ package client
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -97,9 +96,6 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 		}
 	}
 
-	if len(o.DeployTargets) == 0 {
-		return fmt.Errorf("no deploy targets found for organization %s", o.Name)
-	}
 	data, err := json.Marshal(o.DeployTargets)
 	if err != nil {
 		return err

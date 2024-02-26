@@ -3,8 +3,6 @@ package client
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -223,9 +221,6 @@ func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects
 	})
 	if err != nil {
 		return err
-	}
-	if len(o.Projects) == 0 {
-		return fmt.Errorf("no associated projects found for organization %s", o.Name)
 	}
 	data, err := json.Marshal(o.Projects)
 	if err != nil {
