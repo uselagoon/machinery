@@ -1,10 +1,8 @@
 query (
-  $name: String!,
-  $project: Int!
+  $id: Int!
 ){
-  environmentByName(
-    name: $name,
-    project: $project
+  environmentById(
+    id: $id,
   ){
     id
     name

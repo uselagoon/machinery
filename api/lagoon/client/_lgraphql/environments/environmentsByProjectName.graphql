@@ -25,6 +25,16 @@ query (
             routerPattern
             buildImage
         }
+        services{
+          id
+          name
+          type
+          containers{
+            name
+          }
+          created
+          updated
+        }
       }
     }
 }

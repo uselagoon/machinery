@@ -11,7 +11,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/uselagoon/machinery/api/lagoon/client/lgraphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -74,7 +73,7 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 	}
 
 	// this asset is specific for this, it has to be one line if changes are made
-	q, err := lgraphql.Asset("_lgraphql/tasks/uploadFilesForTask.graphql")
+	q, err := lgraphql.ReadFile("_lgraphql/tasks/uploadFilesForTask.graphql")
 	if err != nil {
 		return fmt.Errorf("couldn't get graphql asset from assets: %w", err)
 	}

@@ -1,12 +1,15 @@
 mutation (
   $name: String!,
-  $webhook: String!) {
+  $webhook: String!,
+  $organization: Int) {
     addNotificationWebhook(input: {
       name: $name,
-      webhook: $webhook
+      webhook: $webhook,
+      organization: $organization
     }) {
       id
       name
       webhook
+      organization
     }
   }

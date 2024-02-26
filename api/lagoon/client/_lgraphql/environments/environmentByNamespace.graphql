@@ -15,8 +15,14 @@ query (
     created
     deleted
     services{
-        id
+      id
+      name
+      type
+      containers{
         name
+      }
+      created
+      updated
     }
   }
 }

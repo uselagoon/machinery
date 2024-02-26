@@ -1,0 +1,13 @@
+mutation (
+  $service: AddEnvironmentServiceInput!) {
+    addOrUpdateEnvironmentService(input: $service) {
+        id
+        name
+        type
+        containers{
+            name
+        }
+        created
+        updated
+    }
+}

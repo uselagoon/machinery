@@ -17,9 +17,12 @@ type Environments interface {
 	UpdateEnvironment(ctx context.Context, id uint, patch schema.UpdateEnvironmentPatchInput, result *schema.Environment) error
 	SetEnvironmentServices(ctx context.Context, id uint, services []string, result *[]schema.EnvironmentService) error
 	EnvironmentByName(ctx context.Context, name string, project uint, result *schema.Environment) error
+	EnvironmentByID(ctx context.Context, environment uint, result *schema.Environment) error
 	EnvironmentByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	EnvironmentsByProjectName(ctx context.Context, project string, result *[]schema.Environment) error
 	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
+	AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error
+	DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error
 }
 
 // GetBackupsForEnvironmentByName gets backup info in lagoon for specific environment.
@@ -65,6 +68,12 @@ func GetEnvironmentByName(ctx context.Context, name string, project uint, e Envi
 }
 
 // GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
+func GetEnvironmentByID(ctx context.Context, env uint, e Environments) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, e.EnvironmentByID(ctx, env, &environment)
+}
+
+// GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
 func GetEnvironmentByNamespace(ctx context.Context, namespace string, e Environments) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, e.EnvironmentByNamespace(ctx, namespace, &environment)
@@ -80,4 +89,16 @@ func GetEnvironmentsByProjectName(ctx context.Context, project string, e Environ
 func SSHEndpointByNamespace(ctx context.Context, namespace string, e Environments) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, e.SSHEndpointByNamespace(ctx, namespace, &environment)
+}
+
+// AddOrUpdateEnvironmentService updates an environments service.
+func AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, e Environments) (*schema.EnvironmentService, error) {
+	result := schema.EnvironmentService{}
+	return &result, e.AddOrUpdateEnvironmentService(ctx, service, &result)
+}
+
+// DeleteEnvironmentService deletes an environment service.
+func DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, e Environments) (*schema.DeleteEnvironmentService, error) {
+	result := schema.DeleteEnvironmentService{}
+	return &result, e.DeleteEnvironmentService(ctx, service, &result)
 }
