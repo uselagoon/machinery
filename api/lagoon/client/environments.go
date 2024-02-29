@@ -3,8 +3,6 @@ package client
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -115,9 +113,6 @@ func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, 
 	})
 	if err != nil {
 		return err
-	}
-	if len(p.Environments) == 0 {
-		return fmt.Errorf("no environments found for project")
 	}
 	db, err := json.Marshal(p.Environments)
 	if err != nil {

@@ -3,8 +3,6 @@ package client
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -308,9 +306,6 @@ func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]
 	})
 	if err != nil {
 		return err
-	}
-	if len(o.Groups) == 0 {
-		return fmt.Errorf("no associated groups found for organization %s", o.Name)
 	}
 	data, err := json.Marshal(o.Groups)
 	if err != nil {
