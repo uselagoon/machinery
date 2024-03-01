@@ -1,6 +1,6 @@
 mutation (
-  $project: String!, 
-  $sourceEnvironment: String!, 
+  $project: String!,
+  $sourceEnvironment: String!,
   $destinationEnvironment: String!,
   $returnData: Boolean!,
   $buildVariables: [EnvKeyValueInput]) {

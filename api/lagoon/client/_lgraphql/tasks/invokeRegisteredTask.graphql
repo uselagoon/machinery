@@ -1,0 +1,11 @@
+mutation (
+  $environment: Int!,
+  $advancedTaskDefinition: Int!) {
+  invokeRegisteredTask(
+    advancedTaskDefinition: $advancedTaskDefinition,
+    environment: $environment) {
+    id
+    name
+    status
+  }
+}

@@ -1,0 +1,10 @@
+query allGroups ($name: String!) {
+  allGroups (name: $name) {
+    id
+    name
+    projects{
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,12 @@
+mutation (
+  $patch: UpdateUserPatchInput!
+  $user: UserInput!){
+  updateUser(
+    input: {
+      patch: $patch
+      user: $user
+    }
+  ){
+    id
+  }
+}

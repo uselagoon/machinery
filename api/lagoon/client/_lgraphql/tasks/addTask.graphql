@@ -1,0 +1,15 @@
+mutation (
+  $environment: Int!,
+  $name: String!,
+  $command: String!,
+  $service: String!) {
+  addTask(input:{
+    environment: $environment
+    command: $command
+    execute:true
+    name: $name
+    service: $service
+  }) {
+    id
+  }
+}

@@ -1,0 +1,10 @@
+mutation (
+  $project: String!,
+  $groups: [GroupInput!]!) {
+  addGroupsToProject(input: {
+    project: {name: $project}
+    groups: $groups
+  }) {
+    name
+  }
+}

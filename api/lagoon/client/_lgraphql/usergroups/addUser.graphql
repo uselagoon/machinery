@@ -11,5 +11,7 @@ mutation (
     }) {
       id
       email
+      firstName
+      lastName
     }
   }

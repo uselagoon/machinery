@@ -1,0 +1,9 @@
+mutation (
+  $project: String!
+){
+  deleteProject(
+    input: {
+      project: $project
+    }
+  )
+}

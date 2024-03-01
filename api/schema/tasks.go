@@ -57,3 +57,10 @@ type UpdateTaskPatchInput struct {
 	Command     string      `json:"command,omitempty"`
 	RemoteID    string      `json:"remoteId,omitempty"`
 }
+
+// AdvancedTask task def struct
+type AdvancedTask struct {
+	ID          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description"`
+}

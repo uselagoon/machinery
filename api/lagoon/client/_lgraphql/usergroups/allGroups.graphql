@@ -1,0 +1,6 @@
+query allGroups ($name: String) {
+  allGroups (name: $name) {
+    name
+    id
+  }
+}

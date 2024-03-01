@@ -1,0 +1,19 @@
+query ($project: Int!, $environment: String!){
+  environmentByName(
+    project: $project
+    name: $environment
+  ){
+    advancedTasks {
+      ... on AdvancedTaskDefinitionCommand {
+        id
+        name
+        description
+      }
+      ... on AdvancedTaskDefinitionImage {
+        id
+        name
+        description
+      }
+    }
+  }
+}
