@@ -13,6 +13,10 @@ query (
     deployType
     environmentType
     openshiftProjectName
+    autoIdle
+    deployTitle
+    deployBaseRef
+    deployHeadRef
     updated
     created
     deleted
