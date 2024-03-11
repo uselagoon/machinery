@@ -3,8 +3,8 @@
 package client
 
 import (
-	"embed"
 	"context"
+	"embed"
 	"encoding/json"
 	"fmt"
 	"html/template"
