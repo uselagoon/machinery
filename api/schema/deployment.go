@@ -38,14 +38,15 @@ type DeployEnvironmentLatest struct {
 
 // DeployEnvironmentPullrequestInput is used as the input for deploying a pull request.
 type DeployEnvironmentPullrequestInput struct {
-	Project        ProjectInput `json:"project"`
-	Number         uint         `json:"number"`
-	Title          string       `json:"title"`
-	BaseBranchName string       `json:"baseBranchName"`
-	BaseBranchRef  string       `json:"baseBranchRef"`
-	HeadBranchName string       `json:"headBranchName"`
-	HeadBranchRef  string       `json:"headBranchRef"`
-	ReturnData     bool         `json:"returnData"`
+	Project        ProjectInput       `json:"project"`
+	Number         uint               `json:"number"`
+	Title          string             `json:"title"`
+	BaseBranchName string             `json:"baseBranchName"`
+	BaseBranchRef  string             `json:"baseBranchRef"`
+	HeadBranchName string             `json:"headBranchName"`
+	HeadBranchRef  string             `json:"headBranchRef"`
+	BuildVariables []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData     bool               `json:"returnData"`
 }
 
 // DeployEnvironmentPullrequest is the response.
@@ -55,10 +56,11 @@ type DeployEnvironmentPullrequest struct {
 
 // DeployEnvironmentBranchInput is used as the input for deploying a branch.
 type DeployEnvironmentBranchInput struct {
-	Project    string `json:"project"`
-	Branch     string `json:"branch"`
-	BranchRef  string `json:"branchRef"`
-	ReturnData bool   `json:"returnData"`
+	Project        string             `json:"project"`
+	Branch         string             `json:"branch"`
+	BranchRef      string             `json:"branchRef"`
+	BuildVariables []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData     bool               `json:"returnData"`
 }
 
 // DeployEnvironmentBranch is the response.
@@ -68,10 +70,11 @@ type DeployEnvironmentBranch struct {
 
 // DeployEnvironmentPromoteInput is used as the input for promoting one environment to another.
 type DeployEnvironmentPromoteInput struct {
-	Project                string `json:"project"`
-	SourceEnvironment      string `json:"sourceEnvironment"`
-	DestinationEnvironment string `json:"destinationEnvironment"`
-	ReturnData             bool   `json:"returnData"`
+	Project                string             `json:"project"`
+	SourceEnvironment      string             `json:"sourceEnvironment"`
+	DestinationEnvironment string             `json:"destinationEnvironment"`
+	BuildVariables         []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData             bool               `json:"returnData"`
 }
 
 // DeployEnvironmentPromote is the response.
