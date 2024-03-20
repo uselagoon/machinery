@@ -1,0 +1,14 @@
+mutation (
+  $environment: Int!
+  $persistentStorageClaim: String!
+  $kibUsed: Float!
+  ) {
+    addOrUpdateEnvironmentStorage(input: {
+      environment: $environment
+      persistentStorageClaim: $persistentStorageClaim
+      kibUsed: $kibUsed
+    }
+  ){
+    id
+  }
+}

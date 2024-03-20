@@ -1,0 +1,27 @@
+contexts:
+  - name: lagoon
+    context:
+        name: lagoon
+        apihostname: https://api.example.com
+        authenticationendpoint: https://keycloak.example.com
+        tokenhost: token.example.com
+        tokenport: 22
+        features:
+          cli-mycontextfeature: true
+          cli-mycontextfeature2: false
+    user: user1
+users:
+  - name: user1
+    user:
+        name: user1
+        sshkey: /home/user1/.ssh/id_ed25519
+        grant:
+            accesstoken: blah
+            tokentype: grant
+            refreshtoken: blah
+            expiry: 0001-01-01T00:00:00Z
+default-context: lagoon
+features:
+  cli-myglobalfeature: true
+  cli-mycontextfeature: false
+  cli-mycontextfeature2: true

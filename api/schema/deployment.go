@@ -45,8 +45,8 @@ type DeployEnvironmentPullrequestInput struct {
 	BaseBranchRef  string             `json:"baseBranchRef"`
 	HeadBranchName string             `json:"headBranchName"`
 	HeadBranchRef  string             `json:"headBranchRef"`
-	ReturnData     bool               `json:"returnData"`
 	BuildVariables []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData     bool               `json:"returnData"`
 }
 
 // DeployEnvironmentPullrequest is the response.
@@ -59,8 +59,8 @@ type DeployEnvironmentBranchInput struct {
 	Project        string             `json:"project"`
 	Branch         string             `json:"branch"`
 	BranchRef      string             `json:"branchRef"`
-	ReturnData     bool               `json:"returnData"`
 	BuildVariables []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData     bool               `json:"returnData"`
 }
 
 // DeployEnvironmentBranch is the response.
@@ -73,8 +73,8 @@ type DeployEnvironmentPromoteInput struct {
 	Project                string             `json:"project"`
 	SourceEnvironment      string             `json:"sourceEnvironment"`
 	DestinationEnvironment string             `json:"destinationEnvironment"`
-	ReturnData             bool               `json:"returnData"`
 	BuildVariables         []EnvKeyValueInput `json:"buildVariables,omitempty"`
+	ReturnData             bool               `json:"returnData"`
 }
 
 // DeployEnvironmentPromote is the response.

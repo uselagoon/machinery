@@ -13,6 +13,7 @@ type Environments interface {
 	BackupsForEnvironmentByName(context.Context, string, uint, *schema.Environment) error
 	AddRestore(context.Context, string, *schema.Restore) error
 	UpdateEnvironmentStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, result *schema.UpdateEnvironmentStorage) error
+	UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStorageOnEnvironmentInput, result *schema.UpdateStorageOnEnvironment) error
 	DeleteEnvironment(ctx context.Context, name, project string, execute bool, result *schema.DeleteEnvironment) error
 	UpdateEnvironment(ctx context.Context, id uint, patch schema.UpdateEnvironmentPatchInput, result *schema.Environment) error
 	SetEnvironmentServices(ctx context.Context, id uint, services []string, result *[]schema.EnvironmentService) error
@@ -41,6 +42,12 @@ func AddBackupRestore(ctx context.Context, backupID string, e Environments) (*sc
 func UpdateStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, e Environments) (*schema.UpdateEnvironmentStorage, error) {
 	result := schema.UpdateEnvironmentStorage{}
 	return &result, e.UpdateEnvironmentStorage(ctx, storage, &result)
+}
+
+// UpdateStorage updates environment storage.
+func UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStorageOnEnvironmentInput, e Environments) (*schema.UpdateStorageOnEnvironment, error) {
+	result := schema.UpdateStorageOnEnvironment{}
+	return &result, e.UpdateStorageOnEnvironment(ctx, storage, &result)
 }
 
 // DeleteEnvironment updates environment storage.

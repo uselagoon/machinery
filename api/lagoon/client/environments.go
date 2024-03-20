@@ -20,6 +20,20 @@ func (c *Client) UpdateEnvironmentStorage(ctx context.Context,
 	})
 }
 
+// UpdateStorageOnEnvironment updates an environments storage values.
+func (c *Client) UpdateStorageOnEnvironment(ctx context.Context,
+	in *schema.UpdateStorageOnEnvironmentInput, out *schema.UpdateStorageOnEnvironment) error {
+	req, err := c.newRequest("_lgraphql/environments/addOrUpdateStorageOnEnvironment.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.UpdateStorageOnEnvironment `json:"addOrUpdateStorageOnEnvironment"`
+	}{
+		Response: out,
+	})
+}
+
 // DeleteEnvironment deletes an environment.
 func (c *Client) DeleteEnvironment(ctx context.Context,
 	name, project string, execute bool, out *schema.DeleteEnvironment) error {

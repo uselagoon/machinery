@@ -1,5 +1,7 @@
 query ($name: String!) {
     projectByName(name: $name) {
+        id
+        name
         notifications(type: WEBHOOK) {
             ... on NotificationWebhook {
                 __typename
