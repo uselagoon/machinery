@@ -19,8 +19,6 @@ query (
     services{
       id
       name
-      created
-      updated
     }
   }
 }

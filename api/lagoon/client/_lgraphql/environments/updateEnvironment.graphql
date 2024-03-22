@@ -20,8 +20,6 @@ mutation (
         services{
             id
             name
-            created
-            updated
         }
     }
 }
