@@ -68,3 +68,7 @@ type UserRoleConfig struct {
 type Groups struct {
 	Groups []Group
 }
+
+type DeleteGroupInput struct {
+	Group GroupInput `json:"group"`
+}

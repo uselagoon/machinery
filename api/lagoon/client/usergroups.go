@@ -400,3 +400,33 @@ func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users
 	json.Unmarshal(data, users)
 	return nil
 }
+
+// AddProjectToGroup adds a user to a group.
+func (c *Client) AddProjectToGroup(
+	ctx context.Context, in *schema.ProjectGroupsInput, out *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addProjectToGroup.graphql", map[string]interface{}{
+		"project": in.Project.Name,
+		"groups":  in.Groups,
+	})
+
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"addGroupsToProject"`
+	}{
+		Response: out,
+	})
+}
+
+// DeleteGroup deletes a group.
+func (c *Client) DeleteGroup(ctx context.Context, name string, out *schema.DeleteGroupInput) error {
+	req, err := c.newRequest("_lgraphql/usergroups/deleteGroup.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}

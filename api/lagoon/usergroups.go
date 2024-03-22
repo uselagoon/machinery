@@ -32,6 +32,8 @@ type UserGroups interface {
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
 	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
 	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
+	AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, group *schema.Group) error
+	DeleteGroup(ctx context.Context, name string, group *schema.DeleteGroupInput) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -151,4 +153,15 @@ func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema
 func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
 	return &user, ug.UsersByOrganizationName(ctx, name, &user)
+}
+
+// AddProjectToGroup adds a project to a group.
+func AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, ug UserGroups) (*schema.Group, error) {
+	group := schema.Group{}
+	return &group, ug.AddProjectToGroup(ctx, in, &group)
+}
+
+func DeleteGroup(ctx context.Context, name string, ug UserGroups) (*schema.DeleteGroupInput, error) {
+	group := schema.DeleteGroupInput{}
+	return &group, ug.DeleteGroup(ctx, name, &group)
 }
