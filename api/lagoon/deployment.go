@@ -51,7 +51,7 @@ func GetDeploymentsByBulkID(ctx context.Context, bulkID string, d Deploy) (*[]sc
 	return &deployments, d.DeploymentsByBulkID(ctx, bulkID, &deployments)
 }
 
-// GetDeploymentsByEnvironment gets deployments for an envronment.
+// GetDeploymentsByEnvironment gets deployments for an environment.
 func GetDeploymentsByEnvironment(ctx context.Context, projectID uint, environmentName string, d Deploy) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, d.DeploymentsByEnvironment(ctx, projectID, environmentName, &environment)

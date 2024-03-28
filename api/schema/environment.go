@@ -57,14 +57,16 @@ type AddEnvironmentInput struct {
 // Environment is the Lagoon API Environment object.
 type Environment struct {
 	AddEnvironmentInput
-	AutoIdle     uint                 `json:"autoIdle"`
-	EnvVariables []EnvKeyValue        `json:"envVariables,omitempty"`
-	Route        string               `json:"route,omitempty"`
-	Routes       string               `json:"routes,omitempty"`
-	Backups      []Backup             `json:"backups,omitempty"`
-	Deployments  []Deployment         `json:"deployments,omitempty"`
-	Services     []EnvironmentService `json:"services,omitempty"`
-	DeployTarget DeployTarget         `json:"openshift,omitempty"`
+	AutoIdle      uint                 `json:"autoIdle"`
+	EnvVariables  []EnvKeyValue        `json:"envVariables,omitempty"`
+	Route         string               `json:"route,omitempty"`
+	Routes        string               `json:"routes,omitempty"`
+	Backups       []Backup             `json:"backups,omitempty"`
+	Deployments   []Deployment         `json:"deployments,omitempty"`
+	Services      []EnvironmentService `json:"services,omitempty"`
+	DeployTarget  DeployTarget         `json:"openshift,omitempty"`
+	Tasks         []Task               `json:"tasks,omitempty"`
+	AdvancedTasks []AdvancedTask       `json:"advancedTasks,omitempty"`
 	// TODO use a unixtime type
 	Updated string `json:"updated,omitempty"`
 	Created string `json:"created,omitempty"`

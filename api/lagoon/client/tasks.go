@@ -148,3 +148,39 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 
 	return nil
 }
+
+// TasksByEnvironment gets tasks for an environment.
+func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/tasks/getTasksForEnvironment.graphql",
+		map[string]interface{}{
+			"project":     projectID,
+			"environment": environmentName,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
+
+// InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/tasks/GetInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
+		map[string]interface{}{
+			"project":     projectID,
+			"environment": environmentName,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
