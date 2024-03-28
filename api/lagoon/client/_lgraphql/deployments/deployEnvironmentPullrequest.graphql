@@ -1,5 +1,5 @@
 mutation (
-  $project: ProjectInput!, 
+  $project: ProjectInput!,
   $number: Int!,
   $title: String!,
   $baseBranchName: String!,

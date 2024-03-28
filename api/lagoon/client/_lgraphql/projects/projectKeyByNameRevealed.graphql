@@ -1,0 +1,8 @@
+query (
+  $name: String!) {
+  projectByName(
+    name: $name) {
+      privateKey
+      publicKey
+  }
+}

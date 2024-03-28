@@ -1,6 +1,6 @@
 mutation (
-  $project: String!, 
-  $branch: String!, 
+  $project: String!,
+  $branch: String!,
   $branchRef: String,
   $returnData: Boolean!,
   $buildVariables: [EnvKeyValueInput]) {

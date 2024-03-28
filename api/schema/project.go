@@ -31,6 +31,7 @@ type AddProjectInput struct {
 	StorageCalc                  uint   `json:"storageCalc"`
 	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
+	PublicKey                    string `json:"publicKey,omitempty"`
 	BuildImage                   string `json:"buildImage,omitempty"`
 	Organization                 uint   `json:"organization,omitempty"`
 	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`

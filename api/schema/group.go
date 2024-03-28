@@ -33,6 +33,7 @@ type Group struct {
 		User User      `json:"user"`
 		Role GroupRole `json:"role"`
 	} `json:"members,omitempty"`
+	Projects []Project `json:"projects,omitempty"`
 }
 
 // GroupConfig embeds AddGroupInput as well as a list of members.
@@ -67,4 +68,8 @@ type UserRoleConfig struct {
 // These are unmarshalled from a projectByName query response.
 type Groups struct {
 	Groups []Group
+}
+
+type DeleteGroupInput struct {
+	Group GroupInput `json:"group"`
 }

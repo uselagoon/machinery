@@ -1,0 +1,10 @@
+mutation (
+  $name: String!){
+  deleteGroup(
+    input: {
+      group: {
+        name: $name
+      }
+    }
+  )
+}

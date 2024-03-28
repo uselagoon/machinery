@@ -14,6 +14,8 @@ type Tasks interface {
 	GetTaskByID(ctx context.Context, id int, result *schema.Task) error
 	UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, result *schema.Task) error
 	UploadFilesForTask(ctx context.Context, id int, files []string, result *schema.Task) error
+	TasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
+	InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 }
 
 // ActiveStandbySwitch runs the activestandby switch.
@@ -38,4 +40,16 @@ func UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, 
 func UploadFilesForTask(ctx context.Context, id int, files []string, t Tasks) (*schema.Task, error) {
 	result := schema.Task{}
 	return &result, t.UploadFilesForTask(ctx, id, files, &result)
+}
+
+// GetTasksByEnvironment gets tasks for an environment.
+func GetTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, t Tasks) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, t.TasksByEnvironment(ctx, projectID, environmentName, &environment)
+}
+
+// GetInvokableAdvancedTaskDefinitionsByEnvironment gets a list of tasks invokable against an environment.
+func GetInvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, t Tasks) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, t.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, projectID, environmentName, &environment)
 }

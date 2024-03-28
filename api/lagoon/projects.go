@@ -22,6 +22,8 @@ type Projects interface {
 	ProjectByNameExtended(ctx context.Context, name string, project *schema.Project) error
 	ProjectsByOrganizationID(ctx context.Context, name uint, project *[]schema.OrgProject) error
 	RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error
+	ProjectKeyByName(ctx context.Context, name string, revealValue bool, project *schema.Project) error
+	AllProjects(ctx context.Context, project *[]schema.Project) error
 }
 
 // GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
@@ -94,4 +96,16 @@ func ListProjectsByOrganizationID(ctx context.Context, id uint, p Projects) (*[]
 func RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out Projects) (*schema.Project, error) {
 	response := schema.Project{}
 	return &response, out.RemoveProjectFromOrganization(ctx, in, &response)
+}
+
+// GetProjectKeyByName gets the project keys of a project in Lagoon.
+func GetProjectKeyByName(ctx context.Context, name string, revealValue bool, p Projects) (*schema.Project, error) {
+	project := schema.Project{}
+	return &project, p.ProjectKeyByName(ctx, name, revealValue, &project)
+}
+
+// ListAllProjects lists all projects.
+func ListAllProjects(ctx context.Context, p Projects) (*[]schema.Project, error) {
+	project := []schema.Project{}
+	return &project, p.AllProjects(ctx, &project)
 }

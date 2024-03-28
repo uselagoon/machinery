@@ -15,7 +15,7 @@ func (c *Client) AddNotificationSlack(ctx context.Context, in *schema.AddNotific
 		"webhook": in.Webhook,
 		"channel": in.Channel,
 	}
-	if *in.Organization == 0 {
+	if *in.Organization != 0 {
 		variables["organization"] = in.Organization
 	}
 	req, err = c.newRequest("_lgraphql/notifications/addNotificationSlack.graphql", variables)
@@ -39,7 +39,7 @@ func (c *Client) AddNotificationRocketChat(ctx context.Context, in *schema.AddNo
 		"webhook": in.Webhook,
 		"channel": in.Channel,
 	}
-	if *in.Organization == 0 {
+	if *in.Organization != 0 {
 		variables["organization"] = in.Organization
 	}
 	req, err = c.newRequest("_lgraphql/notifications/addNotificationRocketChat.graphql", variables)
@@ -62,7 +62,7 @@ func (c *Client) AddNotificationEmail(ctx context.Context, in *schema.AddNotific
 		"name":         in.Name,
 		"emailAddress": in.EmailAddress,
 	}
-	if *in.Organization == 0 {
+	if *in.Organization != 0 {
 		variables["organization"] = in.Organization
 	}
 	req, err = c.newRequest("_lgraphql/notifications/addNotificationEmail.graphql", variables)
@@ -85,7 +85,7 @@ func (c *Client) AddNotificationMicrosoftTeams(ctx context.Context, in *schema.A
 		"name":    in.Name,
 		"webhook": in.Webhook,
 	}
-	if *in.Organization == 0 {
+	if *in.Organization != 0 {
 		variables["organization"] = in.Organization
 	}
 	req, err = c.newRequest("_lgraphql/notifications/addNotificationMicrosoftTeams.graphql", variables)
@@ -108,7 +108,7 @@ func (c *Client) AddNotificationWebhook(ctx context.Context, in *schema.AddNotif
 		"name":    in.Name,
 		"webhook": in.Webhook,
 	}
-	if *in.Organization == 0 {
+	if *in.Organization != 0 {
 		variables["organization"] = in.Organization
 	}
 	req, err = c.newRequest("_lgraphql/notifications/addNotificationWebhook.graphql", variables)
