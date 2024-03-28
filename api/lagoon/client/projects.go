@@ -263,3 +263,17 @@ func (c *Client) ProjectKeyByName(ctx context.Context, name string, revealValue 
 		Response: project,
 	})
 }
+
+// AllProjects queries the Lagoon API and returns all projects a user has access to.
+func (c *Client) AllProjects(ctx context.Context, projects *[]schema.Project) error {
+	req, err := c.newRequest("_lgraphql/projects/allProjects.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Project `json:"allProjects"`
+	}{
+		Response: projects,
+	})
+}

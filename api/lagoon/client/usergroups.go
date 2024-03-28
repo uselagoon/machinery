@@ -430,3 +430,36 @@ func (c *Client) DeleteGroup(ctx context.Context, name string, out *schema.Delet
 	}
 	return c.client.Run(ctx, req, &out)
 }
+
+// AllGroups queries the Lagoon API and returns all groups a user has access to.
+func (c *Client) AllGroups(ctx context.Context, groups *[]schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/allGroups.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroups"`
+	}{
+		Response: groups,
+	})
+}
+
+// GroupProjects queries the Lagoon API for a group by its name, returning all projects within the group.
+func (c *Client) GroupProjects(
+	ctx context.Context, name string, group *[]schema.Group) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/groupProjects.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroups"`
+	}{
+		Response: group,
+	})
+}

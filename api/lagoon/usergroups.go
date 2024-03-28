@@ -34,6 +34,8 @@ type UserGroups interface {
 	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
 	AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, group *schema.Group) error
 	DeleteGroup(ctx context.Context, name string, group *schema.DeleteGroupInput) error
+	AllGroups(ctx context.Context, groups *[]schema.Group) error
+	GroupProjects(ctx context.Context, name string, group *[]schema.Group) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -164,4 +166,16 @@ func AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, ug Us
 func DeleteGroup(ctx context.Context, name string, ug UserGroups) (*schema.DeleteGroupInput, error) {
 	group := schema.DeleteGroupInput{}
 	return &group, ug.DeleteGroup(ctx, name, &group)
+}
+
+// ListAllGroups lists all groups the user has access to.
+func ListAllGroups(ctx context.Context, ug UserGroups) (*[]schema.Group, error) {
+	groups := []schema.Group{}
+	return &groups, ug.AllGroups(ctx, &groups)
+}
+
+// GetGroupProjects gets projects associated with a group.
+func GetGroupProjects(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
+	group := []schema.Group{}
+	return &group, ug.GroupProjects(ctx, name, &group)
 }

@@ -33,6 +33,7 @@ type Group struct {
 		User User      `json:"user"`
 		Role GroupRole `json:"role"`
 	} `json:"members,omitempty"`
+	Projects []Project `json:"projects,omitempty"`
 }
 
 // GroupConfig embeds AddGroupInput as well as a list of members.
