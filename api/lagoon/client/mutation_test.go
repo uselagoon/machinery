@@ -57,7 +57,7 @@ func TestAddProjectRequest(t *testing.T) {
 				}))
 			defer ts.Close()
 			token := ""
-			c := client.New(ts.URL, "", &token, false)
+			c := client.New(ts.URL, "", "v0.0.0", &token, false)
 			// ignore response error - we're testing the request
 			_ = c.AddProject(context.Background(), &schema.AddProjectInput{
 				Name:                  "foo",
@@ -112,7 +112,7 @@ func TestAddUser(t *testing.T) {
 				}))
 			defer ts.Close()
 			token := ""
-			c := client.New(ts.URL, "", &token, false)
+			c := client.New(ts.URL, "", "v0.0.0", &token, false)
 
 			out := schema.User{}
 			err := c.AddUser(context.Background(), tc.input.in, &out)
