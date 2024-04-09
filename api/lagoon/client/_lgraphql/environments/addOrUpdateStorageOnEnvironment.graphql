@@ -3,7 +3,7 @@ mutation (
   $persistentStorageClaim: String!
   $kibUsed: Float!
   ) {
-    addOrUpdateEnvironmentStorage(input: {
+    addOrUpdateStorageOnEnvironment(input: {
       environment: $environment
       persistentStorageClaim: $persistentStorageClaim
       kibUsed: $kibUsed
