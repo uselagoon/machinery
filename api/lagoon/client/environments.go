@@ -3,6 +3,7 @@ package client
 import (
 	"context"
 	"encoding/json"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -54,7 +55,7 @@ func (c *Client) DeleteEnvironment(ctx context.Context,
 func (c *Client) EnvironmentByName(ctx context.Context, name string,
 	projectID uint, environment *schema.Environment) error {
 
-	req, err := c.newRequest("_lgraphql/environments/environmentByName.graphql",
+	req, err := c.newVersionedRequest("_lgraphql/environments/environmentByName.graphql",
 		map[string]interface{}{
 			"name":    name,
 			"project": projectID,
@@ -73,7 +74,7 @@ func (c *Client) EnvironmentByName(ctx context.Context, name string,
 // EnvironmentByID queries the Lagoon API for an environment by its ID and unmarshals the response into environment.
 func (c *Client) EnvironmentByID(ctx context.Context, environmentID uint, environment *schema.Environment) error {
 
-	req, err := c.newRequest("_lgraphql/environments/environmentById.graphql",
+	req, err := c.newVersionedRequest("_lgraphql/environments/environmentById.graphql",
 		map[string]interface{}{
 			"id": environmentID,
 		})
@@ -92,7 +93,7 @@ func (c *Client) EnvironmentByID(ctx context.Context, environmentID uint, enviro
 // and unmarshals the response into environment.
 func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, environment *schema.Environment) error {
 
-	req, err := c.newRequest("_lgraphql/environments/environmentByNamespace.graphql",
+	req, err := c.newVersionedRequest("_lgraphql/environments/environmentByNamespace.graphql",
 		map[string]interface{}{
 			"namespace": namespace,
 		})
@@ -111,7 +112,7 @@ func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, e
 // and unmarshals the response into environment.
 func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, environments *[]schema.Environment) error {
 
-	req, err := c.newRequest("_lgraphql/environments/environmentsByProjectName.graphql",
+	req, err := c.newVersionedRequest("_lgraphql/environments/environmentsByProjectName.graphql",
 		map[string]interface{}{
 			"project": project,
 		})
@@ -192,7 +193,7 @@ func (c *Client) AddOrUpdateEnvironment(ctx context.Context,
 func (c *Client) UpdateEnvironment(
 	ctx context.Context, id uint, patch schema.UpdateEnvironmentPatchInput, environment *schema.Environment) error {
 
-	req, err := c.newRequest("_lgraphql/environments/updateEnvironment.graphql",
+	req, err := c.newVersionedRequest("_lgraphql/environments/updateEnvironment.graphql",
 		map[string]interface{}{
 			"id":    id,
 			"patch": patch,

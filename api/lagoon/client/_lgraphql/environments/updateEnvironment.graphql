@@ -20,12 +20,14 @@ mutation (
         services{
             id
             name
+            {{ if apiVerGreaterThanOrEqual . "2.18.0" }}
             type
             containers{
                 name
             }
             created
             updated
+            {{ end }}
         }
     }
 }
