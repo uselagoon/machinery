@@ -41,3 +41,8 @@ type EnvKeyValueInput struct {
 	Name  string `json:"name,omitempty"`
 	Value string `json:"value,omitempty"`
 }
+
+type EnvVariableByProjectEnvironmentNameInput struct {
+	Environment string `json:"environment,omitempty"`
+	Project     string `json:"project"`
+}
