@@ -140,7 +140,7 @@ func (c *Client) ListAllGroupMembers(
 	})
 }
 
-// ListAllGroupMembers queries the Lagoon API for all groups and members, and
+// ListGroupMembers queries the Lagoon API for groups and members, and
 // unmarshals the response into project.
 func (c *Client) ListGroupMembers(
 	ctx context.Context, name string, groups *schema.Group) error {
@@ -486,4 +486,16 @@ func (c *Client) UpdateUser(ctx context.Context, in *schema.UpdateUserInput, out
 	}{
 		Response: out,
 	})
+}
+
+// ResetPassword resets a user's password.
+func (c *Client) ResetPassword(ctx context.Context, in *schema.ResetUserPasswordInput, out *schema.User) error {
+	req, err := c.newRequest("_lgraphql/usergroups/resetPassword.graphql",
+		map[string]interface{}{
+			"email": in.User.Email,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
 }

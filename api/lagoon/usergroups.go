@@ -38,6 +38,7 @@ type UserGroups interface {
 	GroupProjects(ctx context.Context, name string, group *[]schema.Group) error
 	DeleteUser(ctx context.Context, in *schema.DeleteUserInput, user *schema.User) error
 	UpdateUser(ctx context.Context, in *schema.UpdateUserInput, user *schema.User) error
+	ResetPassword(ctx context.Context, in *schema.ResetUserPasswordInput, user *schema.User) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -192,4 +193,10 @@ func DeleteUser(ctx context.Context, in *schema.DeleteUserInput, ug UserGroups) 
 func UpdateUser(ctx context.Context, in *schema.UpdateUserInput, ug UserGroups) (*schema.User, error) {
 	user := schema.User{}
 	return &user, ug.UpdateUser(ctx, in, &user)
+}
+
+// ResetUserPassword resets a user's password in lagoon.
+func ResetUserPassword(ctx context.Context, in *schema.ResetUserPasswordInput, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.ResetPassword(ctx, in, &user)
 }
