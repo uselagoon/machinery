@@ -169,7 +169,7 @@ func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environ
 
 // InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
 func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
-	req, err := c.newRequest("_lgraphql/tasks/GetInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
+	req, err := c.newRequest("_lgraphql/tasks/getInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
 		map[string]interface{}{
 			"project":     projectID,
 			"environment": environmentName,

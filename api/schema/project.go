@@ -126,9 +126,9 @@ type UpdateProjectPatchInput struct {
 	DevelopmentBuildPriority     *uint                `json:"developmentBuildPriority,omitempty"`
 	DeploymentsDisabled          *uint                `json:"deploymentsDisabled,omitempty"`
 	// `null` is valid graphql, use a pointer to allow `nil` to be empty
-	BuildImage              *string `json:"buildImage,omitempty"`
-	Openshift               *uint   `json:"openshift,omitempty"`
-	OpenshiftProjectPattern *string `json:"openshiftProjectPattern,omitempty"`
+	BuildImage              *null.String `json:"buildImage,omitempty"`
+	Openshift               *uint        `json:"openshift,omitempty"`
+	OpenshiftProjectPattern *string      `json:"openshiftProjectPattern,omitempty"`
 }
 
 // RemoveProjectFromOrganizationInput is based on the Lagoon API type.

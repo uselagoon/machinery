@@ -400,7 +400,7 @@ func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users
 	return nil
 }
 
-// AddProjectToGroup adds a user to a group.
+// AddProjectToGroup adds a group to a project.
 func (c *Client) AddProjectToGroup(
 	ctx context.Context, in *schema.ProjectGroupsInput, out *schema.Group) error {
 	req, err := c.newRequest("_lgraphql/usergroups/addProjectToGroup.graphql", map[string]interface{}{

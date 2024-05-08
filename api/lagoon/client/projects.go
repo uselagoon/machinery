@@ -244,9 +244,9 @@ func (c *Client) RemoveProjectFromOrganization(ctx context.Context, in *schema.R
 }
 
 // ProjectKeyByName queries the Lagoon API for a project by its name, and returns the public key & optionally the private key.
-func (c *Client) ProjectKeyByName(ctx context.Context, name string, revealValue bool, project *schema.Project) error {
+func (c *Client) ProjectKeyByName(ctx context.Context, name string, revealKey bool, project *schema.Project) error {
 	query := "_lgraphql/projects/projectKeyByName.graphql"
-	if revealValue {
+	if revealKey {
 		query = "_lgraphql/projects/projectKeyByNameRevealed.graphql"
 	}
 	req, err := c.newRequest(query,
