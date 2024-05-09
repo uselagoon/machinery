@@ -1,5 +1,7 @@
 package schema
 
+import "github.com/guregu/null"
+
 // ProjectAvailability determines the number of pods used to run a project.
 type ProjectAvailability string
 
