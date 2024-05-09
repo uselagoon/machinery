@@ -41,3 +41,30 @@ type EnvKeyValueInput struct {
 	Name  string `json:"name,omitempty"`
 	Value string `json:"value,omitempty"`
 }
+
+type EnvVariableByProjectEnvironmentNameInput struct {
+	Environment string `json:"environment,omitempty"`
+	Project     string `json:"project"`
+}
+
+type EnvVariableByNameInput struct {
+	Environment string           `json:"environment,omitempty"`
+	Project     string           `json:"project"`
+	Scope       EnvVariableScope `json:"scope,omitempty"`
+	Name        string           `json:"name"`
+	Value       string           `json:"value"`
+}
+
+type DeleteEnvVariableByNameInput struct {
+	Environment string `json:"environment,omitempty"`
+	Project     string `json:"project"`
+	Name        string `json:"name"`
+}
+
+type UpdateEnvVarResponse struct {
+	EnvKeyValue
+}
+
+type DeleteEnvVarResponse struct {
+	DeleteEnvVar string `json:"deleteEnvVariableByName,omitempty"`
+}

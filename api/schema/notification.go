@@ -13,10 +13,17 @@ type AddNotificationRocketChatInput struct {
 	Organization *uint  `json:"organization,omitempty"`
 }
 
-// UpdateNotificationRocketChatPatchInput is based on the Lagoon API type.
+// UpdateNotificationRocketChatInput is based on the Lagoon API type.
 type UpdateNotificationRocketChatInput struct {
-	Name  string                         `json:"name"`
-	Patch AddNotificationRocketChatInput `json:"patch"`
+	Name  string                                 `json:"name"`
+	Patch UpdateNotificationRocketChatPatchInput `json:"patch"`
+}
+
+// UpdateNotificationRocketChatPatchInput is based on the Lagoon API type.
+type UpdateNotificationRocketChatPatchInput struct {
+	Name    *string `json:"name,omitempty"`
+	Webhook *string `json:"webhook,omitempty"`
+	Channel *string `json:"channel,omitempty"`
 }
 
 // NotificationRocketChat is based on the Lagoon API type.
@@ -33,10 +40,17 @@ type AddNotificationSlackInput struct {
 	Organization *uint  `json:"organization,omitempty"`
 }
 
-// UpdateNotificationSlackPatchInput is based on the Lagoon API type.
+// UpdateNotificationSlackInput is based on the Lagoon API type.
 type UpdateNotificationSlackInput struct {
-	Name  string                    `json:"name"`
-	Patch AddNotificationSlackInput `json:"patch"`
+	Name  string                            `json:"name"`
+	Patch UpdateNotificationSlackPatchInput `json:"patch"`
+}
+
+// UpdateNotificationSlackPatchInput is based on the Lagoon API type.
+type UpdateNotificationSlackPatchInput struct {
+	Name    *string `json:"name,omitempty"`
+	Webhook *string `json:"webhook,omitempty"`
+	Channel *string `json:"channel,omitempty"`
 }
 
 // NotificationSlack is based on the Lagoon API type.
@@ -52,10 +66,16 @@ type AddNotificationEmailInput struct {
 	Organization *uint  `json:"organization,omitempty"`
 }
 
-// UpdateNotificationEmailPatchInput is based on the Lagoon API type.
+// UpdateNotificationEmailInput is based on the Lagoon API type.
 type UpdateNotificationEmailInput struct {
-	Name  string                    `json:"name"`
-	Patch AddNotificationEmailInput `json:"patch"`
+	Name  string                            `json:"name"`
+	Patch UpdateNotificationEmailPatchInput `json:"patch"`
+}
+
+// UpdateNotificationEmailPatchInput is based on the Lagoon API type.
+type UpdateNotificationEmailPatchInput struct {
+	Name         *string `json:"name,omitempty"`
+	EmailAddress *string `json:"emailAddress,omitempty"`
 }
 
 // NotificationEmail is based on the Lagoon API type.
@@ -71,10 +91,16 @@ type AddNotificationMicrosoftTeamsInput struct {
 	Organization *uint  `json:"organization,omitempty"`
 }
 
-// UpdateNotificationMicrosoftTeamsPatchInput is based on the Lagoon API type.
+// UpdateNotificationMicrosoftTeamsInput is based on the Lagoon API type.
 type UpdateNotificationMicrosoftTeamsInput struct {
-	Name  string                             `json:"name"`
-	Patch AddNotificationMicrosoftTeamsInput `json:"patch"`
+	Name  string                                     `json:"name"`
+	Patch UpdateNotificationMicrosoftTeamsPatchInput `json:"patch"`
+}
+
+// UpdateNotificationMicrosoftTeamsPatchInput is based on the Lagoon API type.
+type UpdateNotificationMicrosoftTeamsPatchInput struct {
+	Name    *string `json:"name,omitempty"`
+	Webhook *string `json:"webhook,omitempty"`
 }
 
 // NotificationMicrosoftTeams is based on the Lagoon API type.
@@ -90,10 +116,16 @@ type AddNotificationWebhookInput struct {
 	Organization *uint  `json:"organization,omitempty"`
 }
 
-// UpdateNotificationWebhookPatchInput is based on the Lagoon API type.
+// UpdateNotificationWebhookInput is based on the Lagoon API type.
 type UpdateNotificationWebhookInput struct {
-	Name  string                      `json:"name"`
-	Patch AddNotificationWebhookInput `json:"patch"`
+	Name  string                              `json:"name"`
+	Patch UpdateNotificationWebhookPatchInput `json:"patch"`
+}
+
+// UpdateNotificationWebhookPatchInput is based on the Lagoon API type.
+type UpdateNotificationWebhookPatchInput struct {
+	Name    *string `json:"name,omitempty"`
+	Webhook *string `json:"webhook,omitempty"`
 }
 
 // NotificationWebhook is based on the Lagoon API type.

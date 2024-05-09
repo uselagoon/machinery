@@ -148,3 +148,95 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 
 	return nil
 }
+
+// TasksByEnvironment gets tasks for an environment.
+func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/tasks/getTasksForEnvironment.graphql",
+		map[string]interface{}{
+			"project":     projectID,
+			"environment": environmentName,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
+
+// InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/tasks/getInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
+		map[string]interface{}{
+			"project":     projectID,
+			"environment": environmentName,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
+
+// InvokeAdvancedTaskDefinition invokes an advanced task definition.
+func (c *Client) InvokeAdvancedTaskDefinition(ctx context.Context, environmentID uint, taskID uint, task *schema.Task) error {
+	req, err := c.newRequest("_lgraphql/tasks/invokeRegisteredTask.graphql",
+		map[string]interface{}{
+			"environment":            environmentID,
+			"advancedTaskDefinition": taskID,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Task `json:"invokeRegisteredTask"`
+	}{
+		Response: task,
+	})
+}
+
+// AdvancedTasksByEnvironment gets advanced tasks for an environment.
+func (c *Client) AdvancedTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+	req, err := c.newRequest("_lgraphql/tasks/getAdvancedTasksByEnvironment.graphql",
+		map[string]interface{}{
+			"project": projectID,
+			"name":    environmentName,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByName"`
+	}{
+		Response: environment,
+	})
+}
+
+// AddTask adds a task.
+func (c *Client) AddTask(ctx context.Context, environmentID uint, task schema.Task, out *schema.Task) error {
+	req, err := c.newRequest("_lgraphql/tasks/addTask.graphql",
+		map[string]interface{}{
+			"environment": environmentID,
+			"name":        task.Name,
+			"command":     task.Command,
+			"service":     task.Service,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Task `json:"addTask"`
+	}{
+		Response: out,
+	})
+}

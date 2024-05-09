@@ -50,7 +50,7 @@ func UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStora
 	return &result, e.UpdateStorageOnEnvironment(ctx, storage, &result)
 }
 
-// DeleteEnvironment updates environment storage.
+// DeleteEnvironment deletes an environment.
 func DeleteEnvironment(ctx context.Context, name, project string, execute bool, e Environments) (*schema.DeleteEnvironment, error) {
 	result := schema.DeleteEnvironment{}
 	return &result, e.DeleteEnvironment(ctx, name, project, execute, &result)

@@ -81,8 +81,7 @@ func (c *Client) AddUser(
 }
 
 // AddSSHKey adds an SSH key to a user.
-func (c *Client) AddSSHKey(
-	ctx context.Context, in *schema.AddSSHKeyInput, out *schema.SSHKey) error {
+func (c *Client) AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, out *schema.SSHKey) error {
 	req, err := c.newRequest("_lgraphql/usergroups/addSshKey.graphql", in)
 	if err != nil {
 		return err
@@ -141,7 +140,7 @@ func (c *Client) ListAllGroupMembers(
 	})
 }
 
-// ListAllGroupMembers queries the Lagoon API for all groups and members, and
+// ListGroupMembers queries the Lagoon API for groups and members, and
 // unmarshals the response into project.
 func (c *Client) ListGroupMembers(
 	ctx context.Context, name string, groups *schema.Group) error {
@@ -399,4 +398,104 @@ func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users
 	}
 	json.Unmarshal(data, users)
 	return nil
+}
+
+// AddProjectToGroup adds a group to a project.
+func (c *Client) AddProjectToGroup(
+	ctx context.Context, in *schema.ProjectGroupsInput, out *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addProjectToGroup.graphql", map[string]interface{}{
+		"project": in.Project.Name,
+		"groups":  in.Groups,
+	})
+
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"addGroupsToProject"`
+	}{
+		Response: out,
+	})
+}
+
+// DeleteGroup deletes a group.
+func (c *Client) DeleteGroup(ctx context.Context, name string, out *schema.DeleteGroupInput) error {
+	req, err := c.newRequest("_lgraphql/usergroups/deleteGroup.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
+
+// AllGroups queries the Lagoon API and returns all groups a user has access to.
+func (c *Client) AllGroups(ctx context.Context, groups *[]schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/allGroups.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroups"`
+	}{
+		Response: groups,
+	})
+}
+
+// GroupProjects queries the Lagoon API for a group by its name, returning all projects within the group.
+func (c *Client) GroupProjects(
+	ctx context.Context, name string, group *[]schema.Group) error {
+
+	req, err := c.newRequest("_lgraphql/usergroups/groupProjects.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Group `json:"allGroups"`
+	}{
+		Response: group,
+	})
+}
+
+// DeleteUser removes a user from Lagoon.
+func (c *Client) DeleteUser(ctx context.Context, in *schema.DeleteUserInput, out *schema.User) error {
+	req, err := c.newRequest("_lgraphql/usergroups/deleteUser.graphql",
+		map[string]interface{}{
+			"email": in.User.Email,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
+
+// UpdateUser updates a user in Lagoon.
+func (c *Client) UpdateUser(ctx context.Context, in *schema.UpdateUserInput, out *schema.User) error {
+	req, err := c.newRequest("_lgraphql/usergroups/updateUser.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.User `json:"updateUser"`
+	}{
+		Response: out,
+	})
+}
+
+// ResetPassword resets a user's password.
+func (c *Client) ResetPassword(ctx context.Context, in *schema.ResetUserPasswordInput, out *schema.User) error {
+	req, err := c.newRequest("_lgraphql/usergroups/resetPassword.graphql",
+		map[string]interface{}{
+			"email": in.User.Email,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
 }

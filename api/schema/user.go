@@ -4,11 +4,12 @@ import "github.com/google/uuid"
 
 // AddUserInput is based on the Lagoon API type.
 type AddUserInput struct {
-	Email     string `json:"email"`
-	FirstName string `json:"firstName,omitempty"`
-	LastName  string `json:"lastName,omitempty"`
-	Comment   string `json:"comment,omitempty"`
-	GitlabID  uint   `json:"gitlabId,omitempty"`
+	Email         string `json:"email"`
+	FirstName     string `json:"firstName,omitempty"`
+	LastName      string `json:"lastName,omitempty"`
+	Comment       string `json:"comment,omitempty"`
+	GitlabID      uint   `json:"gitlabId,omitempty"`
+	ResetPassword bool   `json:"resetPassword,omitempty"`
 }
 
 // User provides for unmarshalling the users contained withing a Group.
@@ -39,4 +40,25 @@ type AddUserToOrganizationInput struct {
 	User         UserInput `json:"user"`
 	Organization uint      `json:"organization"`
 	Owner        bool      `json:"owner,omitempty"`
+}
+
+type DeleteUserInput struct {
+	User UserInput `json:"user"`
+}
+
+type UpdateUserInput struct {
+	User  UserInput            `json:"user"`
+	Patch UpdateUserPatchInput `json:"patch"`
+}
+
+type UpdateUserPatchInput struct {
+	Email     *string `json:"email,omitempty"`
+	FirstName *string `json:"firstName,omitempty"`
+	LastName  *string `json:"lastName,omitempty"`
+	Comment   *string `json:"comment,omitempty"`
+	GitlabID  *uint   `json:"gitlabId,omitempty"`
+}
+
+type ResetUserPasswordInput struct {
+	User UserInput `json:"user"`
 }

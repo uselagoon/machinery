@@ -32,6 +32,13 @@ type UserGroups interface {
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
 	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
 	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
+	AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, group *schema.Group) error
+	DeleteGroup(ctx context.Context, name string, group *schema.DeleteGroupInput) error
+	AllGroups(ctx context.Context, groups *[]schema.Group) error
+	GroupProjects(ctx context.Context, name string, group *[]schema.Group) error
+	DeleteUser(ctx context.Context, in *schema.DeleteUserInput, user *schema.User) error
+	UpdateUser(ctx context.Context, in *schema.UpdateUserInput, user *schema.User) error
+	ResetPassword(ctx context.Context, in *schema.ResetUserPasswordInput, user *schema.User) error
 }
 
 // Me gets info on the current user of lagoon.
@@ -151,4 +158,45 @@ func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema
 func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
 	return &user, ug.UsersByOrganizationName(ctx, name, &user)
+}
+
+// AddProjectToGroup adds a project to a group.
+func AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, ug UserGroups) (*schema.Group, error) {
+	group := schema.Group{}
+	return &group, ug.AddProjectToGroup(ctx, in, &group)
+}
+
+func DeleteGroup(ctx context.Context, name string, ug UserGroups) (*schema.DeleteGroupInput, error) {
+	group := schema.DeleteGroupInput{}
+	return &group, ug.DeleteGroup(ctx, name, &group)
+}
+
+// ListAllGroups lists all groups the user has access to.
+func ListAllGroups(ctx context.Context, ug UserGroups) (*[]schema.Group, error) {
+	groups := []schema.Group{}
+	return &groups, ug.AllGroups(ctx, &groups)
+}
+
+// GetGroupProjects gets projects associated with a group.
+func GetGroupProjects(ctx context.Context, name string, ug UserGroups) (*[]schema.Group, error) {
+	group := []schema.Group{}
+	return &group, ug.GroupProjects(ctx, name, &group)
+}
+
+// DeleteUser removes a user from lagoon.
+func DeleteUser(ctx context.Context, in *schema.DeleteUserInput, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.DeleteUser(ctx, in, &user)
+}
+
+// UpdateUser updates a user in lagoon.
+func UpdateUser(ctx context.Context, in *schema.UpdateUserInput, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.UpdateUser(ctx, in, &user)
+}
+
+// ResetUserPassword resets a user's password in lagoon.
+func ResetUserPassword(ctx context.Context, in *schema.ResetUserPasswordInput, ug UserGroups) (*schema.User, error) {
+	user := schema.User{}
+	return &user, ug.ResetPassword(ctx, in, &user)
 }

@@ -242,3 +242,50 @@ func (c *Client) RemoveProjectFromOrganization(ctx context.Context, in *schema.R
 		Response: out,
 	})
 }
+
+// ProjectKeyByName queries the Lagoon API for a project by its name, and returns the public key & optionally the private key.
+func (c *Client) ProjectKeyByName(ctx context.Context, name string, revealKey bool, project *schema.Project) error {
+	query := "_lgraphql/projects/projectKeyByName.graphql"
+	if revealKey {
+		query = "_lgraphql/projects/projectKeyByNameRevealed.graphql"
+	}
+	req, err := c.newRequest(query,
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
+
+// AllProjects queries the Lagoon API and returns all projects a user has access to.
+func (c *Client) AllProjects(ctx context.Context, projects *[]schema.Project) error {
+	req, err := c.newRequest("_lgraphql/projects/allProjects.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Project `json:"allProjects"`
+	}{
+		Response: projects,
+	})
+}
+
+// DeleteProject deletes a project from Lagoon.
+func (c *Client) DeleteProject(ctx context.Context, project string, out *schema.DeleteProject) error {
+	req, err := c.newRequest("_lgraphql/projects/deleteProject.graphql",
+		map[string]interface{}{
+			"project": project,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}

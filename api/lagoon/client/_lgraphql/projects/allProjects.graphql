@@ -1,0 +1,14 @@
+query {
+  allProjects {
+    id
+    name
+    gitUrl
+    productionEnvironment
+    developmentEnvironmentsLimit
+    environments{
+      id
+      name
+      environmentType
+    }
+  }
+}

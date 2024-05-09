@@ -2,14 +2,18 @@ mutation (
   $email: String!,
   $firstName: String,
   $lastName: String,
-  $comment: String) {
+  $comment: String,
+  $resetPassword: Boolean) {
     addUser(input: {
       email: $email
       firstName: $firstName
       lastName: $lastName
       comment: $comment
+      resetPassword: $resetPassword
     }) {
       id
       email
+      firstName
+      lastName
     }
   }

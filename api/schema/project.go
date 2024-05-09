@@ -31,6 +31,7 @@ type AddProjectInput struct {
 	StorageCalc                  uint   `json:"storageCalc"`
 	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
+	PublicKey                    string `json:"publicKey,omitempty"`
 	BuildImage                   string `json:"buildImage,omitempty"`
 	Organization                 uint   `json:"organization,omitempty"`
 	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`
@@ -127,11 +128,17 @@ type UpdateProjectPatchInput struct {
 	DevelopmentBuildPriority     *uint                `json:"developmentBuildPriority,omitempty"`
 	DeploymentsDisabled          *uint                `json:"deploymentsDisabled,omitempty"`
 	// `null` is valid graphql, use a pointer to allow `nil` to be empty
-	BuildImage *null.String `json:"buildImage,omitempty"`
+	BuildImage              *null.String `json:"buildImage,omitempty"`
+	Openshift               *uint        `json:"openshift,omitempty"`
+	OpenshiftProjectPattern *string      `json:"openshiftProjectPattern,omitempty"`
 }
 
 // RemoveProjectFromOrganizationInput is based on the Lagoon API type.
 type RemoveProjectFromOrganizationInput struct {
 	Project      uint `json:"project"`
 	Organization uint `json:"organization"`
+}
+
+type DeleteProject struct {
+	Project string `json:"name"`
 }

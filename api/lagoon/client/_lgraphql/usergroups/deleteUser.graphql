@@ -1,0 +1,10 @@
+mutation (
+  $email: String!) {
+  deleteUser(
+    input:{
+      user: {
+        email: $email
+      }
+    }
+  )
+}
