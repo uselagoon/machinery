@@ -24,6 +24,7 @@ type Environments interface {
 	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error
 	DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error
+	DeleteBackup(context.Context, string, *schema.DeleteBackup) error
 }
 
 // GetBackupsForEnvironmentByName gets backup info in lagoon for specific environment.
@@ -108,4 +109,10 @@ func AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnviro
 func DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, e Environments) (*schema.DeleteEnvironmentService, error) {
 	result := schema.DeleteEnvironmentService{}
 	return &result, e.DeleteEnvironmentService(ctx, service, &result)
+}
+
+// DeleteBackup deletes an environment backup.
+func DeleteBackup(ctx context.Context, backupID string, e Environments) (*schema.DeleteBackup, error) {
+	result := schema.DeleteBackup{}
+	return &result, e.DeleteBackup(ctx, backupID, &result)
 }
