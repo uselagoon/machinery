@@ -285,3 +285,21 @@ func (c *Client) DeleteEnvironmentService(
 		Response: result,
 	})
 }
+
+// DeleteBackup deletes an environment backup.
+func (c *Client) DeleteBackup(ctx context.Context,
+	backupID string, result *schema.DeleteBackup) error {
+	req, err := c.newRequest("_lgraphql/environments/deleteBackup.graphql",
+		map[string]interface{}{
+			"backupId": backupID,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.DeleteBackup `json:"deleteBackup"`
+	}{
+		Response: result,
+	})
+}

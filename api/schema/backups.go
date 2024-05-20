@@ -29,3 +29,8 @@ type AddRestoreInput struct {
 	RestoreLocation string `json:"restoreLocation"`
 	Execute         bool   `json:"execute"`
 }
+
+// DeleteBackup is the response.
+type DeleteBackup struct {
+	DeleteBackup string `json:"deleteBackup"`
+}
