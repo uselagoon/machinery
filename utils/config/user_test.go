@@ -38,6 +38,7 @@ func TestConfig_GetUser(t *testing.T) {
 						RefreshToken: "blah",
 						Expiry:       time.Time{},
 					},
+					PublicKeyIdentities: []string{},
 				},
 			},
 		},
@@ -213,6 +214,26 @@ func TestConfig_UpdateUser(t *testing.T) {
 				},
 			},
 			wantErr: true,
+		},
+		{
+			name:        "test3",
+			description: "verify that the updated user is returned from the config",
+			c:           readConfig("test-data/seed-config.yaml"),
+			args: args{
+				user: UserConfig{
+					Name:   "user2",
+					SSHKey: "/home/user2/.ssh/id_ed25511",
+					Grant: &oauth2.Token{
+						AccessToken:  "blah2",
+						TokenType:    "grant",
+						RefreshToken: "blah2",
+						Expiry:       time.Time{},
+					},
+					PublicKeyIdentities: []string{
+						"/path/to/public/key.pub",
+					},
+				},
+			},
 		},
 	}
 	for _, tt := range tests {
