@@ -20,6 +20,7 @@ users:
             tokentype: grant
             refreshtoken: blah
             expiry: 0001-01-01T00:00:00Z
+        publickeyidentities: []
 default-context: lagoon
 features:
   cli-myglobalfeature: true
