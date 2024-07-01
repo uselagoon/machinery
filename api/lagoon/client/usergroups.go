@@ -3,6 +3,8 @@ package client
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -353,9 +355,23 @@ func (c *Client) RemoveUserFromOrganization(ctx context.Context, in *schema.AddU
 	})
 }
 
-// UsersByOrganization queries the Lagoon API for users by the given organization id
-func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error {
+// UsersByOrganizationName queries the Lagoon API for users by the given organization name
+func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error {
+	org := &schema.Organization{}
+	if err := c.OrganizationByName(ctx, name, org); err != nil {
+		return err
+	}
+	if org.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "viewUsers" on "organization"`)
+	}
 
+	return c.UsersByOrganizationID(ctx, org.ID, users)
+}
+
+// UsersByOrganizationID queries the Lagoon API for users by the given organization id
+func (c *Client) UsersByOrganizationID(ctx context.Context, id uint, users *[]schema.OrgUser) error {
 	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganization.graphql",
 		map[string]interface{}{
 			"id": id,
@@ -371,11 +387,10 @@ func (c *Client) UsersByOrganization(ctx context.Context, id uint, users *[]sche
 	})
 }
 
-// UsersByOrganizationName queries the Lagoon API for users by the given organization name
+// ListOrganizationAdminsByName queries the Lagoon API for users by the given organization name
 // and unmarshals the response into organization.
-func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error {
-
-	req, err := c.newRequest("_lgraphql/usergroups/usersByOrganizationName.graphql",
+func (c *Client) ListOrganizationAdminsByName(ctx context.Context, name string, users *[]schema.OrgUser) error {
+	req, err := c.newRequest("_lgraphql/organizations/listOrganizationAdminsByName.graphql",
 		map[string]interface{}{
 			"name": name,
 		})
