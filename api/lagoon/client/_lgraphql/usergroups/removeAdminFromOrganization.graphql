@@ -1,11 +1,9 @@
 mutation (
   $user: UserInput!,
-  $organization: Int!,
-  $owner: Boolean) {
+  $organization: Int!) {
   removeUserFromOrganization(input: {
     user: $user
     organization: $organization
-    owner: $owner
   }) {
     id
     name

@@ -86,7 +86,7 @@ type OrganizationNotification struct {
 }
 
 type OrgUser struct {
-	ID         string       `json:"id,omitempty"`
+	ID         *uuid.UUID   `json:"id,omitempty"`
 	Email      string       `json:"email,omitempty"`
 	FirstName  string       `json:"firstName,omitempty"`
 	LastName   string       `json:"lastName,omitempty"`
