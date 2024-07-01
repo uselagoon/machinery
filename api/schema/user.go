@@ -17,7 +17,7 @@ type User struct {
 	AddUserInput
 	ID         *uuid.UUID   `json:"id,omitempty"`
 	SSHKeys    []SSHKey     `json:"sshKeys,omitempty"`
-	GroupRoles []GroupRoles `json:"groupRoles,omitempy"`
+	GroupRoles []GroupRoles `json:"groupRoles,omitempty"`
 }
 
 type UserInput struct {
@@ -40,6 +40,7 @@ type AddUserToOrganizationInput struct {
 	User         UserInput `json:"user"`
 	Organization uint      `json:"organization"`
 	Owner        bool      `json:"owner,omitempty"`
+	Admin        bool      `json:"admin,omitempty"`
 }
 
 type DeleteUserInput struct {
