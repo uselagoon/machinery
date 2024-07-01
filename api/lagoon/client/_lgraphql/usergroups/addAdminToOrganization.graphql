@@ -1,11 +1,13 @@
 mutation (
   $user: UserInput!,
   $organization: Int!,
-  $owner: Boolean) {
+  $owner: Boolean,
+  $admin: Boolean) {
     addUserToOrganization(input: {
       user: $user
       organization: $organization
       owner: $owner
+      admin: $admin
     }) {
       id
       name

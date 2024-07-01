@@ -92,6 +92,7 @@ type OrgUser struct {
 	LastName   string       `json:"lastName,omitempty"`
 	Comment    string       `json:"comment,omitempty"`
 	Owner      bool         `json:"owner,omitempty"`
+	Admin      bool         `json:"admin,omitempty"`
 	GroupRoles []GroupRoles `json:"groupRoles,omitempty"`
 }
 

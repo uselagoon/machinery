@@ -40,6 +40,7 @@ type AddUserToOrganizationInput struct {
 	User         UserInput `json:"user"`
 	Organization uint      `json:"organization"`
 	Owner        bool      `json:"owner,omitempty"`
+	Admin        bool      `json:"admin,omitempty"`
 }
 
 type DeleteUserInput struct {
