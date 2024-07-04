@@ -24,11 +24,6 @@ func readConfig(file string) Config {
 }
 
 func TestConfig_writeConfig(t *testing.T) {
-	type fields struct {
-		Contexts       []Context
-		Users          []User
-		DefaultContext string
-	}
 	type args struct {
 		file string
 	}
@@ -240,6 +235,7 @@ func TestConfig_GetUserContext(t *testing.T) {
 					RefreshToken: "blah",
 					Expiry:       time.Time{},
 				},
+				PublicKeyIdentities: []string{},
 			},
 			want1: &ContextConfig{
 				Name:                   "lagoon",

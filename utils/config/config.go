@@ -59,8 +59,9 @@ type UserConfig struct {
 	// sshkey is optional
 	// if defined, then a client should use the `tokenhost` method of authentication
 	// otherwise, client will use `authenticationendpoint` authentication method
-	SSHKey string        `yaml:"sshkey"`
-	Grant  *oauth2.Token `yaml:"grant"`
+	SSHKey              string        `yaml:"sshkey"`
+	Grant               *oauth2.Token `yaml:"grant"`
+	PublicKeyIdentities []string      `yaml:"publickeyidentities"`
 }
 
 // LoadConfig will load the configuration if it exists
