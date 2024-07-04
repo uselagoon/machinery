@@ -30,8 +30,9 @@ type UserGroups interface {
 	ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error
 	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
-	UsersByOrganization(ctx context.Context, id uint, users *[]schema.OrgUser) error
+	UsersByOrganizationID(ctx context.Context, id uint, users *[]schema.OrgUser) error
 	UsersByOrganizationName(ctx context.Context, name string, users *[]schema.OrgUser) error
+	ListOrganizationAdminsByName(ctx context.Context, name string, users *[]schema.OrgUser) error
 	AddProjectToGroup(ctx context.Context, in *schema.ProjectGroupsInput, group *schema.Group) error
 	DeleteGroup(ctx context.Context, name string, group *schema.DeleteGroupInput) error
 	AllGroups(ctx context.Context, groups *[]schema.Group) error
@@ -148,16 +149,22 @@ func AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizati
 	return &group, ug.AddGroupToOrganization(ctx, in, &group)
 }
 
-// UsersByOrganization lists users associated within an organization in lagoon via provided ID.
-func UsersByOrganization(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
+// UsersByOrganizationID lists users associated within an organization in lagoon via provided ID.
+func UsersByOrganizationID(ctx context.Context, id uint, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
-	return &user, ug.UsersByOrganization(ctx, id, &user)
+	return &user, ug.UsersByOrganizationID(ctx, id, &user)
 }
 
-// UsersByOrganizationName lists users associated within an organization in lagoon via provided Name.
+// UsersByOrganizationName lists users associated within an organization in lagoon via provided ID.
 func UsersByOrganizationName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
 	user := []schema.OrgUser{}
 	return &user, ug.UsersByOrganizationName(ctx, name, &user)
+}
+
+// ListOrganizationAdminsByName lists users associated within an organization in lagoon via provided Name.
+func ListOrganizationAdminsByName(ctx context.Context, name string, ug UserGroups) (*[]schema.OrgUser, error) {
+	user := []schema.OrgUser{}
+	return &user, ug.ListOrganizationAdminsByName(ctx, name, &user)
 }
 
 // AddProjectToGroup adds a project to a group.
