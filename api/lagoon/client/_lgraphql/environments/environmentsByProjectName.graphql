@@ -5,14 +5,18 @@ query (
       environments {
         id
         name
+        route
+        routes
         deployType
-        deployBaseRef
-        deployHeadRef
-        deployTitle
         environmentType
         openshiftProjectName
         autoIdle
-        route
+        deployTitle
+        deployBaseRef
+        deployHeadRef
+        updated
+        created
+        deleted
         openshift {
             id
             name
