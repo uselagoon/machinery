@@ -9,6 +9,7 @@ query {
       id
       name
       environmentType
+      route
     }
   }
 }

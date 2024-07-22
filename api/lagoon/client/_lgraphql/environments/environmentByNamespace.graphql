@@ -11,9 +11,25 @@ query (
     deployType
     environmentType
     openshiftProjectName
+    autoIdle
+    deployTitle
+    deployBaseRef
+    deployHeadRef
     updated
     created
     deleted
+    openshift {
+        id
+        name
+        created
+        cloudRegion
+        cloudProvider
+        friendlyName
+        sshHost
+        sshPort
+        routerPattern
+        buildImage
+    }
     services{
       id
       name
