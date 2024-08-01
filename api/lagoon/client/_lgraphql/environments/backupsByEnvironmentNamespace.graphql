@@ -1,0 +1,25 @@
+query (
+  $namespace: String!
+){
+  environmentByNamespace:environmentByKubernetesNamespaceName(
+    kubernetesNamespaceName: $namespace
+  ){
+    id
+    name
+    openshiftProjectName
+    backups{
+      id
+      source
+      backupId
+      created
+      deleted
+      restore{
+        id
+        status
+        created
+        backupId
+        restoreLocation
+      }
+    }
+  }
+}

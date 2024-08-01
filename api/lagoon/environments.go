@@ -20,6 +20,7 @@ type Environments interface {
 	EnvironmentByName(ctx context.Context, name string, project uint, result *schema.Environment) error
 	EnvironmentByID(ctx context.Context, environment uint, result *schema.Environment) error
 	EnvironmentByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
+	BackupsByEnvironmentNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	EnvironmentsByProjectName(ctx context.Context, project string, result *[]schema.Environment) error
 	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error
@@ -85,6 +86,12 @@ func GetEnvironmentByID(ctx context.Context, env uint, e Environments) (*schema.
 func GetEnvironmentByNamespace(ctx context.Context, namespace string, e Environments) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, e.EnvironmentByNamespace(ctx, namespace, &environment)
+}
+
+// GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
+func GetBackupsByEnvironmentNamespace(ctx context.Context, namespace string, e Environments) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, e.BackupsByEnvironmentNamespace(ctx, namespace, &environment)
 }
 
 // GetEnvironmentsByProjectName lists info of all environments for a given project.

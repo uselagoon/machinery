@@ -108,6 +108,25 @@ func (c *Client) EnvironmentByNamespace(ctx context.Context, namespace string, e
 	})
 }
 
+// BackupsByEnvironmentNamespace queries the Lagoon API for an environment by its namespace
+// and unmarshals the response into environment.
+func (c *Client) BackupsByEnvironmentNamespace(ctx context.Context, namespace string, environment *schema.Environment) error {
+
+	req, err := c.newVersionedRequest("_lgraphql/environments/backupsByEnvironmentNamespace.graphql",
+		map[string]interface{}{
+			"namespace": namespace,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Environment `json:"environmentByNamespace"`
+	}{
+		Response: environment,
+	})
+}
+
 // EnvironmentsByProjectName queries the Lagoon API for environments by the given project name
 // and unmarshals the response into environment.
 func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, environments *[]schema.Environment) error {
