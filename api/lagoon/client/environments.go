@@ -316,9 +316,5 @@ func (c *Client) DeleteBackup(ctx context.Context,
 		return err
 	}
 
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.DeleteBackup `json:"deleteBackup"`
-	}{
-		Response: result,
-	})
+	return c.client.Run(ctx, req, &result)
 }
