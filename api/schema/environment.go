@@ -58,7 +58,7 @@ type AddEnvironmentInput struct {
 // Environment is the Lagoon API Environment object.
 type Environment struct {
 	AddEnvironmentInput
-	AutoIdle      uint                 `json:"autoIdle"`
+	AutoIdle      *uint                `json:"autoIdle,omitempty"`
 	EnvVariables  []EnvKeyValue        `json:"envVariables,omitempty"`
 	Route         string               `json:"route,omitempty"`
 	Routes        string               `json:"routes,omitempty"`
