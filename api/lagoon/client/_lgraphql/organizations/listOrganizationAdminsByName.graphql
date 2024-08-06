@@ -10,6 +10,7 @@ query (
         firstName
         lastName
         owner
+        admin
       }
     }
 }
