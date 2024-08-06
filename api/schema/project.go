@@ -29,12 +29,12 @@ type AddProjectInput struct {
 	// significant - Lagoon uses it as a boolean (0/1).
 	AutoIdle                     *uint  `json:"autoIdle,omitempty"`
 	StorageCalc                  *uint  `json:"storageCalc,omitempty"`
-	DevelopmentEnvironmentsLimit uint   `json:"developmentEnvironmentsLimit,omitempty"`
+	DevelopmentEnvironmentsLimit *uint  `json:"developmentEnvironmentsLimit,omitempty"`
 	PrivateKey                   string `json:"privateKey,omitempty"`
 	PublicKey                    string `json:"publicKey,omitempty"`
 	BuildImage                   string `json:"buildImage,omitempty"`
-	Organization                 uint   `json:"organization,omitempty"`
-	AddOrgOwner                  bool   `json:"addOrgOwner,omitempty"`
+	Organization                 *uint  `json:"organization,omitempty"`
+	AddOrgOwner                  *bool  `json:"addOrgOwner,omitempty"`
 	RouterPattern                string `json:"routerPattern,omitempty"`
 	ProblemsUI                   *uint  `json:"problemsUi,omitempty"`
 	FactsUI                      *uint  `json:"factsUi,omitempty"`
