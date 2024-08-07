@@ -58,24 +58,6 @@ func (c *Client) GetTaskByID(
 	})
 }
 
-// NotificationsForProjectByName gets all notifications for a project
-func (c *Client) NotificationsForProjectByName(
-	ctx context.Context, name string, project *schema.Project) error {
-	req, err := c.newRequest("_lgraphql/projectNotifications.graphql",
-		map[string]interface{}{
-			"name": name,
-		})
-	if err != nil {
-		return err
-	}
-
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Project `json:"projectByName"`
-	}{
-		Response: project,
-	})
-}
-
 // SSHEndpointsByProject queries the Lagoon API for a project by its name, and
 // unmarshals the response into project.
 func (c *Client) SSHEndpointsByProject(

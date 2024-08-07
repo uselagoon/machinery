@@ -491,3 +491,21 @@ func (c *Client) GetAllNotificationMicrosoftTeams(
 		Response: projects,
 	})
 }
+
+// NotificationsForProjectByName gets all notifications for a project
+func (c *Client) NotificationsForProjectByName(
+	ctx context.Context, name string, project *schema.Project) error {
+	req, err := c.newRequest("_lgraphql/notifications/projectNotifications.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
