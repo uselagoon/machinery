@@ -34,7 +34,7 @@ query (
                 webhook
                 name
                 contentType
-              	notificationSeverityThreshold
+                notificationSeverityThreshold
             }
         }
     }
