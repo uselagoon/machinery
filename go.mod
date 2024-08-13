@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/adrg/xdg v0.4.0
+	github.com/cxmcc/unixsums v0.0.0-20131125091133-89564297d82f
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/google/go-cmp v0.5.9
 	github.com/google/uuid v1.3.0
