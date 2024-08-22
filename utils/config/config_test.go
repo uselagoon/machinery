@@ -243,6 +243,8 @@ func TestConfig_GetUserContext(t *testing.T) {
 				AuthenticationEndpoint: "https://keycloak.example.com",
 				TokenHost:              "token.example.com",
 				TokenPort:              22,
+				SSHHost:                "ssh.example.com",
+				SSHPort:                22,
 			},
 		},
 		{

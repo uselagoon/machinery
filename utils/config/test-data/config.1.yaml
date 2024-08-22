@@ -6,6 +6,8 @@ contexts:
         authenticationendpoint: https://keycloak.example.com
         tokenhost: token.example.com
         tokenport: 22
+        sshhost: ssh.example.com
+        sshport: 22
     user: user1
   - name: another-lagoon
     context:
@@ -14,6 +16,8 @@ contexts:
         authenticationendpoint: https://keycloak2.example.com
         tokenhost: token2.example.com
         tokenport: 22
+        sshhost: ssh2.example.com
+        sshport: 22
     user: user2
 users:
   - name: user1

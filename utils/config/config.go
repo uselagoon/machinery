@@ -38,8 +38,10 @@ type ContextConfig struct {
 	Name                   string          `yaml:"name"`
 	APIHostname            string          `yaml:"apihostname"`
 	AuthenticationEndpoint string          `yaml:"authenticationendpoint"`
-	TokenHost              string          `yaml:"tokenhost"`
-	TokenPort              int             `yaml:"tokenport"`
+	TokenHost              string          `yaml:"tokenhost"` // used as the endpoint for retreiving a token via ssh (can be the same as sshost if it is core ssh)
+	TokenPort              int             `yaml:"tokenport"` // used as the endpoint for retreiving a token via ssh (can be the same as sshport if it is core ssh)
+	SSHHost                string          `yaml:"sshhost"`   // used as a fallback if ssh portal is not defined on a deploytarget
+	SSHPort                int             `yaml:"sshport"`   // used as a fallback if ssh portal is not defined on a deploytarget
 	UIHostname             string          `yaml:"uihostname,omitempty"`
 	WebhookEndpoint        string          `yaml:"webhookendpoint,omitempty"`
 	Version                string          `yaml:"version,omitempty"`

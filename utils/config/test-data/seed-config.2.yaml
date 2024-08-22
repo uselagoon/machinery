@@ -6,6 +6,8 @@ contexts:
         authenticationendpoint: https://keycloak.example.com
         tokenhost: token.example.com
         tokenport: 22
+        sshhost: ssh.example.com
+        sshport: 22
         features:
           cli-mycontextfeature: true
           cli-mycontextfeature2: false
