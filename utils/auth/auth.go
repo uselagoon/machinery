@@ -21,7 +21,7 @@ var (
 
 const (
 	defaultRealm = "lagoon"
-	clientID     = "lagoon-ui"
+	clientID     = "lagoon-cli"
 	clientSecret = ""
 	authPath     = "protocol/openid-connect/auth"
 	tokenPath    = "protocol/openid-connect/token"
