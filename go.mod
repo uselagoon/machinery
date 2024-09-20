@@ -11,6 +11,7 @@ require (
 	github.com/guregu/null v4.0.0+incompatible
 	github.com/hashicorp/go-version v1.6.0
 	github.com/machinebox/graphql v0.2.2
+	github.com/robfig/cron/v3 v3.0.1
 	golang.org/x/crypto v0.19.0
 	golang.org/x/oauth2 v0.17.0
 	golang.org/x/term v0.17.0
