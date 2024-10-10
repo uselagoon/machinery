@@ -19,6 +19,9 @@ type Tasks interface {
 	InvokeAdvancedTaskDefinition(ctx context.Context, environmentID uint, taskID uint, result *schema.Task) error
 	AdvancedTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 	AddTask(ctx context.Context, environmentID uint, task schema.Task, result *schema.Task) error
+
+	TasksByEnvironmentAndProjectName(ctx context.Context, project, environmentName string, environment *schema.Environment) error
+	InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, environment *schema.Environment) error
 }
 
 // ActiveStandbySwitch runs the activestandby switch.
@@ -51,10 +54,22 @@ func GetTasksByEnvironment(ctx context.Context, projectID uint, environmentName 
 	return &environment, t.TasksByEnvironment(ctx, projectID, environmentName, &environment)
 }
 
+// GetTasksByEnvironmentAndProjectName gets tasks for an environment.
+func GetTasksByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, t Tasks) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, t.TasksByEnvironmentAndProjectName(ctx, projectName, environmentName, &environment)
+}
+
 // GetInvokableAdvancedTaskDefinitionsByEnvironment gets a list of tasks invokable against an environment.
 func GetInvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, t Tasks) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, t.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, projectID, environmentName, &environment)
+}
+
+// GetInvokableAdvancedTaskDefinitionsByEnvironment gets a list of tasks invokable against an environment.
+func GetInvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, t Tasks) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, t.InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx, projectName, environmentName, &environment)
 }
 
 // InvokeAdvancedTaskDefinition invokes an advanced task definition.

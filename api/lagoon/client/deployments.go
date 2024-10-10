@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -21,6 +22,21 @@ func (c *Client) DeploymentsByBulkID(
 	}{
 		Response: deployments,
 	})
+}
+
+// DeploymentsByEnvironmentAndProjectName is the same as DeploymentsByEnvironment but does a project lookup before the deployments call
+func (c *Client) DeploymentsByEnvironmentAndProjectName(
+	ctx context.Context, projectName, environmentName string, environment *schema.Environment) error {
+	project := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.DeploymentsByEnvironment(ctx, project.ID, environmentName, environment)
 }
 
 func (c *Client) DeploymentsByEnvironment(
