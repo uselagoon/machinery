@@ -1,0 +1,15 @@
+mutation (
+  $name: String!,
+  $publicKey: String!,
+  $userEmail: String!) {
+    addUserSSHPublicKey(input: {
+      name: $name
+      publicKey: $publicKey
+      user: {
+        email: $userEmail
+      }
+    }) {
+      id
+      name
+    }
+  }
