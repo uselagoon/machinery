@@ -29,6 +29,27 @@ type AddSSHKeyInput struct {
 	UserEmail string `json:"userEmail"`
 }
 
+// AddUserSSHPublicKeyInput is based on the Lagoon API type.
+type AddUserSSHPublicKeyInput struct {
+	Name      string `json:"name"`
+	PublicKey string `json:"publicKey"`
+	UserEmail string `json:"userEmail"`
+}
+
 type DeleteSSHKeyByIDInput struct {
 	ID uint `json:"id"`
+}
+
+type DeleteUserSSHPublicKeyByIdInput struct {
+	ID uint `json:"id"`
+}
+
+type UpdateUserSSHPublicKeyPatchInput struct {
+	Name      string `json:"name,omitempty"`
+	PublicKey string `json:"publicKey,omitempty"`
+}
+
+type UpdateUserSSHPublicKeyInput struct {
+	ID    uint                             `json:"id"`
+	Patch UpdateUserSSHPublicKeyPatchInput `json:"patch"`
 }

@@ -1,0 +1,13 @@
+mutation (
+  $id: Int!
+  $patch: UpdateUserSSHPublicKeyPatchInput!){
+  updateUserSSHPublicKey(
+    input: {
+      id: $id
+      patch: $patch
+    }
+  ){
+    id
+    name
+  }
+}

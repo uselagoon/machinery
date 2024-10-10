@@ -83,6 +83,7 @@ func (c *Client) AddUser(
 }
 
 // AddSSHKey adds an SSH key to a user.
+// @Deprecated, use AddUserSSHPublicKey
 func (c *Client) AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, out *schema.SSHKey) error {
 	req, err := c.newRequest("_lgraphql/usergroups/addSshKey.graphql", in)
 	if err != nil {
@@ -90,6 +91,19 @@ func (c *Client) AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, out *
 	}
 	return c.client.Run(ctx, req, &struct {
 		Response *schema.SSHKey `json:"addSshKey"`
+	}{
+		Response: out,
+	})
+}
+
+// AddUserSSHPublicKey adds an SSH key to a user.
+func (c *Client) AddUserSSHPublicKey(ctx context.Context, in *schema.AddUserSSHPublicKeyInput, out *schema.SSHKey) error {
+	req, err := c.newRequest("_lgraphql/usergroups/addUserSSHPublicKey.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.SSHKey `json:"addUserSSHPublicKey"`
 	}{
 		Response: out,
 	})
@@ -258,10 +272,36 @@ func (c *Client) GetUserSSHKeysByEmail(ctx context.Context, email string, user *
 }
 
 // RemoveSSHKey removes an SSH key.
+// @Deprecated, use DeleteUserSSHPublicKey
 func (c *Client) RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error {
 	req, err := c.newRequest("_lgraphql/usergroups/removeSSHKeyById.graphql",
 		map[string]interface{}{
 			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
+
+// DeleteUserSSHPublicKey removes an SSH key.
+func (c *Client) DeleteUserSSHPublicKey(ctx context.Context, id uint, out *schema.DeleteUserSSHPublicKeyByIdInput) error {
+	req, err := c.newRequest("_lgraphql/usergroups/deleteUserSSHPublicKey.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &out)
+}
+
+// UpdateUserSSHPublicKey removes an SSH key.
+func (c *Client) UpdateUserSSHPublicKey(ctx context.Context, id uint, patch *schema.UpdateUserSSHPublicKeyPatchInput, out *schema.SSHKey) error {
+	req, err := c.newRequest("_lgraphql/usergroups/udateUserSSHPublicKey.graphql",
+		map[string]interface{}{
+			"id":    id,
+			"patch": patch,
 		})
 	if err != nil {
 		return err

@@ -18,7 +18,10 @@ type UserGroups interface {
 	RemoveUserFromGroup(ctx context.Context, in *schema.UserGroupInput, group *schema.Group) error
 	AddGroupsToProject(ctx context.Context, in *schema.ProjectGroupsInput, project *schema.Project) error
 	RemoveGroupsFromProject(ctx context.Context, in *schema.ProjectGroupsInput, project *schema.Project) error
+	// @Deprecated, use AddUserSSHPublicKey
 	AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, sshkey *schema.SSHKey) error
+	AddUserSSHPublicKey(ctx context.Context, in *schema.AddUserSSHPublicKeyInput, sshkey *schema.SSHKey) error
+	UpdateUserSSHPublicKey(ctx context.Context, id uint, in *schema.UpdateUserSSHPublicKeyPatchInput, sshkey *schema.SSHKey) error
 	Me(ctx context.Context, user *schema.User) error
 	AllUsers(ctx context.Context, filter schema.AllUsersFilter, users *[]schema.User) error
 	GetUserByEmail(ctx context.Context, email string, user *schema.User) error
@@ -26,7 +29,9 @@ type UserGroups interface {
 	UserBySSHKey(ctx context.Context, sshKey string, user *schema.User) error
 	UserBySSHFingerprint(ctx context.Context, fingerprint string, user *schema.User) error
 	GetUserSSHKeysByEmail(ctx context.Context, email string, user *schema.User) error
+	// @Deprecated, use DeleteUserSSHPublicKey
 	RemoveSSHKey(ctx context.Context, id uint, out *schema.DeleteSSHKeyByIDInput) error
+	DeleteUserSSHPublicKey(ctx context.Context, id uint, out *schema.DeleteUserSSHPublicKeyByIdInput) error
 	ListAllGroupMembersWithKeys(ctx context.Context, name string, groups *[]schema.Group) error
 	GroupsByOrganizationID(ctx context.Context, id uint, group *[]schema.OrgGroup) error
 	AddGroupToOrganization(ctx context.Context, in *schema.AddGroupToOrganizationInput, out *schema.OrgGroup) error
@@ -70,9 +75,20 @@ func AddUser(ctx context.Context, in *schema.AddUserInput, ug UserGroups) (*sche
 	return &user, ug.AddUser(ctx, in, &user)
 }
 
+// @Deprecated, use AddUserSSHPublicKey
 func AddSSHKey(ctx context.Context, in *schema.AddSSHKeyInput, ug UserGroups) (*schema.SSHKey, error) {
 	sshkey := schema.SSHKey{}
 	return &sshkey, ug.AddSSHKey(ctx, in, &sshkey)
+}
+
+func AddUserSSHPublicKey(ctx context.Context, in *schema.AddUserSSHPublicKeyInput, ug UserGroups) (*schema.SSHKey, error) {
+	sshkey := schema.SSHKey{}
+	return &sshkey, ug.AddUserSSHPublicKey(ctx, in, &sshkey)
+}
+
+func UpdateUserSSHPublicKey(ctx context.Context, id uint, in *schema.UpdateUserSSHPublicKeyPatchInput, ug UserGroups) (*schema.SSHKey, error) {
+	sshkey := schema.SSHKey{}
+	return &sshkey, ug.UpdateUserSSHPublicKey(ctx, id, in, &sshkey)
 }
 
 func AddUserToGroup(ctx context.Context, in *schema.UserGroupRoleInput, ug UserGroups) (*schema.Group, error) {
@@ -126,9 +142,15 @@ func GetUserSSHKeysByEmail(ctx context.Context, email string, ug UserGroups) (*s
 	return &user, ug.GetUserSSHKeysByEmail(ctx, email, &user)
 }
 
+// @Deprecated, use DeleteUserSSHPublicKey
 func RemoveSSHKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteSSHKeyByIDInput, error) {
 	result := schema.DeleteSSHKeyByIDInput{}
 	return &result, ug.RemoveSSHKey(ctx, id, &result)
+}
+
+func DeleteUserSSHPublicKey(ctx context.Context, id uint, ug UserGroups) (*schema.DeleteUserSSHPublicKeyByIdInput, error) {
+	result := schema.DeleteUserSSHPublicKeyByIdInput{}
+	return &result, ug.DeleteUserSSHPublicKey(ctx, id, &result)
 }
 
 // ListAllGroupMembersWithKeys gets info on the current groups of lagoon.
