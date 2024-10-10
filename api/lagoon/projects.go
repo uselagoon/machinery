@@ -13,21 +13,26 @@ type Projects interface {
 	MinimalProjectByName(ctx context.Context, name string, project *schema.Project) error
 	ProjectByNameMetadata(ctx context.Context, name string, project *schema.ProjectMetadata) error
 	ProjectsByMetadata(ctx context.Context, key string, value string, project *[]schema.ProjectMetadata) error
-	UpdateProjectMetadata(ctx context.Context, id int, key string, value string, project *schema.ProjectMetadata) error
-	RemoveProjectMetadataByKey(ctx context.Context, id int, key string, project *schema.ProjectMetadata) error
+	UpdateProjectMetadata(ctx context.Context, id uint, key string, value string, project *schema.ProjectMetadata) error
+	RemoveProjectMetadataByKey(ctx context.Context, id uint, key string, project *schema.ProjectMetadata) error
 	NotificationsForProjectByName(ctx context.Context, name string, result *schema.Project) error
-	UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchInput, project *schema.Project) error
+	UpdateProject(ctx context.Context, id uint, patch schema.UpdateProjectPatchInput, project *schema.Project) error
 	SSHEndpointsByProject(ctx context.Context, name string, project *schema.Project) error
 	ProjectGroups(ctx context.Context, name string, project *schema.Project) error
 	ProjectByNameExtended(ctx context.Context, name string, project *schema.Project) error
-	ProjectsByOrganizationID(ctx context.Context, name uint, project *[]schema.OrgProject) error
+	ProjectsByOrganizationID(ctx context.Context, id uint, project *[]schema.OrgProject) error
+	ProjectsByOrganizationName(ctx context.Context, name string, project *[]schema.OrgProject) error
 	RemoveProjectFromOrganization(ctx context.Context, in *schema.RemoveProjectFromOrganizationInput, out *schema.Project) error
 	ProjectKeyByName(ctx context.Context, name string, revealKey bool, project *schema.Project) error
 	AllProjects(ctx context.Context, project *[]schema.Project) error
 	DeleteProject(ctx context.Context, project string, result *schema.DeleteProject) error
+
+	UpdateProjectByName(ctx context.Context, name string, patch schema.UpdateProjectPatchInput, project *schema.Project) error
+	UpdateProjectMetadataByName(ctx context.Context, name string, key string, value string, project *schema.ProjectMetadata) error
+	RemoveProjectMetadataByKeyByName(ctx context.Context, name string, key string, project *schema.ProjectMetadata) error
 }
 
-// GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
+// GetMinimalProjectByName gets basic information about the project including the openshift id.
 func GetMinimalProjectByName(ctx context.Context, name string, p Projects) (*schema.Project, error) {
 	project := schema.Project{}
 	return &project, p.MinimalProjectByName(ctx, name, &project)
@@ -46,15 +51,27 @@ func GetProjectMetadata(ctx context.Context, name string, p Projects) (*schema.P
 }
 
 // UpdateProjectMetadata updates a project with provided metadata.
-func UpdateProjectMetadata(ctx context.Context, id int, key string, value string, p Projects) (*schema.ProjectMetadata, error) {
+func UpdateProjectMetadata(ctx context.Context, id uint, key string, value string, p Projects) (*schema.ProjectMetadata, error) {
 	project := schema.ProjectMetadata{}
 	return &project, p.UpdateProjectMetadata(ctx, id, key, value, &project)
 }
 
+// UpdateProjectMetadataByName updates a project with provided metadata.
+func UpdateProjectMetadataByName(ctx context.Context, name string, key string, value string, p Projects) (*schema.ProjectMetadata, error) {
+	project := schema.ProjectMetadata{}
+	return &project, p.UpdateProjectMetadataByName(ctx, name, key, value, &project)
+}
+
 // RemoveProjectMetadataByKey remove metadata from a project by key.
-func RemoveProjectMetadataByKey(ctx context.Context, id int, key string, p Projects) (*schema.ProjectMetadata, error) {
+func RemoveProjectMetadataByKey(ctx context.Context, id uint, key string, p Projects) (*schema.ProjectMetadata, error) {
 	project := schema.ProjectMetadata{}
 	return &project, p.RemoveProjectMetadataByKey(ctx, id, key, &project)
+}
+
+// RemoveProjectMetadataByKey remove metadata from a project by key.
+func RemoveProjectMetadataByKeyByName(ctx context.Context, name string, key string, p Projects) (*schema.ProjectMetadata, error) {
+	project := schema.ProjectMetadata{}
+	return &project, p.RemoveProjectMetadataByKeyByName(ctx, name, key, &project)
 }
 
 // NotificationsForProject gets notifications for a project.
@@ -64,9 +81,15 @@ func NotificationsForProject(ctx context.Context, name string, p Projects) (*sch
 }
 
 // UpdateProject updates a project with provided patch data.
-func UpdateProject(ctx context.Context, id int, patch schema.UpdateProjectPatchInput, p Projects) (*schema.Project, error) {
+func UpdateProject(ctx context.Context, id uint, patch schema.UpdateProjectPatchInput, p Projects) (*schema.Project, error) {
 	project := schema.Project{}
 	return &project, p.UpdateProject(ctx, id, patch, &project)
+}
+
+// UpdateProjectByName updates a project with provided patch data.
+func UpdateProjectByName(ctx context.Context, name string, patch schema.UpdateProjectPatchInput, p Projects) (*schema.Project, error) {
+	project := schema.Project{}
+	return &project, p.UpdateProjectByName(ctx, name, patch, &project)
 }
 
 // GetSSHEndpointsByProject gets info of projects in lagoon that have matching metadata.
@@ -91,6 +114,12 @@ func GetProjectByName(ctx context.Context, name string, p Projects) (*schema.Pro
 func ListProjectsByOrganizationID(ctx context.Context, id uint, p Projects) (*[]schema.OrgProject, error) {
 	project := []schema.OrgProject{}
 	return &project, p.ProjectsByOrganizationID(ctx, id, &project)
+}
+
+// ListProjectsByOrganizationName gets projects associated with an organization in lagoon via provided name.
+func ListProjectsByOrganizationName(ctx context.Context, name string, p Projects) (*[]schema.OrgProject, error) {
+	project := []schema.OrgProject{}
+	return &project, p.ProjectsByOrganizationName(ctx, name, &project)
 }
 
 // RemoveProjectFromOrganization removes a project from an organization.

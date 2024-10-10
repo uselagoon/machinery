@@ -3,6 +3,8 @@ package client
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -59,6 +61,25 @@ func (c *Client) MinimalProjectByName(
 		return err
 	}
 
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}
+
+// VeryMinimalProjectByName queries the Lagoon API for a very minimal project by its name, and
+// unmarshals the response into project.
+// only to be used internally for requests to use by name instead of id
+func (c *Client) veryMinimalProjectByName(
+	ctx context.Context, name string, project *schema.Project) error {
+	req, err := c.newRequest("_lgraphql/projects/veryMinimalProjectByName.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
 	return c.client.Run(ctx, req, &struct {
 		Response *schema.Project `json:"projectByName"`
 	}{
@@ -123,7 +144,7 @@ func (c *Client) AddProject(
 
 // UpdateProjectMetadata updates a projects metadata.
 func (c *Client) UpdateProjectMetadata(
-	ctx context.Context, id int, key string, value string, projects *schema.ProjectMetadata) error {
+	ctx context.Context, id uint, key string, value string, projects *schema.ProjectMetadata) error {
 
 	req, err := c.newRequest("_lgraphql/projects/updateProjectMetadata.graphql",
 		map[string]interface{}{
@@ -142,9 +163,23 @@ func (c *Client) UpdateProjectMetadata(
 	})
 }
 
+func (c *Client) UpdateProjectMetadataByName(
+	ctx context.Context, name, key, value string, project *schema.ProjectMetadata) error {
+	proj := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.UpdateProjectMetadata(ctx, proj.ID, key, value, project)
+}
+
 // RemoveProjectMetadataByKey removes metadata from a project for given key.
 func (c *Client) RemoveProjectMetadataByKey(
-	ctx context.Context, id int, key string, projects *schema.ProjectMetadata) error {
+	ctx context.Context, id uint, key string, projects *schema.ProjectMetadata) error {
 
 	req, err := c.newRequest("_lgraphql/projects/removeProjectMetadataByKey.graphql",
 		map[string]interface{}{
@@ -162,9 +197,23 @@ func (c *Client) RemoveProjectMetadataByKey(
 	})
 }
 
+func (c *Client) RemoveProjectMetadataByKeyByName(
+	ctx context.Context, name, key string, project *schema.ProjectMetadata) error {
+	proj := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.RemoveProjectMetadataByKey(ctx, proj.ID, key, project)
+}
+
 // UpdateProject updates a project.
 func (c *Client) UpdateProject(
-	ctx context.Context, id int, patch schema.UpdateProjectPatchInput, projects *schema.Project) error {
+	ctx context.Context, id uint, patch schema.UpdateProjectPatchInput, projects *schema.Project) error {
 
 	req, err := c.newRequest("_lgraphql/projects/updateProject.graphql",
 		map[string]interface{}{
@@ -180,6 +229,20 @@ func (c *Client) UpdateProject(
 	}{
 		Response: projects,
 	})
+}
+
+func (c *Client) UpdateProjectByName(
+	ctx context.Context, name string, patch schema.UpdateProjectPatchInput, project *schema.Project) error {
+	proj := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.UpdateProject(ctx, proj.ID, patch, project)
 }
 
 // ProjectGroups queries the Lagoon API for a project by its name, returning all groups within the project.
@@ -216,6 +279,33 @@ func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects
 	o := &schema.Organization{}
 	err = c.client.Run(ctx, req, &struct {
 		Response *schema.Organization `json:"organizationById"`
+	}{
+		Response: o,
+	})
+	if err != nil {
+		return err
+	}
+	data, err := json.Marshal(o.Projects)
+	if err != nil {
+		return err
+	}
+	json.Unmarshal(data, projects)
+	return nil
+}
+
+// ProjectsByOrganizationName queries the Lagoon API for projects by the given organization name
+// and unmarshals the response into organization.
+func (c *Client) ProjectsByOrganizationName(ctx context.Context, name string, projects *[]schema.OrgProject) error {
+	req, err := c.newRequest("_lgraphql/projects/projectsByOrganizationName.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+	o := &schema.Organization{}
+	err = c.client.Run(ctx, req, &struct {
+		Response *schema.Organization `json:"organizationByName"`
 	}{
 		Response: o,
 	})

@@ -167,6 +167,21 @@ func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environ
 	})
 }
 
+// TasksByEnvironmentAndProjectName is the same as TasksByEnvironment but does a project lookup first
+func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, name string,
+	projectName string, environment *schema.Environment) error {
+	project := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.TasksByEnvironment(ctx, project.ID, name, environment)
+}
+
 // InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
 func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
 	req, err := c.newRequest("_lgraphql/tasks/getInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
@@ -183,6 +198,21 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Conte
 	}{
 		Response: environment,
 	})
+}
+
+// InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName is the same as InvokableAdvancedTaskDefinitionsByEnvironment but does a project lookup first
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, name string,
+	projectName string, environment *schema.Environment) error {
+	project := &schema.Project{}
+	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
+		return err
+	}
+	if project.Name == "" {
+		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
+		// this is because organizationbyname will return null instead of an error, the api should probably return an error
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+	}
+	return c.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, project.ID, name, environment)
 }
 
 // InvokeAdvancedTaskDefinition invokes an advanced task definition.
