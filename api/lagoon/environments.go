@@ -10,7 +10,7 @@ import (
 
 // Environments interface contains methods for getting info on environments.
 type Environments interface {
-	BackupsForEnvironmentByName(context.Context, string, uint, *schema.Environment) error
+	BackupsForEnvironmentByName(ctx context.Context, name string, projectID uint, environment *schema.Environment) error
 	AddRestore(context.Context, string, *schema.Restore) error
 	UpdateEnvironmentStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, result *schema.UpdateEnvironmentStorage) error
 	UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStorageOnEnvironmentInput, result *schema.UpdateStorageOnEnvironment) error
@@ -26,12 +26,21 @@ type Environments interface {
 	AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error
 	DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error
 	DeleteBackup(context.Context, string, *schema.DeleteBackup) error
+
+	EnvironmentByNameAndProjectName(ctx context.Context, name, projectName string, result *schema.Environment) error
+	BackupsForEnvironmentByNameAndProjectName(ctx context.Context, name, project string, environment *schema.Environment) error
 }
 
 // GetBackupsForEnvironmentByName gets backup info in lagoon for specific environment.
 func GetBackupsForEnvironmentByName(ctx context.Context, name string, project uint, e Environments) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, e.BackupsForEnvironmentByName(ctx, name, project, &environment)
+}
+
+// GetBackupsForEnvironmentByNameAndProjectName gets backup info in lagoon for specific environment.
+func GetBackupsForEnvironmentByNameAndProjectName(ctx context.Context, name, project string, e Environments) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, e.BackupsForEnvironmentByNameAndProjectName(ctx, name, project, &environment)
 }
 
 // AddBackupRestore adds a backup restore based on backup ID.
@@ -74,6 +83,12 @@ func SetEnvironmentServices(ctx context.Context, id uint, services []string, e E
 func GetEnvironmentByName(ctx context.Context, name string, project uint, e Environments) (*schema.Environment, error) {
 	environment := schema.Environment{}
 	return &environment, e.EnvironmentByName(ctx, name, project, &environment)
+}
+
+// GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
+func GetEnvironmentByNameAndProjectName(ctx context.Context, name string, project string, e Environments) (*schema.Environment, error) {
+	environment := schema.Environment{}
+	return &environment, e.EnvironmentByNameAndProjectName(ctx, name, project, &environment)
 }
 
 // GetMinimalProjectByName gets info of projects in lagoon that have matching metadata.
