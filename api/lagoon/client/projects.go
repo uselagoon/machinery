@@ -169,7 +169,7 @@ func (c *Client) UpdateProjectMetadataByName(
 	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
 		return err
 	}
-	if project.Name == "" {
+	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
 		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
@@ -203,7 +203,7 @@ func (c *Client) RemoveProjectMetadataByKeyByName(
 	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
 		return err
 	}
-	if project.Name == "" {
+	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
 		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
@@ -237,7 +237,7 @@ func (c *Client) UpdateProjectByName(
 	if err := c.veryMinimalProjectByName(ctx, name, proj); err != nil {
 		return err
 	}
-	if project.Name == "" {
+	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
 		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
