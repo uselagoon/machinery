@@ -20,7 +20,7 @@ type Tasks interface {
 	AdvancedTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 	AddTask(ctx context.Context, environmentID uint, task schema.Task, result *schema.Task) error
 
-	TasksByEnvironmentAndProjectName(ctx context.Context, project, environmentName string, environment *schema.Environment) error
+	TasksByEnvironmentAndProjectName(ctx context.Context, environmentName string, projectName string, environment *schema.Environment) error
 	InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, environment *schema.Environment) error
 }
 
@@ -57,7 +57,7 @@ func GetTasksByEnvironment(ctx context.Context, projectID uint, environmentName 
 // GetTasksByEnvironmentAndProjectName gets tasks for an environment.
 func GetTasksByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, t Tasks) (*schema.Environment, error) {
 	environment := schema.Environment{}
-	return &environment, t.TasksByEnvironmentAndProjectName(ctx, projectName, environmentName, &environment)
+	return &environment, t.TasksByEnvironmentAndProjectName(ctx, environmentName, projectName, &environment)
 }
 
 // GetInvokableAdvancedTaskDefinitionsByEnvironment gets a list of tasks invokable against an environment.

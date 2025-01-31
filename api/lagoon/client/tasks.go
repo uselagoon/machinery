@@ -168,7 +168,7 @@ func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environ
 }
 
 // TasksByEnvironmentAndProjectName is the same as TasksByEnvironment but does a project lookup first
-func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, name string,
+func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, environmentName string,
 	projectName string, environment *schema.Environment) error {
 	project := &schema.Project{}
 	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
@@ -179,7 +179,7 @@ func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, name stri
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
 		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
 	}
-	return c.TasksByEnvironment(ctx, project.ID, name, environment)
+	return c.TasksByEnvironment(ctx, project.ID, environmentName, environment)
 }
 
 // InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
