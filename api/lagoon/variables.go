@@ -4,6 +4,7 @@ package lagoon
 
 import (
 	"context"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
@@ -11,6 +12,7 @@ type Variables interface {
 	AddOrUpdateEnvVariableByName(ctx context.Context, in *schema.EnvVariableByNameInput, envvar *schema.UpdateEnvVarResponse) error
 	DeleteEnvVariableByName(ctx context.Context, in *schema.DeleteEnvVariableByNameInput, envvar *schema.DeleteEnvVarResponse) error
 	GetEnvVariablesByProjectEnvironmentName(ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, envvar *[]schema.EnvKeyValue) error
+	GetEnvVariablesByOrganizationName(ctx context.Context, name string, envvar *[]schema.EnvKeyValue) error
 }
 
 func AddOrUpdateEnvVariableByName(ctx context.Context, in *schema.EnvVariableByNameInput, v Variables) (*schema.UpdateEnvVarResponse, error) {
@@ -27,4 +29,9 @@ func DeleteEnvVariableByName(ctx context.Context, in *schema.DeleteEnvVariableBy
 func GetEnvVariablesByProjectEnvironmentName(ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, v Variables) (*[]schema.EnvKeyValue, error) {
 	envvar := []schema.EnvKeyValue{}
 	return &envvar, v.GetEnvVariablesByProjectEnvironmentName(ctx, in, &envvar)
+}
+
+func GetEnvVariablesByOrganizationName(ctx context.Context, name string, v Variables) (*[]schema.EnvKeyValue, error) {
+	envvar := []schema.EnvKeyValue{}
+	return &envvar, v.GetEnvVariablesByOrganizationName(ctx, name, &envvar)
 }

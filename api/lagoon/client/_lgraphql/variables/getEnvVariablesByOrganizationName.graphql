@@ -1,0 +1,12 @@
+query (
+  $name: String!
+){
+  organizationByName(name: $name) {
+    envVariables {
+      id
+      name
+      value
+      scope
+    }
+  }
+}
