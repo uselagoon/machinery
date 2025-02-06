@@ -11,6 +11,7 @@ type Organization struct {
 	Groups        []OrgGroup       `json:"groups,omitempty"`
 	Owners        []OrgUser        `json:"owners,omitempty"`
 	Notifications *Notifications   `json:"notifications,omitempty"`
+	EnvVariables  []EnvKeyValue    `json:"envVariables,omitempty"`
 }
 
 type AddOrganizationInput struct {
