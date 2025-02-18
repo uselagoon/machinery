@@ -4,6 +4,7 @@ query (
   getEnvVariablesByProjectEnvironmentName(input: $input) {
     id
     name
+    value
     scope
   }
 }

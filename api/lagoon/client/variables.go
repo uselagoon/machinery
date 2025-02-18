@@ -2,14 +2,19 @@ package client
 
 import (
 	"context"
+
 	"github.com/uselagoon/machinery/api/schema"
 )
 
 // GetEnvVariablesByProjectEnvironmentName queries the Lagoon API for a envvars by project environment and unmarshals the response.
 func (c *Client) GetEnvVariablesByProjectEnvironmentName(
-	ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, envkeyvalue *[]schema.EnvKeyValue) error {
+	ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, reveal bool, envkeyvalue *[]schema.EnvKeyValue) error {
 
-	req, err := c.newRequest("_lgraphql/variables/getEnvVariablesByProjectEnvironmentName.graphql",
+	gql := "_lgraphql/variables/getEnvVariablesByProjectEnvironmentName.graphql"
+	if reveal {
+		gql = "_lgraphql/variables/getEnvVariablesByProjectEnvironmentNameValues.graphql"
+	}
+	req, err := c.newRequest(gql,
 		map[string]interface{}{
 			"input": in,
 		})
