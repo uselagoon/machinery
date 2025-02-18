@@ -3,6 +3,7 @@ package client
 import (
 	"context"
 	"encoding/json"
+
 	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
 )
@@ -71,6 +72,9 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 			map[string]interface{}{
 				"name": name,
 			})
+		if err != nil {
+			return err
+		}
 		err = c.client.Run(ctx, req, &struct {
 			Response *schema.Organization `json:"organizationByName"`
 		}{
@@ -85,6 +89,9 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 				map[string]interface{}{
 					"id": id,
 				})
+			if err != nil {
+				return err
+			}
 			err = c.client.Run(ctx, req, &struct {
 				Response *schema.Organization `json:"organizationByID"`
 			}{

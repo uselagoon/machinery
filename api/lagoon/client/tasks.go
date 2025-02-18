@@ -78,6 +78,9 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 		return fmt.Errorf("couldn't get graphql asset from assets: %w", err)
 	}
 	_, err = formField.Write([]byte(fmt.Sprintf("{ \"query\": \"%s\", \"variables\": { \"task\": %d, \"files\": [null] } }", string(q), task)))
+	if err != nil {
+		return fmt.Errorf("couldn't create upload map form field: %w", err)
+	}
 
 	formField, err = writer.CreateFormField("map")
 	if err != nil {
@@ -94,6 +97,9 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 		return fmt.Errorf("couldn't create upload map form field: %w", err)
 	}
 	_, err = formField.Write(ffmBytes)
+	if err != nil {
+		return fmt.Errorf("couldn't create upload map form field: %w", err)
+	}
 	for idx, file := range files {
 		fileMap[fmt.Sprintf("%d", idx)] = append(fileMap[fmt.Sprintf("%d", idx)], fmt.Sprintf("variables.files.%d", idx))
 
