@@ -12,6 +12,7 @@ type Variables interface {
 	AddOrUpdateEnvVariableByName(ctx context.Context, in *schema.EnvVariableByNameInput, envvar *schema.UpdateEnvVarResponse) error
 	DeleteEnvVariableByName(ctx context.Context, in *schema.DeleteEnvVariableByNameInput, envvar *schema.DeleteEnvVarResponse) error
 	GetEnvVariablesByProjectEnvironmentName(ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, reveal bool, envvar *[]schema.EnvKeyValue) error
+	GetEnvVariablesByOrganizationName(ctx context.Context, name string, envvar *[]schema.EnvKeyValue) error
 }
 
 func AddOrUpdateEnvVariableByName(ctx context.Context, in *schema.EnvVariableByNameInput, v Variables) (*schema.UpdateEnvVarResponse, error) {
@@ -28,4 +29,9 @@ func DeleteEnvVariableByName(ctx context.Context, in *schema.DeleteEnvVariableBy
 func GetEnvVariablesByProjectEnvironmentName(ctx context.Context, in *schema.EnvVariableByProjectEnvironmentNameInput, reveal bool, v Variables) (*[]schema.EnvKeyValue, error) {
 	envvar := []schema.EnvKeyValue{}
 	return &envvar, v.GetEnvVariablesByProjectEnvironmentName(ctx, in, reveal, &envvar)
+}
+
+func GetEnvVariablesByOrganizationName(ctx context.Context, name string, v Variables) (*[]schema.EnvKeyValue, error) {
+	envvar := []schema.EnvKeyValue{}
+	return &envvar, v.GetEnvVariablesByOrganizationName(ctx, name, &envvar)
 }
