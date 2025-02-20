@@ -48,17 +48,19 @@ type EnvVariableByProjectEnvironmentNameInput struct {
 }
 
 type EnvVariableByNameInput struct {
-	Environment string           `json:"environment,omitempty"`
-	Project     string           `json:"project"`
-	Scope       EnvVariableScope `json:"scope,omitempty"`
-	Name        string           `json:"name"`
-	Value       string           `json:"value"`
+	Environment  string           `json:"environment,omitempty"`
+	Project      string           `json:"project,omitempty"`
+	Organization string           `json:"organization,omitempty"`
+	Scope        EnvVariableScope `json:"scope,omitempty"`
+	Name         string           `json:"name"`
+	Value        string           `json:"value"`
 }
 
 type DeleteEnvVariableByNameInput struct {
-	Environment string `json:"environment,omitempty"`
-	Project     string `json:"project"`
-	Name        string `json:"name"`
+	Environment  string `json:"environment,omitempty"`
+	Project      string `json:"project,omitempty"`
+	Organization string `json:"organization,omitempty"`
+	Name         string `json:"name"`
 }
 
 type UpdateEnvVarResponse struct {
