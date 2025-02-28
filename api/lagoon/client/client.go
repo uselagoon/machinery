@@ -12,7 +12,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/go-version"
 	"github.com/machinebox/graphql"
 )
 
@@ -67,47 +66,6 @@ func (c *Client) newRequest(
 	}
 
 	return c.doRequest(string(q), varStruct)
-}
-
-// newVersionedRequest constructs a graphql request which varies based on the version provided.
-// assetName is the name of the graphql query template in _graphql/.
-// varStruct is converted to a map of variables for the template.
-func (c *Client) newVersionedRequest(
-	assetName string, varStruct interface{}) (*graphql.Request, error) {
-
-	q, err := lgraphql.ReadFile(assetName)
-	if err != nil {
-		return nil, fmt.Errorf("couldn't get asset: %w", err)
-	}
-
-	t, err := template.New("query").
-		Funcs(template.FuncMap{
-			// apiVerGreaterThanOrEqual returns true if a is greater than or equal
-			// to b, and false otherwise. a and b should both be valid Semantic
-			// Versions.
-			"apiVerGreaterThanOrEqual": func(a, b string) (bool, error) {
-				aVer, err := version.NewSemver(a)
-				if err != nil {
-					return false, err
-				}
-				bVer, err := version.NewSemver(b)
-				if err != nil {
-					return false, err
-				}
-				return aVer.GreaterThanOrEqual(bVer), nil
-			},
-		}).
-		Parse(string(q))
-	if err != nil {
-		return nil, fmt.Errorf("couldn't parse template: %w", err)
-	}
-
-	queryBuilder := strings.Builder{}
-	if err = t.Execute(&queryBuilder, c.version); err != nil {
-		return nil, fmt.Errorf("couldn't execute template: %w", err)
-	}
-
-	return c.doRequest(queryBuilder.String(), varStruct)
 }
 
 // newTemplateRequest constructs a graphql request which can contain various functions to be templated out
