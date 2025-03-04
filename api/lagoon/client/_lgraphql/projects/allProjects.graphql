@@ -5,6 +5,13 @@ query {
     gitUrl
     productionEnvironment
     developmentEnvironmentsLimit
+    autoIdle
+    branches
+    pullrequests
+    routerPattern
+    factsUi
+    problemsUi
+    deploymentsDisabled
     environments{
       id
       name
