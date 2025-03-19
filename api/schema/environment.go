@@ -148,7 +148,19 @@ type EnvironmentService struct {
 
 // ServiceContainer  is based on the Lagoon API type.
 type ServiceContainer struct {
+	Name    string                   `json:"name,omitempty"`
+	Ports   []ServiceContainerPort   `json:"ports,omitempty"`
+	Volumes []ServiceContainerVolume `json:"volumes,omitempty"`
+}
+
+type ServiceContainerVolume struct {
 	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+}
+
+type ServiceContainerPort struct {
+	Port     int32  `json:"port,omitempty"`
+	Protocol string `json:"protocol,omitempty"`
 }
 
 // AddEnvironmentServiceInput is based on the input to
