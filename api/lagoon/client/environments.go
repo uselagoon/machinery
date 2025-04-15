@@ -98,7 +98,7 @@ func (c *Client) EnvironmentByID(ctx context.Context, environmentID uint, enviro
 	}
 
 	return c.client.Run(ctx, req, &struct {
-		Response *schema.Environment `json:"environmentByName"`
+		Response *schema.Environment `json:"environmentById"`
 	}{
 		Response: environment,
 	})
