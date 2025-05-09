@@ -207,8 +207,8 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Conte
 }
 
 // InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName is the same as InvokableAdvancedTaskDefinitionsByEnvironment but does a project lookup first
-func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, name string,
-	projectName string, environment *schema.Environment) error {
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName string,
+	environmentName string, environment *schema.Environment) error {
 	project := &schema.Project{}
 	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
 		return err
@@ -218,7 +218,7 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
 		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
 	}
-	return c.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, project.ID, name, environment)
+	return c.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, project.ID, environmentName, environment)
 }
 
 // InvokeAdvancedTaskDefinition invokes an advanced task definition.
