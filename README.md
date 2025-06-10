@@ -2,6 +2,7 @@
 
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10716/badge)](https://www.bestpractices.dev/projects/10716)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/uselagoon/machinery/badge)](https://securityscorecards.dev/viewer/?uri=github.com/uselagoon/machinery)
+[![coverage](https://raw.githubusercontent.com/uselagoon/machinery/badges/.badges/main/coverage.svg)](https://github.com/uselagoon/machinery/actions/workflows/coverage.yaml)
 
 Welcome to the Lagoon API Machinery repository.
 This repo provides shared library/clients for use with Lagoon.
