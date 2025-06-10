@@ -81,7 +81,7 @@ func (c *Client) EnvironmentByNameAndProjectName(ctx context.Context, name strin
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.EnvironmentByName(ctx, name, project.ID, environment)
 }
@@ -167,8 +167,7 @@ func (c *Client) EnvironmentsByProjectName(ctx context.Context, project string, 
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(db, environments)
-	return nil
+	return json.Unmarshal(db, environments)
 }
 
 // BackupsForEnvironmentByName queries the Lagoon API for an environment by its name and
@@ -201,7 +200,7 @@ func (c *Client) BackupsForEnvironmentByNameAndProjectName(ctx context.Context, 
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.BackupsForEnvironmentByName(ctx, name, project.ID, environment)
 }

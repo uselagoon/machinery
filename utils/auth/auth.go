@@ -62,11 +62,9 @@ func TokenRequest(keycloakURL, realm, idpHint string, token *oauth2.Token) error
 		if err != nil {
 			return err
 		}
-	} else {
-		if newToken.AccessToken != token.AccessToken {
-			// set token to the new token
-			*token = *newToken
-		}
+	} else if newToken.AccessToken != token.AccessToken {
+		// set token to the new token
+		*token = *newToken
 	}
 	_ = conf.Client(ctx, token)
 	return nil
@@ -93,7 +91,7 @@ func authListener(ctx context.Context, conf *oauth2.Config, token *oauth2.Token)
 		code := r.URL.Query().Get("code")
 		if code == "" {
 			log.Fatalf("lagoon-auth: URL param 'code' is missing")
-			io.WriteString(w, "Error: could not find 'code' URL parameter\n")
+			io.WriteString(w, "Error: could not find 'code' URL parameter\n") //nolint:errcheck
 			go server.Close()
 			return
 		}
@@ -102,7 +100,7 @@ func authListener(ctx context.Context, conf *oauth2.Config, token *oauth2.Token)
 		newToken, err := conf.Exchange(ctx, code, oauth2.VerifierOption(verifier))
 		if err != nil {
 			log.Fatalf("lagoon-auth: unable to refresh token: %v", err)
-			io.WriteString(w, "Error: unable to refresh token\n")
+			io.WriteString(w, "Error: unable to refresh token\n") //nolint:errcheck
 			go server.Close()
 			return
 		}
@@ -114,11 +112,11 @@ func authListener(ctx context.Context, conf *oauth2.Config, token *oauth2.Token)
 		q, err := content.ReadFile("html/response.html")
 		if err != nil {
 			log.Fatalf("lagoon-auth: couldn't load response asset: %v", err)
-			io.WriteString(w, "Error: unable to refresh token\n")
+			io.WriteString(w, "Error: unable to refresh token\n") //nolint:errcheck
 			go server.Close()
 			return
 		}
-		io.WriteString(w, string(q))
+		w.Write(q) //nolint:errcheck
 		// print to stderr so redirects of stdout still work when the command exits with a successful token request
 		fmt.Fprintln(os.Stderr, "Successfully logged in.")
 
