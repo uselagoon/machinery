@@ -135,7 +135,7 @@ func RetrieveToken(sshKey, sshHost, sshPort string, publicKeyOverride *string, p
 		},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-	defer closeSSHAgent()
+	defer closeSSHAgent() //nolint:errcheck
 
 	sshHostString := fmt.Sprintf("%s:%s",
 		sshHost,

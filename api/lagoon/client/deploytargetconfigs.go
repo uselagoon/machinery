@@ -36,7 +36,7 @@ func (c *Client) DeployTargetConfigsByProjectName(
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.DeployTargetConfigsByProjectID(ctx, project.ID, deploytargetconfigs)
 }
@@ -66,7 +66,7 @@ func (c *Client) AddDeployTargetConfigurationByProjectName(ctx context.Context,
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	in.Project = project.ID
 	return c.AddDeployTargetConfiguration(ctx, in, out)
@@ -110,7 +110,7 @@ func (c *Client) DeleteDeployTargetConfigurationByIDAndProjectName(ctx context.C
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.DeleteDeployTargetConfiguration(ctx, id, project.ID, out)
 }

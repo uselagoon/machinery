@@ -181,7 +181,10 @@ func (c *Client) AllUsers(
 	ctx context.Context, filter schema.AllUsersFilter, user *[]schema.User) error {
 	fB, _ := json.Marshal(filter)
 	var variables map[string]interface{}
-	json.Unmarshal(fB, &variables)
+	err := json.Unmarshal(fB, &variables)
+	if err != nil {
+		return err
+	}
 	req, err := c.newRequest("_lgraphql/usergroups/allUsers.graphql", variables)
 	if err != nil {
 		return err
@@ -352,8 +355,7 @@ func (c *Client) GroupsByOrganizationID(ctx context.Context, id uint, groups *[]
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(data, groups)
-	return nil
+	return json.Unmarshal(data, groups)
 }
 
 // AddGroupToOrganization adds a Group to an Organization.
@@ -404,7 +406,7 @@ func (c *Client) UsersByOrganizationName(ctx context.Context, name string, users
 	if org.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "viewUsers" on "organization"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "viewUsers" on "organization"`) //nolint:staticcheck
 	}
 
 	return c.UsersByOrganizationID(ctx, org.ID, users)
@@ -451,8 +453,7 @@ func (c *Client) ListOrganizationAdminsByName(ctx context.Context, name string, 
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(data, users)
-	return nil
+	return json.Unmarshal(data, users)
 }
 
 // AddProjectToGroup adds a group to a project.

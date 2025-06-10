@@ -172,7 +172,7 @@ func (c *Client) UpdateProjectMetadataByName(
 	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.UpdateProjectMetadata(ctx, proj.ID, key, value, project)
 }
@@ -206,7 +206,7 @@ func (c *Client) RemoveProjectMetadataByKeyByName(
 	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.RemoveProjectMetadataByKey(ctx, proj.ID, key, project)
 }
@@ -240,7 +240,7 @@ func (c *Client) UpdateProjectByName(
 	if proj.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.UpdateProject(ctx, proj.ID, patch, project)
 }
@@ -289,8 +289,7 @@ func (c *Client) ProjectsByOrganizationID(ctx context.Context, id uint, projects
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(data, projects)
-	return nil
+	return json.Unmarshal(data, projects)
 }
 
 // ProjectsByOrganizationName queries the Lagoon API for projects by the given organization name
@@ -316,8 +315,7 @@ func (c *Client) ProjectsByOrganizationName(ctx context.Context, name string, pr
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(data, projects)
-	return nil
+	return json.Unmarshal(data, projects)
 }
 
 // RemoveProjectFromOrganization removes a project from an organization.

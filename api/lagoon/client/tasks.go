@@ -77,7 +77,7 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 	if err != nil {
 		return fmt.Errorf("couldn't get graphql asset from assets: %w", err)
 	}
-	_, err = formField.Write([]byte(fmt.Sprintf("{ \"query\": \"%s\", \"variables\": { \"task\": %d, \"files\": [null] } }", string(q), task)))
+	_, err = fmt.Fprintf(formField, "{ \"query\": \"%s\", \"variables\": { \"task\": %d, \"files\": [null] } }", string(q), task)
 	if err != nil {
 		return fmt.Errorf("couldn't create upload map form field: %w", err)
 	}
@@ -183,7 +183,7 @@ func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, environme
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.TasksByEnvironment(ctx, project.ID, environmentName, environment)
 }
@@ -216,7 +216,7 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx
 	if project.Name == "" {
 		//lint:ignore ST1005 return a generic Lagoon API unauthorized error based on the permission called
 		// this is because organizationbyname will return null instead of an error, the api should probably return an error
-		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`)
+		return fmt.Errorf(`Unauthorized: You don't have permission to "view" on "project"`) //nolint:staticcheck
 	}
 	return c.InvokableAdvancedTaskDefinitionsByEnvironment(ctx, project.ID, environmentName, environment)
 }

@@ -83,23 +83,21 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 		if err != nil {
 			return err
 		}
-	} else {
-		if id != nil {
-			req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
-				map[string]interface{}{
-					"id": id,
-				})
-			if err != nil {
-				return err
-			}
-			err = c.client.Run(ctx, req, &struct {
-				Response *schema.Organization `json:"organizationByID"`
-			}{
-				Response: o,
+	} else if id != nil {
+		req, err = c.newRequest("_lgraphql/deploytargets/deployTargetsByOrganizationId.graphql",
+			map[string]interface{}{
+				"id": id,
 			})
-			if err != nil {
-				return err
-			}
+		if err != nil {
+			return err
+		}
+		err = c.client.Run(ctx, req, &struct {
+			Response *schema.Organization `json:"organizationByID"`
+		}{
+			Response: o,
+		})
+		if err != nil {
+			return err
 		}
 	}
 
@@ -107,8 +105,7 @@ func (c *Client) DeployTargetsByOrganizationNameOrID(ctx context.Context, name *
 	if err != nil {
 		return err
 	}
-	json.Unmarshal(data, out)
-	return nil
+	return json.Unmarshal(data, out)
 }
 
 // AddDeployTargetToOrganization adds an existing deploytarget to an organization.
