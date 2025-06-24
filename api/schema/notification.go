@@ -59,6 +59,31 @@ type NotificationSlack struct {
 	ID uint `json:"id,omitempty"`
 }
 
+// AddNotificationSlackInput is based on the Lagoon API type.
+type AddNotificationDiscordInput struct {
+	Name         string `json:"name"`
+	Webhook      string `json:"webhook"`
+	Organization *uint  `json:"organization,omitempty"`
+}
+
+// UpdateNotificationSlackInput is based on the Lagoon API type.
+type UpdateNotificationDiscordInput struct {
+	Name  string                            `json:"name"`
+	Patch UpdateNotificationDiscordPatchInput `json:"patch"`
+}
+
+// UpdateNotificationSlackPatchInput is based on the Lagoon API type.
+type UpdateNotificationDiscordPatchInput struct {
+	Name    *string `json:"name,omitempty"`
+	Webhook *string `json:"webhook,omitempty"`
+}
+
+// NotificationSlack is based on the Lagoon API type.
+type NotificationDiscord struct {
+	AddNotificationSlackInput
+	ID uint `json:"id,omitempty"`
+}
+
 // AddNotificationEmailInput is based on the Lagoon API type.
 type AddNotificationEmailInput struct {
 	Name         string `json:"name"`
@@ -143,6 +168,7 @@ type DeleteNotification struct {
 // These are unmarshalled from a projectByName query response.
 type Notifications struct {
 	Slack          []AddNotificationSlackInput          `json:"slack,omitempty"`
+	Discord        []AddNotificationDiscordInput        `json:"discord,omitempty"`
 	RocketChat     []AddNotificationRocketChatInput     `json:"rocketchat,omitempty"`
 	Email          []AddNotificationEmailInput          `json:"email,omitempty"`
 	MicrosoftTeams []AddNotificationMicrosoftTeamsInput `json:"microsoftteams,omitempty"`
@@ -194,6 +220,12 @@ func (n *Notifications) UnmarshalJSON(b []byte) error {
 					Webhook: nMap["webhook"],
 					Channel: nMap["channel"],
 				})
+		case "NotificationDiscord":
+			n.Discord = append(n.Discord,
+				AddNotificationDiscordInput{
+					Name:    nMap["name"],
+					Webhook: nMap["webhook"],
+				})
 		case "NotificationRocketChat":
 			n.RocketChat = append(n.RocketChat,
 				AddNotificationRocketChatInput{
@@ -234,6 +266,12 @@ func (n *NotificationsConfig) MarshalJSON() ([]byte, error) {
 			"name":    slack.Name,
 			"webhook": slack.Webhook,
 			"channel": slack.Channel,
+		})
+	}
+	for _, discord := range n.Discord {
+		nMap["discord"] = append(nMap["discord"], map[string]string{
+			"name":    discord.Name,
+			"webhook": discord.Webhook,
 		})
 	}
 	for _, rocketChat := range n.RocketChat {
@@ -280,6 +318,14 @@ func (n *NotificationsConfig) UnmarshalJSON(b []byte) error {
 						Name:    slackMap["name"],
 						Webhook: slackMap["webhook"],
 						Channel: slackMap["channel"],
+					})
+			}
+		case "discord":
+			for _, discordMap := range nValues {
+				n.Discord = append(n.Discord,
+					AddNotificationDiscordInput{
+						Name:    discordMap["name"],
+						Webhook: discordMap["webhook"],
 					})
 			}
 		case "rocketChat":
