@@ -1,4 +1,4 @@
-module github.com/uselagoon/machinery
+module github.com/jackwrfuller/lagoon-go-client
 
 go 1.23
 
