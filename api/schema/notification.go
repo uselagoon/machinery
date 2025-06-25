@@ -72,15 +72,15 @@ type UpdateNotificationDiscordInput struct {
 	Patch UpdateNotificationDiscordPatchInput `json:"patch"`
 }
 
-// UpdateNotificationSlackPatchInput is based on the Lagoon API type.
+// UpdateNotificationDiscordPatchInput is based on the Lagoon API type.
 type UpdateNotificationDiscordPatchInput struct {
 	Name    *string `json:"name,omitempty"`
 	Webhook *string `json:"webhook,omitempty"`
 }
 
-// NotificationSlack is based on the Lagoon API type.
+// NotificationDiscord is based on the Lagoon API type.
 type NotificationDiscord struct {
-	AddNotificationSlackInput
+	AddNotificationDiscordInput
 	ID uint `json:"id,omitempty"`
 }
 
