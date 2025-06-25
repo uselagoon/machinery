@@ -14,6 +14,8 @@ github.com/guregu/null v4.0.0+incompatible h1:4zw0ckM7ECd6FNNddc3Fu4aty9nTlpkkzH
 github.com/guregu/null v4.0.0+incompatible/go.mod h1:ePGpQaN9cw0tj45IR5E5ehMvsFlLlQZAkkOXZurJ3NM=
 github.com/hashicorp/go-version v1.7.0 h1:5tqGy27NaOTB8yJKUZELlFAS/LTKJkrmONwQKeRZfjY=
 github.com/hashicorp/go-version v1.7.0/go.mod h1:fltr4n8CU8Ke44wwGCBoEymUuxUHl09ZGVZPK5anwXA=
+github.com/jackwrfuller/lagoon-go-client v0.0.0-20250625002020-089aac41d568 h1:Prot/VHVxHFmCusHm4++aNo+JJbDd2r/PogrADjVWOI=
+github.com/jackwrfuller/lagoon-go-client v0.0.0-20250625002020-089aac41d568/go.mod h1:W4RZxGPaeKTxy9+hQb4xjR/hlqk8jCXqh4fmE2mDxgA=
 github.com/machinebox/graphql v0.2.2 h1:dWKpJligYKhYKO5A2gvNhkJdQMNZeChZYyBbrZkBZfo=
 github.com/machinebox/graphql v0.2.2/go.mod h1:F+kbVMHuwrQ5tYgU9JXlnskM8nOaFxCAEolaQybkjWA=
 github.com/matryer/is v1.4.0 h1:sosSmIWwkYITGrxZ25ULNDeKiMNzFSr4V/eqBQP0PeE=
