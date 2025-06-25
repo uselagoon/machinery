@@ -2,6 +2,8 @@ package client
 
 import (
 	"context"
+	"log"
+	"encoding/json"
 
 	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"
@@ -503,9 +505,20 @@ func (c *Client) NotificationsForProjectByName(
 		return err
 	}
 
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.Project `json:"projectByName"`
-	}{
-		Response: project,
-	})
+	//return c.client.Run(ctx, req, &struct {
+	//	Response *schema.Project `json:"projectByName"`
+	//}{
+	//	Response: project,
+	//})
+	var rawResp map[string]interface{}
+
+	err = c.client.Run(ctx, req, &rawResp)
+	if err != nil {
+		return err
+	}
+
+	b, _ := json.MarshalIndent(rawResp, "", "  ")
+	log.Println(string(b))
+
+	return err
 }
