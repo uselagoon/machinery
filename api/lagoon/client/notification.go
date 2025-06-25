@@ -2,6 +2,8 @@ package client
 
 import (
 	"context"
+	"log"
+	"encoding/json"
 
 	"github.com/machinebox/graphql"
 	"github.com/uselagoon/machinery/api/schema"

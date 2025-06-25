@@ -13,6 +13,13 @@ query (
                 name
                 channel
             }
+            ... on NotificationDiscord {
+                __typename
+                webhook
+                name
+                contentType 
+                notificationSeverityThreshold
+            }
             ... on NotificationRocketChat {
                 __typename
                 webhook
