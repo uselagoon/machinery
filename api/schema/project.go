@@ -73,6 +73,7 @@ type ProjectConfig struct {
 // ProjectConfig.
 type ProjectNotifications struct {
 	Slack          []string `json:"slack,omitempty"`
+	Discord        []string `json:"discord,omitempty"`
 	RocketChat     []string `json:"rocketChat,omitempty"`
 	Email          []string `json:"email,omitempty"`
 	MicrosoftTeams []string `json:"microsoftTeams,omitempty"`
