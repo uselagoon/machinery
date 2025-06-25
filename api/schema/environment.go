@@ -35,6 +35,7 @@ type NotificationType string
 // . .
 const (
 	SlackNotification          NotificationType = "SLACK"
+	DiscordNotification        NotificationType = "DISCORD"
 	RocketChatNotification     NotificationType = "ROCKETCHAT"
 	EmailNotification          NotificationType = "EMAIL"
 	MicrosoftTeamsNotification NotificationType = "MICROSOFTTEAMS"
