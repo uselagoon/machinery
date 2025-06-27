@@ -138,15 +138,31 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 		return fmt.Errorf("couldn't read response from API: %w", err)
 	}
 
+	type apiErrors struct {
+		Message string `json:"message"`
+	}
+
+	type apiResponse struct {
+		Errors []apiErrors    `json:"errors"`
+		Data   map[string]any `json:"data"`
+	}
+
 	// unmarshal the response into a map
-	var respDat map[string]map[string]interface{}
-	err = json.Unmarshal([]byte(bodyText), &respDat)
+	var apiResp apiResponse
+	err = json.Unmarshal([]byte(bodyText), &apiResp)
 	if err != nil {
+		if resp.StatusCode != http.StatusOK {
+			return fmt.Errorf("graphql: server returned a non-200 status code: %v", resp.StatusCode)
+		}
 		return fmt.Errorf("couldn't unmarshal response from API: %w", err)
 	}
 
+	if len(apiResp.Errors) > 0 {
+		return fmt.Errorf("api error: %v", apiResp.Errors[0])
+	}
+
 	// then extract our specific uploadFilesForTask data
-	b, _ := json.Marshal(respDat["data"]["uploadFilesForTask"])
+	b, _ := json.Marshal(apiResp.Data["uploadFilesForTask"])
 	err = json.Unmarshal([]byte(b), out)
 	if err != nil {
 		return fmt.Errorf("couldn't unmarshal response from API: %w", err)
