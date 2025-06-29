@@ -65,21 +65,13 @@ func GenerateNamespaceName(pattern, environmentName, projectname, prefix, contro
 	environmentName = ShortenEnvironment(projectname, MakeSafe(environmentName))
 	// lowercase and dnsify the namespace against the namespace pattern
 	ns := MakeSafe(
-		strings.Replace(
-			strings.Replace(
-				nsPattern,
-				"${environment}",
-				environmentName,
-				-1,
-			),
-			"${project}",
-			projectname,
-			-1,
-		),
-	)
+		strings.NewReplacer(
+			"${environment}", environmentName,
+			"${project}", projectname,
+		).Replace(nsPattern))
 	// If there is a namespaceprefix defined, and random prefix is disabled
 	// then add the prefix to the namespace
-	if prefix != "" && randomPrefix == false {
+	if prefix != "" && !randomPrefix {
 		ns = fmt.Sprintf("%s-%s", prefix, ns)
 	}
 	// If the randomprefix is enabled, then add a prefix based on the hash of the controller namespace

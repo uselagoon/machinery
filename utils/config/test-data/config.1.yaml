@@ -1,6 +1,6 @@
 contexts:
-  - name: lagoon
-    context:
+    - name: lagoon
+      context:
         name: lagoon
         apihostname: https://api.example.com
         authenticationendpoint: https://keycloak.example.com
@@ -8,9 +8,9 @@ contexts:
         tokenport: 22
         sshhost: ssh.example.com
         sshport: 22
-    user: user1
-  - name: another-lagoon
-    context:
+      user: user1
+    - name: another-lagoon
+      context:
         name: another-lagoon
         apihostname: https://api2.example.com
         authenticationendpoint: https://keycloak2.example.com
@@ -18,10 +18,10 @@ contexts:
         tokenport: 22
         sshhost: ssh2.example.com
         sshport: 22
-    user: user2
+      user: user2
 users:
-  - name: user1
-    user:
+    - name: user1
+      user:
         name: user1
         sshkey: /home/user1/.ssh/id_ed25519
         grant:
@@ -29,9 +29,10 @@ users:
             tokentype: grant
             refreshtoken: blah
             expiry: 0001-01-01T00:00:00Z
+            expiresin: 0
         publickeyidentities: []
-  - name: user2
-    user:
+    - name: user2
+      user:
         name: user2
         sshkey: /home/user2/.ssh/id_ed25519
         grant:
@@ -39,9 +40,10 @@ users:
             tokentype: grant
             refreshtoken: blah
             expiry: 0001-01-01T00:00:00Z
+            expiresin: 0
         publickeyidentities: []
-  - name: usera
-    user:
+    - name: usera
+      user:
         name: usera
         sshkey: /home/usera/.ssh/id_ed25519
         grant:
@@ -49,5 +51,6 @@ users:
             tokentype: grant
             refreshtoken: blah
             expiry: 0001-01-01T00:00:00Z
+            expiresin: 0
         publickeyidentities: []
 default-context: lagoon

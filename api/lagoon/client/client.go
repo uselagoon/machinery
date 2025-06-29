@@ -7,10 +7,8 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"log"
 	"os"
-	"strings"
 
 	"github.com/machinebox/graphql"
 )
@@ -66,32 +64,6 @@ func (c *Client) newRequest(
 	}
 
 	return c.doRequest(string(q), varStruct)
-}
-
-// newTemplateRequest constructs a graphql request which can contain various functions to be templated out
-// assetName is the name of the graphql query template in _graphql/.
-// varStruct is converted to a map of variables for the template.
-func (c *Client) newTemplateRequest(
-	assetName string, varStruct interface{}, tFuncs template.FuncMap, data map[string]interface{}) (*graphql.Request, error) {
-
-	q, err := lgraphql.ReadFile(assetName)
-	if err != nil {
-		return nil, fmt.Errorf("couldn't get asset: %w", err)
-	}
-
-	t, err := template.New("query").
-		Funcs(tFuncs).
-		Parse(string(q))
-	if err != nil {
-		return nil, fmt.Errorf("couldn't parse template: %w", err)
-	}
-
-	queryBuilder := strings.Builder{}
-	if err = t.Execute(&queryBuilder, data); err != nil {
-		return nil, fmt.Errorf("couldn't execute template: %w", err)
-	}
-
-	return c.doRequest(queryBuilder.String(), varStruct)
 }
 
 func (c *Client) doRequest(query string, varStruct interface{}) (*graphql.Request, error) {
