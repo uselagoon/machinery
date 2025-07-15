@@ -2,6 +2,7 @@ package sshtoken
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"net"
 	"os"
@@ -128,6 +129,9 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 func RetrieveToken(sshKey, sshHost, sshPort string, publicKeyOverride *string, publicKeyIdentities []string, verbose bool) (string, error) {
 	skipAgent := false
 	authMethod, closeSSHAgent := GetPublicKeyAuthMethod(sshKey, publicKeyOverride, publicKeyIdentities, skipAgent, verbose)
+	if authMethod == nil {
+		return "", errors.New("couldn't load ssh key")
+	}
 	config := &ssh.ClientConfig{
 		User: "lagoon",
 		Auth: []ssh.AuthMethod{
