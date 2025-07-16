@@ -27,21 +27,20 @@ type AddProjectInput struct {
 	Availability                 ProjectAvailability `json:"availability,omitempty"`
 	// AutoIdle and StorageCalc can't be omitempty because their zero-values are
 	// significant - Lagoon uses it as a boolean (0/1).
-	AutoIdle                     *uint        `json:"autoIdle,omitempty"`
-	StorageCalc                  *uint        `json:"storageCalc,omitempty"`
-	DevelopmentEnvironmentsLimit *uint        `json:"developmentEnvironmentsLimit,omitempty"`
-	PrivateKey                   string       `json:"privateKey,omitempty"`
-	PublicKey                    string       `json:"publicKey,omitempty"`
-	BuildImage                   string       `json:"buildImage,omitempty"`
-	Organization                 *uint        `json:"organization,omitempty"`
-	AddOrgOwner                  *bool        `json:"addOrgOwner,omitempty"`
-	RouterPattern                string       `json:"routerPattern,omitempty"`
-	ProblemsUI                   *uint        `json:"problemsUi,omitempty"`
-	FactsUI                      *uint        `json:"factsUi,omitempty"`
-	ProductionBuildPriority      *uint        `json:"productionBuildPriority,omitempty"`
-	DevelopmentBuildPriority     *uint        `json:"developmentBuildPriority,omitempty"`
-	DeploymentsDisabled          *uint        `json:"deploymentsDisabled,omitempty"`
-	OrganizationDetails          Organization `json:"organizationDetails,omitempty"`
+	AutoIdle                     *uint  `json:"autoIdle,omitempty"`
+	StorageCalc                  *uint  `json:"storageCalc,omitempty"`
+	DevelopmentEnvironmentsLimit *uint  `json:"developmentEnvironmentsLimit,omitempty"`
+	PrivateKey                   string `json:"privateKey,omitempty"`
+	PublicKey                    string `json:"publicKey,omitempty"`
+	BuildImage                   string `json:"buildImage,omitempty"`
+	Organization                 *uint  `json:"organization,omitempty"`
+	AddOrgOwner                  *bool  `json:"addOrgOwner,omitempty"`
+	RouterPattern                string `json:"routerPattern,omitempty"`
+	ProblemsUI                   *uint  `json:"problemsUi,omitempty"`
+	FactsUI                      *uint  `json:"factsUi,omitempty"`
+	ProductionBuildPriority      *uint  `json:"productionBuildPriority,omitempty"`
+	DevelopmentBuildPriority     *uint  `json:"developmentBuildPriority,omitempty"`
+	DeploymentsDisabled          *uint  `json:"deploymentsDisabled,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
@@ -54,7 +53,8 @@ type Project struct {
 	// Openshift is unmarshalled during export.
 	OpenshiftID *OpenshiftID `json:"openshift,omitempty"`
 	// Groups are unmarshalled during export.
-	Groups []Group `json:"groups,omitempty"`
+	Groups              []Group      `json:"groups,omitempty"`
+	OrganizationDetails Organization `json:"organizationDetails,omitempty"`
 }
 
 // ProjectConfig contains project configuration.
