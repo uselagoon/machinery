@@ -53,7 +53,8 @@ type Project struct {
 	// Openshift is unmarshalled during export.
 	OpenshiftID *OpenshiftID `json:"openshift,omitempty"`
 	// Groups are unmarshalled during export.
-	Groups []Group `json:"groups,omitempty"`
+	Groups              []Group      `json:"groups,omitempty"`
+	OrganizationDetails Organization `json:"organizationDetails,omitempty"`
 }
 
 // ProjectConfig contains project configuration.

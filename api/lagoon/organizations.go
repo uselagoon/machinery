@@ -15,6 +15,7 @@ type Organizations interface {
 	DeleteOrg(ctx context.Context, id uint, organization *schema.DeleteOrganizationInput) error
 	UpdateOrganization(ctx context.Context, id uint, patch schema.UpdateOrganizationPatchInput, result *schema.Organization) error
 	AllOrganizations(ctx context.Context, organizations *[]schema.Organization) error
+	AllOrganizationsExtended(ctx context.Context, organizations *[]schema.Organization) error
 }
 
 // GetOrganizationByID gets info of an organization in lagoon that matches the provided ID.
@@ -45,4 +46,10 @@ func UpdateOrganization(ctx context.Context, id uint, patch schema.UpdateOrganiz
 func AllOrganizations(ctx context.Context, o Organizations) (*[]schema.Organization, error) {
 	organization := []schema.Organization{}
 	return &organization, o.AllOrganizations(ctx, &organization)
+}
+
+// AllOrganizationsExtended lists all organizations with associated projects.
+func AllOrganizationsExtended(ctx context.Context, o Organizations) (*[]schema.Organization, error) {
+	organization := []schema.Organization{}
+	return &organization, o.AllOrganizationsExtended(ctx, &organization)
 }

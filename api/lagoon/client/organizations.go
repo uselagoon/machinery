@@ -102,3 +102,16 @@ func (c *Client) AllOrganizations(ctx context.Context, organizations *[]schema.O
 		Response: organizations,
 	})
 }
+
+func (c *Client) AllOrganizationsExtended(ctx context.Context, organizations *[]schema.Organization) error {
+	req, err := c.newRequest("_lgraphql/organizations/allOrganizationsWithProjects.graphql", nil)
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *[]schema.Organization `json:"allOrganizations"`
+	}{
+		Response: organizations,
+	})
+}

@@ -20,5 +20,11 @@ query (
     }
     autoIdle
     developmentEnvironmentsLimit
+    organization
+    organizationDetails{
+      id
+      name
+      friendlyName
+    }
   }
 }

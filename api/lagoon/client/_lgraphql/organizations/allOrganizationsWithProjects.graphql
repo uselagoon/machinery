@@ -1,0 +1,17 @@
+query {
+    allOrganizations {
+        id
+        name
+        description
+        friendlyName
+        quotaProject
+        quotaGroup
+        quotaNotification
+        quotaEnvironment
+        quotaRoute
+        projects {
+            id
+            name
+        }
+    }
+}
