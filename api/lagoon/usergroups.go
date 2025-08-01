@@ -13,6 +13,7 @@ type UserGroups interface {
 	ListAllGroupMembers(ctx context.Context, name string, groups *[]schema.Group) error
 	ListGroupMembers(ctx context.Context, name string, groups *schema.Group) error
 	AddGroup(ctx context.Context, in *schema.AddGroupInput, group *schema.Group) error
+	UpdateGroup(ctx context.Context, in *schema.UpdateGroupInput, group *schema.Group) error
 	AddUser(ctx context.Context, in *schema.AddUserInput, user *schema.User) error
 	AddUserToGroup(ctx context.Context, in *schema.UserGroupRoleInput, group *schema.Group) error
 	RemoveUserFromGroup(ctx context.Context, in *schema.UserGroupInput, group *schema.Group) error
@@ -68,6 +69,11 @@ func ListGroupMembers(ctx context.Context, name string, ug UserGroups) (*schema.
 func AddGroup(ctx context.Context, in *schema.AddGroupInput, ug UserGroups) (*schema.Group, error) {
 	group := schema.Group{}
 	return &group, ug.AddGroup(ctx, in, &group)
+}
+
+func UpdateGroup(ctx context.Context, in *schema.UpdateGroupInput, ug UserGroups) (*schema.Group, error) {
+	group := schema.Group{}
+	return &group, ug.UpdateGroup(ctx, in, &group)
 }
 
 func AddUser(ctx context.Context, in *schema.AddUserInput, ug UserGroups) (*schema.User, error) {
