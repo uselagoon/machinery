@@ -1,0 +1,12 @@
+mutation (
+  $patch: UpdateGroupPatchInput!
+  $group: GroupInput!){
+  updateGroup(
+    input: {
+      patch: $patch
+      group: $group
+    }
+  ){
+    id
+  }
+}
