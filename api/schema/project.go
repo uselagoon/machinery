@@ -52,7 +52,8 @@ type Project struct {
 	// Notifications is unmarshalled during export.
 	Notifications *Notifications `json:"notifications,omitempty"`
 	// Openshift is unmarshalled during export.
-	OpenshiftID *OpenshiftID `json:"openshift,omitempty"`
+	// OpenshiftID  *OpenshiftID  `json:"openshift,omitempty"`
+	DeployTarget *DeployTarget `json:"openshift,omitempty"`
 	// Groups are unmarshalled during export.
 	Groups              []Group              `json:"groups,omitempty"`
 	DeployTargetConfigs []DeployTargetConfig `json:"deployTargetConfigs,omitempty"`
