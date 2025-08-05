@@ -42,6 +42,7 @@ type AddProjectInput struct {
 	ProductionBuildPriority      *uint         `json:"productionBuildPriority,omitempty"`
 	DevelopmentBuildPriority     *uint         `json:"developmentBuildPriority,omitempty"`
 	DeploymentsDisabled          *uint         `json:"deploymentsDisabled,omitempty"`
+	SharedBaasBucket             *bool         `json:"sharedBaasBucket,omitempty"`
 }
 
 // Project is the Lagoon API Project object.
