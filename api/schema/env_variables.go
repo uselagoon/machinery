@@ -18,6 +18,7 @@ const (
 	RuntimeVar           EnvVariableScope = "RUNTIME"
 	GlobalVar            EnvVariableScope = "GLOBAL"
 	ContainerRegistryVar EnvVariableScope = "CONTAINER_REGISTRY"
+	InternalSystem       EnvVariableScope = "INTERNAL_SYSTEM"
 )
 
 // EnvKeyValue is the base type of Environment variable.
