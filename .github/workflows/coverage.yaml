@@ -18,7 +18,7 @@ jobs:
       run: |
         go test -v -covermode=atomic -coverprofile=cover.out -coverpkg=./... ./...
     - name: Generage coverage badge
-      uses: vladopajic/go-test-coverage@7003e902e787e60375e1ce3ae5b85b19313dbff2 # v2.14.3
+      uses: vladopajic/go-test-coverage@cc5012c2cfa84542e02b079141958a885861d326 # v2.17.0
       with:
         profile: cover.out
         local-prefix: github.com/${{ github.repository }}
