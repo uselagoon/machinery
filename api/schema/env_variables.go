@@ -14,11 +14,10 @@ type EnvVariableScope string
 
 // . .
 const (
-	BuildVar                     EnvVariableScope = "BUILD"
-	RuntimeVar                   EnvVariableScope = "RUNTIME"
-	GlobalVar                    EnvVariableScope = "GLOBAL"
-	InternalContainerRegistryVar EnvVariableScope = "INTERNAL_CONTAINER_REGISTRY"
-	ContainerRegistryVar         EnvVariableScope = "CONTAINER_REGISTRY"
+	BuildVar             EnvVariableScope = "BUILD"
+	RuntimeVar           EnvVariableScope = "RUNTIME"
+	GlobalVar            EnvVariableScope = "GLOBAL"
+	ContainerRegistryVar EnvVariableScope = "CONTAINER_REGISTRY"
 )
 
 // EnvKeyValue is the base type of Environment variable.
