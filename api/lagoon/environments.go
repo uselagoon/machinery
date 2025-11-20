@@ -12,7 +12,6 @@ import (
 type Environments interface {
 	BackupsForEnvironmentByName(ctx context.Context, name string, projectID uint, environment *schema.Environment) error
 	AddRestore(context.Context, string, *schema.Restore) error
-	UpdateEnvironmentStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, result *schema.UpdateEnvironmentStorage) error
 	UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStorageOnEnvironmentInput, result *schema.UpdateStorageOnEnvironment) error
 	DeleteEnvironment(ctx context.Context, name, project string, execute bool, result *schema.DeleteEnvironment) error
 	UpdateEnvironment(ctx context.Context, id uint, patch schema.UpdateEnvironmentPatchInput, result *schema.Environment) error
@@ -47,12 +46,6 @@ func GetBackupsForEnvironmentByNameAndProjectName(ctx context.Context, name, pro
 func AddBackupRestore(ctx context.Context, backupID string, e Environments) (*schema.Restore, error) {
 	restore := schema.Restore{}
 	return &restore, e.AddRestore(ctx, backupID, &restore)
-}
-
-// UpdateStorage updates environment storage.
-func UpdateStorage(ctx context.Context, storage *schema.UpdateEnvironmentStorageInput, e Environments) (*schema.UpdateEnvironmentStorage, error) {
-	result := schema.UpdateEnvironmentStorage{}
-	return &result, e.UpdateEnvironmentStorage(ctx, storage, &result)
 }
 
 // UpdateStorage updates environment storage.

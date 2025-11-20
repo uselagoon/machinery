@@ -89,20 +89,6 @@ type EnvironmentInput struct {
 }
 
 // UpdateEnvironmentStorageInput is used as the input for updating an environments storage.
-// @DEPRECATED
-type UpdateEnvironmentStorageInput struct {
-	Environment          int    `json:"environment"`
-	PersisteStorageClaim string `json:"persistentStorageClaim"`
-	BytesUsed            int    `json:"bytesUsed"`
-}
-
-// UpdateEnvironmentStorage is the response.
-// @DEPRECATED
-type UpdateEnvironmentStorage struct {
-	ID int `json:"id"`
-}
-
-// UpdateEnvironmentStorageInput is used as the input for updating an environments storage.
 type UpdateStorageOnEnvironmentInput struct {
 	Environment          int    `json:"environment"`
 	PersisteStorageClaim string `json:"persistentStorageClaim"`
