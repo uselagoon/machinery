@@ -1,6 +1,6 @@
 module github.com/uselagoon/machinery
 
-go 1.23
+go 1.23.0
 
 require (
 	github.com/adrg/xdg v0.5.3
@@ -13,7 +13,7 @@ require (
 	github.com/machinebox/graphql v0.2.2
 	github.com/robfig/cron/v3 v3.0.1
 	golang.org/x/crypto v0.32.0
-	golang.org/x/oauth2 v0.25.0
+	golang.org/x/oauth2 v0.27.0
 	golang.org/x/term v0.28.0
 	gopkg.in/yaml.v3 v3.0.1
 )
