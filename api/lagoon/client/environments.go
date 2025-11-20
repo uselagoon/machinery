@@ -8,20 +8,6 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
-// UpdateEnvironmentStorage updates an environments storage values.
-func (c *Client) UpdateEnvironmentStorage(ctx context.Context,
-	in *schema.UpdateEnvironmentStorageInput, out *schema.UpdateEnvironmentStorage) error {
-	req, err := c.newRequest("_lgraphql/environments/addOrUpdateEnvironmentStorage.graphql", in)
-	if err != nil {
-		return err
-	}
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.UpdateEnvironmentStorage `json:"addOrUpdateEnvironmentStorage"`
-	}{
-		Response: out,
-	})
-}
-
 // UpdateStorageOnEnvironment updates an environments storage values.
 func (c *Client) UpdateStorageOnEnvironment(ctx context.Context,
 	in *schema.UpdateStorageOnEnvironmentInput, out *schema.UpdateStorageOnEnvironment) error {
