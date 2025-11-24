@@ -133,6 +133,7 @@ type EnvironmentService struct {
 	Type       string             `json:"type,omitempty"`
 	Updated    string             `json:"updated,omitempty"`
 	Containers []ServiceContainer `json:"containers,omitempty"`
+	Replicas   int32              `json:"replicas,omitempty"`
 	Created    string             `json:"created,omitempty"`
 }
 
@@ -148,6 +149,7 @@ type AddEnvironmentServiceInput struct {
 	Name          string                  `json:"name"`
 	Type          string                  `json:"type"`
 	Containers    []ServiceContainerInput `json:"containers,omitempty"`
+	Replicas      *int32                  `json:"replicas,omitempty"`
 	EnvironmentID uint                    `json:"environment"`
 }
 
