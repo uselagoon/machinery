@@ -9,7 +9,7 @@ require (
 	github.com/google/go-cmp v0.7.0
 	github.com/google/uuid v1.6.0
 	github.com/guregu/null v4.0.0+incompatible
-	github.com/hashicorp/go-version v1.7.0
+	github.com/hashicorp/go-version v1.8.0
 	github.com/machinebox/graphql v0.2.2
 	github.com/robfig/cron/v3 v3.0.1
 	golang.org/x/crypto v0.45.0
