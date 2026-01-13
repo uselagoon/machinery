@@ -12,5 +12,8 @@ query (
     logs
     remoteId
     service
+    files {
+      filename
+    }
   }
 }
