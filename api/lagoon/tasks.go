@@ -42,7 +42,7 @@ func UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, 
 	return &result, t.UpdateTask(ctx, id, patch, &result)
 }
 
-// UploadFilesForTask updates a task.
+// UploadFilesForTask directly uploads files to a task.
 func UploadFilesForTask(ctx context.Context, id int, files []string, t Tasks) (*schema.Task, error) {
 	result := schema.Task{}
 	return &result, t.UploadFilesForTask(ctx, id, files, &result)

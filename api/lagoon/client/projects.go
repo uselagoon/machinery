@@ -377,3 +377,23 @@ func (c *Client) DeleteProject(ctx context.Context, project string, out *schema.
 	}
 	return c.client.Run(ctx, req, &out)
 }
+
+// SSHEndpointsByProject queries the Lagoon API for a project by its name, and
+// unmarshals the response into project.
+func (c *Client) SSHEndpointsByProject(
+	ctx context.Context, name string, project *schema.Project) error {
+
+	req, err := c.newRequest("_lgraphql/projects/sshEndpointsByProject.graphql",
+		map[string]interface{}{
+			"name": name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Project `json:"projectByName"`
+	}{
+		Response: project,
+	})
+}

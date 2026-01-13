@@ -14,6 +14,25 @@ import (
 	"github.com/uselagoon/machinery/api/schema"
 )
 
+// GetTaskByID gets a task by ID.
+func (c *Client) GetTaskByID(
+	ctx context.Context, id int, task *schema.Task) error {
+
+	req, err := c.newRequest("_lgraphql/tasks/taskByID.graphql",
+		map[string]interface{}{
+			"id": id,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Task `json:"taskById"`
+	}{
+		Response: task,
+	})
+}
+
 // UpdateTask updates a task.
 func (c *Client) UpdateTask(
 	ctx context.Context, id int, patch schema.UpdateTaskPatchInput, task *schema.Task) error {
@@ -34,17 +53,18 @@ func (c *Client) UpdateTask(
 	})
 }
 
-// RunActiveStandbySwitch deploys a branch.
-func (c *Client) RunActiveStandbySwitch(ctx context.Context,
-	project string, out *schema.Task) error {
-	req, err := c.newRequest("_lgraphql/tasks/switchActiveStandby.graphql", map[string]interface{}{
-		"project": project,
-	})
+// RunActiveStandbySwitch runs Active/Standby Switch task.
+func (c *Client) RunActiveStandbySwitch(
+	ctx context.Context, project string, out *schema.Task) error {
+
+	req, err := c.newRequest("_lgraphql/tasks/switchActiveStandby.graphql",
+		map[string]interface{}{
+			"project": project,
+		})
 	if err != nil {
 		return err
 	}
 
-	// return c.client.Run(ctx, req, &out)
 	return c.client.Run(ctx, req, &struct {
 		Response *schema.Task `json:"switchActiveStandby"`
 	}{
@@ -52,18 +72,10 @@ func (c *Client) RunActiveStandbySwitch(ctx context.Context,
 	})
 }
 
-// UploadFilesForTask uploads a file to a task.
-func (c *Client) UploadFilesForTask(ctx context.Context,
-	task int, files []string, out *schema.Task) error {
 
-	// uploading files via graphql is different, so this entire function is crafted specifically for uploading files
-	// it was built using the curl example from lagoon. this one supports multiple file uploads though
-	// machinebox graphql client doesn't support file uploads that conform to graphql spec, so this is custom compared to other query/mutations
-	// curl -sS "$TASK_API_HOST"/graphql \
-	// -H "Authorization: Bearer $TOKEN" \
-	// -F operations='{ "query": "mutation ($task: Int!, $files: [Upload!]!) { uploadFilesForTask(input:{task:$task, files:$files}) { id files { filename } } }", "variables": { "task": '"$TASK_DATA_ID"', "files": [null] } }' \
-	// -F map='{ "0": ["variables.files.0"] }' \
-	// -F 0=@$file.gz
+// UploadFilesForTask uploads files to a task.
+func (c *Client) UploadFilesForTask(
+	ctx context.Context, task int, files []string, out *schema.Task) error {
 
 	form := new(bytes.Buffer)
 	writer := multipart.NewWriter(form)
@@ -171,8 +183,13 @@ func (c *Client) UploadFilesForTask(ctx context.Context,
 	return nil
 }
 
-// TasksByEnvironment gets tasks for an environment.
-func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+// TasksByEnvironment gets tasks for an environment by project ID.
+func (c *Client) TasksByEnvironment(
+	ctx context.Context,
+	projectID uint,
+	environmentName string,
+	environment *schema.Environment,
+) error {
 	req, err := c.newRequest("_lgraphql/tasks/getTasksForEnvironment.graphql",
 		map[string]interface{}{
 			"project":     projectID,
@@ -189,9 +206,12 @@ func (c *Client) TasksByEnvironment(ctx context.Context, projectID uint, environ
 	})
 }
 
-// TasksByEnvironmentAndProjectName is the same as TasksByEnvironment but does a project lookup first
-func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, environmentName string,
-	projectName string, environment *schema.Environment) error {
+// TasksByEnvironmentAndProjectName gets tasks for an environment by project name.
+func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context,
+	environmentName string,
+	projectName string,
+	environment *schema.Environment,
+) error {
 	project := &schema.Project{}
 	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
 		return err
@@ -204,8 +224,13 @@ func (c *Client) TasksByEnvironmentAndProjectName(ctx context.Context, environme
 	return c.TasksByEnvironment(ctx, project.ID, environmentName, environment)
 }
 
-// InvokableAdvancedTaskDefinitionsByEnvironment gets tasks for an environment.
-func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+// InvokableAdvancedTaskDefinitionsByEnvironment gets advanced task definitions by project ID.
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(
+	ctx context.Context,
+	projectID uint,
+	environmentName string,
+	environment *schema.Environment,
+) error {
 	req, err := c.newRequest("_lgraphql/tasks/getInvokableAdvancedTaskDefinitionsByEnvironment.graphql",
 		map[string]interface{}{
 			"project":     projectID,
@@ -222,9 +247,14 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Conte
 	})
 }
 
-// InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName is the same as InvokableAdvancedTaskDefinitionsByEnvironment but does a project lookup first
-func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName string,
-	environmentName string, environment *schema.Environment) error {
+// InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName gets advanced task definitions by
+// project name.
+func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(
+	ctx context.Context,
+	projectName string,
+	environmentName string,
+	environment *schema.Environment,
+) error {
 	project := &schema.Project{}
 	if err := c.veryMinimalProjectByName(ctx, projectName, project); err != nil {
 		return err
@@ -238,7 +268,9 @@ func (c *Client) InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx
 }
 
 // InvokeAdvancedTaskDefinition invokes an advanced task definition.
-func (c *Client) InvokeAdvancedTaskDefinition(ctx context.Context, environmentID uint, taskID uint, task *schema.Task) error {
+func (c *Client) InvokeAdvancedTaskDefinition(
+	ctx context.Context, environmentID uint, taskID uint, task *schema.Task) error {
+
 	req, err := c.newRequest("_lgraphql/tasks/invokeRegisteredTask.graphql",
 		map[string]interface{}{
 			"environment":            environmentID,
@@ -256,7 +288,12 @@ func (c *Client) InvokeAdvancedTaskDefinition(ctx context.Context, environmentID
 }
 
 // AdvancedTasksByEnvironment gets advanced tasks for an environment.
-func (c *Client) AdvancedTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error {
+func (c *Client) AdvancedTasksByEnvironment(
+	ctx context.Context,
+	projectID uint,
+	environmentName string,
+	environment *schema.Environment,
+) error {
 	req, err := c.newRequest("_lgraphql/tasks/getAdvancedTasksByEnvironment.graphql",
 		map[string]interface{}{
 			"project": projectID,
@@ -274,7 +311,9 @@ func (c *Client) AdvancedTasksByEnvironment(ctx context.Context, projectID uint,
 }
 
 // AddTask adds a task.
-func (c *Client) AddTask(ctx context.Context, environmentID uint, task schema.Task, out *schema.Task) error {
+func (c *Client) AddTask(
+	ctx context.Context, environmentID uint, task schema.Task, out *schema.Task) error {
+
 	req, err := c.newRequest("_lgraphql/tasks/addTask.graphql",
 		map[string]interface{}{
 			"environment": environmentID,
