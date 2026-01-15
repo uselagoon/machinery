@@ -1,0 +1,9 @@
+query ( $task: Int!, $filename: String! ) {
+  getTaskFileUploadForm(input: {
+    task: $task
+    filename: $filename
+  }) {
+    postUrl
+    formFields
+  }
+}

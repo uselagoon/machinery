@@ -37,6 +37,11 @@ type Files struct {
 	Filename string `json:"filename,omitempty"`
 }
 
+type FileUploadForm struct {
+	PostUrl    string            `json:"postUrl,omitempty"`
+	FormFields map[string]string `json:"formFields,omitempty"`
+}
+
 type ActiveStandbyResult struct {
 	Status                       string `json:"status"`
 	ProductionEnvironment        string `json:"productionEnvironment"`

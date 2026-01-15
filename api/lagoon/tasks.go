@@ -13,6 +13,8 @@ type Tasks interface {
 	RunActiveStandbySwitch(ctx context.Context, project string, result *schema.Task) error
 	GetTaskByID(ctx context.Context, id int, result *schema.Task) error
 	UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, result *schema.Task) error
+	TaskFileUploadForm(ctx context.Context, id int, filename string, result *schema.FileUploadForm) error
+	UploadFileForTask(ctx context.Context, id int, file string) error
 	UploadFilesForTask(ctx context.Context, id int, files []string, result *schema.Task) error
 	TasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 	InvokableAdvancedTaskDefinitionsByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
@@ -42,7 +44,18 @@ func UpdateTask(ctx context.Context, id int, patch schema.UpdateTaskPatchInput, 
 	return &result, t.UpdateTask(ctx, id, patch, &result)
 }
 
-// UploadFilesForTask updates a task.
+// TaskFileUploadForm gets form fields required to upload a file to a task.
+func TaskFileUploadForm(ctx context.Context, id int, filename string, t Tasks) (*schema.FileUploadForm, error) {
+	result := schema.FileUploadForm{}
+	return &result, t.TaskFileUploadForm(ctx, id, filename, &result)
+}
+
+// UploadFileForTask directly uploads a file to a task.
+func UploadFileForTask(ctx context.Context, id int, file string, t Tasks) error {
+	return t.UploadFileForTask(ctx, id, file)
+}
+
+// UploadFilesForTask directly uploads files to a task.
 func UploadFilesForTask(ctx context.Context, id int, files []string, t Tasks) (*schema.Task, error) {
 	result := schema.Task{}
 	return &result, t.UploadFilesForTask(ctx, id, files, &result)
