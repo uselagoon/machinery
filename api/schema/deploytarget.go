@@ -23,7 +23,7 @@ type AddDeployTargetInput struct {
 	FriendlyName         string `json:"friendlyName,omitempty"`
 	CloudProvider        string `json:"cloudProvider,omitempty"`
 	CloudRegion          string `json:"cloudRegion,omitempty"`
-	SharedBaasBucketName string `json:"sharedBaasBucetName,omitempty"`
+	SharedBaasBucketName string `json:"sharedBaasBucketName,omitempty"`
 }
 
 // UpdateDeployTargetInput is based on the input to addDeployTarget.
