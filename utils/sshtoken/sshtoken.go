@@ -36,15 +36,18 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 						// append to identityfiles
 						keybytes, err := os.ReadFile(identityFile)
 						if err != nil {
-							return nil, func() error {
-								return err
+							// if identity file doesn't exist, skip it and use all agent keys
+							if verboseOutput {
+								fmt.Fprintf(os.Stderr, "ssh: identity file %s not found, will use all keys from agent\n", identityFile)
 							}
+							continue
 						}
 						pubkey, _, _, _, err := ssh.ParseAuthorizedKey(keybytes)
 						if err != nil {
-							return nil, func() error {
-								return err
+							if verboseOutput {
+								fmt.Fprintf(os.Stderr, "ssh: failed to parse identity file %s, will use all keys from agent\n", identityFile)
 							}
+							continue
 						}
 						identities[identityFile] = pubkey
 					}
@@ -52,17 +55,20 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 					// append to identityfiles
 					keybytes, err := os.ReadFile(*publicKeyOverride)
 					if err != nil {
-						return nil, func() error {
-							return err
+						// if override file doesn't exist but agent has keys, use all agent keys
+						if verboseOutput {
+							fmt.Fprintf(os.Stderr, "ssh: identity file %s not found, will use all keys from agent\n", *publicKeyOverride)
+						}
+					} else {
+						pubkey, _, _, _, parseErr := ssh.ParseAuthorizedKey(keybytes)
+						if parseErr != nil {
+							if verboseOutput {
+								fmt.Fprintf(os.Stderr, "ssh: failed to parse identity file %s, will use all keys from agent\n", *publicKeyOverride)
+							}
+						} else {
+							identities[*publicKeyOverride] = pubkey
 						}
 					}
-					pubkey, _, _, _, err := ssh.ParseAuthorizedKey(keybytes)
-					if err != nil {
-						return nil, func() error {
-							return err
-						}
-					}
-					identities[*publicKeyOverride] = pubkey
 				}
 				// check all keys in the agent to see if there is a matching identity file
 				for _, signer := range agentSigners {
@@ -76,13 +82,8 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 						}
 					}
 				}
-				if publicKeyOverride != nil {
-					if err != nil {
-						return nil, func() error {
-							return fmt.Errorf("ssh: no key matching %s in agent", *publicKeyOverride)
-						}
-					}
-				}
+				// If publicKeyOverride was specified but no identities were loaded successfully,
+				// we still fall through to use all agent keys (line 96) instead of failing
 				// if no matching identity files, just return all agent keys like previous behaviour
 				if verboseOutput {
 					fmt.Fprintf(os.Stderr, "ssh: attempting connection using any keys in ssh-agent\n")
@@ -98,6 +99,12 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 	}
 	key, err := os.ReadFile(path)
 	if err != nil {
+		// provide helpful error message when no keys available
+		if os.IsNotExist(err) {
+			return nil, func() error {
+				return fmt.Errorf("ssh: no keys found in ssh-agent and private key file %s does not exist. Please add keys to your ssh-agent with 'ssh-add', specify a key file path in config, or use --ssh-key flag", path)
+			}
+		}
 		return nil, func() error {
 			return err
 		}
