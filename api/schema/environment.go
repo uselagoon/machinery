@@ -69,9 +69,10 @@ type Environment struct {
 	Tasks         []Task               `json:"tasks,omitempty"`
 	AdvancedTasks []AdvancedTask       `json:"advancedTasks,omitempty"`
 	// TODO use a unixtime type
-	Updated string `json:"updated,omitempty"`
-	Created string `json:"created,omitempty"`
-	Deleted string `json:"deleted,omitempty"`
+	Updated   string    `json:"updated,omitempty"`
+	Created   string    `json:"created,omitempty"`
+	Deleted   string    `json:"deleted,omitempty"`
+	IdleState IdleState `json:"idleState,omitempty"`
 }
 
 // EnvironmentConfig contains Environment configuration.
@@ -120,6 +121,7 @@ type UpdateEnvironmentPatchInput struct {
 	AutoIdle             *uint       `json:"autoIdle,omitempty"`
 	Openshift            *uint       `json:"openshift,omitempty"`
 	Created              *string     `json:"created,omitempty"`
+	IdleState            *IdleState  `json:"idleState,omitempty"`
 }
 
 // EnvironmentService  is based on the Lagoon API type.
@@ -129,6 +131,7 @@ type EnvironmentService struct {
 	Type       string             `json:"type,omitempty"`
 	Updated    string             `json:"updated,omitempty"`
 	Containers []ServiceContainer `json:"containers,omitempty"`
+	Replicas   int32              `json:"replicas,omitempty"`
 	Created    string             `json:"created,omitempty"`
 }
 
@@ -144,6 +147,7 @@ type AddEnvironmentServiceInput struct {
 	Name          string                  `json:"name"`
 	Type          string                  `json:"type"`
 	Containers    []ServiceContainerInput `json:"containers,omitempty"`
+	Replicas      *int32                  `json:"replicas,omitempty"`
 	EnvironmentID uint                    `json:"environment"`
 }
 
@@ -162,4 +166,16 @@ type DeleteEnvironmentServiceInput struct {
 // DeleteEnvironmentService is the response.
 type DeleteEnvironmentService struct {
 	DeleteEnvironmentService string `json:"deleteEnvironmentService"`
+}
+
+type IdleState string
+
+const (
+	ActiveState IdleState = "ACTIVE"
+	IdledState  IdleState = "IDLED"
+	ScaledState IdleState = "SCALED"
+)
+
+type Idled struct {
+	IdleState IdleState `json:"idleState"`
 }
