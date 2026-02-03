@@ -83,7 +83,7 @@ func GetPublicKeyAuthMethod(path string, publicKeyOverride *string, publicKeyIde
 					}
 				}
 				// If publicKeyOverride was specified but no identities were loaded successfully,
-				// we still fall through to use all agent keys (line 96) instead of failing
+				// we still fall through to use all agent keys instead of failing
 				// if no matching identity files, just return all agent keys like previous behaviour
 				if verboseOutput {
 					fmt.Fprintf(os.Stderr, "ssh: attempting connection using any keys in ssh-agent\n")
