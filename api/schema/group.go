@@ -73,3 +73,12 @@ type Groups struct {
 type DeleteGroupInput struct {
 	Group GroupInput `json:"group"`
 }
+
+type UpdateGroupInput struct {
+	Group GroupInput            `json:"group"`
+	Patch UpdateGroupPatchInput `json:"patch"`
+}
+
+type UpdateGroupPatchInput struct {
+	Name *string `json:"name,omitempty"`
+}
