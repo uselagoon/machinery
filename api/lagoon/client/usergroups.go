@@ -68,6 +68,20 @@ func (c *Client) AddGroup(
 	})
 }
 
+// UpdateGroup updates a group.
+func (c *Client) UpdateGroup(
+	ctx context.Context, in *schema.UpdateGroupInput, out *schema.Group) error {
+	req, err := c.newRequest("_lgraphql/usergroups/updateGroup.graphql", in)
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Group `json:"updateGroup"`
+	}{
+		Response: out,
+	})
+}
+
 // AddUser adds a user.
 func (c *Client) AddUser(
 	ctx context.Context, in *schema.AddUserInput, out *schema.User) error {
