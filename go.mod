@@ -12,14 +12,14 @@ require (
 	github.com/hashicorp/go-version v1.8.0
 	github.com/machinebox/graphql v0.2.2
 	github.com/robfig/cron/v3 v3.0.1
-	golang.org/x/crypto v0.46.0
+	golang.org/x/crypto v0.47.0
 	golang.org/x/oauth2 v0.34.0
-	golang.org/x/term v0.38.0
+	golang.org/x/term v0.39.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
 	github.com/matryer/is v1.4.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	golang.org/x/sys v0.39.0 // indirect
+	golang.org/x/sys v0.40.0 // indirect
 )
