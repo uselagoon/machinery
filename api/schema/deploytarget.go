@@ -10,19 +10,20 @@ type DeployTarget struct {
 
 // AddDeployTargetInput is based on the input to addDeployTarget.
 type AddDeployTargetInput struct {
-	ID               uint   `json:"id,omitempty"`
-	Name             string `json:"name,omitempty"`
-	ConsoleURL       string `json:"consoleUrl,omitempty"`
-	Token            string `json:"token,omitempty"`
-	RouterPattern    string `json:"routerPattern,omitempty"`
-	SSHHost          string `json:"sshHost,omitempty"`
-	SSHPort          string `json:"sshPort,omitempty"`
-	BuildImage       string `json:"buildImage,omitempty"`
-	Created          string `json:"created,omitempty"`
-	MonitoringConfig string `json:"monitoringConfig,omitempty"`
-	FriendlyName     string `json:"friendlyName,omitempty"`
-	CloudProvider    string `json:"cloudProvider,omitempty"`
-	CloudRegion      string `json:"cloudRegion,omitempty"`
+	ID                   uint   `json:"id,omitempty"`
+	Name                 string `json:"name,omitempty"`
+	ConsoleURL           string `json:"consoleUrl,omitempty"`
+	Token                string `json:"token,omitempty"`
+	RouterPattern        string `json:"routerPattern,omitempty"`
+	SSHHost              string `json:"sshHost,omitempty"`
+	SSHPort              string `json:"sshPort,omitempty"`
+	BuildImage           string `json:"buildImage,omitempty"`
+	Created              string `json:"created,omitempty"`
+	MonitoringConfig     string `json:"monitoringConfig,omitempty"`
+	FriendlyName         string `json:"friendlyName,omitempty"`
+	CloudProvider        string `json:"cloudProvider,omitempty"`
+	CloudRegion          string `json:"cloudRegion,omitempty"`
+	SharedBaasBucketName string `json:"sharedBaasBucketName,omitempty"`
 }
 
 // UpdateDeployTargetInput is based on the input to addDeployTarget.
