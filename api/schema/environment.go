@@ -65,6 +65,7 @@ type Environment struct {
 	Backups                  []Backup                  `json:"backups,omitempty"`
 	Deployments              []Deployment              `json:"deployments,omitempty"`
 	Services                 []EnvironmentService      `json:"services,omitempty"`
+	Volumes                  []EnvironmentVolume       `json:"volumes,omitempty"`
 	DeployTarget             DeployTarget              `json:"openshift,omitempty"`
 	Tasks                    []Task                    `json:"tasks,omitempty"`
 	AdvancedTasks            []AdvancedTask            `json:"advancedTasks,omitempty"`
@@ -135,11 +136,32 @@ type EnvironmentService struct {
 	Containers []ServiceContainer `json:"containers,omitempty"`
 	Replicas   int32              `json:"replicas,omitempty"`
 	Created    string             `json:"created,omitempty"`
+	Abandoned  bool               `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
+}
+
+type EnvironmentVolume struct {
+	Name        string `json:"name,omitempty"`
+	StorageType string `json:"storageType,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Size        string `json:"size,omitempty"`
+	Abandoned   bool   `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
+}
+
+type VolumeMount struct {
+	Name string `json:"name,omitempty"`
+	Path string `json:"path,omitempty"`
+}
+
+type ContainerPort struct {
+	Name string `json:"name,omitempty"`
+	Port int    `json:"port,omitempty"`
 }
 
 // ServiceContainer  is based on the Lagoon API type.
 type ServiceContainer struct {
-	Name string `json:"name,omitempty"`
+	Name    string          `json:"name,omitempty"`
+	Volumes []VolumeMount   `json:"volumes,omitempty"`
+	Ports   []ContainerPort `json:"ports,omitempty"`
 }
 
 // AddEnvironmentServiceInput is based on the input to
