@@ -12,6 +12,8 @@ import (
 type Environments interface {
 	BackupsForEnvironmentByName(ctx context.Context, name string, projectID uint, environment *schema.Environment) error
 	AddRestore(context.Context, string, *schema.Restore) error
+	UpdateRestore(ctx context.Context, input schema.UpdateRestoreInput, result *schema.Restore) error
+	AddBackup(ctx context.Context, environment uint, source string, backupID string, created string, result *schema.Backup) error
 	UpdateStorageOnEnvironment(ctx context.Context, storage *schema.UpdateStorageOnEnvironmentInput, result *schema.UpdateStorageOnEnvironment) error
 	DeleteEnvironment(ctx context.Context, name, project string, execute bool, result *schema.DeleteEnvironment) error
 	UpdateEnvironment(ctx context.Context, id uint, patch schema.UpdateEnvironmentPatchInput, result *schema.Environment) error
@@ -46,6 +48,18 @@ func GetBackupsForEnvironmentByNameAndProjectName(ctx context.Context, name, pro
 func AddBackupRestore(ctx context.Context, backupID string, e Environments) (*schema.Restore, error) {
 	restore := schema.Restore{}
 	return &restore, e.AddRestore(ctx, backupID, &restore)
+}
+
+// AddBackup adds a backup based on backup ID.
+func AddBackup(ctx context.Context, environment uint, source string, backupID string, created string, e Environments) (*schema.Backup, error) {
+	backup := schema.Backup{}
+	return &backup, e.AddBackup(ctx, environment, source, backupID, created, &backup)
+}
+
+// UpdateRestore updates a restore based on backup ID.
+func UpdateRestore(ctx context.Context, input schema.UpdateRestoreInput, e Environments) (*schema.Restore, error) {
+	restore := schema.Restore{}
+	return &restore, e.UpdateRestore(ctx, input, &restore)
 }
 
 // UpdateStorage updates environment storage.

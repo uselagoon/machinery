@@ -208,6 +208,44 @@ func (c *Client) AddRestore(
 	})
 }
 
+// AddBackup adds a backup.
+func (c *Client) AddBackup(
+	ctx context.Context, environment uint, source, backupID, created string, out *schema.Backup) error {
+	req, err := c.newRequest("_lgraphql/environments/addBackup.graphql",
+		map[string]interface{}{
+			"environment": environment,
+			"source":      source,
+			"backupId":    backupID,
+			"created":     created,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Backup `json:"addBackup"`
+	}{
+		Response: out,
+	})
+}
+
+// UpdateRestore updates a restore.
+func (c *Client) UpdateRestore(
+	ctx context.Context, input schema.UpdateRestoreInput, out *schema.Restore) error {
+	req, err := c.newRequest("_lgraphql/environments/updateRestore.graphql",
+		map[string]interface{}{
+			"backupId": input.BackupID,
+			"patch":    input.Patch,
+		})
+	if err != nil {
+		return err
+	}
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Restore `json:"updateRestore"`
+	}{
+		Response: out,
+	})
+}
+
 // AddOrUpdateEnvironment adds or updates a Project Environment.
 func (c *Client) AddOrUpdateEnvironment(ctx context.Context,
 	in *schema.AddEnvironmentInput, out *schema.Environment) error {
