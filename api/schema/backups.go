@@ -1,5 +1,15 @@
 package schema
 
+// RestoreStatusType .
+type RestoreStatusType string
+
+// Guest .
+const (
+	RestorePending    RestoreStatusType = "PENDING"
+	RestoreSuccessful RestoreStatusType = "SUCCESSFUL"
+	RestoreFailed     RestoreStatusType = "FAILED"
+)
+
 // Backup is the Lagoon API Backup object.
 type Backup struct {
 	ID       int     `json:"id"`
@@ -33,4 +43,25 @@ type AddRestoreInput struct {
 // DeleteBackup is the response.
 type DeleteBackup struct {
 	DeleteBackup string `json:"deleteBackup"`
+}
+
+// AddBackupInput is based on the input to
+// addBackup.
+type AddBackupInput struct {
+	ID          uint   `json:"id,omitempty"`
+	Environment uint   `json:"environment"`
+	Source      string `json:"source"`
+	BackupID    string `json:"backupId"`
+	Created     string `json:"created"`
+}
+
+type UpdateRestoreInput struct {
+	BackupID string                  `json:"backupId"`
+	Patch    UpdateRestorePatchInput `json:"patch: UpdateRestorePatchInput"`
+}
+
+type UpdateRestorePatchInput struct {
+	Status          RestoreStatusType `json:"status,omitempty"`
+	Created         string            `json:"created,omitempty"`
+	RestoreLocation string            `json:"restoreLocation,omitempty"`
 }

@@ -1,0 +1,19 @@
+mutation (
+  $id: Int, $environment: Int!, $source: String!, $backupId: String!, $created: String!
+) {
+  addBackup(input: {
+      id: $id
+      environment: $environment
+      source: $source
+      backupId: $backupId
+      created: $created
+  }) {
+    id
+    environment {
+      id
+    }
+    backupId
+    source
+    created
+  }
+}
