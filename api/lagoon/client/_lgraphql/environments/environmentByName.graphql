@@ -38,9 +38,28 @@ query (
       type
       containers{
         name
+        volumes{
+          name
+          path
+        }
+        ports{
+          name
+          port
+        }
       }
       created
       updated
+      abandoned
+    }
+    volumes{
+      id
+      name
+      type
+      storageType
+      size
+      created
+      updated
+      abandoned
     }
   }
 }

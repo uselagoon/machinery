@@ -40,6 +40,7 @@ type LagoonLogMeta struct {
 	StartTime           string               `json:"startTime,omitempty"`
 	Services            []string             `json:"services,omitempty"`
 	EnvironmentServices []EnvironmentService `json:"environmentServices,omitempty"`
+	EnvironmentVolumes  []EnvironmentVolume  `json:"environmentVolumes,omitempty"`
 	Task                *LagoonTaskInfo      `json:"task,omitempty"`
 	Key                 string               `json:"key,omitempty"`
 	AdvancedData        string               `json:"advancedData,omitempty"`

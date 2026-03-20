@@ -1,0 +1,13 @@
+mutation (
+  $volume: AddEnvironmentVolumeInput!) {
+    addOrUpdateEnvironmentVolume(input: $volume) {
+        id
+        name
+        type
+        storageType
+        size
+        abandoned
+        created
+        updated
+    }
+}

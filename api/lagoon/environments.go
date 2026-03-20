@@ -26,6 +26,8 @@ type Environments interface {
 	SSHEndpointByNamespace(ctx context.Context, namespace string, result *schema.Environment) error
 	AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnvironmentServiceInput, result *schema.EnvironmentService) error
 	DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error
+	AddOrUpdateEnvironmentVolume(ctx context.Context, volume schema.AddEnvironmentVolumeInput, result *schema.EnvironmentVolume) error
+	DeleteEnvironmentVolume(ctx context.Context, volume schema.DeleteEnvironmentVolumeInput, result *schema.DeleteEnvironmentVolume) error
 	DeleteBackup(context.Context, string, *schema.DeleteBackup) error
 
 	EnvironmentByNameAndProjectName(ctx context.Context, name, projectName string, result *schema.Environment) error
@@ -138,6 +140,18 @@ func AddOrUpdateEnvironmentService(ctx context.Context, service schema.AddEnviro
 func DeleteEnvironmentService(ctx context.Context, service schema.DeleteEnvironmentServiceInput, e Environments) (*schema.DeleteEnvironmentService, error) {
 	result := schema.DeleteEnvironmentService{}
 	return &result, e.DeleteEnvironmentService(ctx, service, &result)
+}
+
+// AddOrUpdateEnvironmentVolume updates an environments service.
+func AddOrUpdateEnvironmentVolume(ctx context.Context, volume schema.AddEnvironmentVolumeInput, e Environments) (*schema.EnvironmentVolume, error) {
+	result := schema.EnvironmentVolume{}
+	return &result, e.AddOrUpdateEnvironmentVolume(ctx, volume, &result)
+}
+
+// DeleteEnvironmentVolume deletes an environment volume.
+func DeleteEnvironmentVolume(ctx context.Context, volume schema.DeleteEnvironmentVolumeInput, e Environments) (*schema.DeleteEnvironmentVolume, error) {
+	result := schema.DeleteEnvironmentVolume{}
+	return &result, e.DeleteEnvironmentVolume(ctx, volume, &result)
 }
 
 // DeleteBackup deletes an environment backup.
