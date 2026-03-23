@@ -162,9 +162,9 @@ type ContainerPort struct {
 
 // ServiceContainer  is based on the Lagoon API type.
 type ServiceContainer struct {
-	Name    string          `json:"name,omitempty"`
-	Volumes []VolumeMount   `json:"volumes,omitempty"`
-	Ports   []ContainerPort `json:"ports,omitempty"`
+	Name         string          `json:"name,omitempty"`
+	Volumemounts []VolumeMount   `json:"volumemounts,omitempty"`
+	Ports        []ContainerPort `json:"ports,omitempty"`
 }
 
 // AddEnvironmentServiceInput is based on the input to
@@ -181,9 +181,9 @@ type AddEnvironmentServiceInput struct {
 
 // ServiceContainerInput  is based on the Lagoon API type.
 type ServiceContainerInput struct {
-	Name    string                              `json:"name"`
-	Volumes []AddEnvironmentServiceVolumemounts `json:"volumes,omitempty"`
-	Ports   []AddEnvironmentServicePorts        `json:"ports,omitempty"`
+	Name         string                              `json:"name"`
+	Volumemounts []AddEnvironmentServiceVolumemounts `json:"volumemounts,omitempty"`
+	Ports        []AddEnvironmentServicePorts        `json:"ports,omitempty"`
 }
 
 type AddEnvironmentServiceVolumemounts struct {

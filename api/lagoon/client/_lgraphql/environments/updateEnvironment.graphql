@@ -23,7 +23,7 @@ mutation (
             type
             containers{
                 name
-                volumes{
+                volumemounts{
                     name
                     path
                 }
