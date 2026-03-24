@@ -5,7 +5,7 @@ mutation (
         name
         type
         storageType
-        size
+        kibRequested
         abandoned
         created
         updated

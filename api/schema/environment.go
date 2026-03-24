@@ -140,13 +140,13 @@ type EnvironmentService struct {
 }
 
 type EnvironmentVolume struct {
-	Name        string `json:"name,omitempty"`
-	StorageType string `json:"storageType,omitempty"`
-	Type        string `json:"type,omitempty"`
-	Size        string `json:"size,omitempty"`
-	Created     string `json:"created,omitempty"`
-	Updated     string `json:"updated,omitempty"`
-	Abandoned   bool   `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
+	Name         string `json:"name,omitempty"`
+	StorageType  string `json:"storageType,omitempty"`
+	Type         string `json:"type,omitempty"`
+	KiBRequested int64  `json:"kibRequested"`
+	Created      string `json:"created,omitempty"`
+	Updated      string `json:"updated,omitempty"`
+	Abandoned    bool   `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
 }
 
 type VolumeMount struct {
@@ -203,7 +203,7 @@ type AddEnvironmentVolumeInput struct {
 	Name          string `json:"name"`
 	StorageType   string `json:"storageType"`
 	Type          string `json:"type"`
-	Size          string `json:"size"`
+	KiBRequested  int64  `json:"kibRequested"`
 	EnvironmentID uint   `json:"environment"`
 	Abandoned     *bool  `json:"abandoned,omitempty"`
 }

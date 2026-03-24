@@ -54,7 +54,7 @@ query (
       name
       type
       storageType
-      size
+      kibRequested
       created
       updated
       abandoned
