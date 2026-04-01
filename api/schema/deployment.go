@@ -115,7 +115,7 @@ type Deployment struct {
 	BulkName             string               `json:"bulkName,omitempty"`
 	BuildStep            string               `json:"buildStep,omitempty"`
 	Environment          EnvironmentInput     `json:"environment"`
-	DeploymentSourceType DeploymentSourceType `json:"deploymentSourceType,omitempty"`
+	DeploymentSourceType DeploymentSourceType `json:"sourceType,omitempty"`
 }
 
 type UpdateDeploymentPatchInput struct {
