@@ -34,9 +34,9 @@ const (
 )
 
 const (
-	Api     DeploymentSourceType = "API"
-	Webhook DeploymentSourceType = "WEBHOOK"
-	Clone   DeploymentSourceType = "CLONE"
+	SourceTypeAPI     DeploymentSourceType = "API"
+	SourceTypeWebhook DeploymentSourceType = "WEBHOOK"
+	SourceTypeClone   DeploymentSourceType = "CLONE"
 )
 
 // DeployEnvironmentLatest is the response.
