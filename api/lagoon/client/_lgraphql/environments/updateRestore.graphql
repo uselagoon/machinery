@@ -1,0 +1,14 @@
+mutation (
+  $backupId: String!, $patch: UpdateRestorePatchInput!
+) {
+  updateRestore(input: {
+    backupId: $backupId
+    patch: $patch
+  }) {
+    id
+    status
+    created
+    restoreLocation
+    backupId
+  }
+}
