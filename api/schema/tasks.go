@@ -69,3 +69,39 @@ type AdvancedTask struct {
 	Name        string `json:"name,omitempty"`
 	Description string `json:"description"`
 }
+
+type TaskPermission string
+
+const (
+	Guest      TaskPermission = "GUEST"
+	Developer  TaskPermission = "DEVELOPER"
+	Maintainer TaskPermission = "MAINTAINER"
+)
+
+type AdvancedTaskDefinitionArgumentType string
+
+const (
+	String                           AdvancedTaskDefinitionArgumentType = "STRING"
+	EnvironmentSourceName            AdvancedTaskDefinitionArgumentType = "ENVIRONMENT_SOURCE_NAME"
+	EnvironmentSourceNameExcludeSelf AdvancedTaskDefinitionArgumentType = "ENVIRONMENT_SOURCE_NAME_EXCLUDE_SELF"
+)
+
+type AdvancedTaskDefinition struct {
+    Name             string     			          `yaml:"name"`
+    Description      string     			          `yaml:"description,omitempty"`
+    ConfirmationText string     			          `yaml:"confirmationText,omitempty"`
+    Type             string     			          `yaml:"type"`
+    Environment      int        			          `yaml:"environment,omitempty"`
+    Project          int        			          `yaml:"project,omitempty"`
+    Service          string     			          `yaml:"service"`
+    Command          string     			          `yaml:"command,omitempty"`
+    Arguments        []AdvancedTaskDefinitionArgument `yaml:"arguments,omitempty"`
+	Permission       TaskPermission                   `yaml:"permission,omitempty"`
+	SystemWide       bool                             `yaml:"systemWide,omitempty"`
+}
+
+type AdvancedTaskDefinitionArgument struct {
+    Name        string                             `yaml:"name"`
+    DisplayName string                             `yaml:"displayName"`
+    Type        AdvancedTaskDefinitionArgumentType `yaml:"type"`
+}

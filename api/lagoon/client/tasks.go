@@ -331,3 +331,26 @@ func (c *Client) AddTask(
 		Response: out,
 	})
 }
+
+func (c *Client) AddAdvancedTaskDefinition(ctx context.Context, environmentID uint, task schema.AdvancedTaskDefinition, out *schema.Task) error {
+	req, err := c.newRequest("_lgraphql/tasks/addAdvancedTaskDefinition.graphql",
+		map[string]interface{}{
+			"environment":      environmentID,
+			"name":             task.Name,
+			"command":          task.Command,
+			"service":          task.Service,
+			"description":      task.Description,
+			"confirmationText": task.ConfirmationText,
+			"permission":       task.Permission,
+			"systemWide":       task.SystemWide,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.Task `json:"addAdvancedTaskDefinition"`
+	}{
+		Response: out,
+	})
+}

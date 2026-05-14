@@ -21,6 +21,7 @@ type Tasks interface {
 	InvokeAdvancedTaskDefinition(ctx context.Context, environmentID uint, taskID uint, result *schema.Task) error
 	AdvancedTasksByEnvironment(ctx context.Context, projectID uint, environmentName string, environment *schema.Environment) error
 	AddTask(ctx context.Context, environmentID uint, task schema.Task, result *schema.Task) error
+	AddAdvancedTaskDefinition(ctx context.Context, environmentID uint, task schema.AdvancedTaskDefinition, result *schema.Task) error
 
 	TasksByEnvironmentAndProjectName(ctx context.Context, environmentName string, projectName string, environment *schema.Environment) error
 	InvokableAdvancedTaskDefinitionsByEnvironmentAndProjectName(ctx context.Context, projectName, environmentName string, environment *schema.Environment) error
@@ -102,3 +103,10 @@ func AddTask(ctx context.Context, environmentID uint, task schema.Task, t Tasks)
 	result := schema.Task{}
 	return &result, t.AddTask(ctx, environmentID, task, &result)
 }
+
+func AddAdvancedTaskDefinition(ctx context.Context, environmentID uint, task schema.AdvancedTaskDefinition, t Tasks) (*schema.Task, error) {
+	result := schema.Task{}
+	return &result, t.AddAdvancedTaskDefinition(ctx, environmentID, task, &result)
+}
+
+
