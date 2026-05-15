@@ -108,5 +108,3 @@ func AddAdvancedTaskDefinition(ctx context.Context, environmentID uint, task sch
 	result := schema.Task{}
 	return &result, t.AddAdvancedTaskDefinition(ctx, environmentID, task, &result)
 }
-
-

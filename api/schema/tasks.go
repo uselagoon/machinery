@@ -63,13 +63,6 @@ type UpdateTaskPatchInput struct {
 	RemoteID    string      `json:"remoteId,omitempty"`
 }
 
-// AdvancedTask task def struct
-type AdvancedTask struct {
-	ID          int    `json:"id,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description"`
-}
-
 type TaskPermission string
 
 const (
@@ -82,26 +75,33 @@ type AdvancedTaskDefinitionArgumentType string
 
 const (
 	String                           AdvancedTaskDefinitionArgumentType = "STRING"
+	Numeric                          AdvancedTaskDefinitionArgumentType = "NUMERIC"
 	EnvironmentSourceName            AdvancedTaskDefinitionArgumentType = "ENVIRONMENT_SOURCE_NAME"
 	EnvironmentSourceNameExcludeSelf AdvancedTaskDefinitionArgumentType = "ENVIRONMENT_SOURCE_NAME_EXCLUDE_SELF"
 )
 
 type AdvancedTaskDefinition struct {
-    Name             string     			          `yaml:"name"`
-    Description      string     			          `yaml:"description,omitempty"`
-    ConfirmationText string     			          `yaml:"confirmationText,omitempty"`
-    Type             string     			          `yaml:"type"`
-    Environment      int        			          `yaml:"environment,omitempty"`
-    Project          int        			          `yaml:"project,omitempty"`
-    Service          string     			          `yaml:"service"`
-    Command          string     			          `yaml:"command,omitempty"`
-    Arguments        []AdvancedTaskDefinitionArgument `yaml:"arguments,omitempty"`
-	Permission       TaskPermission                   `yaml:"permission,omitempty"`
-	SystemWide       bool                             `yaml:"systemWide,omitempty"`
+	ID                   uint                             `yaml:"id,omitempty"`
+	Name                 string                           `yaml:"name"`
+	Description          string                           `yaml:"description,omitempty"`
+	ConfirmationText     string                           `yaml:"confirmationText,omitempty"`
+	Type                 string                           `yaml:"type"`
+	Environment          int                              `yaml:"environment,omitempty"`
+	Project              int                              `yaml:"project,omitempty"`
+	Service              string                           `yaml:"service"`
+	Command              string                           `yaml:"command,omitempty"`
+	Arguments            []AdvancedTaskDefinitionArgument `yaml:"arguments,omitempty"`
+	Permission           TaskPermission                   `yaml:"permission,omitempty"`
+	SystemWide           bool                             `yaml:"systemWide,omitempty"`
+	DeployTokenInjection bool                             `yaml:"deployTokenInjection,omitempty"`
+	ProjectKeyInjection  bool                             `yaml:"projectKeyInjection,omitempty"`
+	AdminOnlyView        bool                             `yaml:"adminOnlyView,omitempty"`
 }
 
 type AdvancedTaskDefinitionArgument struct {
-    Name        string                             `yaml:"name"`
-    DisplayName string                             `yaml:"displayName"`
-    Type        AdvancedTaskDefinitionArgumentType `yaml:"type"`
+	Name         string                             `json:"name" yaml:"name"`
+	DisplayName  string                             `json:"displayName" yaml:"displayName"`
+	Type         AdvancedTaskDefinitionArgumentType `json:"type" yaml:"type"`
+	DefaultValue string                             `json:"defaultValue,omitempty" yaml:"defaultValue,omitempty"`
+	Optional     bool                               `json:"optional,omitempty" yaml:"optional,omitempty"`
 }

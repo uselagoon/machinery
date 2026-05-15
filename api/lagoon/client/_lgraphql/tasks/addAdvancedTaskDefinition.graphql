@@ -7,6 +7,10 @@ mutation (
   $confirmationText: String
   $permission: TaskPermission
   $systemWide: Boolean
+  $deployTokenInjection: Boolean
+  $projectKeyInjection: Boolean
+  $adminOnlyView: Boolean
+  $arguments: [AdvancedTaskDefinitionArgumentInput]  
 ) {
   addAdvancedTaskDefinition(input: {
     environment: $environment
@@ -18,7 +22,10 @@ mutation (
     confirmationText: $confirmationText
     permission: $permission
     systemWide: $systemWide
-    projectKeyInjection: true
+    deployTokenInjection: $deployTokenInjection
+    projectKeyInjection: $projectKeyInjection
+    adminOnlyView: $adminOnlyView
+    advancedTaskDefinitionArguments: $arguments
   }) {
     ... on AdvancedTaskDefinitionCommand {
       id
