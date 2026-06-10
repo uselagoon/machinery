@@ -13,5 +13,6 @@ query deploymentByName($projectName: String!, $environmentName: String!, $name: 
         bulkName
         buildStep
         buildLog
+        sourceType
     }
 }

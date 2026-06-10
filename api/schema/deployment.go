@@ -8,6 +8,8 @@ import (
 // DeployType .
 type DeployType string
 
+type DeploymentSourceType string
+
 func (d DeployType) validateType() error {
 	deployTypes := map[DeployType]struct{}{
 		Branch:      {},
@@ -29,6 +31,12 @@ const (
 	Branch      DeployType = "BRANCH"
 	PullRequest DeployType = "PULLREQUEST"
 	Promote     DeployType = "PROMOTE"
+)
+
+const (
+	SourceTypeAPI     DeploymentSourceType = "API"
+	SourceTypeWebhook DeploymentSourceType = "WEBHOOK"
+	SourceTypeClone   DeploymentSourceType = "CLONE"
 )
 
 // DeployEnvironmentLatest is the response.
@@ -93,20 +101,21 @@ type DeployEnvironmentLatestInput struct {
 }
 
 type Deployment struct {
-	ID          int              `json:"id,omitempty"`
-	Name        string           `json:"name,omitempty"`
-	Status      string           `json:"status,omitempty"`
-	Created     string           `json:"created,omitempty"`
-	Started     string           `json:"started,omitempty"`
-	Completed   string           `json:"completed,omitempty"`
-	RemoteID    string           `json:"remoteId,omitempty"`
-	BuildLog    string           `json:"buildLog,omitempty"`
-	UILink      string           `json:"uiLink,omitempty"`
-	Priority    uint             `json:"priority,omitempty"`
-	BulkID      string           `json:"bulkId,omitempty"`
-	BulkName    string           `json:"bulkName,omitempty"`
-	BuildStep   string           `json:"buildStep,omitempty"`
-	Environment EnvironmentInput `json:"environment"`
+	ID                   int                  `json:"id,omitempty"`
+	Name                 string               `json:"name,omitempty"`
+	Status               string               `json:"status,omitempty"`
+	Created              string               `json:"created,omitempty"`
+	Started              string               `json:"started,omitempty"`
+	Completed            string               `json:"completed,omitempty"`
+	RemoteID             string               `json:"remoteId,omitempty"`
+	BuildLog             string               `json:"buildLog,omitempty"`
+	UILink               string               `json:"uiLink,omitempty"`
+	Priority             uint                 `json:"priority,omitempty"`
+	BulkID               string               `json:"bulkId,omitempty"`
+	BulkName             string               `json:"bulkName,omitempty"`
+	BuildStep            string               `json:"buildStep,omitempty"`
+	Environment          EnvironmentInput     `json:"environment"`
+	DeploymentSourceType DeploymentSourceType `json:"sourceType,omitempty"`
 }
 
 type UpdateDeploymentPatchInput struct {
