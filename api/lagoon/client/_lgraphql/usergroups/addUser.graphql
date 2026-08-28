@@ -3,13 +3,15 @@ mutation (
   $firstName: String,
   $lastName: String,
   $comment: String,
-  $resetPassword: Boolean) {
+  $resetPassword: Boolean,
+  $gitlabId: Int) {
     addUser(input: {
       email: $email
       firstName: $firstName
       lastName: $lastName
       comment: $comment
       resetPassword: $resetPassword
+      gitlabId: $gitlabId
     }) {
       id
       email
