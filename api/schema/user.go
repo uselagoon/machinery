@@ -8,7 +8,7 @@ type AddUserInput struct {
 	FirstName     string `json:"firstName,omitempty"`
 	LastName      string `json:"lastName,omitempty"`
 	Comment       string `json:"comment,omitempty"`
-	GitlabID      uint   `json:"gitlabId,omitempty"`
+	GitlabID      *uint  `json:"gitlabId,omitempty"`
 	ResetPassword bool   `json:"resetPassword,omitempty"`
 }
 
