@@ -132,24 +132,27 @@ type EnvironmentService struct {
 	ID         int                `json:"id,omitempty"`
 	Name       string             `json:"name,omitempty"`
 	Type       string             `json:"type,omitempty"`
-	Updated    string             `json:"updated,omitempty"`
 	Containers []ServiceContainer `json:"containers,omitempty"`
 	Replicas   int32              `json:"replicas,omitempty"`
 	Created    string             `json:"created,omitempty"`
+	Updated    string             `json:"updated,omitempty"`
 	Abandoned  bool               `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
 }
 
 type EnvironmentVolume struct {
-	Name        string `json:"name,omitempty"`
-	StorageType string `json:"storageType,omitempty"`
-	Type        string `json:"type,omitempty"`
-	Size        string `json:"size,omitempty"`
-	Abandoned   bool   `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
+	Name         string `json:"name,omitempty"`
+	StorageType  string `json:"storageType,omitempty"`
+	Type         string `json:"type,omitempty"`
+	KiBRequested int64  `json:"kibRequested"`
+	Created      string `json:"created,omitempty"`
+	Updated      string `json:"updated,omitempty"`
+	Abandoned    bool   `json:"abandoned,omitempty"` // no longer tracked in the docker-compose file
 }
 
 type VolumeMount struct {
-	Name string `json:"name,omitempty"`
-	Path string `json:"path,omitempty"`
+	Name   string            `json:"name,omitempty"`
+	Volume EnvironmentVolume `json:"volume,omitempty"`
+	Path   string            `json:"path,omitempty"`
 }
 
 type ContainerPort struct {
@@ -159,9 +162,9 @@ type ContainerPort struct {
 
 // ServiceContainer  is based on the Lagoon API type.
 type ServiceContainer struct {
-	Name    string          `json:"name,omitempty"`
-	Volumes []VolumeMount   `json:"volumes,omitempty"`
-	Ports   []ContainerPort `json:"ports,omitempty"`
+	Name         string          `json:"name,omitempty"`
+	Volumemounts []VolumeMount   `json:"volumemounts,omitempty"`
+	Ports        []ContainerPort `json:"ports,omitempty"`
 }
 
 // AddEnvironmentServiceInput is based on the input to
@@ -173,11 +176,36 @@ type AddEnvironmentServiceInput struct {
 	Containers    []ServiceContainerInput `json:"containers,omitempty"`
 	Replicas      *int32                  `json:"replicas,omitempty"`
 	EnvironmentID uint                    `json:"environment"`
+	Abandoned     *bool                   `json:"abandoned,omitempty"`
 }
 
 // ServiceContainerInput  is based on the Lagoon API type.
 type ServiceContainerInput struct {
+	Name         string                              `json:"name"`
+	Volumemounts []AddEnvironmentServiceVolumemounts `json:"volumemounts,omitempty"`
+	Ports        []AddEnvironmentServicePorts        `json:"ports,omitempty"`
+}
+
+type AddEnvironmentServiceVolumemounts struct {
 	Name string `json:"name"`
+	Path string `json:"path"`
+}
+
+type AddEnvironmentServicePorts struct {
+	Name string `json:"name"`
+	Port int    `json:"port"`
+}
+
+// AddEnvironmentVolumeInput is based on the input to
+// addOrUpdateEnvironmentService.
+type AddEnvironmentVolumeInput struct {
+	ID            uint   `json:"id,omitempty"`
+	Name          string `json:"name"`
+	StorageType   string `json:"storageType"`
+	Type          string `json:"type"`
+	KiBRequested  int64  `json:"kibRequested"`
+	EnvironmentID uint   `json:"environment"`
+	Abandoned     *bool  `json:"abandoned,omitempty"`
 }
 
 // DeleteEnvironmentServiceInput is based on the input to
@@ -190,6 +218,18 @@ type DeleteEnvironmentServiceInput struct {
 // DeleteEnvironmentService is the response.
 type DeleteEnvironmentService struct {
 	DeleteEnvironmentService string `json:"deleteEnvironmentService"`
+}
+
+// DeleteEnvironmentVolumeInput is based on the input to
+// deleteEnvironmentVolume.
+type DeleteEnvironmentVolumeInput struct {
+	Name          string `json:"name"`
+	EnvironmentID uint   `json:"environment"`
+}
+
+// DeleteEnvironmentVolume is the response.
+type DeleteEnvironmentVolume struct {
+	DeleteEnvironmentVolume string `json:"deleteEnvironmentVolume"`
 }
 
 type IdleState string

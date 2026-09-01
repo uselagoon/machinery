@@ -1,0 +1,8 @@
+mutation (
+  $name: String!,
+  $environment: Int!) {
+    deleteEnvironmentVolume(input: {
+        name: $name,
+        environment: $environment
+    })
+}

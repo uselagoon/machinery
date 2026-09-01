@@ -8,6 +8,7 @@ mutation (
             name
         }
         replicas
+        abandoned
         created
         updated
     }

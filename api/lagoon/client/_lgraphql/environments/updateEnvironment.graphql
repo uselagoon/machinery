@@ -23,9 +23,28 @@ mutation (
             type
             containers{
                 name
+                volumemounts{
+                    name
+                    path
+                }
+                ports{
+                    name
+                    port
+                }
             }
             created
             updated
+            abandoned
+        }
+        volumes{
+            id
+            name
+            type
+            storageType
+            kibRequested
+            created
+            updated
+            abandoned
         }
     }
 }

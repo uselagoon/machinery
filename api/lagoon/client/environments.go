@@ -280,7 +280,7 @@ func (c *Client) UpdateEnvironment(
 	})
 }
 
-// SetEnvironmentServices updates an environment.
+// SetEnvironmentServices updates an environments services.
 func (c *Client) SetEnvironmentServices(
 	ctx context.Context, id uint, services []string, result *[]schema.EnvironmentService) error {
 
@@ -337,6 +337,25 @@ func (c *Client) AddOrUpdateEnvironmentService(
 	})
 }
 
+// AddOrUpdateEnvironmentVolume updates an environment volume.
+func (c *Client) AddOrUpdateEnvironmentVolume(
+	ctx context.Context, volume schema.AddEnvironmentVolumeInput, result *schema.EnvironmentVolume) error {
+
+	req, err := c.newRequest("_lgraphql/environments/addOrUpdateEnvironmentVolume.graphql",
+		map[string]interface{}{
+			"volume": volume,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &struct {
+		Response *schema.EnvironmentVolume `json:"addOrUpdateEnvironmentVolume"`
+	}{
+		Response: result,
+	})
+}
+
 // DeleteEnvironmentService deletes an environment service.
 func (c *Client) DeleteEnvironmentService(
 	ctx context.Context, service schema.DeleteEnvironmentServiceInput, result *schema.DeleteEnvironmentService) error {
@@ -350,11 +369,23 @@ func (c *Client) DeleteEnvironmentService(
 		return err
 	}
 
-	return c.client.Run(ctx, req, &struct {
-		Response *schema.DeleteEnvironmentService `json:"deleteEnvironmentService"`
-	}{
-		Response: result,
-	})
+	return c.client.Run(ctx, req, &result)
+}
+
+// DeleteEnvironmentVolume deletes an environment volume.
+func (c *Client) DeleteEnvironmentVolume(
+	ctx context.Context, volume schema.DeleteEnvironmentVolumeInput, result *schema.DeleteEnvironmentVolume) error {
+
+	req, err := c.newRequest("_lgraphql/environments/deleteEnvironmentVolume.graphql",
+		map[string]interface{}{
+			"environment": volume.EnvironmentID,
+			"name":        volume.Name,
+		})
+	if err != nil {
+		return err
+	}
+
+	return c.client.Run(ctx, req, &result)
 }
 
 // DeleteBackup deletes an environment backup.
