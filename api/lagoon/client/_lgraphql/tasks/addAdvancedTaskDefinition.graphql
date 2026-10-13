@@ -1,0 +1,34 @@
+mutation (
+  $environment: Int
+  $name: String!
+  $command: String
+  $service: String!
+  $description: String!
+  $confirmationText: String
+  $permission: TaskPermission
+  $systemWide: Boolean
+  $deployTokenInjection: Boolean
+  $projectKeyInjection: Boolean
+  $adminOnlyView: Boolean
+  $arguments: [AdvancedTaskDefinitionArgumentInput]  
+) {
+  addAdvancedTaskDefinition(input: {
+    environment: $environment
+    command: $command
+    name: $name
+    service: $service
+    type: COMMAND
+    description: $description
+    confirmationText: $confirmationText
+    permission: $permission
+    systemWide: $systemWide
+    deployTokenInjection: $deployTokenInjection
+    projectKeyInjection: $projectKeyInjection
+    adminOnlyView: $adminOnlyView
+    advancedTaskDefinitionArguments: $arguments
+  }) {
+    ... on AdvancedTaskDefinitionCommand {
+      id
+    }
+  }
+}
